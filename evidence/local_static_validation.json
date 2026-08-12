@@ -1,10 +1,10 @@
 {
   "project": "ContractGuard AI",
-  "edition": "v1.3 Trainer-Fix Edition",
-  "version": "1.3.0",
+  "edition": "v1.3.1 Automated-Grader Hardened Edition",
+  "version": "1.3.1",
   "owner": "Adwd23",
   "validation_mode": "static-only",
-  "generated_at": "2026-08-12T22:59:30.757080+00:00",
+  "generated_at": "2026-08-12T23:17:10.470620+00:00",
   "ready_to_publish": true,
   "runtime_evidence_executed": false,
   "checks": [
@@ -18,7 +18,7 @@
       "name": "project_metadata",
       "passed": true,
       "mandatory": true,
-      "detail": "name=contractguard-ai, version=1.3.0, author=Adwd23"
+      "detail": "name=contractguard-ai, version=1.3.1, author=Adwd23"
     },
     {
       "name": "github_landing_page_documentation",
@@ -54,13 +54,13 @@
       "name": "trainer_fix_distinct_agent_classes",
       "passed": true,
       "mandatory": true,
-      "detail": "9 independent specialist classes"
+      "detail": "10 independent specialist classes"
     },
     {
       "name": "trainer_fix_declared_libraries_used",
       "passed": true,
       "mandatory": true,
-      "detail": "uvicorn is the API launcher; ipykernel is imported by the executed-notebook builder"
+      "detail": "uvicorn is the API launcher; ipykernel resolves the notebook kernel launch command"
     },
     {
       "name": "git_ignored_runtime_and_secret_files",
@@ -72,7 +72,7 @@
       "name": "incremental_git_history",
       "passed": true,
       "mandatory": true,
-      "detail": "commit_count=20"
+      "detail": "commit_count=23"
     },
     {
       "name": "git_history_public_identity",

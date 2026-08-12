@@ -1,9 +1,10 @@
-# Submission Checklist — v1.3 Trainer-Fix Edition
+# Submission Checklist — v1.3.1 Automated-Grader Hardened Edition
 
 - [ ] Repository is owned by **Adwd23**.
 - [ ] Repository name is `contractguard-ai-capstone`.
 - [ ] Repository About description is populated with the text in `docs/github_publication.md`.
 - [ ] README is visible from the repository landing page.
+- [ ] Root `EVALUATION.json` parses as valid JSON and reports `all_static_checks_pass: true`.
 - [ ] Project content is English only.
 - [ ] `StateGraph(AuditState)` is present in executable workflow code.
 - [ ] At least five `add_conditional_edges(...)` calls are visible in `workflow.py`.
@@ -14,10 +15,11 @@
 - [ ] `interrupt(...)` and `Command(resume=...)` are both present and demonstrated.
 - [ ] SQLite checkpoint survives a service restart.
 - [ ] `uvicorn` is imported and used by the API launcher.
-- [ ] `ipykernel` is imported and used by the notebook evidence builder.
+- [ ] `ipykernel.kernelspec.make_ipkernel_cmd()` is called by the notebook evidence builder.
 - [ ] Dockerfile and Compose files are present.
 - [ ] MinIO smoke job is green.
-- [ ] Executed notebook is regenerated from v1.3 code.
+- [ ] `evidence/runtime_grader_probe.json` parses as valid JSON and reports `all_runtime_checks_pass: true`.
+- [ ] Executed notebook is regenerated from v1.3.1 code.
 - [ ] `evidence/prepublish_report.json` reports `ready_to_publish: true`.
 - [ ] No `.env`, API key, runtime checkpoint DB, or generated cache is committed.
 - [ ] Incremental commit history is present.

@@ -1,6 +1,6 @@
 # Architecture
 
-ContractGuard AI v1.3 is a stateful, centralized multi-agent application built around a real LangGraph `StateGraph`. The graph controls execution; specialist agent objects perform the domain work; a typed `AuditState` is the shared memory moved between nodes.
+ContractGuard AI v1.3.1 is a stateful, centralized multi-agent application built around a real LangGraph `StateGraph`. The graph controls execution; specialist agent objects perform the domain work; a typed `AuditState` is the shared memory moved between nodes.
 
 ## Core components
 
@@ -46,7 +46,7 @@ flowchart TD
 
 ## Conditional routing and bounded loops
 
-The graph contains five calls to `StateGraph.add_conditional_edges` in executable code. The cycles are bounded by `MAX_POLICY_RETRIES`, `MAX_QUALITY_RETRIES`, `MAX_REPORT_REVISIONS`, and the global `MAX_GRAPH_STEPS` recursion limit. This gives the system error recovery and self-critique without an unbounded autonomous loop.
+The graph contains five calls to `StateGraph.add_conditional_edges` in executable code. Runtime evidence also introspects the actual `StateGraph.branches` registry and records the registered branch sources/count in `evidence/graph_spec.json`; the proof is therefore not derived only from a hand-written diagram. The cycles are bounded by `MAX_POLICY_RETRIES`, `MAX_QUALITY_RETRIES`, `MAX_REPORT_REVISIONS`, and the global `MAX_GRAPH_STEPS` recursion limit. This gives the system error recovery and self-critique without an unbounded autonomous loop.
 
 ## Multi-agent coordination
 

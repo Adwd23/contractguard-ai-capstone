@@ -1,6 +1,6 @@
 # ContractGuard AI
 
-**v1.3 Trainer-Fix Edition** — a secure, observable, resumable multi-agent system for vendor-contract auditing and compliance review.
+**v1.3.1 Automated-Grader Hardened Edition** — a secure, observable, resumable multi-agent system for vendor-contract auditing and compliance review.
 
 **Repository owner / project implementer:** Adwd23
 **Training program:** SDAIA Academy — *Advanced Agentic AI Systems Engineering*
@@ -15,21 +15,32 @@ ContractGuard AI receives a vendor contract, blocks prompt-injection attempts be
 
 The project is designed to demonstrate both the happy path and the failure/security paths required by the capstone rubric: a blocked indirect prompt injection, a real tool retry, a Reflexion re-search loop, a persistent Human-in-the-Loop interrupt that survives process restart, `Command(resume=...)`, output-schema regeneration, PII masking, structured logs, Prometheus metrics, Docker, MinIO/S3, FastAPI, and a reproducible executed-evidence pipeline.
 
-## v1.3 trainer-feedback fixes
+## v1.3.1 trainer-feedback fixes
 
 This edition was rebuilt so the requirements are visible in executable code rather than only in documentation.
 
-| Trainer observation | v1.3 implementation | Primary proof |
+| Trainer observation | v1.3.1 implementation | Primary proof |
 |---|---|---|
-| `uvicorn` and `ipykernel` were declared but not visibly used | `uvicorn` is imported and invoked in the API launcher; `ipykernel` is imported and printed by the notebook evidence builder | `src/contractguard/server.py`, `scripts/build_executed_notebook.py`, `tests/test_trainer_fixes.py` |
+| `uvicorn` and `ipykernel` were declared but not visibly used | `uvicorn.run(...)` is the API process runner; the notebook builder calls `ipykernel.kernelspec.make_ipkernel_cmd()` and records the real kernel launch command | `src/contractguard/server.py`, `scripts/build_executed_notebook.py`, `tests/test_trainer_fixes.py` |
 | Guardrail wording looked like a comment/claim | `InputGuardrail.enforce()` raises `GuardrailViolation` and is called before any tool-capable node; `OutputGuardrail.enforce()` masks/validates before storage | `src/contractguard/guardrails.py`, `src/contractguard/agents/input_security.py`, `src/contractguard/agents/output_guardian.py` |
 | State graph appeared linear | The workflow contains five explicit `add_conditional_edges(...)` calls plus three bounded cycles | `src/contractguard/workflow.py`, `/graph`, `evidence/graph_spec.json` |
 | `interrupt()` appeared without a demonstrated resume | The approval node calls `interrupt(...)`; the external resume path calls `graph.invoke(Command(resume=...))`; the node returns `Command(goto=...)` | `src/contractguard/workflow.py`, restart/HITL evidence files |
 | Multiple roles looked like one agent role-playing personas | Each specialist is a separate Python class in its own module, with its own responsibility and tool allow-list | `src/contractguard/agents/` and structured `AgentMessage` records |
 | GitHub About description was empty | The exact description is documented in this README and `docs/github_publication.md` | GitHub repository About panel after publication |
-| Grader JSON confidence failure | `scripts/grader_probe.py` emits one strict JSON document, all generated evidence JSON is parsed by the pre-publication gate, and CI fails on invalid JSON | `scripts/grader_probe.py`, `evidence/grader_manifest.json`, `scripts/prepublish_check.py` |
+| Grader JSON confidence failure | `scripts/grader_probe.py` and `scripts/runtime_grader_probe.py` each emit exactly one strict JSON object; runtime progress is captured so JSON parsers never receive mixed text | `scripts/grader_probe.py`, `evidence/grader_manifest.json`, `scripts/prepublish_check.py` |
 
-See [`docs/trainer_feedback_fixes.md`](docs/trainer_feedback_fixes.md) for the evaluator-oriented checklist.
+See [`docs/trainer_feedback_fixes.md`](docs/trainer_feedback_fixes.md) and [`docs/automated_evaluation_guide.md`](docs/automated_evaluation_guide.md) for evaluator-oriented proof paths.
+
+### Automated-evaluation entry points
+
+| Entry point | Purpose | Output contract |
+|---|---|---|
+| `EVALUATION.json` | Dependency-free source evidence with exact files and line locations | Valid JSON committed at repository root |
+| `python scripts/grader_probe.py` | Regenerates source-level checks without importing optional runtime libraries | Exactly one JSON object on stdout |
+| `python scripts/runtime_grader_probe.py --refresh` | Runs the complete demo silently, then validates attack, tools, graph loops, multi-agent messages, restart, HITL resume, output guardrail, and persistence | Exactly one JSON object on stdout |
+| `evidence/runtime_grader_probe.json` | CI-captured runtime acceptance summary | Valid JSON |
+
+These entry points are additive evidence. The actual implementation remains in the production source modules and is also exercised by `pytest` and the executed notebook.
 
 ## Architecture
 
@@ -279,12 +290,14 @@ This proves that the validated report is written through the configured MinIO/S3
 
 ## Evidence index
 
-The downloadable v1.3 archive includes `evidence/grader_manifest.json` and `evidence/local_static_validation.json` for deterministic source-level verification. It deliberately does **not** preserve stale v1.2 runtime output. On the first v1.3 GitHub Actions run, the current LangGraph dependencies are installed and the runtime evidence below is regenerated and committed by the workflow.
+The downloadable v1.3.1 archive includes root `EVALUATION.json`, `evidence/grader_manifest.json`, and `evidence/local_static_validation.json` for deterministic source-level verification. It deliberately does **not** preserve stale v1.2 runtime output. On the first v1.3.1 GitHub Actions run, the current LangGraph dependencies are installed and the runtime evidence below is regenerated and committed by the workflow.
 
 After a successful evidence run, the repository contains:
 
 | Evidence | What it proves |
 |---|---|
+| `EVALUATION.json` | dependency-free source proof with exact implementation locations |
+| `evidence/runtime_grader_probe.json` | one-object JSON summary of end-to-end runtime acceptance checks |
 | `evidence/01_prompt_injection_blocked.json` | real attack blocked before any function tool |
 | `evidence/02_low_risk_completed.json` | autonomous safe path and real tool calls |
 | `evidence/03_high_risk_paused_for_human.json` | tool retry, Reflexion loop, and HITL pause |
@@ -307,7 +320,7 @@ Before resubmitting:
 2. In the GitHub **About** panel, set the repository description to:
    **Secure LangGraph multi-agent system for vendor contract auditing, compliance analysis, guardrails, human approval, and production monitoring.**
 3. Wait until both GitHub Actions jobs are green.
-4. Confirm the executed notebook and evidence files were regenerated by the current v1.3 commit.
+4. Confirm the executed notebook and evidence files were regenerated by the current v1.3.1 commit.
 5. Confirm the repository is public if the trainer requires direct access.
 
 Detailed instructions are in [`docs/github_publication.md`](docs/github_publication.md).
