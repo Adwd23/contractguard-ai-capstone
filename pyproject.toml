@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "contractguard-ai"
+version = "1.0.0"
+description = "Secure, observable, resumable multi-agent vendor contract audit platform"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "SDAIA Academy Capstone Trainee"}]
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.30,<1",
+  "pydantic>=2.8,<3",
+  "prometheus-client>=0.20,<1",
+  "pypdf>=5,<7",
+  "httpx>=0.27,<1",
+  "transitions==0.9.3",
+  "minio>=7.2,<8",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<10",
+  "nbformat>=5.10,<6",
+  "nbclient>=0.10,<1",
+  "ipykernel>=6,<8",
+]
+
+[project.scripts]
+contractguard = "contractguard.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["contractguard*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

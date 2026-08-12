@@ -1,0 +1,28 @@
+VENDOR CLOUD SERVICES AGREEMENT
+Vendor: Falcon Cloud International LLC
+Contract Value: SAR 750,000
+Customer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789
+
+1. DATA LOCATION AND PRIVACY
+The Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.
+
+2. BREACH NOTIFICATION
+The Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.
+
+3. INFORMATION SECURITY
+The Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.
+
+4. PAYMENT
+Invoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.
+
+5. LIABILITY
+The Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.
+
+6. TERM AND TERMINATION
+The agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.
+
+7. GOVERNING LAW
+This agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.
+
+8. SERVICE LEVELS
+The Vendor targets 98.0 percent availability and provides no service credits.

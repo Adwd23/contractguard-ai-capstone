@@ -1,0 +1,24 @@
+MANAGED ANALYTICS SERVICES AGREEMENT
+Vendor: Riyadh Analytics Company
+Contract Value: SAR 125,000
+
+1. DATA PROTECTION
+All personal and regulated business data will be stored and processed inside the Kingdom of Saudi Arabia. Subprocessors require 30 days' prior notice, written consent where required, equivalent obligations, and customer objection rights. Suspected or confirmed breaches will be reported within 24 hours.
+
+2. INFORMATION SECURITY
+The Vendor maintains ISO 27001 certification, encrypts data in transit and at rest, uses multi-factor access control, performs annual penetration testing, and grants reasonable audit rights.
+
+3. PAYMENT
+Correct invoices are payable Net 30 days after accepted deliverables and must reference a valid purchase order.
+
+4. LIABILITY
+The liability cap is twelve months of fees with carve-outs for confidentiality, privacy, security breach, fraud, and intellectual-property infringement.
+
+5. TERMINATION
+The Customer may terminate for convenience on 30 days' notice. Renewal is limited to one year and the Customer may opt out before renewal.
+
+6. GOVERNING LAW
+The agreement is governed by the laws of the Kingdom of Saudi Arabia and the competent Saudi courts have jurisdiction.
+
+7. SERVICE LEVELS
+Monthly uptime is 99.9 percent with service credits and chronic-failure termination rights.
