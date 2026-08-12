@@ -34,7 +34,7 @@ services:
     command:
       - sh
       - -c
-      - python scripts/wait_for_minio.py && exec uvicorn contractguard.api:app --host 0.0.0.0 --port 8000
+      - python scripts/wait_for_minio.py && exec python -m contractguard.server
     read_only: true
     tmpfs:
       - /tmp:size=64m,mode=1777

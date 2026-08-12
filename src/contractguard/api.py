@@ -24,7 +24,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     app = FastAPI(
         title="ContractGuard AI",
-        version="1.1.0",
+        version="1.3.0",
         description="Secure, resumable multi-agent vendor-contract audit service.",
         lifespan=lifespan,
     )

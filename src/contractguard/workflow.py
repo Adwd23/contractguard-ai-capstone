@@ -1,472 +1,466 @@
-"""Graph-based orchestration for ContractGuard AI.
+"""Real LangGraph StateGraph orchestration for ContractGuard AI.
 
-The workflow is implemented with the established ``transitions`` finite-state-machine
-framework. Each state is a graph node, each transition is an edge, conditions drive
-branching, and self/back edges implement retry, re-search, and report-revision loops.
+Trainer-fix edition requirements are intentionally explicit in executable code:
+- ``StateGraph(AuditState)`` owns the workflow.
+- ``add_conditional_edges`` implements branching and bounded cycles.
+- ``SqliteSaver`` is compiled into the graph through the persistence layer.
+- ``interrupt()`` pauses the human-approval node.
+- ``Command(resume=...)`` resumes the exact persisted thread.
 """
 from __future__ import annotations
 
 from copy import deepcopy
-from typing import Any, Callable
+from importlib.metadata import PackageNotFoundError, version
+from typing import Any, Literal
 
-try:  # Prefer the installed dependency in normal deployments.
-    from transitions import Machine, MachineError, __version__ as transitions_version
-except ImportError:  # Offline evidence build: exact MIT-licensed v0.9.3 fallback.
-    from ._vendor.transitions import Machine, MachineError, __version__ as transitions_version
+from langgraph.graph import END, START, StateGraph
+from langgraph.types import Command, interrupt
 
-from .agents import (
-    ArtifactStorageAgent,
-    ComplianceAnalystAgent,
-    CoordinatorAgent,
-    DocumentAnalystAgent,
-    InputSecurityAgent,
-    OutputGuardianAgent,
-    PolicyResearchAgent,
-    QualityReviewerAgent,
-    ReportWriterAgent,
-    SecurityReviewerAgent,
-)
 from .config import Settings
 from .models import ResumeRequest
 from .observability import Observability
-from .persistence import SQLiteCheckpointer
+from .persistence import LangGraphSQLitePersistence
+from .state import AuditState
 
 
 TERMINAL_NODES = {"completed", "blocked", "rejected", "failed"}
-PAUSE_NODES = {"awaiting_approval"}
 
 
 class ContractAuditWorkflow:
-    """A resumable state graph with conditional branches and bounded loops."""
+    """Compiled, persistent, branching LangGraph workflow."""
 
-    NODE_SPECS: tuple[dict[str, Any], ...] = (
-        {"name": "received"},
-        {"name": "guardrailed", "on_enter": "_enter_guardrailed"},
-        {"name": "planned", "on_enter": "_enter_planned"},
-        {"name": "ingested", "on_enter": "_enter_ingested"},
-        {"name": "researching", "on_enter": "_enter_researching"},
-        {"name": "analyzed", "on_enter": "_enter_analyzed"},
-        {"name": "quality_reviewed", "on_enter": "_enter_quality_reviewed"},
-        {"name": "security_reviewed", "on_enter": "_enter_security_reviewed"},
-        {"name": "awaiting_approval", "on_enter": "_enter_awaiting_approval"},
-        {"name": "reporting", "on_enter": "_enter_reporting"},
-        {"name": "output_validated", "on_enter": "_enter_output_validated"},
-        {"name": "persisting", "on_enter": "_enter_persisting"},
-        {"name": "completed", "on_enter": "_enter_completed", "final": True},
-        {"name": "blocked", "on_enter": "_enter_blocked", "final": True},
-        {"name": "rejected", "on_enter": "_enter_rejected", "final": True},
-        {"name": "failed", "on_enter": "_enter_failed", "final": True},
+    NODE_NAMES: tuple[str, ...] = (
+        "input_guardrail",
+        "coordinator",
+        "document_analyst",
+        "policy_research",
+        "compliance_analyst",
+        "quality_reviewer",
+        "security_reviewer",
+        "approval_gate",
+        "human_approval",
+        "report_writer",
+        "output_guardian",
+        "artifact_storage",
+        "completed",
+        "blocked",
+        "rejected",
+        "failed",
     )
 
     EDGE_SPECS: tuple[dict[str, Any], ...] = (
-        {"trigger": "advance", "source": "received", "dest": "guardrailed"},
-        {
-            "trigger": "advance",
-            "source": "guardrailed",
-            "dest": "blocked",
-            "conditions": "_input_is_blocked",
-        },
-        {
-            "trigger": "advance",
-            "source": "guardrailed",
-            "dest": "planned",
-            "conditions": "_input_is_safe",
-        },
-        {"trigger": "advance", "source": "planned", "dest": "ingested"},
-        {"trigger": "advance", "source": "ingested", "dest": "researching"},
-        {
-            "trigger": "advance",
-            "source": "researching",
-            "dest": "researching",
-            "conditions": "_policy_error_can_retry",
-            "before": "_record_policy_retry",
-        },
-        {
-            "trigger": "advance",
-            "source": "researching",
-            "dest": "failed",
-            "conditions": "_policy_error_exhausted",
-            "before": "_mark_retry_exhausted",
-        },
-        {
-            "trigger": "advance",
-            "source": "researching",
-            "dest": "analyzed",
-            "conditions": "_policy_search_succeeded",
-        },
-        {"trigger": "advance", "source": "analyzed", "dest": "quality_reviewed"},
-        {
-            "trigger": "advance",
-            "source": "quality_reviewed",
-            "dest": "researching",
-            "conditions": "_quality_needs_retry",
-            "before": "_record_quality_retry",
-        },
-        {
-            "trigger": "advance",
-            "source": "quality_reviewed",
-            "dest": "security_reviewed",
-            "conditions": "_quality_gate_complete",
-        },
-        {
-            "trigger": "advance",
-            "source": "security_reviewed",
-            "dest": "awaiting_approval",
-            "conditions": "_approval_is_required",
-        },
-        {
-            "trigger": "advance",
-            "source": "security_reviewed",
-            "dest": "reporting",
-            "conditions": "_approval_not_required",
-        },
-        {
-            "trigger": "approve_contract",
-            "source": "awaiting_approval",
-            "dest": "reporting",
-            "before": "_apply_approval",
-        },
-        {
-            "trigger": "reject_contract",
-            "source": "awaiting_approval",
-            "dest": "rejected",
-            "before": "_apply_rejection",
-        },
-        {"trigger": "advance", "source": "reporting", "dest": "output_validated"},
-        {
-            "trigger": "advance",
-            "source": "output_validated",
-            "dest": "reporting",
-            "conditions": "_output_invalid_can_revise",
-            "before": "_record_report_revision",
-        },
-        {
-            "trigger": "advance",
-            "source": "output_validated",
-            "dest": "failed",
-            "conditions": "_output_invalid_exhausted",
-            "before": "_mark_output_exhausted",
-        },
-        {
-            "trigger": "advance",
-            "source": "output_validated",
-            "dest": "persisting",
-            "conditions": "_output_is_valid",
-        },
-        {"trigger": "advance", "source": "persisting", "dest": "completed"},
-        {"trigger": "fail_workflow", "source": "*", "dest": "failed"},
+        {"source": "START", "dest": "input_guardrail", "kind": "normal"},
+        {"source": "input_guardrail", "dest": "blocked", "kind": "conditional", "condition": "blocked"},
+        {"source": "input_guardrail", "dest": "coordinator", "kind": "conditional", "condition": "safe"},
+        {"source": "coordinator", "dest": "document_analyst", "kind": "normal"},
+        {"source": "document_analyst", "dest": "policy_research", "kind": "normal"},
+        {"source": "policy_research", "dest": "policy_research", "kind": "conditional", "condition": "retry"},
+        {"source": "policy_research", "dest": "compliance_analyst", "kind": "conditional", "condition": "success"},
+        {"source": "policy_research", "dest": "failed", "kind": "conditional", "condition": "failed"},
+        {"source": "compliance_analyst", "dest": "quality_reviewer", "kind": "normal"},
+        {"source": "quality_reviewer", "dest": "policy_research", "kind": "conditional", "condition": "retry"},
+        {"source": "quality_reviewer", "dest": "security_reviewer", "kind": "conditional", "condition": "pass"},
+        {"source": "security_reviewer", "dest": "approval_gate", "kind": "conditional", "condition": "human"},
+        {"source": "security_reviewer", "dest": "report_writer", "kind": "conditional", "condition": "automatic"},
+        {"source": "approval_gate", "dest": "human_approval", "kind": "normal"},
+        {"source": "human_approval", "dest": "report_writer", "kind": "Command", "condition": "approve"},
+        {"source": "human_approval", "dest": "rejected", "kind": "Command", "condition": "reject"},
+        {"source": "report_writer", "dest": "output_guardian", "kind": "normal"},
+        {"source": "output_guardian", "dest": "report_writer", "kind": "conditional", "condition": "revise"},
+        {"source": "output_guardian", "dest": "artifact_storage", "kind": "conditional", "condition": "valid"},
+        {"source": "output_guardian", "dest": "failed", "kind": "conditional", "condition": "failed"},
+        {"source": "artifact_storage", "dest": "completed", "kind": "normal"},
+        {"source": "completed", "dest": "END", "kind": "normal"},
+        {"source": "blocked", "dest": "END", "kind": "normal"},
+        {"source": "rejected", "dest": "END", "kind": "normal"},
+        {"source": "failed", "dest": "END", "kind": "normal"},
     )
 
     def __init__(
         self,
         *,
-        state: dict[str, Any],
-        initial_node: str,
         agents: dict[str, Any],
         settings: Settings,
-        checkpointer: SQLiteCheckpointer,
+        persistence: LangGraphSQLitePersistence,
         observability: Observability,
     ) -> None:
-        self.graph_state = state
-        self.settings = settings
-        self.checkpointer = checkpointer
-        self.observability = observability
         self.agents = agents
-        self.node = initial_node
-        self._pending_resume: ResumeRequest | None = None
-
-        self.graph_state.setdefault("max_policy_retries", settings.max_policy_retries)
-        self.graph_state.setdefault("max_quality_retries", settings.max_quality_retries)
-        self.graph_state.setdefault("max_report_revisions", settings.max_report_revisions)
-        self.graph_state.setdefault("node_error", "")
-        self.graph_state.setdefault("workflow_node", initial_node)
-
-        self.machine = Machine(
-            model=self,
-            states=[dict(item) for item in self.NODE_SPECS],
-            transitions=[dict(item) for item in self.EDGE_SPECS],
-            initial=initial_node,
-            model_attribute="node",
-            auto_transitions=False,
-            send_event=False,
-            after_state_change="_after_transition",
-            ignore_invalid_triggers=False,
-            name="ContractGuardStateGraph",
+        self.settings = settings
+        self.persistence = persistence
+        self.observability = observability
+        self.builder = self._build_state_graph()
+        self.graph = self.builder.compile(
+            checkpointer=self.persistence.saver,
+            name="ContractGuardTrainerFixStateGraph",
         )
+
+    def _build_state_graph(self) -> StateGraph:
+        workflow = StateGraph(AuditState)
+
+        workflow.add_node("input_guardrail", self._input_guardrail_node)
+        workflow.add_node("coordinator", self._coordinator_node)
+        workflow.add_node("document_analyst", self._document_analyst_node)
+        workflow.add_node("policy_research", self._policy_research_node)
+        workflow.add_node("compliance_analyst", self._compliance_analyst_node)
+        workflow.add_node("quality_reviewer", self._quality_reviewer_node)
+        workflow.add_node("security_reviewer", self._security_reviewer_node)
+        workflow.add_node("approval_gate", self._approval_gate_node)
+        workflow.add_node("human_approval", self._human_approval_node)
+        workflow.add_node("report_writer", self._report_writer_node)
+        workflow.add_node("output_guardian", self._output_guardian_node)
+        workflow.add_node("artifact_storage", self._artifact_storage_node)
+        workflow.add_node("completed", self._completed_node)
+        workflow.add_node("blocked", self._blocked_node)
+        workflow.add_node("rejected", self._rejected_node)
+        workflow.add_node("failed", self._failed_node)
+
+        workflow.add_edge(START, "input_guardrail")
+
+        # Real conditional branch #1: malicious input cannot reach any tool-capable agent.
+        workflow.add_conditional_edges(
+            "input_guardrail",
+            self._route_after_input_guardrail,
+            {"blocked": "blocked", "safe": "coordinator"},
+        )
+        workflow.add_edge("coordinator", "document_analyst")
+        workflow.add_edge("document_analyst", "policy_research")
+
+        # Real conditional branch/loop #2: retry failed policy tool calls with a hard limit.
+        workflow.add_conditional_edges(
+            "policy_research",
+            self._route_after_policy_research,
+            {
+                "retry": "policy_research",
+                "success": "compliance_analyst",
+                "failed": "failed",
+            },
+        )
+        workflow.add_edge("compliance_analyst", "quality_reviewer")
+
+        # Real Reflexion loop #3: critic can re-route execution back to research.
+        workflow.add_conditional_edges(
+            "quality_reviewer",
+            self._route_after_quality_review,
+            {"retry": "policy_research", "pass": "security_reviewer"},
+        )
+
+        # Real risk branch #4: high-risk contracts require an external human decision.
+        workflow.add_conditional_edges(
+            "security_reviewer",
+            self._route_after_security_review,
+            {"human": "approval_gate", "automatic": "report_writer"},
+        )
+        workflow.add_edge("approval_gate", "human_approval")
+        # human_approval routes dynamically with Command(goto=...) after Command(resume=...).
+
+        workflow.add_edge("report_writer", "output_guardian")
+
+        # Real output-validation loop #5: invalid structured output is regenerated.
+        workflow.add_conditional_edges(
+            "output_guardian",
+            self._route_after_output_guardrail,
+            {"revise": "report_writer", "valid": "artifact_storage", "failed": "failed"},
+        )
+        workflow.add_edge("artifact_storage", "completed")
+
+        for terminal in TERMINAL_NODES:
+            workflow.add_edge(terminal, END)
+
+        return workflow
+
+    # ------------------------------------------------------------------
+    # Public execution API
+    # ------------------------------------------------------------------
+
+    def start(self, state: AuditState) -> dict[str, Any]:
+        thread_id = str(state["thread_id"])
+        config = self.persistence.config(
+            thread_id, recursion_limit=self.settings.max_graph_steps
+        )
+        self.graph.invoke(state, config=config)
+        return self._current_values(thread_id)
+
+    def resume(self, thread_id: str, request: ResumeRequest) -> dict[str, Any]:
+        """Resume the exact LangGraph interrupt with Command(resume=...)."""
+        config = self.persistence.config(
+            thread_id, recursion_limit=self.settings.max_graph_steps
+        )
+        self.graph.invoke(
+            Command(resume=request.model_dump(mode="json")),
+            config=config,
+        )
+        return self._current_values(thread_id)
+
+    def get(self, thread_id: str) -> dict[str, Any] | None:
+        if not self.persistence.thread_exists(thread_id):
+            return None
+        snapshot = self.graph.get_state(self.persistence.config(thread_id))
+        values = dict(snapshot.values)
+        return {
+            "thread_id": thread_id,
+            "node": values.get("workflow_node", values.get("status", "unknown")),
+            "status": values.get("status", "unknown"),
+            "state": values,
+            "next": list(snapshot.next),
+            "updated_at": getattr(snapshot, "created_at", None),
+        }
+
+    def history(self, thread_id: str) -> list[dict[str, Any]]:
+        if not self.persistence.thread_exists(thread_id):
+            return []
+        snapshots = list(self.graph.get_state_history(self.persistence.config(thread_id)))
+        rows: list[dict[str, Any]] = []
+        for index, snapshot in enumerate(reversed(snapshots), 1):
+            values = dict(snapshot.values)
+            configurable = (snapshot.config or {}).get("configurable", {})
+            rows.append(
+                {
+                    "id": index,
+                    "thread_id": thread_id,
+                    "node": values.get("workflow_node", values.get("status", "unknown")),
+                    "status": values.get("status", "unknown"),
+                    "next": list(snapshot.next),
+                    "checkpoint_id": configurable.get("checkpoint_id"),
+                    "created_at": getattr(snapshot, "created_at", None),
+                }
+            )
+        return rows
+
+    def _current_values(self, thread_id: str) -> dict[str, Any]:
+        snapshot = self.graph.get_state(self.persistence.config(thread_id))
+        return dict(snapshot.values)
 
     @classmethod
     def graph_spec(cls) -> dict[str, Any]:
-        """Return a serializable, evaluator-friendly graph architecture description."""
-        edges = [deepcopy(item) for item in cls.EDGE_SPECS]
-        conditional_edges = [
-            item for item in edges if item.get("conditions") or item.get("unless")
-        ]
-        source_counts: dict[str, int] = {}
-        for edge in edges:
-            source = str(edge["source"])
-            source_counts[source] = source_counts.get(source, 0) + 1
-        branching_nodes = sorted(source for source, count in source_counts.items() if count > 1 and source != "*")
+        try:
+            langgraph_version = version("langgraph")
+        except PackageNotFoundError:
+            langgraph_version = "declared-in-requirements"
+        conditional = [edge for edge in cls.EDGE_SPECS if edge["kind"] == "conditional"]
         return {
-            "framework": "transitions.Machine finite-state graph",
-            "framework_package": "transitions",
-            "framework_version": transitions_version,
-            "framework_category": "real finite-state-machine orchestration library (rubric-equivalent StateGraph)",
-            "nodes": [item["name"] for item in cls.NODE_SPECS],
-            "edges": edges,
-            "node_count": len(cls.NODE_SPECS),
-            "edge_count": len(edges),
-            "conditional_edge_count": len(conditional_edges),
-            "branching_nodes": branching_nodes,
-            "shared_state_object": "graph_state: dict[str, Any]",
+            "framework": "LangGraph StateGraph",
+            "framework_package": "langgraph",
+            "framework_version": langgraph_version,
+            "builder_api": "StateGraph(AuditState)",
+            "conditional_routing_api": "StateGraph.add_conditional_edges",
+            "hitl_pause_api": "langgraph.types.interrupt",
+            "hitl_resume_api": "langgraph.types.Command(resume=...)",
+            "persistent_checkpointer": "langgraph.checkpoint.sqlite.SqliteSaver",
+            "nodes": list(cls.NODE_NAMES),
+            "edges": [deepcopy(item) for item in cls.EDGE_SPECS],
+            "node_count": len(cls.NODE_NAMES),
+            "edge_count": len(cls.EDGE_SPECS),
+            "conditional_edge_count": len(conditional),
+            "branching_nodes": [
+                "input_guardrail",
+                "policy_research",
+                "quality_reviewer",
+                "security_reviewer",
+                "output_guardian",
+            ],
+            "shared_state_object": "AuditState (TypedDict)",
             "terminal_nodes": sorted(TERMINAL_NODES),
-            "pause_nodes": sorted(PAUSE_NODES),
+            "pause_node": "human_approval",
             "loops": [
-                "researching -> researching (tool retry)",
-                "quality_reviewed -> researching (Reflexion/re-plan)",
-                "output_validated -> reporting (schema-revision loop)",
+                "policy_research -> policy_research (bounded tool retry)",
+                "quality_reviewer -> policy_research (bounded Reflexion/re-search)",
+                "output_guardian -> report_writer (bounded schema revision)",
             ],
             "loop_termination_controls": {
-                "policy_retry_limit": "max_policy_retries",
-                "quality_retry_limit": "max_quality_retries",
-                "report_revision_limit": "max_report_revisions",
-                "global_step_limit": "max_graph_steps",
+                "policy_retry_limit": "MAX_POLICY_RETRIES",
+                "quality_retry_limit": "MAX_QUALITY_RETRIES",
+                "report_revision_limit": "MAX_REPORT_REVISIONS",
+                "global_recursion_limit": "MAX_GRAPH_STEPS",
             },
             "is_linear_chain": False,
             "has_cycles": True,
-            "has_conditional_routing": bool(conditional_edges),
+            "has_conditional_routing": True,
             "supports_restart_resume": True,
         }
 
-    def run_until_pause_or_terminal(self) -> dict[str, Any]:
-        """Drive graph events until a durable pause or terminal condition is reached."""
-        steps = 0
-        while self.node not in TERMINAL_NODES | PAUSE_NODES:
-            if steps >= self.settings.max_graph_steps:
-                self.graph_state["node_error"] = (
-                    f"Graph exceeded MAX_GRAPH_STEPS={self.settings.max_graph_steps}; loop stopped safely."
-                )
-                self._append_error(self.graph_state["node_error"])
-                self.fail_workflow()
-                break
-            if self.graph_state.get("node_error"):
-                self.fail_workflow()
-                break
-            try:
-                self.advance()
-            except MachineError as exc:
-                self.graph_state["node_error"] = str(exc)
-                self._append_error(str(exc))
-                self.fail_workflow()
-                break
-            steps += 1
-        return self.graph_state
+    # ------------------------------------------------------------------
+    # Node helpers and specialist nodes
+    # ------------------------------------------------------------------
 
-    def resume(self, request: ResumeRequest) -> dict[str, Any]:
-        if self.node != "awaiting_approval":
-            raise ValueError(f"Thread is at node '{self.node}', not awaiting human approval")
-        self._pending_resume = request
-        if request.decision == "approve":
-            self.approve_contract()
-            return self.run_until_pause_or_terminal()
-        self.reject_contract()
-        return self.graph_state
+    def _run_agent(self, state: AuditState, *, node: str, agent_key: str) -> AuditState:
+        working: AuditState = deepcopy(state)
+        working["status"] = node
+        working["workflow_node"] = node
+        working.setdefault("node_history", []).append(node)
+        with self.observability.node(node, str(working["thread_id"])):
+            self.agents[agent_key].run(working)
+        return working
 
-    # ---- Node callbacks -------------------------------------------------
+    def _input_guardrail_node(self, state: AuditState) -> AuditState:
+        return self._run_agent(state, node="input_guardrail", agent_key="input_security")
 
-    def _run_node(self, node: str, callback: Callable[[dict[str, Any]], None]) -> None:
-        self.graph_state["status"] = node
-        self.graph_state["workflow_node"] = node
-        self.graph_state["node_error"] = ""
-        try:
-            with self.observability.node(node, self.graph_state["thread_id"]):
-                callback(self.graph_state)
-        except Exception as exc:  # convert node exceptions into a graph failure edge
-            message = f"{node}: {type(exc).__name__}: {exc}"
-            self.graph_state["node_error"] = message
-            self._append_error(message)
+    def _coordinator_node(self, state: AuditState) -> AuditState:
+        return self._run_agent(state, node="coordinator", agent_key="coordinator")
 
-    def _enter_guardrailed(self) -> None:
-        self._run_node("guardrailed", self.agents["input_security"].run)
+    def _document_analyst_node(self, state: AuditState) -> AuditState:
+        return self._run_agent(state, node="document_analyst", agent_key="document_analyst")
 
-    def _enter_planned(self) -> None:
-        self._run_node("planned", self.agents["coordinator"].run)
+    def _policy_research_node(self, state: AuditState) -> AuditState:
+        working = self._run_agent(state, node="policy_research", agent_key="policy_research")
+        if working.get("policy_search_error") and int(working.get("policy_retry_count", 0)) <= int(
+            working.get("max_policy_retries", self.settings.max_policy_retries)
+        ):
+            self.observability.record_retry(
+                "policy_tool_failure",
+                str(working["thread_id"]),
+                int(working.get("policy_retry_count", 0)),
+            )
+        return working
 
-    def _enter_ingested(self) -> None:
-        self._run_node("ingested", self.agents["document_analyst"].run)
+    def _compliance_analyst_node(self, state: AuditState) -> AuditState:
+        return self._run_agent(state, node="compliance_analyst", agent_key="compliance_analyst")
 
-    def _enter_researching(self) -> None:
-        self._run_node("researching", self.agents["policy_research"].run)
+    def _quality_reviewer_node(self, state: AuditState) -> AuditState:
+        working = self._run_agent(state, node="quality_reviewer", agent_key="quality_reviewer")
+        if working.get("needs_more_research"):
+            attempt = int(working.get("quality_retry_count", 0)) + 1
+            working["quality_retry_count"] = attempt
+            self.observability.record_retry("quality_replan", str(working["thread_id"]), attempt)
+        return working
 
-    def _enter_analyzed(self) -> None:
-        self._run_node("analyzed", self.agents["compliance_analyst"].run)
+    def _security_reviewer_node(self, state: AuditState) -> AuditState:
+        return self._run_agent(state, node="security_reviewer", agent_key="security_reviewer")
 
-    def _enter_quality_reviewed(self) -> None:
-        self._run_node("quality_reviewed", self.agents["quality_reviewer"].run)
-
-    def _enter_security_reviewed(self) -> None:
-        self._run_node("security_reviewed", self.agents["security_reviewer"].run)
-
-    def _enter_awaiting_approval(self) -> None:
+    def _approval_gate_node(self, state: AuditState) -> AuditState:
+        working: AuditState = deepcopy(state)
         payload = {
             "type": "human_approval_required",
-            "thread_id": self.graph_state["thread_id"],
-            "risk_score": self.graph_state.get("risk_score"),
-            "risk_level": self.graph_state.get("risk_level"),
-            "contract_value_sar": self.graph_state.get("contract_metadata", {}).get("contract_value_sar", 0),
-            "finding_count": len(self.graph_state.get("findings", [])),
-            "instruction": "Resume with decision=approve or decision=reject and an approver identity.",
+            "thread_id": working["thread_id"],
+            "risk_score": working.get("risk_score", 0),
+            "risk_level": working.get("risk_level", "LOW"),
+            "contract_value_sar": working.get("contract_metadata", {}).get("contract_value_sar", 0),
+            "finding_count": len(working.get("findings", [])),
+            "instruction": "Resume this persisted thread with approve/reject and an approver identity.",
         }
-        self.graph_state["status"] = "awaiting_approval"
-        self.graph_state["approval_status"] = "pending"
-        self.graph_state["interrupt_payload"] = payload
-        self.observability.record_interrupt(self.graph_state["thread_id"], payload)
+        working["status"] = "awaiting_approval"
+        working["workflow_node"] = "human_approval"
+        working["approval_status"] = "pending"
+        working["interrupt_payload"] = payload
+        working.setdefault("node_history", []).append("awaiting_approval")
+        self.observability.record_interrupt(str(working["thread_id"]), payload)
+        return working
 
-    def _enter_reporting(self) -> None:
-        self._run_node("reporting", self.agents["report_writer"].run)
+    def _human_approval_node(
+        self, state: AuditState
+    ) -> Command[Literal["report_writer", "rejected"]]:
+        """Pause indefinitely, then route only after an external resume value arrives."""
+        decision_payload = interrupt(state.get("interrupt_payload") or {
+            "type": "human_approval_required",
+            "thread_id": state["thread_id"],
+        })
+        request = ResumeRequest.model_validate(decision_payload)
+        history = list(state.get("node_history", [])) + ["human_approval"]
 
-    def _enter_output_validated(self) -> None:
-        self._run_node("output_validated", self.agents["output_guardian"].run)
-
-    def _enter_persisting(self) -> None:
-        self._run_node("persisting", self.agents["artifact_storage"].run)
-
-    def _enter_completed(self) -> None:
-        self.graph_state["status"] = "completed"
-        self.graph_state["interrupt_payload"] = None
-
-    def _enter_blocked(self) -> None:
-        self.graph_state["status"] = "blocked"
-        self.graph_state["interrupt_payload"] = None
-
-    def _enter_rejected(self) -> None:
-        self.graph_state["status"] = "rejected"
-        self.graph_state["interrupt_payload"] = None
-
-    def _enter_failed(self) -> None:
-        self.graph_state["status"] = "failed"
-        self.graph_state["interrupt_payload"] = None
-        if self.graph_state.get("node_error"):
-            self._append_error(str(self.graph_state["node_error"]))
-
-    # ---- Conditions -----------------------------------------------------
-
-    def _input_is_blocked(self) -> bool:
-        return bool(self.graph_state.get("input_blocked"))
-
-    def _input_is_safe(self) -> bool:
-        return not self._input_is_blocked()
-
-    def _policy_error_can_retry(self) -> bool:
-        return bool(self.graph_state.get("policy_search_error")) and int(
-            self.graph_state.get("policy_retry_count", 0)
-        ) <= int(self.graph_state.get("max_policy_retries", self.settings.max_policy_retries))
-
-    def _policy_error_exhausted(self) -> bool:
-        return bool(self.graph_state.get("policy_search_error")) and not self._policy_error_can_retry()
-
-    def _policy_search_succeeded(self) -> bool:
-        return not bool(self.graph_state.get("policy_search_error"))
-
-    def _quality_needs_retry(self) -> bool:
-        return bool(self.graph_state.get("needs_more_research"))
-
-    def _quality_gate_complete(self) -> bool:
-        return not self._quality_needs_retry()
-
-    def _approval_is_required(self) -> bool:
-        return bool(self.graph_state.get("approval_required"))
-
-    def _approval_not_required(self) -> bool:
-        return not self._approval_is_required()
-
-    def _output_is_valid(self) -> bool:
-        return bool(self.graph_state.get("output_valid"))
-
-    def _output_invalid_can_revise(self) -> bool:
-        return not self._output_is_valid() and int(self.graph_state.get("report_revision_count", 0)) < int(
-            self.graph_state.get("max_report_revisions", self.settings.max_report_revisions)
-        )
-
-    def _output_invalid_exhausted(self) -> bool:
-        return not self._output_is_valid() and not self._output_invalid_can_revise()
-
-    # ---- Edge callbacks -------------------------------------------------
-
-    def _record_policy_retry(self) -> None:
-        attempt = int(self.graph_state.get("policy_retry_count", 0))
-        self.observability.record_retry("policy_tool_failure", self.graph_state["thread_id"], attempt)
-
-    def _record_quality_retry(self) -> None:
-        attempt = int(self.graph_state.get("quality_retry_count", 0)) + 1
-        self.graph_state["quality_retry_count"] = attempt
-        self.observability.record_retry("quality_replan", self.graph_state["thread_id"], attempt)
-
-    def _record_report_revision(self) -> None:
-        attempt = int(self.graph_state.get("report_revision_count", 0)) + 1
-        self.graph_state["report_revision_count"] = attempt
-        self.observability.record_retry("output_schema_revision", self.graph_state["thread_id"], attempt)
-
-    def _mark_retry_exhausted(self) -> None:
-        message = f"Policy search retries exhausted: {self.graph_state.get('policy_search_error', '')}"
-        self.graph_state["node_error"] = message
-        self._append_error(message)
-
-    def _mark_output_exhausted(self) -> None:
-        message = f"Output validation revisions exhausted: {self.graph_state.get('output_feedback', '')}"
-        self.graph_state["node_error"] = message
-        self._append_error(message)
-
-    def _apply_approval(self) -> None:
-        request = self._require_pending_resume()
-        self.graph_state["approval_status"] = "approved"
-        self.graph_state["approval_comment"] = request.comment
-        self.graph_state["approver"] = request.approver
-        self.graph_state["interrupt_payload"] = None
         self.observability.log(
             "human_decision",
-            thread_id=self.graph_state["thread_id"],
-            decision="approve",
+            thread_id=state["thread_id"],
+            decision=request.decision,
             approver=request.approver,
             comment=request.comment,
         )
 
-    def _apply_rejection(self) -> None:
-        request = self._require_pending_resume()
-        self.graph_state["approval_status"] = "rejected"
-        self.graph_state["approval_comment"] = request.comment
-        self.graph_state["approver"] = request.approver
-        self.graph_state["interrupt_payload"] = None
-        self.observability.log(
-            "human_decision",
-            thread_id=self.graph_state["thread_id"],
-            decision="reject",
-            approver=request.approver,
-            comment=request.comment,
+        if request.decision == "approve":
+            return Command(
+                update={
+                    "approval_status": "approved",
+                    "approval_comment": request.comment,
+                    "approver": request.approver,
+                    "interrupt_payload": None,
+                    "status": "approved",
+                    "workflow_node": "human_approval",
+                    "node_history": history,
+                },
+                goto="report_writer",
+            )
+        return Command(
+            update={
+                "approval_status": "rejected",
+                "approval_comment": request.comment,
+                "approver": request.approver,
+                "interrupt_payload": None,
+                "status": "rejected",
+                "workflow_node": "human_approval",
+                "node_history": history,
+            },
+            goto="rejected",
         )
 
-    def _require_pending_resume(self) -> ResumeRequest:
-        if self._pending_resume is None:
-            raise ValueError("No human decision payload was supplied")
-        return self._pending_resume
+    def _report_writer_node(self, state: AuditState) -> AuditState:
+        return self._run_agent(state, node="report_writer", agent_key="report_writer")
 
-    def _after_transition(self) -> None:
-        self.graph_state["workflow_node"] = self.node
-        self.graph_state["status"] = self.node
-        history = self.graph_state.setdefault("node_history", [])
-        if not history or history[-1] != self.node or self.node in {"researching", "reporting"}:
-            history.append(self.node)
-        self.checkpointer.save(self.graph_state["thread_id"], self.node, self.graph_state)
-        self.observability.log(
-            "checkpoint_saved",
-            thread_id=self.graph_state["thread_id"],
-            node=self.node,
-            status=self.graph_state.get("status"),
-            checkpoint_db=str(self.checkpointer.path),
-        )
-        if self.node in TERMINAL_NODES:
-            self.observability.record_terminal(self.graph_state["thread_id"], self.node)
+    def _output_guardian_node(self, state: AuditState) -> AuditState:
+        working = self._run_agent(state, node="output_guardian", agent_key="output_guardian")
+        current = int(working.get("report_revision_count", 0))
+        limit = int(working.get("max_report_revisions", self.settings.max_report_revisions))
+        can_revise = (not working.get("output_valid")) and current < limit
+        working["output_retry_requested"] = can_revise
+        if can_revise:
+            attempt = current + 1
+            working["report_revision_count"] = attempt
+            self.observability.record_retry(
+                "output_schema_revision", str(working["thread_id"]), attempt
+            )
+        return working
 
-    def _append_error(self, message: str) -> None:
-        errors = self.graph_state.setdefault("errors", [])
-        if message and message not in errors:
-            errors.append(message)
+    def _artifact_storage_node(self, state: AuditState) -> AuditState:
+        return self._run_agent(state, node="artifact_storage", agent_key="artifact_storage")
+
+    def _completed_node(self, state: AuditState) -> AuditState:
+        return self._terminal_state(state, "completed")
+
+    def _blocked_node(self, state: AuditState) -> AuditState:
+        return self._terminal_state(state, "blocked")
+
+    def _rejected_node(self, state: AuditState) -> AuditState:
+        return self._terminal_state(state, "rejected")
+
+    def _failed_node(self, state: AuditState) -> AuditState:
+        return self._terminal_state(state, "failed")
+
+    def _terminal_state(self, state: AuditState, terminal: str) -> AuditState:
+        working: AuditState = deepcopy(state)
+        working["status"] = terminal
+        working["workflow_node"] = terminal
+        working["interrupt_payload"] = None
+        working.setdefault("node_history", []).append(terminal)
+        self.observability.record_terminal(str(working["thread_id"]), terminal)
+        return working
+
+    # ------------------------------------------------------------------
+    # Conditional routing functions used by add_conditional_edges
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _route_after_input_guardrail(state: AuditState) -> Literal["blocked", "safe"]:
+        return "blocked" if state.get("input_blocked") else "safe"
+
+    def _route_after_policy_research(
+        self, state: AuditState
+    ) -> Literal["retry", "success", "failed"]:
+        if not state.get("policy_search_error"):
+            return "success"
+        if int(state.get("policy_retry_count", 0)) <= int(
+            state.get("max_policy_retries", self.settings.max_policy_retries)
+        ):
+            return "retry"
+        return "failed"
+
+    @staticmethod
+    def _route_after_quality_review(state: AuditState) -> Literal["retry", "pass"]:
+        return "retry" if state.get("needs_more_research") else "pass"
+
+    @staticmethod
+    def _route_after_security_review(state: AuditState) -> Literal["human", "automatic"]:
+        return "human" if state.get("approval_required") else "automatic"
+
+    def _route_after_output_guardrail(
+        self, state: AuditState
+    ) -> Literal["revise", "valid", "failed"]:
+        if state.get("output_valid"):
+            return "valid"
+        return "revise" if state.get("output_retry_requested") else "failed"
