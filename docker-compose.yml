@@ -1,0 +1,59 @@
+services:
+  contractguard:
+    build: .
+    environment:
+      CONTRACTGUARD_ROOT: /app
+      LLM_PROVIDER: ${LLM_PROVIDER:-offline}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-20b}
+      CHECKPOINT_DB: /app/evidence/checkpoints.sqlite
+      LOG_FILE: /app/evidence/execution_log.jsonl
+      METRICS_FILE: /app/evidence/metrics.prom
+      ARTIFACT_DIR: /app/evidence/artifacts
+      POLICY_DIR: /app/data/policies
+      MINIO_ENDPOINT: minio:9000
+      MINIO_ACCESS_KEY: ${MINIO_ROOT_USER:-contractguard}
+      MINIO_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-contractguard-change-me}
+      MINIO_SECURE: "false"
+      MINIO_BUCKET: contractguard-reports
+    volumes:
+      - contractguard_evidence:/app/evidence
+    ports:
+      - "8000:8000"
+    depends_on:
+      minio:
+        condition: service_healthy
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio:RELEASE.2025-07-23T15-54-02Z
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-contractguard}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-contractguard-change-me}
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    command: ["--config.file=/etc/prometheus/prometheus.yml"]
+    volumes:
+      - ./deploy/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    depends_on:
+      - contractguard
+    restart: unless-stopped
+
+volumes:
+  contractguard_evidence:
+  minio_data:
