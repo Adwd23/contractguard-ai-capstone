@@ -191,7 +191,7 @@
       "approval_required": false,
       "approval_status": "not_required",
       "pii_redactions": 0,
-      "artifact_uri": "file:///mnt/data/contractguard-ai/evidence/artifacts/capstone-low-risk/compliance_report.md",
+      "artifact_uri": "file:///mnt/data/contractguard-ai-adwd23/evidence/artifacts/capstone-low-risk/compliance_report.md",
       "storage_backend": "filesystem-fallback",
       "blocked_reason": "",
       "errors": []
@@ -410,7 +410,7 @@
       "approval_required": true,
       "approval_status": "approved",
       "pii_redactions": 3,
-      "artifact_uri": "file:///mnt/data/contractguard-ai/evidence/artifacts/capstone-high-risk/compliance_report.md",
+      "artifact_uri": "file:///mnt/data/contractguard-ai-adwd23/evidence/artifacts/capstone-high-risk/compliance_report.md",
       "storage_backend": "filesystem-fallback",
       "blocked_reason": "",
       "errors": []

@@ -6,13 +6,13 @@ confidential contract processing without an independent production security revi
 ## Reporting a vulnerability
 
 Do not open a public issue containing credentials, personal data, or exploit details.
-Contact the repository owner privately through the security-reporting method configured on
-the GitHub repository. Include the affected component, reproduction steps, impact, and a
+Contact **Adwd23**, the repository owner and project implementer, privately through the
+security-reporting method configured on the GitHub repository. Include the affected component, reproduction steps, impact, and a
 minimal sanitized proof of concept.
 
 ## Supported version
 
-The maintained capstone version is `1.1.x` on the `main` branch.
+The maintained capstone version is `1.2.x` on the `main` branch.
 
 ## Secret policy
 

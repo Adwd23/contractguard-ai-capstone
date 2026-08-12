@@ -5,7 +5,7 @@
   "state": {
     "thread_id": "capstone-high-risk",
     "request_text": "Audit this high-value cloud vendor contract and enforce approval policy.",
-    "contract_path": "/mnt/data/contractguard-ai/data/samples/vendor_contract_high_risk.txt",
+    "contract_path": "/mnt/data/contractguard-ai-adwd23/data/samples/vendor_contract_high_risk.txt",
     "contract_text_input": null,
     "contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n",
     "sanitized_contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n",
@@ -150,7 +150,7 @@
     "policy_evidence": [
       {
         "policy_name": "Data Protection Policy",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
         "section": "Saudi Data Residency",
         "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
         "score": 9.7942,
@@ -158,7 +158,7 @@
       },
       {
         "policy_name": "Legal Contracting Standard",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
         "section": "Governing Law",
         "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
         "score": 3.7192,
@@ -166,7 +166,7 @@
       },
       {
         "policy_name": "Legal Contracting Standard",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
         "section": "Governing Law",
         "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
         "score": 6.407,
@@ -174,7 +174,7 @@
       },
       {
         "policy_name": "Data Protection Policy",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
         "section": "Saudi Data Residency",
         "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
         "score": 3.2984,
@@ -182,7 +182,7 @@
       },
       {
         "policy_name": "Legal Contracting Standard",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
         "section": "Liability and Indemnity",
         "excerpt": "## Liability and Indemnity\nThe vendor liability cap should be no lower than twelve months of fees. Confidentiality, intellectual-property infringement, privacy, security breach, fraud, and willful misconduct must have appropriate carve-outs or higher caps.",
         "score": 8.5379,
@@ -190,7 +190,7 @@
       },
       {
         "policy_name": "Procurement Policy",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/procurement_policy.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/procurement_policy.md",
         "section": "Payment Terms",
         "excerpt": "## Payment Terms\nStandard payment terms are Net 30 days after receipt of a correct invoice and acceptance of the relevant deliverables. Shorter payment terms require a documented exception approved by Procurement.",
         "score": 13.7486,
@@ -198,7 +198,7 @@
       },
       {
         "policy_name": "Legal Contracting Standard",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
         "section": "Mandatory Records",
         "excerpt": "## Mandatory Records\nMaterial exceptions, approvals, redlines, and final signed terms must be captured in an immutable audit record.",
         "score": 1.6726,
@@ -206,7 +206,7 @@
       },
       {
         "policy_name": "Information Security Policy",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/information_security_policy.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/information_security_policy.md",
         "section": "Access Control",
         "excerpt": "## Access Control\nAccess must follow least privilege, multi-factor authentication, role-based access control, quarterly access reviews, and prompt revocation. Administrative actions must produce tamper-evident audit logs.",
         "score": 11.1299,
@@ -214,7 +214,7 @@
       },
       {
         "policy_name": "Data Protection Policy",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
         "section": "Subprocessors",
         "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
         "score": 1.4349,
@@ -222,7 +222,7 @@
       },
       {
         "policy_name": "Service Level Standard",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/service_level_standard.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/service_level_standard.md",
         "section": "Service Credits",
         "excerpt": "## Service Credits\nThe contract must define service credits for missed availability, chronic-failure termination rights, and transparent incident reporting.",
         "score": 8.7358,
@@ -230,7 +230,7 @@
       },
       {
         "policy_name": "Legal Contracting Standard",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
         "section": "Termination",
         "excerpt": "## Termination\nThe organization must have a termination-for-convenience right on no more than 30 days' notice. Automatic renewal periods should not exceed one year and must include a practical non-renewal window.",
         "score": 6.6613,
@@ -238,7 +238,7 @@
       },
       {
         "policy_name": "Data Protection Policy",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
         "section": "Subprocessors",
         "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
         "score": 1.8019,
@@ -246,7 +246,7 @@
       },
       {
         "policy_name": "Legal Contracting Standard",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
         "section": "Mandatory Records",
         "excerpt": "## Mandatory Records\nMaterial exceptions, approvals, redlines, and final signed terms must be captured in an immutable audit record.",
         "score": 4.0232,
@@ -254,7 +254,7 @@
       },
       {
         "policy_name": "Data Protection Policy",
-        "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+        "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
         "section": "Data Subject and Deletion Duties",
         "excerpt": "## Data Subject and Deletion Duties\nThe vendor must support access, correction, deletion, retention, and return requests. Data must be securely deleted or returned at contract termination and deletion must be certified.",
         "score": 1.9763,
@@ -404,7 +404,7 @@
         "payload": {
           "matches": []
         },
-        "timestamp": "2026-08-12T21:39:51.815412+00:00"
+        "timestamp": "2026-08-12T22:02:14.528446+00:00"
       },
       {
         "sender": "Coordinator Agent",
@@ -457,7 +457,7 @@
             }
           ]
         },
-        "timestamp": "2026-08-12T21:39:51.816327+00:00"
+        "timestamp": "2026-08-12T22:02:14.529487+00:00"
       },
       {
         "sender": "Document Analyst Agent",
@@ -479,7 +479,7 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T21:39:51.817589+00:00"
+        "timestamp": "2026-08-12T22:02:14.531016+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -490,7 +490,7 @@
           "attempt": 1,
           "error": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence"
         },
-        "timestamp": "2026-08-12T21:39:51.819597+00:00"
+        "timestamp": "2026-08-12T22:02:14.533230+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -508,7 +508,7 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T21:39:51.825095+00:00"
+        "timestamp": "2026-08-12T22:02:14.538973+00:00"
       },
       {
         "sender": "Compliance Analyst Agent",
@@ -521,7 +521,7 @@
             "medium": 3
           }
         },
-        "timestamp": "2026-08-12T21:39:51.827270+00:00"
+        "timestamp": "2026-08-12T22:02:14.540831+00:00"
       },
       {
         "sender": "Quality Reviewer Agent",
@@ -532,7 +532,7 @@
           "missing_topics": [],
           "quality_score": 0.5
         },
-        "timestamp": "2026-08-12T21:39:51.829026+00:00"
+        "timestamp": "2026-08-12T22:02:14.542392+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -551,7 +551,7 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T21:39:51.836243+00:00"
+        "timestamp": "2026-08-12T22:02:14.549480+00:00"
       },
       {
         "sender": "Compliance Analyst Agent",
@@ -564,7 +564,7 @@
             "medium": 3
           }
         },
-        "timestamp": "2026-08-12T21:39:51.839514+00:00"
+        "timestamp": "2026-08-12T22:02:14.551768+00:00"
       },
       {
         "sender": "Quality Reviewer Agent",
@@ -575,7 +575,7 @@
           "missing_topics": [],
           "quality_score": 1.0
         },
-        "timestamp": "2026-08-12T21:39:51.842147+00:00"
+        "timestamp": "2026-08-12T22:02:14.553717+00:00"
       },
       {
         "sender": "Security Reviewer Agent",
@@ -587,16 +587,16 @@
           "risk_level": "CRITICAL",
           "approval_required": true
         },
-        "timestamp": "2026-08-12T21:39:51.847171+00:00"
+        "timestamp": "2026-08-12T22:02:14.557106+00:00"
       }
     ],
     "tool_calls": [
       {
-        "call_id": "0a81add9-5a9e-4fc6-ba76-33b9e2b757be",
+        "call_id": "7d1e1102-ef2a-40cf-8118-01ffb1734fdb",
         "agent": "Document Analyst Agent",
         "tool_name": "read_contract",
         "arguments": {
-          "contract_path": "/mnt/data/contractguard-ai/data/samples/vendor_contract_high_risk.txt",
+          "contract_path": "/mnt/data/contractguard-ai-adwd23/data/samples/vendor_contract_high_risk.txt",
           "contract_text": null
         },
         "rationale": "The document must be converted into trusted text before clause-level analysis.",
@@ -605,10 +605,10 @@
         "model_provider": null,
         "model_name": null,
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.817186+00:00"
+        "timestamp": "2026-08-12T22:02:14.530553+00:00"
       },
       {
-        "call_id": "5450210a-08b2-4fb8-916f-14f845b7743b",
+        "call_id": "0453a69f-c56f-47fd-adc9-48d5fd316aef",
         "agent": "Document Analyst Agent",
         "tool_name": "extract_contract_clauses",
         "arguments": {
@@ -620,10 +620,10 @@
         "model_provider": null,
         "model_name": null,
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.817414+00:00"
+        "timestamp": "2026-08-12T22:02:14.530830+00:00"
       },
       {
-        "call_id": "a681e059-c5a2-448e-a655-816a9a361b0f",
+        "call_id": "493d93f7-a259-4f63-8f3e-aca1fe8eb131",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -639,10 +639,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.819427+00:00"
+        "timestamp": "2026-08-12T22:02:14.533039+00:00"
       },
       {
-        "call_id": "dee6fc3c-39fa-4045-be0e-603882fb11f2",
+        "call_id": "4abbc673-ec2e-497a-8f93-25bc73a86c7d",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -658,10 +658,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.821440+00:00"
+        "timestamp": "2026-08-12T22:02:14.535248+00:00"
       },
       {
-        "call_id": "8feb1df5-de52-4e29-af0f-6aa9e5e12d26",
+        "call_id": "c1442212-a75e-429c-b9bc-276de9bd8e5e",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -677,10 +677,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.822194+00:00"
+        "timestamp": "2026-08-12T22:02:14.535844+00:00"
       },
       {
-        "call_id": "57cd382f-1463-4acb-ac5f-8f476c0048ca",
+        "call_id": "f9c7a595-51c8-4546-ba6f-668af92cec1a",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -696,10 +696,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.822787+00:00"
+        "timestamp": "2026-08-12T22:02:14.536361+00:00"
       },
       {
-        "call_id": "161afc1b-1d94-43eb-b59f-3f979f9655c0",
+        "call_id": "6610c4ac-2fe8-4c2b-bb9b-d508ae1e4ce9",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -715,10 +715,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.823306+00:00"
+        "timestamp": "2026-08-12T22:02:14.536897+00:00"
       },
       {
-        "call_id": "0641b6bd-de4e-49fd-9371-1462761c9867",
+        "call_id": "64bf8a12-16e2-4e1b-ad23-d1278864c2ff",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -734,10 +734,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.823847+00:00"
+        "timestamp": "2026-08-12T22:02:14.537398+00:00"
       },
       {
-        "call_id": "c37c1b69-bbaa-47ce-881a-8120912a1eaf",
+        "call_id": "7ac2f2f3-0447-4f85-be8e-2c9a37a83192",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -753,10 +753,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.824372+00:00"
+        "timestamp": "2026-08-12T22:02:14.537907+00:00"
       },
       {
-        "call_id": "04c8fdc7-7bc8-4b15-95a9-75c4dd41ca80",
+        "call_id": "b1678096-3e8f-4781-991d-18609a946ac9",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -772,10 +772,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.824897+00:00"
+        "timestamp": "2026-08-12T22:02:14.538656+00:00"
       },
       {
-        "call_id": "ed077c96-ed1e-46e1-8ca4-16a64814662f",
+        "call_id": "20f1ba9d-0803-430b-8561-c3376625c73f",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -791,10 +791,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.832111+00:00"
+        "timestamp": "2026-08-12T22:02:14.544760+00:00"
       },
       {
-        "call_id": "420aca55-0cba-43ca-99f2-c0acabca7016",
+        "call_id": "a3de8aed-19af-4f12-b76c-6413ffd011aa",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -810,10 +810,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.832690+00:00"
+        "timestamp": "2026-08-12T22:02:14.545337+00:00"
       },
       {
-        "call_id": "7a6f23c9-3bac-4059-8e29-e6e4dce1689b",
+        "call_id": "5e78ed2f-5868-406f-a205-39eea3bfee80",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -829,10 +829,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.833218+00:00"
+        "timestamp": "2026-08-12T22:02:14.546047+00:00"
       },
       {
-        "call_id": "dc88b62b-7714-47bd-9c11-634aff597140",
+        "call_id": "56da4349-913c-4b23-9919-023ffb23067d",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -848,10 +848,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.833899+00:00"
+        "timestamp": "2026-08-12T22:02:14.546781+00:00"
       },
       {
-        "call_id": "add3b6dd-e9c9-4293-869f-c244e0351fba",
+        "call_id": "cbf19952-105e-41d1-a8a2-3cc8b2156e39",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -867,10 +867,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.834512+00:00"
+        "timestamp": "2026-08-12T22:02:14.547496+00:00"
       },
       {
-        "call_id": "dec1586d-2865-4c5c-8fae-874e5007713e",
+        "call_id": "a6dde4a1-e29c-40d9-99b0-47ca55ea2bae",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -886,10 +886,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.835044+00:00"
+        "timestamp": "2026-08-12T22:02:14.548187+00:00"
       },
       {
-        "call_id": "2d86cb68-a887-42a3-a9b3-80cfa4683805",
+        "call_id": "34fae317-f2bf-4822-972a-1ba455e3b278",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -905,10 +905,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.835555+00:00"
+        "timestamp": "2026-08-12T22:02:14.548715+00:00"
       },
       {
-        "call_id": "a3f8f19f-7293-4a38-bf57-1c0611dcc2bc",
+        "call_id": "14fb9192-3b59-43f9-8c0f-6125ccd2c2cf",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -924,10 +924,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.836051+00:00"
+        "timestamp": "2026-08-12T22:02:14.549259+00:00"
       },
       {
-        "call_id": "c09ddb84-2996-4c4b-af6e-477c56e9034b",
+        "call_id": "bcb29c7a-f6ab-4c7a-bf90-081a31e397dd",
         "agent": "Security Reviewer Agent",
         "tool_name": "calculate_contract_risk",
         "arguments": {
@@ -1043,25 +1043,25 @@
         "model_provider": null,
         "model_name": null,
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:39:51.847016+00:00"
+        "timestamp": "2026-08-12T22:02:14.556951+00:00"
       }
     ],
     "tool_observations": [
       {
-        "call_id": "0a81add9-5a9e-4fc6-ba76-33b9e2b757be",
+        "call_id": "7d1e1102-ef2a-40cf-8118-01ffb1734fdb",
         "tool_name": "read_contract",
         "status": "success",
         "summary": "Returned object with keys: source, text, characters",
         "output": {
-          "source": "/mnt/data/contractguard-ai/data/samples/vendor_contract_high_risk.txt",
+          "source": "/mnt/data/contractguard-ai-adwd23/data/samples/vendor_contract_high_risk.txt",
           "text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n",
           "characters": 1593
         },
-        "latency_ms": 0.13400300031207735,
-        "timestamp": "2026-08-12T21:39:51.817388+00:00"
+        "latency_ms": 0.1414620001014555,
+        "timestamp": "2026-08-12T22:02:14.530766+00:00"
       },
       {
-        "call_id": "5450210a-08b2-4fb8-916f-14f845b7743b",
+        "call_id": "0453a69f-c56f-47fd-adc9-48d5fd316aef",
         "tool_name": "extract_contract_clauses",
         "status": "success",
         "summary": "Returned 9 items",
@@ -1121,27 +1121,27 @@
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.09224099994753487,
-        "timestamp": "2026-08-12T21:39:51.817556+00:00"
+        "latency_ms": 0.0963200000114739,
+        "timestamp": "2026-08-12T22:02:14.530982+00:00"
       },
       {
-        "call_id": "a681e059-c5a2-448e-a655-816a9a361b0f",
+        "call_id": "493d93f7-a259-4f63-8f3e-aca1fe8eb131",
         "tool_name": "search_policy_knowledge_base",
         "status": "error",
         "summary": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence",
         "output": null,
-        "latency_ms": 0.05105600030219648,
-        "timestamp": "2026-08-12T21:39:51.819580+00:00"
+        "latency_ms": 0.06370299979607807,
+        "timestamp": "2026-08-12T22:02:14.533213+00:00"
       },
       {
-        "call_id": "dee6fc3c-39fa-4045-be0e-603882fb11f2",
+        "call_id": "4abbc673-ec2e-497a-8f93-25bc73a86c7d",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
         "output": [
           {
             "policy_name": "Data Protection Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
             "section": "Saudi Data Residency",
             "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
             "score": 9.7942,
@@ -1149,25 +1149,25 @@
           },
           {
             "policy_name": "Legal Contracting Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
             "section": "Governing Law",
             "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
             "score": 3.7192,
             "topic": "data_protection"
           }
         ],
-        "latency_ms": 0.2456760003042291,
-        "timestamp": "2026-08-12T21:39:51.821764+00:00"
+        "latency_ms": 0.1602180000190856,
+        "timestamp": "2026-08-12T22:02:14.535484+00:00"
       },
       {
-        "call_id": "8feb1df5-de52-4e29-af0f-6aa9e5e12d26",
+        "call_id": "c1442212-a75e-429c-b9bc-276de9bd8e5e",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
         "output": [
           {
             "policy_name": "Legal Contracting Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
             "section": "Governing Law",
             "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
             "score": 6.407,
@@ -1175,43 +1175,43 @@
           },
           {
             "policy_name": "Data Protection Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
             "section": "Saudi Data Residency",
             "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
             "score": 3.2984,
             "topic": "governing_law"
           }
         ],
-        "latency_ms": 0.13202300033299252,
-        "timestamp": "2026-08-12T21:39:51.822387+00:00"
+        "latency_ms": 0.12529000014183111,
+        "timestamp": "2026-08-12T22:02:14.536028+00:00"
       },
       {
-        "call_id": "57cd382f-1463-4acb-ac5f-8f476c0048ca",
+        "call_id": "f9c7a595-51c8-4546-ba6f-668af92cec1a",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
         "output": [
           {
             "policy_name": "Legal Contracting Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
             "section": "Liability and Indemnity",
             "excerpt": "## Liability and Indemnity\nThe vendor liability cap should be no lower than twelve months of fees. Confidentiality, intellectual-property infringement, privacy, security breach, fraud, and willful misconduct must have appropriate carve-outs or higher caps.",
             "score": 8.5379,
             "topic": "liability"
           }
         ],
-        "latency_ms": 0.11771699973905925,
-        "timestamp": "2026-08-12T21:39:51.822963+00:00"
+        "latency_ms": 0.11970600007771282,
+        "timestamp": "2026-08-12T22:02:14.536537+00:00"
       },
       {
-        "call_id": "161afc1b-1d94-43eb-b59f-3f979f9655c0",
+        "call_id": "6610c4ac-2fe8-4c2b-bb9b-d508ae1e4ce9",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
         "output": [
           {
             "policy_name": "Procurement Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/procurement_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/procurement_policy.md",
             "section": "Payment Terms",
             "excerpt": "## Payment Terms\nStandard payment terms are Net 30 days after receipt of a correct invoice and acceptance of the relevant deliverables. Shorter payment terms require a documented exception approved by Procurement.",
             "score": 13.7486,
@@ -1219,25 +1219,25 @@
           },
           {
             "policy_name": "Legal Contracting Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
             "section": "Mandatory Records",
             "excerpt": "## Mandatory Records\nMaterial exceptions, approvals, redlines, and final signed terms must be captured in an immutable audit record.",
             "score": 1.6726,
             "topic": "payment"
           }
         ],
-        "latency_ms": 0.13853600012225797,
-        "timestamp": "2026-08-12T21:39:51.823504+00:00"
+        "latency_ms": 0.12099300056434004,
+        "timestamp": "2026-08-12T22:02:14.537072+00:00"
       },
       {
-        "call_id": "0641b6bd-de4e-49fd-9371-1462761c9867",
+        "call_id": "64bf8a12-16e2-4e1b-ad23-d1278864c2ff",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
         "output": [
           {
             "policy_name": "Information Security Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/information_security_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/information_security_policy.md",
             "section": "Access Control",
             "excerpt": "## Access Control\nAccess must follow least privilege, multi-factor authentication, role-based access control, quarterly access reviews, and prompt revocation. Administrative actions must produce tamper-evident audit logs.",
             "score": 11.1299,
@@ -1245,43 +1245,43 @@
           },
           {
             "policy_name": "Data Protection Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
             "section": "Subprocessors",
             "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
             "score": 1.4349,
             "topic": "security"
           }
         ],
-        "latency_ms": 0.13340799978323048,
-        "timestamp": "2026-08-12T21:39:51.824036+00:00"
+        "latency_ms": 0.12370399963401724,
+        "timestamp": "2026-08-12T22:02:14.537572+00:00"
       },
       {
-        "call_id": "c37c1b69-bbaa-47ce-881a-8120912a1eaf",
+        "call_id": "7ac2f2f3-0447-4f85-be8e-2c9a37a83192",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
         "output": [
           {
             "policy_name": "Service Level Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/service_level_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/service_level_standard.md",
             "section": "Service Credits",
             "excerpt": "## Service Credits\nThe contract must define service credits for missed availability, chronic-failure termination rights, and transparent incident reporting.",
             "score": 8.7358,
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.11020999954780564,
-        "timestamp": "2026-08-12T21:39:51.824545+00:00"
+        "latency_ms": 0.11307600016152719,
+        "timestamp": "2026-08-12T22:02:14.538087+00:00"
       },
       {
-        "call_id": "04c8fdc7-7bc8-4b15-95a9-75c4dd41ca80",
+        "call_id": "b1678096-3e8f-4781-991d-18609a946ac9",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
         "output": [
           {
             "policy_name": "Legal Contracting Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
             "section": "Termination",
             "excerpt": "## Termination\nThe organization must have a termination-for-convenience right on no more than 30 days' notice. Automatic renewal periods should not exceed one year and must include a practical non-renewal window.",
             "score": 6.6613,
@@ -1289,25 +1289,25 @@
           },
           {
             "policy_name": "Data Protection Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
             "section": "Subprocessors",
             "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
             "score": 1.8019,
             "topic": "termination"
           }
         ],
-        "latency_ms": 0.12170499940111768,
-        "timestamp": "2026-08-12T21:39:51.825072+00:00"
+        "latency_ms": 0.2001469993047067,
+        "timestamp": "2026-08-12T22:02:14.538941+00:00"
       },
       {
-        "call_id": "ed077c96-ed1e-46e1-8ca4-16a64814662f",
+        "call_id": "20f1ba9d-0803-430b-8561-c3376625c73f",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
         "output": [
           {
             "policy_name": "Data Protection Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
             "section": "Saudi Data Residency",
             "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
             "score": 9.7942,
@@ -1315,25 +1315,25 @@
           },
           {
             "policy_name": "Legal Contracting Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
             "section": "Governing Law",
             "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
             "score": 3.7192,
             "topic": "data_protection"
           }
         ],
-        "latency_ms": 0.14598899997508852,
-        "timestamp": "2026-08-12T21:39:51.832327+00:00"
+        "latency_ms": 0.14961900069465628,
+        "timestamp": "2026-08-12T22:02:14.544980+00:00"
       },
       {
-        "call_id": "420aca55-0cba-43ca-99f2-c0acabca7016",
+        "call_id": "a3de8aed-19af-4f12-b76c-6413ffd011aa",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
         "output": [
           {
             "policy_name": "Legal Contracting Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
             "section": "Governing Law",
             "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
             "score": 6.407,
@@ -1341,43 +1341,43 @@
           },
           {
             "policy_name": "Data Protection Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
             "section": "Saudi Data Residency",
             "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
             "score": 3.2984,
             "topic": "governing_law"
           }
         ],
-        "latency_ms": 0.13147299978299998,
-        "timestamp": "2026-08-12T21:39:51.832883+00:00"
+        "latency_ms": 0.2393650001977221,
+        "timestamp": "2026-08-12T22:02:14.545648+00:00"
       },
       {
-        "call_id": "7a6f23c9-3bac-4059-8e29-e6e4dce1689b",
+        "call_id": "5e78ed2f-5868-406f-a205-39eea3bfee80",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
         "output": [
           {
             "policy_name": "Legal Contracting Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
             "section": "Liability and Indemnity",
             "excerpt": "## Liability and Indemnity\nThe vendor liability cap should be no lower than twelve months of fees. Confidentiality, intellectual-property infringement, privacy, security breach, fraud, and willful misconduct must have appropriate carve-outs or higher caps.",
             "score": 8.5379,
             "topic": "liability"
           }
         ],
-        "latency_ms": 0.1460109997424297,
-        "timestamp": "2026-08-12T21:39:51.833514+00:00"
+        "latency_ms": 0.21460799962369492,
+        "timestamp": "2026-08-12T22:02:14.546335+00:00"
       },
       {
-        "call_id": "dc88b62b-7714-47bd-9c11-634aff597140",
+        "call_id": "56da4349-913c-4b23-9919-023ffb23067d",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
         "output": [
           {
             "policy_name": "Procurement Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/procurement_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/procurement_policy.md",
             "section": "Payment Terms",
             "excerpt": "## Payment Terms\nStandard payment terms are Net 30 days after receipt of a correct invoice and acceptance of the relevant deliverables. Shorter payment terms require a documented exception approved by Procurement.",
             "score": 13.7486,
@@ -1385,25 +1385,25 @@
           },
           {
             "policy_name": "Legal Contracting Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
             "section": "Mandatory Records",
             "excerpt": "## Mandatory Records\nMaterial exceptions, approvals, redlines, and final signed terms must be captured in an immutable audit record.",
             "score": 1.6726,
             "topic": "payment"
           }
         ],
-        "latency_ms": 0.16170600065379404,
-        "timestamp": "2026-08-12T21:39:51.834119+00:00"
+        "latency_ms": 0.1497980001659016,
+        "timestamp": "2026-08-12T22:02:14.547017+00:00"
       },
       {
-        "call_id": "add3b6dd-e9c9-4293-869f-c244e0351fba",
+        "call_id": "cbf19952-105e-41d1-a8a2-3cc8b2156e39",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
         "output": [
           {
             "policy_name": "Information Security Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/information_security_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/information_security_policy.md",
             "section": "Access Control",
             "excerpt": "## Access Control\nAccess must follow least privilege, multi-factor authentication, role-based access control, quarterly access reviews, and prompt revocation. Administrative actions must produce tamper-evident audit logs.",
             "score": 11.1299,
@@ -1411,43 +1411,43 @@
           },
           {
             "policy_name": "Data Protection Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
             "section": "Subprocessors",
             "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
             "score": 1.4349,
             "topic": "security"
           }
         ],
-        "latency_ms": 0.14056199961487437,
-        "timestamp": "2026-08-12T21:39:51.834714+00:00"
+        "latency_ms": 0.15653099944756832,
+        "timestamp": "2026-08-12T22:02:14.547722+00:00"
       },
       {
-        "call_id": "dec1586d-2865-4c5c-8fae-874e5007713e",
+        "call_id": "a6dde4a1-e29c-40d9-99b0-47ca55ea2bae",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
         "output": [
           {
             "policy_name": "Service Level Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/service_level_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/service_level_standard.md",
             "section": "Service Credits",
             "excerpt": "## Service Credits\nThe contract must define service credits for missed availability, chronic-failure termination rights, and transparent incident reporting.",
             "score": 8.7358,
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.10423900039313594,
-        "timestamp": "2026-08-12T21:39:51.835202+00:00"
+        "latency_ms": 0.11417599944252288,
+        "timestamp": "2026-08-12T22:02:14.548364+00:00"
       },
       {
-        "call_id": "2d86cb68-a887-42a3-a9b3-80cfa4683805",
+        "call_id": "34fae317-f2bf-4822-972a-1ba455e3b278",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
         "output": [
           {
             "policy_name": "Legal Contracting Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
             "section": "Termination",
             "excerpt": "## Termination\nThe organization must have a termination-for-convenience right on no more than 30 days' notice. Automatic renewal periods should not exceed one year and must include a practical non-renewal window.",
             "score": 6.6613,
@@ -1455,25 +1455,25 @@
           },
           {
             "policy_name": "Data Protection Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
             "section": "Subprocessors",
             "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
             "score": 1.8019,
             "topic": "termination"
           }
         ],
-        "latency_ms": 0.11732800066965865,
-        "timestamp": "2026-08-12T21:39:51.835725+00:00"
+        "latency_ms": 0.12406499990902375,
+        "timestamp": "2026-08-12T22:02:14.548898+00:00"
       },
       {
-        "call_id": "a3f8f19f-7293-4a38-bf57-1c0611dcc2bc",
+        "call_id": "14fb9192-3b59-43f9-8c0f-6125ccd2c2cf",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
         "output": [
           {
             "policy_name": "Legal Contracting Standard",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/legal_contracting_standard.md",
             "section": "Mandatory Records",
             "excerpt": "## Mandatory Records\nMaterial exceptions, approvals, redlines, and final signed terms must be captured in an immutable audit record.",
             "score": 4.0232,
@@ -1481,18 +1481,18 @@
           },
           {
             "policy_name": "Data Protection Policy",
-            "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+            "policy_path": "/mnt/data/contractguard-ai-adwd23/data/policies/data_protection_policy.md",
             "section": "Data Subject and Deletion Duties",
             "excerpt": "## Data Subject and Deletion Duties\nThe vendor must support access, correction, deletion, retention, and return requests. Data must be securely deleted or returned at contract termination and deletion must be certified.",
             "score": 1.9763,
             "topic": "general"
           }
         ],
-        "latency_ms": 0.11841999912576284,
-        "timestamp": "2026-08-12T21:39:51.836219+00:00"
+        "latency_ms": 0.13751299957220908,
+        "timestamp": "2026-08-12T22:02:14.549456+00:00"
       },
       {
-        "call_id": "c09ddb84-2996-4c4b-af6e-477c56e9034b",
+        "call_id": "bcb29c7a-f6ab-4c7a-bf90-081a31e397dd",
         "tool_name": "calculate_contract_risk",
         "status": "success",
         "summary": "Returned object with keys: risk_score, risk_level, approval_required",
@@ -1501,8 +1501,8 @@
           "risk_level": "CRITICAL",
           "approval_required": true
         },
-        "latency_ms": 0.048632000471116044,
-        "timestamp": "2026-08-12T21:39:51.847154+00:00"
+        "latency_ms": 0.05051700009062188,
+        "timestamp": "2026-08-12T22:02:14.557089+00:00"
       }
     ],
     "decision_trace": [
@@ -1518,19 +1518,19 @@
         "action": {
           "tool": "read_contract",
           "arguments": {
-            "contract_path": "/mnt/data/contractguard-ai/data/samples/vendor_contract_high_risk.txt",
+            "contract_path": "/mnt/data/contractguard-ai-adwd23/data/samples/vendor_contract_high_risk.txt",
             "contract_text": null
           },
-          "call_id": "0a81add9-5a9e-4fc6-ba76-33b9e2b757be"
+          "call_id": "7d1e1102-ef2a-40cf-8118-01ffb1734fdb"
         },
-        "timestamp": "2026-08-12T21:39:51.817186+00:00"
+        "timestamp": "2026-08-12T22:02:14.530553+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned object with keys: source, text, characters",
         "status": "success",
-        "call_id": "0a81add9-5a9e-4fc6-ba76-33b9e2b757be",
-        "timestamp": "2026-08-12T21:39:51.817388+00:00"
+        "call_id": "7d1e1102-ef2a-40cf-8118-01ffb1734fdb",
+        "timestamp": "2026-08-12T22:02:14.530766+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1546,16 +1546,16 @@
           "arguments": {
             "contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n"
           },
-          "call_id": "5450210a-08b2-4fb8-916f-14f845b7743b"
+          "call_id": "0453a69f-c56f-47fd-adc9-48d5fd316aef"
         },
-        "timestamp": "2026-08-12T21:39:51.817414+00:00"
+        "timestamp": "2026-08-12T22:02:14.530830+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 9 items",
         "status": "success",
-        "call_id": "5450210a-08b2-4fb8-916f-14f845b7743b",
-        "timestamp": "2026-08-12T21:39:51.817556+00:00"
+        "call_id": "0453a69f-c56f-47fd-adc9-48d5fd316aef",
+        "timestamp": "2026-08-12T22:02:14.530982+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1575,16 +1575,16 @@
             "attempt": 0,
             "simulate_primary_failure": true
           },
-          "call_id": "a681e059-c5a2-448e-a655-816a9a361b0f"
+          "call_id": "493d93f7-a259-4f63-8f3e-aca1fe8eb131"
         },
-        "timestamp": "2026-08-12T21:39:51.819427+00:00"
+        "timestamp": "2026-08-12T22:02:14.533039+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence",
         "status": "error",
-        "call_id": "a681e059-c5a2-448e-a655-816a9a361b0f",
-        "timestamp": "2026-08-12T21:39:51.819580+00:00"
+        "call_id": "493d93f7-a259-4f63-8f3e-aca1fe8eb131",
+        "timestamp": "2026-08-12T22:02:14.533213+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1604,16 +1604,16 @@
             "attempt": 1,
             "simulate_primary_failure": true
           },
-          "call_id": "dee6fc3c-39fa-4045-be0e-603882fb11f2"
+          "call_id": "4abbc673-ec2e-497a-8f93-25bc73a86c7d"
         },
-        "timestamp": "2026-08-12T21:39:51.821440+00:00"
+        "timestamp": "2026-08-12T22:02:14.535248+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "dee6fc3c-39fa-4045-be0e-603882fb11f2",
-        "timestamp": "2026-08-12T21:39:51.821764+00:00"
+        "call_id": "4abbc673-ec2e-497a-8f93-25bc73a86c7d",
+        "timestamp": "2026-08-12T22:02:14.535484+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1633,16 +1633,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "8feb1df5-de52-4e29-af0f-6aa9e5e12d26"
+          "call_id": "c1442212-a75e-429c-b9bc-276de9bd8e5e"
         },
-        "timestamp": "2026-08-12T21:39:51.822194+00:00"
+        "timestamp": "2026-08-12T22:02:14.535844+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "8feb1df5-de52-4e29-af0f-6aa9e5e12d26",
-        "timestamp": "2026-08-12T21:39:51.822387+00:00"
+        "call_id": "c1442212-a75e-429c-b9bc-276de9bd8e5e",
+        "timestamp": "2026-08-12T22:02:14.536028+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1662,16 +1662,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "57cd382f-1463-4acb-ac5f-8f476c0048ca"
+          "call_id": "f9c7a595-51c8-4546-ba6f-668af92cec1a"
         },
-        "timestamp": "2026-08-12T21:39:51.822787+00:00"
+        "timestamp": "2026-08-12T22:02:14.536361+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "57cd382f-1463-4acb-ac5f-8f476c0048ca",
-        "timestamp": "2026-08-12T21:39:51.822963+00:00"
+        "call_id": "f9c7a595-51c8-4546-ba6f-668af92cec1a",
+        "timestamp": "2026-08-12T22:02:14.536537+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1691,16 +1691,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "161afc1b-1d94-43eb-b59f-3f979f9655c0"
+          "call_id": "6610c4ac-2fe8-4c2b-bb9b-d508ae1e4ce9"
         },
-        "timestamp": "2026-08-12T21:39:51.823306+00:00"
+        "timestamp": "2026-08-12T22:02:14.536897+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "161afc1b-1d94-43eb-b59f-3f979f9655c0",
-        "timestamp": "2026-08-12T21:39:51.823504+00:00"
+        "call_id": "6610c4ac-2fe8-4c2b-bb9b-d508ae1e4ce9",
+        "timestamp": "2026-08-12T22:02:14.537072+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1720,16 +1720,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "0641b6bd-de4e-49fd-9371-1462761c9867"
+          "call_id": "64bf8a12-16e2-4e1b-ad23-d1278864c2ff"
         },
-        "timestamp": "2026-08-12T21:39:51.823847+00:00"
+        "timestamp": "2026-08-12T22:02:14.537398+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "0641b6bd-de4e-49fd-9371-1462761c9867",
-        "timestamp": "2026-08-12T21:39:51.824036+00:00"
+        "call_id": "64bf8a12-16e2-4e1b-ad23-d1278864c2ff",
+        "timestamp": "2026-08-12T22:02:14.537572+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1749,16 +1749,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "c37c1b69-bbaa-47ce-881a-8120912a1eaf"
+          "call_id": "7ac2f2f3-0447-4f85-be8e-2c9a37a83192"
         },
-        "timestamp": "2026-08-12T21:39:51.824372+00:00"
+        "timestamp": "2026-08-12T22:02:14.537907+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "c37c1b69-bbaa-47ce-881a-8120912a1eaf",
-        "timestamp": "2026-08-12T21:39:51.824545+00:00"
+        "call_id": "7ac2f2f3-0447-4f85-be8e-2c9a37a83192",
+        "timestamp": "2026-08-12T22:02:14.538087+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1778,16 +1778,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "04c8fdc7-7bc8-4b15-95a9-75c4dd41ca80"
+          "call_id": "b1678096-3e8f-4781-991d-18609a946ac9"
         },
-        "timestamp": "2026-08-12T21:39:51.824897+00:00"
+        "timestamp": "2026-08-12T22:02:14.538656+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "04c8fdc7-7bc8-4b15-95a9-75c4dd41ca80",
-        "timestamp": "2026-08-12T21:39:51.825072+00:00"
+        "call_id": "b1678096-3e8f-4781-991d-18609a946ac9",
+        "timestamp": "2026-08-12T22:02:14.538941+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1807,16 +1807,16 @@
             "attempt": 1,
             "simulate_primary_failure": true
           },
-          "call_id": "ed077c96-ed1e-46e1-8ca4-16a64814662f"
+          "call_id": "20f1ba9d-0803-430b-8561-c3376625c73f"
         },
-        "timestamp": "2026-08-12T21:39:51.832111+00:00"
+        "timestamp": "2026-08-12T22:02:14.544760+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "ed077c96-ed1e-46e1-8ca4-16a64814662f",
-        "timestamp": "2026-08-12T21:39:51.832327+00:00"
+        "call_id": "20f1ba9d-0803-430b-8561-c3376625c73f",
+        "timestamp": "2026-08-12T22:02:14.544980+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1836,16 +1836,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "420aca55-0cba-43ca-99f2-c0acabca7016"
+          "call_id": "a3de8aed-19af-4f12-b76c-6413ffd011aa"
         },
-        "timestamp": "2026-08-12T21:39:51.832690+00:00"
+        "timestamp": "2026-08-12T22:02:14.545337+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "420aca55-0cba-43ca-99f2-c0acabca7016",
-        "timestamp": "2026-08-12T21:39:51.832883+00:00"
+        "call_id": "a3de8aed-19af-4f12-b76c-6413ffd011aa",
+        "timestamp": "2026-08-12T22:02:14.545648+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1865,16 +1865,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "7a6f23c9-3bac-4059-8e29-e6e4dce1689b"
+          "call_id": "5e78ed2f-5868-406f-a205-39eea3bfee80"
         },
-        "timestamp": "2026-08-12T21:39:51.833218+00:00"
+        "timestamp": "2026-08-12T22:02:14.546047+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "7a6f23c9-3bac-4059-8e29-e6e4dce1689b",
-        "timestamp": "2026-08-12T21:39:51.833514+00:00"
+        "call_id": "5e78ed2f-5868-406f-a205-39eea3bfee80",
+        "timestamp": "2026-08-12T22:02:14.546335+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1894,16 +1894,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "dc88b62b-7714-47bd-9c11-634aff597140"
+          "call_id": "56da4349-913c-4b23-9919-023ffb23067d"
         },
-        "timestamp": "2026-08-12T21:39:51.833899+00:00"
+        "timestamp": "2026-08-12T22:02:14.546781+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "dc88b62b-7714-47bd-9c11-634aff597140",
-        "timestamp": "2026-08-12T21:39:51.834119+00:00"
+        "call_id": "56da4349-913c-4b23-9919-023ffb23067d",
+        "timestamp": "2026-08-12T22:02:14.547017+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1923,16 +1923,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "add3b6dd-e9c9-4293-869f-c244e0351fba"
+          "call_id": "cbf19952-105e-41d1-a8a2-3cc8b2156e39"
         },
-        "timestamp": "2026-08-12T21:39:51.834512+00:00"
+        "timestamp": "2026-08-12T22:02:14.547496+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "add3b6dd-e9c9-4293-869f-c244e0351fba",
-        "timestamp": "2026-08-12T21:39:51.834714+00:00"
+        "call_id": "cbf19952-105e-41d1-a8a2-3cc8b2156e39",
+        "timestamp": "2026-08-12T22:02:14.547722+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1952,16 +1952,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "dec1586d-2865-4c5c-8fae-874e5007713e"
+          "call_id": "a6dde4a1-e29c-40d9-99b0-47ca55ea2bae"
         },
-        "timestamp": "2026-08-12T21:39:51.835044+00:00"
+        "timestamp": "2026-08-12T22:02:14.548187+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "dec1586d-2865-4c5c-8fae-874e5007713e",
-        "timestamp": "2026-08-12T21:39:51.835202+00:00"
+        "call_id": "a6dde4a1-e29c-40d9-99b0-47ca55ea2bae",
+        "timestamp": "2026-08-12T22:02:14.548364+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1981,16 +1981,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "2d86cb68-a887-42a3-a9b3-80cfa4683805"
+          "call_id": "34fae317-f2bf-4822-972a-1ba455e3b278"
         },
-        "timestamp": "2026-08-12T21:39:51.835555+00:00"
+        "timestamp": "2026-08-12T22:02:14.548715+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "2d86cb68-a887-42a3-a9b3-80cfa4683805",
-        "timestamp": "2026-08-12T21:39:51.835725+00:00"
+        "call_id": "34fae317-f2bf-4822-972a-1ba455e3b278",
+        "timestamp": "2026-08-12T22:02:14.548898+00:00"
       },
       {
         "pattern": "ReAct",
@@ -2010,16 +2010,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "a3f8f19f-7293-4a38-bf57-1c0611dcc2bc"
+          "call_id": "14fb9192-3b59-43f9-8c0f-6125ccd2c2cf"
         },
-        "timestamp": "2026-08-12T21:39:51.836051+00:00"
+        "timestamp": "2026-08-12T22:02:14.549259+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "a3f8f19f-7293-4a38-bf57-1c0611dcc2bc",
-        "timestamp": "2026-08-12T21:39:51.836219+00:00"
+        "call_id": "14fb9192-3b59-43f9-8c0f-6125ccd2c2cf",
+        "timestamp": "2026-08-12T22:02:14.549456+00:00"
       },
       {
         "pattern": "ReAct",
@@ -2139,16 +2139,16 @@
             "approval_risk_threshold": 50,
             "approval_value_threshold_sar": 500000.0
           },
-          "call_id": "c09ddb84-2996-4c4b-af6e-477c56e9034b"
+          "call_id": "bcb29c7a-f6ab-4c7a-bf90-081a31e397dd"
         },
-        "timestamp": "2026-08-12T21:39:51.847016+00:00"
+        "timestamp": "2026-08-12T22:02:14.556951+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned object with keys: risk_score, risk_level, approval_required",
         "status": "success",
-        "call_id": "c09ddb84-2996-4c4b-af6e-477c56e9034b",
-        "timestamp": "2026-08-12T21:39:51.847154+00:00"
+        "call_id": "bcb29c7a-f6ab-4c7a-bf90-081a31e397dd",
+        "timestamp": "2026-08-12T22:02:14.557089+00:00"
       }
     ],
     "reasoner_mode": "offline_schema_router",
@@ -2172,8 +2172,8 @@
       "security_reviewed",
       "awaiting_approval"
     ],
-    "created_at": "2026-08-12T21:39:51.812667+00:00",
-    "updated_at": "2026-08-12T21:39:51.849417+00:00",
+    "created_at": "2026-08-12T22:02:14.525703+00:00",
+    "updated_at": "2026-08-12T22:02:14.559208+00:00",
     "flags": {
       "simulate_primary_failure": true,
       "simulate_quality_retry": true,
@@ -2186,5 +2186,5 @@
     "node_error": "",
     "additional_policy_queries": []
   },
-  "updated_at": "2026-08-12T21:39:51.849417+00:00"
+  "updated_at": "2026-08-12T22:02:14.559208+00:00"
 }

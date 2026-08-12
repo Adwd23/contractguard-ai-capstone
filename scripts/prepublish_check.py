@@ -15,9 +15,12 @@ from typing import Any, Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "evidence"
+EXPECTED_OWNER = "Adwd23"
+EXPECTED_OWNER_EMAIL = "Adwd23@users.noreply.github.com"
+LEGACY_IDENTITIES = ("melko" + "sif57-lang", "308331635+" + "melko" + "sif57-lang")
+ARABIC_PATTERN = re.compile(r"[\u0600-\u06FF]")
 
 REQUIRED_FILES = (
-    "README.md",
     "README.md",
     "SECURITY.md",
     "LICENSE",
@@ -56,7 +59,7 @@ SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
 
 TEXT_SUFFIXES = {
     ".py", ".md", ".txt", ".toml", ".yml", ".yaml", ".json", ".jsonl",
-    ".example", ".cfg", ".ini", ".sh",
+    ".example", ".cfg", ".ini", ".sh", ".ipynb",
 }
 
 
@@ -165,8 +168,7 @@ def check_metadata(report: Report) -> None:
         and str(project.get("version", "")).startswith("1.")
         and all(name in dependencies for name in ("transitions", "python-dotenv", "prometheus-client", "minio"))
         and "pandas" in dev_dependencies
-        and bool(authors.strip())
-        and "trainee" not in authors.lower()
+        and authors.strip() == EXPECTED_OWNER
     )
     report.add(
         "project_metadata",
@@ -185,6 +187,7 @@ def check_metadata(report: Report) -> None:
         "Human",
         "MinIO",
         "Evidence index",
+        EXPECTED_OWNER,
     )
     missing = [phrase for phrase in required_phrases if phrase not in readme]
     report.add(
@@ -212,23 +215,45 @@ def check_git(report: Report, paths: list[Path]) -> None:
 
     try:
         count = int(run(["git", "rev-list", "--count", "HEAD"], capture=True).stdout.strip())
-        authors = run(["git", "log", "--format=%an <%ae>"], capture=True).stdout.splitlines()
-        placeholders = [
-            value
-            for value in authors
-            if "capstone@example.invalid" in value.lower()
-            or "sdaia capstone trainee" in value.lower()
-            or value.lower().endswith("<>")
-        ]
+        authors = run(["git", "log", "--format=%an <%ae>", "HEAD"], capture=True).stdout.splitlines()
+        expected_identity = f"{EXPECTED_OWNER} <{EXPECTED_OWNER_EMAIL}>"
+        invalid_authors = [value for value in authors if value != expected_identity]
         report.add("incremental_git_history", count >= 6, f"commit_count={count}")
         report.add(
             "git_history_public_identity",
-            not placeholders,
-            f"placeholder_commits={len(placeholders)}",
+            not invalid_authors,
+            f"expected={expected_identity}, invalid_commits={len(invalid_authors)}",
         )
     except (CommandFailure, ValueError) as exc:
         report.add("incremental_git_history", False, str(exc))
         report.add("git_history_public_identity", False, str(exc))
+
+
+def check_english_only(report: Report, paths: list[Path]) -> None:
+    findings: list[str] = []
+    forbidden_terms = ("README_" + "AR.md", "Arabic " + "guide", "Arabic " + "quick-start")
+    for path in iter_text_files(paths):
+        try:
+            content = path.read_text(encoding="utf-8")
+        except (UnicodeDecodeError, OSError):
+            continue
+        relative = path.relative_to(ROOT).as_posix()
+        match = ARABIC_PATTERN.search(content)
+        if match:
+            line = content.count("\n", 0, match.start()) + 1
+            findings.append(f"{relative}:{line}: Arabic Unicode")
+        for term in forbidden_terms:
+            if term in content:
+                findings.append(f"{relative}: legacy non-English documentation reference: {term}")
+        for identity in LEGACY_IDENTITIES:
+            if identity.lower() in content.lower():
+                findings.append(f"{relative}: legacy identity: {identity}")
+    report.add(
+        "english_only_content_and_owner",
+        not findings,
+        "all tracked and pending text is English-only and owned by Adwd23"
+        if not findings else f"findings={findings}",
+    )
 
 
 def check_secrets(report: Report, paths: list[Path]) -> None:
@@ -347,7 +372,7 @@ def add_publication_warnings(report: Report) -> None:
     report.add(
         "github_origin_configured",
         bool(remote),
-        remote or "pending: add the trainee-owned GitHub repository immediately before push",
+        remote or "pending: add the Adwd23-owned GitHub repository immediately before push",
         mandatory=False,
     )
     report.add(
@@ -375,7 +400,7 @@ def add_publication_warnings(report: Report) -> None:
 def write_report(report: Report) -> Path:
     payload = {
         "project": "ContractGuard AI",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "ready_to_publish": report.ready,
         "checks": report.checks,
@@ -383,7 +408,7 @@ def write_report(report: Report) -> Path:
             item["name"] for item in report.checks if item["mandatory"] and not item["passed"]
         ],
         "external_steps": [
-            "Create or select the trainee-owned GitHub repository.",
+            "Create or select the Adwd23-owned GitHub repository.",
             "Add it as origin and push the existing main branch.",
             "Confirm both GitHub Actions jobs pass.",
         ],
@@ -416,6 +441,7 @@ def main() -> int:
     check_repository_files(report)
     check_metadata(report)
     check_git(report, paths)
+    check_english_only(report, paths)
     check_secrets(report, paths)
     check_evidence(report)
     check_notebook(report)

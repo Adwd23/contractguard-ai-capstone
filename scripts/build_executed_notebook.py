@@ -23,7 +23,8 @@ cells.append(
 
 **Program:** SDAIA Academy — Advanced Agentic AI Systems Engineering  
 **Cohort/session:** June 2026  
-**Project:** Secure, observable, resumable multi-agent vendor-contract audit platform
+**Project:** Secure, observable, resumable multi-agent vendor-contract audit platform  
+**Repository owner and project implementer:** Adwd23
 
 This notebook executes and preserves evidence for all six rubric deliverables: real,
 schema-validated tool use and named reasoning patterns, framework-managed graph
@@ -384,7 +385,7 @@ cells.append(
     nbf.v4.new_markdown_cell(
         """## 11. Documentation and submission completeness
 
-- Professional README with setup, API keys, expected outputs, deployment, evidence index,
+- Professional English README with setup, API keys, expected outputs, deployment, evidence index,
   training attribution, and SDAIA Academy link.
 - Technical architecture using nodes, edges, state, agents, tools, conditions, loops, and
   checkpointers, plus a GitHub-renderable Mermaid graph.
@@ -393,14 +394,14 @@ cells.append(
 - Executed notebook and captured JSON/log/metric/report evidence.
 
 The only external submission step is pushing this prepared Git repository to the
-trainee's chosen GitHub repository.
+Adwd23-owned GitHub repository.
 """
     )
 )
 cells.append(
     nbf.v4.new_code_cell(
         """required = [
-    'README.md', 'README.md', '.gitignore', '.env.example',
+    'README.md', '.gitignore', '.env.example',
     'docs/architecture.md', 'docs/agent_graph.md', 'docs/rubric_traceability.md',
     'docs/security.md', 'docs/api.md', 'Dockerfile', 'docker-compose.yml',
     '.github/workflows/ci.yml', 'scripts/prepublish_check.py',

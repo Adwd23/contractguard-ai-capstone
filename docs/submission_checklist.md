@@ -3,7 +3,7 @@
 ## Repository
 
 - [x] Clear project description on the landing page
-- [x] Professional README and English quick-start
+- [x] Professional English README and English-only documentation
 - [x] Architecture and GitHub-renderable Mermaid graph using nodes, edges, state, agents, and tools
 - [x] Setup, prerequisites, environment variables, execution, and expected outputs
 - [x] `.gitignore` excludes secrets, keys, caches, and mutable checkpoint databases
@@ -12,8 +12,8 @@
 - [x] SDAIA Academy GitHub link
 - [x] GitHub Actions for tests/evidence plus Docker-to-MinIO smoke validation
 - [x] Automated pre-publication checker
-- [ ] Replace the placeholder local Git author/email with the trainee's chosen public identity
-- [ ] Create the trainee-owned empty GitHub repository and push `main`
+- [x] Git author, repository owner, and project implementer set to `Adwd23`
+- [ ] Create the `Adwd23`-owned empty GitHub repository and push `main`
 
 ## Rubric execution evidence
 
@@ -40,7 +40,7 @@
 python scripts/prepublish_check.py
 git status
 git log --oneline --decorate
-git remote add origin <YOUR_EMPTY_GITHUB_REPOSITORY>
+git remote add origin https://github.com/Adwd23/contractguard-ai-capstone.git
 git push -u origin main
 ```
 

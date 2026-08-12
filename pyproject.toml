@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "contractguard-ai"
-version = "1.1.0"
+version = "1.2.0"
 description = "Secure, observable, resumable multi-agent vendor contract audit platform"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
-authors = [{name = "Adwd23"}]
+authors = [{name = "Adwd23", email = "Adwd23@users.noreply.github.com"}]
 dependencies = [
   "fastapi>=0.115,<1",
   "uvicorn[standard]>=0.30,<1",

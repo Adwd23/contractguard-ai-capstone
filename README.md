@@ -2,6 +2,8 @@
 
 **Secure, observable, resumable multi-agent vendor-contract audit platform**
 
+**Repository owner and project implementer:** [Adwd23](https://github.com/Adwd23)
+
 ContractGuard AI audits vendor contracts against corporate policies. It reads PDF, TXT,
 or Markdown contracts; extracts and classifies clauses; retrieves policy evidence;
 produces clause-level findings; calculates risk; pauses high-risk decisions for human
@@ -285,7 +287,7 @@ validates Git/documentation/evidence readiness.
 python scripts/prepublish_check.py
 ```
 
-Then connect the trainee-owned repository:
+Then connect the Adwd23-owned repository:
 
 ```bash
 git status

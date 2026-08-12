@@ -1,33 +1,9 @@
 {
   "project": "ContractGuard AI",
-  "version": "1.1.0",
-  "generated_at": "2026-08-12T21:39:56.603532+00:00",
+  "version": "1.2.0",
+  "generated_at": "2026-08-12T22:03:00.454770+00:00",
   "ready_to_publish": true,
   "checks": [
-    {
-      "name": "runtime_compile",
-      "passed": true,
-      "mandatory": true,
-      "detail": "completed successfully"
-    },
-    {
-      "name": "runtime_tests",
-      "passed": true,
-      "mandatory": true,
-      "detail": "completed successfully"
-    },
-    {
-      "name": "runtime_capstone_demo",
-      "passed": true,
-      "mandatory": true,
-      "detail": "completed successfully"
-    },
-    {
-      "name": "runtime_executed_notebook",
-      "passed": true,
-      "mandatory": true,
-      "detail": "completed successfully"
-    },
     {
       "name": "required_repository_files",
       "passed": true,
@@ -38,7 +14,7 @@
       "name": "project_metadata",
       "passed": true,
       "mandatory": true,
-      "detail": "name=contractguard-ai, version=1.1.0, author=Adwd23"
+      "detail": "name=contractguard-ai, version=1.2.0, author=Adwd23"
     },
     {
       "name": "github_landing_page_documentation",
@@ -62,7 +38,13 @@
       "name": "git_history_public_identity",
       "passed": true,
       "mandatory": true,
-      "detail": "placeholder_commits=0"
+      "detail": "expected=Adwd23 <Adwd23@users.noreply.github.com>, invalid_commits=0"
+    },
+    {
+      "name": "english_only_content_and_owner",
+      "passed": true,
+      "mandatory": true,
+      "detail": "all tracked and pending text is English-only and owned by Adwd23"
     },
     {
       "name": "no_detected_secrets",
@@ -92,7 +74,7 @@
       "name": "captured_tests_pass",
       "passed": true,
       "mandatory": true,
-      "detail": "................                                                         [100%]\n16 passed in 0.65s"
+      "detail": "................                                                         [100%]\n16 passed in 0.72s"
     },
     {
       "name": "structured_failure_and_security_logs",
@@ -110,7 +92,7 @@
       "name": "github_origin_configured",
       "passed": false,
       "mandatory": false,
-      "detail": "pending: add the trainee-owned GitHub repository immediately before push"
+      "detail": "pending: add the Adwd23-owned GitHub repository immediately before push"
     },
     {
       "name": "provider_native_function_call_evidence",
@@ -127,7 +109,7 @@
   ],
   "mandatory_failures": [],
   "external_steps": [
-    "Create or select the trainee-owned GitHub repository.",
+    "Create or select the Adwd23-owned GitHub repository.",
     "Add it as origin and push the existing main branch.",
     "Confirm both GitHub Actions jobs pass."
   ]
