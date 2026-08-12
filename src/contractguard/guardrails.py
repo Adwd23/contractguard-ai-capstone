@@ -11,7 +11,10 @@ from .models import AuditReport
 
 
 INJECTION_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
-    ("ignore previous instructions", re.compile(r"ignore\s+(all\s+)?previous\s+instructions", re.I)),
+    (
+        "ignore previous instructions",
+        re.compile(r"(?:ignore|disregard|forget)\s+(?:all\s+)?(?:previous|prior|above)\s+instructions", re.I),
+    ),
     ("reveal system prompt", re.compile(r"reveal|show|print|leak", re.I)),
     ("system prompt extraction", re.compile(r"system\s+(prompt|message|configuration)", re.I)),
     ("instruction override", re.compile(r"override\s+(the\s+)?(policy|guardrail|rules|instructions)", re.I)),

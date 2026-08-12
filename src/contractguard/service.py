@@ -19,7 +19,7 @@ from .agents import (
     SecurityReviewerAgent,
 )
 from .config import Settings
-from .llm import GroqReasoner
+from .llm import AgentReasoner
 from .models import AuditStartRequest, ResumeRequest, new_audit_state
 from .observability import Observability
 from .persistence import SQLiteCheckpointer
@@ -42,7 +42,7 @@ class ContractGuardService:
         self.observability = Observability(self.settings.log_file)
         self.checkpointer = SQLiteCheckpointer(self.settings.checkpoint_db)
         self.tools = build_tool_registry(self.settings, self.observability)
-        self.reasoner = GroqReasoner(self.settings, self.observability)
+        self.reasoner = AgentReasoner(self.settings, self.observability)
         self.agents = self._build_agents()
         self._closed = False
 
@@ -50,34 +50,52 @@ class ContractGuardService:
         obs, tools = self.observability, self.tools
         return {
             "input_security": InputSecurityAgent(
-                "Input Security Agent", "Prompt-injection gate", tools, obs
+                "Input Security Agent", "Prompt-injection gate", tools, obs, set()
             ),
             "coordinator": CoordinatorAgent(
-                "Coordinator Agent", "Centralized planner and execution coordinator", tools, obs
+                "Coordinator Agent", "Centralized planner and execution coordinator", tools, obs, set()
             ),
             "document_analyst": DocumentAnalystAgent(
-                "Document Analyst Agent", "Contract ingestion and clause extraction", tools, obs
+                "Document Analyst Agent",
+                "Contract ingestion and clause extraction",
+                tools,
+                obs,
+                {"read_contract", "extract_contract_clauses"},
             ),
             "policy_research": PolicyResearchAgent(
-                "Policy Research Agent", "Corporate policy retrieval specialist", tools, obs
+                "Policy Research Agent",
+                "Corporate policy retrieval specialist",
+                tools,
+                obs,
+                self.reasoner,
+                {"search_policy_knowledge_base"},
             ),
             "compliance_analyst": ComplianceAnalystAgent(
-                "Compliance Analyst Agent", "Clause-to-policy comparison specialist", tools, obs
+                "Compliance Analyst Agent", "Clause-to-policy comparison specialist", tools, obs, set()
             ),
             "quality_reviewer": QualityReviewerAgent(
-                "Quality Reviewer Agent", "Reflexion and evidence-coverage critic", tools, obs
+                "Quality Reviewer Agent", "Reflexion and evidence-coverage critic", tools, obs, set()
             ),
             "security_reviewer": SecurityReviewerAgent(
-                "Security Reviewer Agent", "Risk scoring and approval router", tools, obs, self.settings
+                "Security Reviewer Agent",
+                "Risk scoring and approval router",
+                tools,
+                obs,
+                self.settings,
+                {"calculate_contract_risk"},
             ),
             "report_writer": ReportWriterAgent(
-                "Report Writer Agent", "Structured report generator", tools, obs, self.reasoner
+                "Report Writer Agent", "Structured report generator", tools, obs, self.reasoner, set()
             ),
             "output_guardian": OutputGuardianAgent(
-                "Output Guardian Agent", "Schema validation and PII data-protection gate", tools, obs
+                "Output Guardian Agent", "Schema validation and PII data-protection gate", tools, obs, set()
             ),
             "artifact_storage": ArtifactStorageAgent(
-                "Artifact Storage Agent", "Durable filesystem or MinIO/S3 persistence", tools, obs
+                "Artifact Storage Agent",
+                "Durable filesystem or MinIO/S3 persistence",
+                tools,
+                obs,
+                {"store_report_artifact"},
             ),
         }
 
@@ -93,6 +111,11 @@ class ContractGuardService:
         self._assert_open()
         if not (request.contract_text and request.contract_text.strip()) and not request.contract_path:
             raise ValueError("Either contract_text or contract_path must be provided")
+        if request.contract_path and not self.settings.is_contract_path_allowed(request.contract_path):
+            allowed = ", ".join(str(path) for path in self.settings.allowed_contract_roots)
+            raise ValueError(
+                f"Contract path is outside the configured allow-list. Allowed roots: {allowed}"
+            )
         thread_id = request.thread_id or f"audit-{uuid4().hex[:12]}"
         if self.checkpointer.load(thread_id) is not None:
             raise AuditConflictError(f"Thread already exists: {thread_id}")

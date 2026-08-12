@@ -61,6 +61,18 @@ class Observability:
             ["tool"],
             registry=self.registry,
         )
+        self.llm_calls = Counter(
+            "contractguard_llm_calls_total",
+            "LLM calls by provider, operation, and status",
+            ["provider", "operation", "status"],
+            registry=self.registry,
+        )
+        self.llm_latency = Histogram(
+            "contractguard_llm_latency_seconds",
+            "LLM call latency",
+            ["provider", "operation"],
+            registry=self.registry,
+        )
         self.guardrail_blocks = Counter(
             "contractguard_guardrail_blocks_total",
             "Blocked inputs or outputs",
@@ -187,6 +199,37 @@ class Observability:
     def record_terminal(self, thread_id: str, status: str) -> None:
         self.workflow_runs.labels(status=status).inc()
         self.log("workflow_terminal", thread_id=thread_id, status=status)
+
+    def record_llm_call(
+        self,
+        *,
+        provider: str,
+        model: str,
+        operation: str,
+        status: str,
+        latency_seconds: float,
+        input_tokens: int = 0,
+        output_tokens: int = 0,
+        estimated_cost_usd: float = 0.0,
+    ) -> None:
+        self.llm_calls.labels(provider=provider, operation=operation, status=status).inc()
+        self.llm_latency.labels(provider=provider, operation=operation).observe(max(latency_seconds, 0.0))
+        self.record_llm_usage(
+            input_tokens=input_tokens,
+            output_tokens=output_tokens,
+            estimated_cost_usd=estimated_cost_usd,
+        )
+        self.log(
+            "llm_call",
+            provider=provider,
+            model=model,
+            operation=operation,
+            status=status,
+            latency_ms=round(max(latency_seconds, 0.0) * 1000, 3),
+            input_tokens=max(input_tokens, 0),
+            output_tokens=max(output_tokens, 0),
+            estimated_cost_usd=max(estimated_cost_usd, 0.0),
+        )
 
     def record_llm_usage(self, *, input_tokens: int, output_tokens: int, estimated_cost_usd: float) -> None:
         self.estimated_tokens.labels(direction="input").inc(max(input_tokens, 0))

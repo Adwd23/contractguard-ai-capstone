@@ -12,8 +12,8 @@ from uuid import uuid4
 from pypdf import PdfReader
 
 from .config import Settings
-from .guardrails import output_guardrail, scan_prompt_injection
-from .llm import GroqReasoner
+from .guardrails import mask_object, output_guardrail, scan_prompt_injection
+from .llm import AgentReasoner
 from .models import AgentMessage, Finding, PlanStep, ToolCall
 from .observability import Observability
 from .tools import ToolRegistry
@@ -32,12 +32,24 @@ def _truncate(text: str, limit: int = 280) -> str:
     return clean if len(clean) <= limit else clean[: limit - 1] + "…"
 
 
+class AgentToolPermissionError(PermissionError):
+    """Raised when a specialist agent attempts a function outside its allow-list."""
+
+
 class BaseAgent:
-    def __init__(self, name: str, role: str, tools: ToolRegistry, observability: Observability):
+    def __init__(
+        self,
+        name: str,
+        role: str,
+        tools: ToolRegistry,
+        observability: Observability,
+        allowed_tools: set[str] | None = None,
+    ):
         self.name = name
         self.role = role
         self.tools = tools
         self.observability = observability
+        self.allowed_tools = frozenset(allowed_tools or set())
 
     def send(
         self,
@@ -72,21 +84,58 @@ class BaseAgent:
         tool_name: str,
         arguments: dict[str, Any],
         rationale: str,
+        decision_source: str = "workflow",
+        protocol: str = "mcp_json_schema",
+        model_provider: str | None = None,
+        model_name: str | None = None,
+        used_live_llm: bool = False,
     ) -> tuple[Any, dict[str, Any]]:
+        if tool_name not in self.allowed_tools:
+            self.observability.log(
+                "tool_permission_denied",
+                level="warning",
+                thread_id=state.get("thread_id"),
+                agent=self.name,
+                tool=tool_name,
+                allowed_tools=sorted(self.allowed_tools),
+            )
+            raise AgentToolPermissionError(
+                f"Agent '{self.name}' is not authorized to call tool '{tool_name}'"
+            )
+
         call = ToolCall(
             agent=self.name,
             tool_name=tool_name,
             arguments=arguments,
             rationale=rationale,
+            decision_source=decision_source,  # type: ignore[arg-type]
+            protocol=protocol,  # type: ignore[arg-type]
+            model_provider=model_provider,
+            model_name=model_name,
+            used_live_llm=used_live_llm,
         )
         call_dict = call.model_dump(mode="json")
         _append(state, "tool_calls", call_dict)
+        if used_live_llm:
+            state["live_llm_tool_call_count"] = int(state.get("live_llm_tool_call_count", 0)) + 1
+        modes = state.setdefault("reasoner_modes", [])
+        if decision_source not in modes:
+            modes.append(decision_source)
+        if decision_source != "workflow":
+            state["reasoner_mode"] = decision_source
         _append(
             state,
             "decision_trace",
             {
                 "pattern": "ReAct",
+                # This is a concise, user-auditable rationale—not hidden chain-of-thought.
                 "thought": rationale,
+                "decision_summary": rationale,
+                "decision_source": decision_source,
+                "protocol": protocol,
+                "model_provider": model_provider,
+                "model_name": model_name,
+                "used_live_llm": used_live_llm,
                 "action": {"tool": tool_name, "arguments": arguments, "call_id": call.call_id},
                 "timestamp": call.timestamp,
             },
@@ -238,6 +287,18 @@ class PolicyResearchAgent(BaseAgent):
         "general": "vendor contract compliance mandatory clauses",
     }
 
+    def __init__(
+        self,
+        name: str,
+        role: str,
+        tools: ToolRegistry,
+        observability: Observability,
+        reasoner: AgentReasoner,
+        allowed_tools: set[str] | None = None,
+    ) -> None:
+        super().__init__(name, role, tools, observability, allowed_tools=allowed_tools)
+        self.reasoner = reasoner
+
     def run(self, state: dict[str, Any]) -> None:
         topics = sorted({clause.get("topic", "general") for clause in state.get("clauses", [])})
         queries = [
@@ -250,18 +311,55 @@ class PolicyResearchAgent(BaseAgent):
         evidence: list[dict[str, Any]] = []
         state["policy_search_error"] = ""
 
+        tool_name = "search_policy_knowledge_base"
         for index, item in enumerate(queries):
+            candidate_arguments = {
+                "query": item["query"],
+                "topic": item["topic"],
+                "top_k": 2,
+                "attempt": attempt,
+                "simulate_primary_failure": bool(state.get("flags", {}).get("simulate_primary_failure"))
+                and index == 0,
+            }
+            selection = self.reasoner.select_tool(
+                agent_name=self.name,
+                task=(
+                    "Retrieve authoritative corporate policy evidence for the contract "
+                    f"topic '{item['topic']}' using the registered function tools."
+                ),
+                context={
+                    "topic": item["topic"],
+                    "recommended_query": item["query"],
+                    "required_result": "ranked policy excerpts with policy names and sections",
+                    "retry_attempt": attempt,
+                },
+                tools=self.tools.describe({"search_policy_knowledge_base"}),
+                candidate_arguments={"search_policy_knowledge_base": candidate_arguments},
+                locked_arguments={
+                    "search_policy_knowledge_base": {
+                        "topic",
+                        "attempt",
+                        "simulate_primary_failure",
+                    }
+                },
+            )
+            decision_source = (
+                "llm_function_call" if selection.used_live_llm else "offline_schema_router"
+            )
             output, observation = self.call_tool(
                 state,
-                tool_name="search_policy_knowledge_base",
-                arguments={
-                    "query": item["query"],
-                    "topic": item["topic"],
-                    "top_k": 2,
-                    "attempt": attempt,
-                    "simulate_primary_failure": bool(state.get("flags", {}).get("simulate_primary_failure")) and index == 0,
-                },
-                rationale=f"Need authoritative policy evidence for the {item['topic']} contract clauses.",
+                tool_name=selection.tool_name,
+                arguments=selection.arguments,
+                rationale=selection.rationale,
+                decision_source=decision_source,
+                protocol=(
+                    "provider_native_function_call"
+                    if selection.used_live_llm
+                    else "mcp_json_schema"
+                ),
+                model_provider=selection.provider,
+                model_name=selection.model,
+                used_live_llm=selection.used_live_llm,
             )
             if observation["status"] != "success":
                 state["policy_search_error"] = observation["summary"]
@@ -532,8 +630,9 @@ class SecurityReviewerAgent(BaseAgent):
         tools: ToolRegistry,
         observability: Observability,
         settings: Settings,
+        allowed_tools: set[str] | None = None,
     ):
-        super().__init__(name, role, tools, observability)
+        super().__init__(name, role, tools, observability, allowed_tools=allowed_tools)
         self.settings = settings
 
     def run(self, state: dict[str, Any]) -> None:
@@ -571,30 +670,56 @@ class ReportWriterAgent(BaseAgent):
         role: str,
         tools: ToolRegistry,
         observability: Observability,
-        reasoner: GroqReasoner,
+        reasoner: AgentReasoner,
+        allowed_tools: set[str] | None = None,
     ):
-        super().__init__(name, role, tools, observability)
+        super().__init__(name, role, tools, observability, allowed_tools=allowed_tools)
         self.reasoner = reasoner
 
     def run(self, state: dict[str, Any]) -> None:
         findings = state.get("findings", [])
         metadata = state.get("contract_metadata", {})
         fallback_summary = self._fallback_summary(state)
+        # Never transmit raw contract excerpts or direct identifiers to an optional
+        # external model. Only the minimum fields required for the summary are sent.
+        safe_findings = [
+            {
+                key: item.get(key)
+                for key in (
+                    "finding_id",
+                    "topic",
+                    "title",
+                    "severity",
+                    "policy_reference",
+                    "recommendation",
+                    "confidence",
+                )
+            }
+            for item in findings
+        ]
+        llm_context, context_redactions, context_categories = mask_object(
+            {
+                "vendor": metadata.get("vendor_name"),
+                "value_sar": metadata.get("contract_value_sar"),
+                "risk_score": state.get("risk_score"),
+                "risk_level": state.get("risk_level"),
+                "findings": safe_findings,
+            }
+        )
+        if context_redactions:
+            self.observability.log(
+                "llm_context_redacted",
+                thread_id=state["thread_id"],
+                agent=self.name,
+                redactions=context_redactions,
+                categories=sorted(set(context_categories)),
+            )
         llm_summary = self.reasoner.generate(
             system=(
                 "You are a senior Saudi enterprise contract-compliance reviewer. "
                 "Write one concise executive-summary paragraph. Do not invent facts."
             ),
-            user=json.dumps(
-                {
-                    "vendor": metadata.get("vendor_name"),
-                    "value_sar": metadata.get("contract_value_sar"),
-                    "risk_score": state.get("risk_score"),
-                    "risk_level": state.get("risk_level"),
-                    "findings": findings,
-                },
-                ensure_ascii=False,
-            ),
+            user=json.dumps(llm_context, ensure_ascii=False),
         )
         recommendations = [item["recommendation"] for item in findings]
         if not recommendations:

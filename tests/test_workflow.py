@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
 
 from contractguard.models import AuditStartRequest, ResumeRequest
 from contractguard.service import ContractGuardService
@@ -80,3 +81,56 @@ def test_retry_pause_restart_resume_and_output_revision(isolated_settings) -> No
     assert "example.com" not in final["final_markdown"]
     assert "1023456789" not in final["final_markdown"]
     assert Path(final["artifact_uri"].removeprefix("file://")).exists()
+
+
+def test_offline_schema_router_executes_mcp_style_tool_selection(isolated_settings) -> None:
+    path = isolated_settings.project_root / "data" / "samples" / "vendor_contract_low_risk.txt"
+    with ContractGuardService(isolated_settings) as service:
+        state = service.start(
+            AuditStartRequest(
+                thread_id="schema-router-test",
+                request_text="Audit the contract and retrieve policy evidence.",
+                contract_path=str(path),
+            )
+        )
+
+    routed_calls = [
+        call for call in state["tool_calls"]
+        if call["tool_name"] == "search_policy_knowledge_base"
+    ]
+    assert routed_calls
+    assert all(call["decision_source"] == "offline_schema_router" for call in routed_calls)
+    assert all(call["protocol"] == "mcp_json_schema" for call in routed_calls)
+    assert state["reasoner_mode"] == "offline_schema_router"
+    assert "offline_schema_router" in state["reasoner_modes"]
+
+
+def test_optional_llm_summary_receives_minimized_redacted_context(
+    monkeypatch, isolated_settings
+) -> None:
+    source = (
+        isolated_settings.project_root / "data" / "samples" / "vendor_contract_low_risk.txt"
+    ).read_text(encoding="utf-8")
+    source = source.replace("Vendor: Riyadh Analytics Company", "Vendor: nora@example.com")
+    captured: dict[str, str] = {}
+
+    with ContractGuardService(isolated_settings) as service:
+        def fake_generate(*, system: str, user: str, temperature: float = 0.0) -> str:
+            captured["system"] = system
+            captured["user"] = user
+            return "The audit completed with a low risk rating and no detected policy deviations."
+
+        monkeypatch.setattr(service.reasoner, "generate", fake_generate)
+        state = service.start(
+            AuditStartRequest(
+                thread_id="redacted-llm-context",
+                request_text="Audit this contract and produce an executive summary.",
+                contract_text=source,
+            )
+        )
+
+    assert state["status"] == "completed"
+    assert "nora@example.com" not in captured["user"]
+    assert "[REDACTED_EMAIL]" in captured["user"]
+    parsed = json.loads(captured["user"])
+    assert all("contract_excerpt" not in finding for finding in parsed["findings"])

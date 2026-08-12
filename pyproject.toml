@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "contractguard-ai"
-version = "1.0.0"
+version = "1.1.0"
 description = "Secure, observable, resumable multi-agent vendor contract audit platform"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
-authors = [{name = "SDAIA Academy Capstone Trainee"}]
+authors = [{name = "Adwd23"}]
 dependencies = [
   "fastapi>=0.115,<1",
   "uvicorn[standard]>=0.30,<1",
@@ -17,6 +17,7 @@ dependencies = [
   "prometheus-client>=0.20,<1",
   "pypdf>=5,<7",
   "httpx>=0.27,<1",
+  "python-dotenv>=1.0,<2",
   "transitions==0.9.3",
   "minio>=7.2,<8",
 ]
@@ -27,6 +28,7 @@ dev = [
   "nbformat>=5.10,<6",
   "nbclient>=0.10,<1",
   "ipykernel>=6,<8",
+  "pandas>=2.2,<3.1",
 ]
 
 [project.scripts]

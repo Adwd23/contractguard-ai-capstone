@@ -12,7 +12,7 @@ import re
 import shutil
 from typing import Any, Callable, Generic, TypeVar
 
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from pypdf import PdfReader
 
 from .config import Settings
@@ -58,14 +58,33 @@ class ToolRegistry:
             raise ValueError(f"Tool already registered: {tool.name}")
         self._tools[tool.name] = tool
 
-    def describe(self) -> list[dict[str, Any]]:
+    def describe(self, names: set[str] | None = None) -> list[dict[str, Any]]:
+        selected = (
+            tool
+            for name, tool in self._tools.items()
+            if names is None or name in names
+        )
         return [
             {
                 "name": tool.name,
                 "description": tool.description,
                 "input_schema": tool.json_schema,
             }
-            for tool in self._tools.values()
+            for tool in selected
+        ]
+
+    def describe_openai(self, names: set[str] | None = None) -> list[dict[str, Any]]:
+        """Return standard local function definitions for model tool calling."""
+        return [
+            {
+                "type": "function",
+                "function": {
+                    "name": item["name"],
+                    "description": item["description"],
+                    "parameters": item["input_schema"],
+                },
+            }
+            for item in self.describe(names)
         ]
 
     def call(self, call: ToolCall, *, thread_id: str) -> tuple[Any, ToolObservation]:
@@ -99,17 +118,23 @@ class ToolRegistry:
         return output, observation
 
 
-class ReadContractInput(BaseModel):
+class StrictToolInput(BaseModel):
+    """Base class for tool arguments: reject undeclared model-generated fields."""
+
+    model_config = ConfigDict(extra="forbid")
+
+
+class ReadContractInput(StrictToolInput):
     contract_path: str | None = None
-    contract_text: str | None = None
+    contract_text: str | None = Field(default=None, max_length=1_000_000)
     max_chars: int = Field(default=250_000, ge=1000, le=1_000_000)
 
 
-class ExtractClausesInput(BaseModel):
+class ExtractClausesInput(StrictToolInput):
     contract_text: str = Field(min_length=20)
 
 
-class SearchPoliciesInput(BaseModel):
+class SearchPoliciesInput(StrictToolInput):
     query: str = Field(min_length=2)
     topic: str = "general"
     top_k: int = Field(default=3, ge=1, le=10)
@@ -117,19 +142,23 @@ class SearchPoliciesInput(BaseModel):
     simulate_primary_failure: bool = False
 
 
-class CalculateRiskInput(BaseModel):
+class CalculateRiskInput(StrictToolInput):
     findings: list[dict[str, Any]]
     contract_value_sar: float = Field(default=0, ge=0)
     approval_risk_threshold: int = Field(default=50, ge=0, le=100)
     approval_value_threshold_sar: float = Field(default=500_000, ge=0)
 
 
-class MaskPIIInput(BaseModel):
+class MaskPIIInput(StrictToolInput):
     text: str
 
 
-class StoreArtifactInput(BaseModel):
-    thread_id: str = Field(min_length=3)
+class StoreArtifactInput(StrictToolInput):
+    thread_id: str = Field(
+        min_length=3,
+        max_length=128,
+        pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]*$",
+    )
     markdown: str = Field(min_length=10)
     metadata: dict[str, Any] = Field(default_factory=dict)
 
@@ -233,12 +262,15 @@ def _summarize_tool_output(output: Any) -> str:
     return f"Returned {type(output).__name__}"
 
 
-def _read_contract(payload: ReadContractInput) -> dict[str, Any]:
+def _read_contract(payload: ReadContractInput, allowed_roots: tuple[Path, ...]) -> dict[str, Any]:
     if payload.contract_text and payload.contract_text.strip():
         text = payload.contract_text.strip()
         source = "inline_text"
     elif payload.contract_path:
         path = Path(payload.contract_path).expanduser().resolve()
+        if not any(path == root or path.is_relative_to(root) for root in allowed_roots):
+            allowed = ", ".join(str(root) for root in allowed_roots)
+            raise ToolExecutionError(f"Contract path is outside allowed roots: {allowed}")
         if not path.exists() or not path.is_file():
             raise ToolExecutionError(f"Contract file does not exist: {path}")
         if path.stat().st_size > 10_000_000:
@@ -449,7 +481,7 @@ def build_tool_registry(settings: Settings, observability: Observability) -> Too
             name="read_contract",
             description="Read a PDF, TXT, or Markdown contract, or use inline contract text.",
             input_model=ReadContractInput,
-            handler=_read_contract,
+            handler=lambda payload: _read_contract(payload, settings.allowed_contract_roots),
         )
     )
     registry.register(

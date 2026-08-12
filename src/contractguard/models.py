@@ -34,6 +34,16 @@ class ToolCall(BaseModel):
     tool_name: str
     arguments: dict[str, Any]
     rationale: str
+    decision_source: Literal[
+        "workflow",
+        "llm_function_call",
+        "offline_schema_router",
+        "deterministic_fallback",
+    ] = "workflow"
+    protocol: Literal["mcp_json_schema", "provider_native_function_call"] = "mcp_json_schema"
+    model_provider: str | None = None
+    model_name: str | None = None
+    used_live_llm: bool = False
     timestamp: str = Field(default_factory=utc_now)
 
 
@@ -102,10 +112,15 @@ class AuditReport(BaseModel):
 
 
 class AuditStartRequest(BaseModel):
-    thread_id: str | None = None
-    request_text: str = Field(min_length=3)
-    contract_path: str | None = None
-    contract_text: str | None = None
+    thread_id: str | None = Field(
+        default=None,
+        min_length=3,
+        max_length=128,
+        pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]*$",
+    )
+    request_text: str = Field(min_length=3, max_length=20_000)
+    contract_path: str | None = Field(default=None, max_length=4096)
+    contract_text: str | None = Field(default=None, max_length=1_000_000)
     flags: dict[str, Any] = Field(default_factory=dict)
 
     @field_validator("contract_text")
@@ -170,6 +185,9 @@ def new_audit_state(
         "tool_calls": [],
         "tool_observations": [],
         "decision_trace": [],
+        "reasoner_mode": "offline_schema_router",
+        "reasoner_modes": [],
+        "live_llm_tool_call_count": 0,
         "node_history": ["received"],
         "created_at": utc_now(),
         "updated_at": utc_now(),
