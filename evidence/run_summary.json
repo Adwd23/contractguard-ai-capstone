@@ -1,14 +1,74 @@
 {
   "project": "ContractGuard AI",
+  "version": "1.1.0",
   "all_assertions_passed": true,
-  "framework": "transitions finite-state machine",
+  "framework": "transitions.Machine finite-state graph",
+  "framework_package": "transitions",
+  "framework_version": "0.9.3",
   "reasoning_patterns": [
     "Plan-and-Execute",
     "ReAct",
     "Reflexion/self-critique",
     "Hierarchical delegation"
   ],
-  "coordination_strategy": "Centralized Coordinator Agent with structured specialist handoffs",
+  "coordination_strategy": "Centralized Coordinator Agent with typed shared-state specialist handoffs",
+  "tool_interface": {
+    "mode": "MCP-style JSON-schema function registry",
+    "registered_tool_count": 6,
+    "registered_tools": [
+      "read_contract",
+      "extract_contract_clauses",
+      "search_policy_knowledge_base",
+      "calculate_contract_risk",
+      "mask_pii",
+      "store_report_artifact"
+    ],
+    "default_reasoner": "offline_schema_router",
+    "optional_native_providers": [
+      "Gemini",
+      "OpenRouter",
+      "Groq"
+    ],
+    "agent_tool_permissions": {
+      "Input Security Agent": [],
+      "Coordinator Agent": [],
+      "Document Analyst Agent": [
+        "extract_contract_clauses",
+        "read_contract"
+      ],
+      "Policy Research Agent": [
+        "search_policy_knowledge_base"
+      ],
+      "Compliance Analyst Agent": [],
+      "Quality Reviewer Agent": [],
+      "Security Reviewer Agent": [
+        "calculate_contract_risk"
+      ],
+      "Report Writer Agent": [],
+      "Output Guardian Agent": [],
+      "Artifact Storage Agent": [
+        "store_report_artifact"
+      ]
+    }
+  },
+  "graph": {
+    "node_count": 16,
+    "edge_count": 21,
+    "conditional_edge_count": 12,
+    "branching_nodes": [
+      "awaiting_approval",
+      "guardrailed",
+      "output_validated",
+      "quality_reviewed",
+      "researching",
+      "security_reviewed"
+    ],
+    "loops": [
+      "researching -> researching (tool retry)",
+      "quality_reviewed -> researching (Reflexion/re-plan)",
+      "output_validated -> reporting (schema-revision loop)"
+    ]
+  },
   "scenarios": {
     "blocked_attack": {
       "thread_id": "capstone-attack-blocked",
@@ -20,6 +80,13 @@
         "blocked"
       ],
       "tool_call_count": 0,
+      "tool_names": [],
+      "tool_decision_sources": [],
+      "tool_protocols": [],
+      "model_routes": [],
+      "reasoner_mode": "offline_schema_router",
+      "reasoner_modes": [],
+      "live_llm_tool_call_count": 0,
       "tool_observation_statuses": [],
       "agent_names": [
         "Input Security Agent"
@@ -58,6 +125,35 @@
         "completed"
       ],
       "tool_call_count": 11,
+      "tool_names": [
+        "read_contract",
+        "extract_contract_clauses",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "calculate_contract_risk",
+        "store_report_artifact"
+      ],
+      "tool_decision_sources": [
+        "offline_schema_router",
+        "workflow"
+      ],
+      "tool_protocols": [
+        "mcp_json_schema"
+      ],
+      "model_routes": [
+        "offline:deterministic-schema-router-v1"
+      ],
+      "reasoner_mode": "offline_schema_router",
+      "reasoner_modes": [
+        "workflow",
+        "offline_schema_router"
+      ],
+      "live_llm_tool_call_count": 0,
       "tool_observation_statuses": [
         "success",
         "success",
@@ -120,6 +216,43 @@
         "awaiting_approval"
       ],
       "tool_call_count": 19,
+      "tool_names": [
+        "read_contract",
+        "extract_contract_clauses",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "calculate_contract_risk"
+      ],
+      "tool_decision_sources": [
+        "offline_schema_router",
+        "workflow"
+      ],
+      "tool_protocols": [
+        "mcp_json_schema"
+      ],
+      "model_routes": [
+        "offline:deterministic-schema-router-v1"
+      ],
+      "reasoner_mode": "offline_schema_router",
+      "reasoner_modes": [
+        "workflow",
+        "offline_schema_router"
+      ],
+      "live_llm_tool_call_count": 0,
       "tool_observation_statuses": [
         "success",
         "success",
@@ -193,6 +326,44 @@
         "completed"
       ],
       "tool_call_count": 20,
+      "tool_names": [
+        "read_contract",
+        "extract_contract_clauses",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "calculate_contract_risk",
+        "store_report_artifact"
+      ],
+      "tool_decision_sources": [
+        "offline_schema_router",
+        "workflow"
+      ],
+      "tool_protocols": [
+        "mcp_json_schema"
+      ],
+      "model_routes": [
+        "offline:deterministic-schema-router-v1"
+      ],
+      "reasoner_mode": "offline_schema_router",
+      "reasoner_modes": [
+        "workflow",
+        "offline_schema_router"
+      ],
+      "live_llm_tool_call_count": 0,
       "tool_observation_statuses": [
         "success",
         "success",
@@ -246,6 +417,12 @@
     }
   },
   "proof": {
+    "real_schema_validated_tools_executed": true,
+    "schema_driven_tool_router_used": true,
+    "shared_state_carried_across_nodes": true,
+    "real_framework_graph_has_conditions_and_cycles": true,
+    "multiple_specialized_agents_communicated": true,
+    "per_agent_tool_permissions_configured": true,
     "prompt_injection_was_blocked": true,
     "tool_failure_retry_fired": true,
     "quality_replan_loop_fired": true,
@@ -255,7 +432,7 @@
     "pii_was_masked": true,
     "structured_logs_exist": true,
     "prometheus_metrics_exist": true,
-    "cloud_artifact_exists": true
+    "cloud_deployment_artifacts_exist": true
   },
   "evidence_files": [
     "evidence/01_prompt_injection_blocked.json",
@@ -277,6 +454,7 @@
     "evidence/graph_spec.json",
     "evidence/metrics.prom",
     "evidence/metrics_after_restart.prom",
-    "evidence/metrics_before_restart.prom"
+    "evidence/metrics_before_restart.prom",
+    "evidence/run_summary.json"
   ]
 }

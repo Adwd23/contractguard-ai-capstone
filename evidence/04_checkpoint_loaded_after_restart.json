@@ -404,7 +404,7 @@
         "payload": {
           "matches": []
         },
-        "timestamp": "2026-08-12T20:25:23.515835+00:00"
+        "timestamp": "2026-08-12T21:37:21.602547+00:00"
       },
       {
         "sender": "Coordinator Agent",
@@ -457,7 +457,7 @@
             }
           ]
         },
-        "timestamp": "2026-08-12T20:25:23.517035+00:00"
+        "timestamp": "2026-08-12T21:37:21.603636+00:00"
       },
       {
         "sender": "Document Analyst Agent",
@@ -479,7 +479,7 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T20:25:23.518751+00:00"
+        "timestamp": "2026-08-12T21:37:21.605367+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -490,7 +490,7 @@
           "attempt": 1,
           "error": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence"
         },
-        "timestamp": "2026-08-12T20:25:23.520374+00:00"
+        "timestamp": "2026-08-12T21:37:21.607590+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -508,7 +508,7 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T20:25:23.523529+00:00"
+        "timestamp": "2026-08-12T21:37:21.613674+00:00"
       },
       {
         "sender": "Compliance Analyst Agent",
@@ -521,7 +521,7 @@
             "medium": 3
           }
         },
-        "timestamp": "2026-08-12T20:25:23.525703+00:00"
+        "timestamp": "2026-08-12T21:37:21.615869+00:00"
       },
       {
         "sender": "Quality Reviewer Agent",
@@ -532,7 +532,7 @@
           "missing_topics": [],
           "quality_score": 0.5
         },
-        "timestamp": "2026-08-12T20:25:23.528672+00:00"
+        "timestamp": "2026-08-12T21:37:21.618223+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -551,7 +551,7 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T20:25:23.532681+00:00"
+        "timestamp": "2026-08-12T21:37:21.625528+00:00"
       },
       {
         "sender": "Compliance Analyst Agent",
@@ -564,7 +564,7 @@
             "medium": 3
           }
         },
-        "timestamp": "2026-08-12T20:25:23.535545+00:00"
+        "timestamp": "2026-08-12T21:37:21.628770+00:00"
       },
       {
         "sender": "Quality Reviewer Agent",
@@ -575,7 +575,7 @@
           "missing_topics": [],
           "quality_score": 1.0
         },
-        "timestamp": "2026-08-12T20:25:23.538063+00:00"
+        "timestamp": "2026-08-12T21:37:21.631683+00:00"
       },
       {
         "sender": "Security Reviewer Agent",
@@ -587,12 +587,12 @@
           "risk_level": "CRITICAL",
           "approval_required": true
         },
-        "timestamp": "2026-08-12T20:25:23.541658+00:00"
+        "timestamp": "2026-08-12T21:37:21.634871+00:00"
       }
     ],
     "tool_calls": [
       {
-        "call_id": "9fa7bced-79e9-4a76-b026-d939fff48e98",
+        "call_id": "0918b837-d1f2-4d08-8789-a539a216ebd5",
         "agent": "Document Analyst Agent",
         "tool_name": "read_contract",
         "arguments": {
@@ -600,20 +600,30 @@
           "contract_text": null
         },
         "rationale": "The document must be converted into trusted text before clause-level analysis.",
-        "timestamp": "2026-08-12T20:25:23.518281+00:00"
+        "decision_source": "workflow",
+        "protocol": "mcp_json_schema",
+        "model_provider": null,
+        "model_name": null,
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.604805+00:00"
       },
       {
-        "call_id": "33a4f39d-a5e7-4bbe-93c0-aab1a2a7571e",
+        "call_id": "71062536-923c-44cc-90fa-a7d6805fc82c",
         "agent": "Document Analyst Agent",
         "tool_name": "extract_contract_clauses",
         "arguments": {
           "contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n"
         },
         "rationale": "Structured clauses are required so specialist agents can search the right policy domains.",
-        "timestamp": "2026-08-12T20:25:23.518564+00:00"
+        "decision_source": "workflow",
+        "protocol": "mcp_json_schema",
+        "model_provider": null,
+        "model_name": null,
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.605041+00:00"
       },
       {
-        "call_id": "b54a3d32-7583-4b63-8f5d-413d5eda320b",
+        "call_id": "ad6632da-b44d-4b46-99cc-c8cdf305e579",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -623,11 +633,16 @@
           "attempt": 0,
           "simulate_primary_failure": true
         },
-        "rationale": "Need authoritative policy evidence for the data_protection contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.520201+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.607398+00:00"
       },
       {
-        "call_id": "fe08d62c-9713-44e4-825b-d9d4955113ab",
+        "call_id": "c51b3aef-dead-4caf-bd65-c01e1bc657c8",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -637,11 +652,16 @@
           "attempt": 1,
           "simulate_primary_failure": true
         },
-        "rationale": "Need authoritative policy evidence for the data_protection contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.521955+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.610150+00:00"
       },
       {
-        "call_id": "5926e1d7-6d44-4d10-80f7-c027c71008ab",
+        "call_id": "9b0b3b01-9ab1-41ef-b277-65acf6ac94f1",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -651,11 +671,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the governing_law contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.522213+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.610781+00:00"
       },
       {
-        "call_id": "136cc7fa-68ce-4d77-8df8-cd9a610314bd",
+        "call_id": "63985dda-d962-48fd-8f16-1d33f2948f52",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -665,11 +690,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the liability contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.522403+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.611297+00:00"
       },
       {
-        "call_id": "8eed18ba-b507-4c2b-990b-35d5544595c9",
+        "call_id": "d1c38e84-d24b-4124-9a69-af0f37ffb0a6",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -679,11 +709,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the payment contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.522633+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.611798+00:00"
       },
       {
-        "call_id": "54940c9c-555a-4519-9eb4-386e8f0d0638",
+        "call_id": "733e5a57-c3c7-4e28-8c7d-722743b90747",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -693,11 +728,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the security contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.522801+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.612358+00:00"
       },
       {
-        "call_id": "89ccc25e-8a19-4ebf-84db-3857565337f1",
+        "call_id": "081eb5c4-b8e3-4ccf-876b-9bbd66e77f36",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -707,11 +747,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the service_levels contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.522985+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.612902+00:00"
       },
       {
-        "call_id": "fa191790-f359-438e-bb9e-6ae9de5e25f3",
+        "call_id": "9be7caaf-797c-4a51-bea9-4aadf0e9926b",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -721,11 +766,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the termination contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.523330+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.613477+00:00"
       },
       {
-        "call_id": "56fcc3e0-bbfc-4262-83fc-36f524d5a494",
+        "call_id": "e1ebb670-5f62-413d-8f97-9a8b67732652",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -735,11 +785,16 @@
           "attempt": 1,
           "simulate_primary_failure": true
         },
-        "rationale": "Need authoritative policy evidence for the data_protection contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.530966+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.621114+00:00"
       },
       {
-        "call_id": "3b853a45-6d14-47ca-b747-e90417fdfb65",
+        "call_id": "46761952-65cf-4e56-a1bb-89939f68f51f",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -749,11 +804,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the governing_law contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.531199+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.621793+00:00"
       },
       {
-        "call_id": "8bf76987-7c40-4ee5-a491-3bcc86b461cf",
+        "call_id": "2eaa7e06-4728-4538-a0f0-9cf2f2be2002",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -763,11 +823,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the liability contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.531553+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.622403+00:00"
       },
       {
-        "call_id": "03fbb990-9fbb-49e2-9d4a-3d810ac37631",
+        "call_id": "b8aa5218-19bd-457d-a771-c1c7531f978b",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -777,11 +842,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the payment contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.531744+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.623040+00:00"
       },
       {
-        "call_id": "ae5e3feb-4a80-42b5-8a54-1c75c2c1486a",
+        "call_id": "ab983f96-37ec-45d2-b25f-24fb159d277f",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -791,11 +861,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the security contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.531946+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.623587+00:00"
       },
       {
-        "call_id": "59a820c7-561b-4dcf-81e5-67e8cc60aff7",
+        "call_id": "ce91e477-3c9b-4b1f-aeb7-0e8c075f7dbd",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -805,11 +880,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the service_levels contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.532142+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.624193+00:00"
       },
       {
-        "call_id": "a08c4b0d-bdee-4cf6-9c0b-a2cc6cf88696",
+        "call_id": "708d1121-3ab7-490d-9a38-b844bad05692",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -819,11 +899,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the termination contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.532289+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.624733+00:00"
       },
       {
-        "call_id": "73f0a128-9a48-432b-995a-d3b7164e265a",
+        "call_id": "79337697-0037-44dd-bd29-61cc9a4c2f09",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -833,11 +918,16 @@
           "attempt": 1,
           "simulate_primary_failure": false
         },
-        "rationale": "Need authoritative policy evidence for the general contract clauses.",
-        "timestamp": "2026-08-12T20:25:23.532482+00:00"
+        "rationale": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.625305+00:00"
       },
       {
-        "call_id": "b4e27b61-e645-4974-bd39-480cc1b06b25",
+        "call_id": "722a9055-6c36-43d3-a544-eff6d64bd01d",
         "agent": "Security Reviewer Agent",
         "tool_name": "calculate_contract_risk",
         "arguments": {
@@ -948,12 +1038,17 @@
           "approval_value_threshold_sar": 500000.0
         },
         "rationale": "Risk and value thresholds determine whether autonomous execution must stop for human approval.",
-        "timestamp": "2026-08-12T20:25:23.541513+00:00"
+        "decision_source": "workflow",
+        "protocol": "mcp_json_schema",
+        "model_provider": null,
+        "model_name": null,
+        "used_live_llm": false,
+        "timestamp": "2026-08-12T21:37:21.634294+00:00"
       }
     ],
     "tool_observations": [
       {
-        "call_id": "9fa7bced-79e9-4a76-b026-d939fff48e98",
+        "call_id": "0918b837-d1f2-4d08-8789-a539a216ebd5",
         "tool_name": "read_contract",
         "status": "success",
         "summary": "Returned object with keys: source, text, characters",
@@ -962,11 +1057,11 @@
           "text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n",
           "characters": 1593
         },
-        "latency_ms": 0.11867600005643908,
-        "timestamp": "2026-08-12T20:25:23.518516+00:00"
+        "latency_ms": 0.14065900086279726,
+        "timestamp": "2026-08-12T21:37:21.605016+00:00"
       },
       {
-        "call_id": "33a4f39d-a5e7-4bbe-93c0-aab1a2a7571e",
+        "call_id": "71062536-923c-44cc-90fa-a7d6805fc82c",
         "tool_name": "extract_contract_clauses",
         "status": "success",
         "summary": "Returned 9 items",
@@ -1026,20 +1121,20 @@
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.10276600005454384,
-        "timestamp": "2026-08-12T20:25:23.518716+00:00"
+        "latency_ms": 0.10848400052054785,
+        "timestamp": "2026-08-12T21:37:21.605253+00:00"
       },
       {
-        "call_id": "b54a3d32-7583-4b63-8f5d-413d5eda320b",
+        "call_id": "ad6632da-b44d-4b46-99cc-c8cdf305e579",
         "tool_name": "search_policy_knowledge_base",
         "status": "error",
         "summary": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence",
         "output": null,
-        "latency_ms": 0.03631200002018886,
-        "timestamp": "2026-08-12T20:25:23.520356+00:00"
+        "latency_ms": 0.04809599977306789,
+        "timestamp": "2026-08-12T21:37:21.607571+00:00"
       },
       {
-        "call_id": "fe08d62c-9713-44e4-825b-d9d4955113ab",
+        "call_id": "c51b3aef-dead-4caf-bd65-c01e1bc657c8",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1061,11 +1156,11 @@
             "topic": "data_protection"
           }
         ],
-        "latency_ms": 0.16809199996714597,
-        "timestamp": "2026-08-12T20:25:23.522186+00:00"
+        "latency_ms": 0.15401500058942474,
+        "timestamp": "2026-08-12T21:37:21.610377+00:00"
       },
       {
-        "call_id": "5926e1d7-6d44-4d10-80f7-c027c71008ab",
+        "call_id": "9b0b3b01-9ab1-41ef-b277-65acf6ac94f1",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1087,11 +1182,11 @@
             "topic": "governing_law"
           }
         ],
-        "latency_ms": 0.11153700006616418,
-        "timestamp": "2026-08-12T20:25:23.522367+00:00"
+        "latency_ms": 0.1322920006714412,
+        "timestamp": "2026-08-12T21:37:21.610974+00:00"
       },
       {
-        "call_id": "136cc7fa-68ce-4d77-8df8-cd9a610314bd",
+        "call_id": "63985dda-d962-48fd-8f16-1d33f2948f52",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1105,11 +1200,11 @@
             "topic": "liability"
           }
         ],
-        "latency_ms": 0.15586399990752398,
-        "timestamp": "2026-08-12T20:25:23.522613+00:00"
+        "latency_ms": 0.10339000073145144,
+        "timestamp": "2026-08-12T21:37:21.611456+00:00"
       },
       {
-        "call_id": "8eed18ba-b507-4c2b-990b-35d5544595c9",
+        "call_id": "d1c38e84-d24b-4124-9a69-af0f37ffb0a6",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1131,11 +1226,11 @@
             "topic": "payment"
           }
         ],
-        "latency_ms": 0.1101529999232298,
-        "timestamp": "2026-08-12T20:25:23.522783+00:00"
+        "latency_ms": 0.1338599995506229,
+        "timestamp": "2026-08-12T21:37:21.611990+00:00"
       },
       {
-        "call_id": "54940c9c-555a-4519-9eb4-386e8f0d0638",
+        "call_id": "733e5a57-c3c7-4e28-8c7d-722743b90747",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1157,11 +1252,11 @@
             "topic": "security"
           }
         ],
-        "latency_ms": 0.11028900007659104,
-        "timestamp": "2026-08-12T20:25:23.522948+00:00"
+        "latency_ms": 0.13372000012168428,
+        "timestamp": "2026-08-12T21:37:21.612549+00:00"
       },
       {
-        "call_id": "89ccc25e-8a19-4ebf-84db-3857565337f1",
+        "call_id": "081eb5c4-b8e3-4ccf-876b-9bbd66e77f36",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1175,11 +1270,11 @@
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.08407700011048291,
-        "timestamp": "2026-08-12T20:25:23.523295+00:00"
+        "latency_ms": 0.10588700024527498,
+        "timestamp": "2026-08-12T21:37:21.613094+00:00"
       },
       {
-        "call_id": "fa191790-f359-438e-bb9e-6ae9de5e25f3",
+        "call_id": "9be7caaf-797c-4a51-bea9-4aadf0e9926b",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1201,11 +1296,11 @@
             "topic": "termination"
           }
         ],
-        "latency_ms": 0.12620000006791088,
-        "timestamp": "2026-08-12T20:25:23.523505+00:00"
+        "latency_ms": 0.12001499999314547,
+        "timestamp": "2026-08-12T21:37:21.613650+00:00"
       },
       {
-        "call_id": "56fcc3e0-bbfc-4262-83fc-36f524d5a494",
+        "call_id": "e1ebb670-5f62-413d-8f97-9a8b67732652",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1227,11 +1322,11 @@
             "topic": "data_protection"
           }
         ],
-        "latency_ms": 0.14436900005421194,
-        "timestamp": "2026-08-12T20:25:23.531174+00:00"
+        "latency_ms": 0.21665500025846995,
+        "timestamp": "2026-08-12T21:37:21.621410+00:00"
       },
       {
-        "call_id": "3b853a45-6d14-47ca-b747-e90417fdfb65",
+        "call_id": "46761952-65cf-4e56-a1bb-89939f68f51f",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1253,11 +1348,11 @@
             "topic": "governing_law"
           }
         ],
-        "latency_ms": 0.2333039999484754,
-        "timestamp": "2026-08-12T20:25:23.531525+00:00"
+        "latency_ms": 0.12562899974000175,
+        "timestamp": "2026-08-12T21:37:21.622030+00:00"
       },
       {
-        "call_id": "8bf76987-7c40-4ee5-a491-3bcc86b461cf",
+        "call_id": "2eaa7e06-4728-4538-a0f0-9cf2f2be2002",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1271,11 +1366,11 @@
             "topic": "liability"
           }
         ],
-        "latency_ms": 0.12383300008877995,
-        "timestamp": "2026-08-12T20:25:23.531725+00:00"
+        "latency_ms": 0.1657739994698204,
+        "timestamp": "2026-08-12T21:37:21.622634+00:00"
       },
       {
-        "call_id": "03fbb990-9fbb-49e2-9d4a-3d810ac37631",
+        "call_id": "b8aa5218-19bd-457d-a771-c1c7531f978b",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1297,11 +1392,11 @@
             "topic": "payment"
           }
         ],
-        "latency_ms": 0.13754999986304028,
-        "timestamp": "2026-08-12T20:25:23.531926+00:00"
+        "latency_ms": 0.1287969998884364,
+        "timestamp": "2026-08-12T21:37:21.623225+00:00"
       },
       {
-        "call_id": "ae5e3feb-4a80-42b5-8a54-1c75c2c1486a",
+        "call_id": "ab983f96-37ec-45d2-b25f-24fb159d277f",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1323,11 +1418,11 @@
             "topic": "security"
           }
         ],
-        "latency_ms": 0.13721100003749598,
-        "timestamp": "2026-08-12T20:25:23.532124+00:00"
+        "latency_ms": 0.12876099935965613,
+        "timestamp": "2026-08-12T21:37:21.623771+00:00"
       },
       {
-        "call_id": "59a820c7-561b-4dcf-81e5-67e8cc60aff7",
+        "call_id": "ce91e477-3c9b-4b1f-aeb7-0e8c075f7dbd",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1341,11 +1436,11 @@
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.08558299987271312,
-        "timestamp": "2026-08-12T20:25:23.532271+00:00"
+        "latency_ms": 0.1084810000975267,
+        "timestamp": "2026-08-12T21:37:21.624356+00:00"
       },
       {
-        "call_id": "a08c4b0d-bdee-4cf6-9c0b-a2cc6cf88696",
+        "call_id": "708d1121-3ab7-490d-9a38-b844bad05692",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1367,11 +1462,11 @@
             "topic": "termination"
           }
         ],
-        "latency_ms": 0.12656600006266672,
-        "timestamp": "2026-08-12T20:25:23.532463+00:00"
+        "latency_ms": 0.11869100035255542,
+        "timestamp": "2026-08-12T21:37:21.624908+00:00"
       },
       {
-        "call_id": "73f0a128-9a48-432b-995a-d3b7164e265a",
+        "call_id": "79337697-0037-44dd-bd29-61cc9a4c2f09",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1393,11 +1488,11 @@
             "topic": "general"
           }
         ],
-        "latency_ms": 0.10920199997599411,
-        "timestamp": "2026-08-12T20:25:23.532655+00:00"
+        "latency_ms": 0.13683899942407152,
+        "timestamp": "2026-08-12T21:37:21.625503+00:00"
       },
       {
-        "call_id": "b4e27b61-e645-4974-bd39-480cc1b06b25",
+        "call_id": "722a9055-6c36-43d3-a544-eff6d64bd01d",
         "tool_name": "calculate_contract_risk",
         "status": "success",
         "summary": "Returned object with keys: risk_score, risk_level, approval_required",
@@ -1406,53 +1501,71 @@
           "risk_level": "CRITICAL",
           "approval_required": true
         },
-        "latency_ms": 0.046978000000308384,
-        "timestamp": "2026-08-12T20:25:23.541640+00:00"
+        "latency_ms": 0.0503209994349163,
+        "timestamp": "2026-08-12T21:37:21.634845+00:00"
       }
     ],
     "decision_trace": [
       {
         "pattern": "ReAct",
         "thought": "The document must be converted into trusted text before clause-level analysis.",
+        "decision_summary": "The document must be converted into trusted text before clause-level analysis.",
+        "decision_source": "workflow",
+        "protocol": "mcp_json_schema",
+        "model_provider": null,
+        "model_name": null,
+        "used_live_llm": false,
         "action": {
           "tool": "read_contract",
           "arguments": {
             "contract_path": "/mnt/data/contractguard-ai/data/samples/vendor_contract_high_risk.txt",
             "contract_text": null
           },
-          "call_id": "9fa7bced-79e9-4a76-b026-d939fff48e98"
+          "call_id": "0918b837-d1f2-4d08-8789-a539a216ebd5"
         },
-        "timestamp": "2026-08-12T20:25:23.518281+00:00"
+        "timestamp": "2026-08-12T21:37:21.604805+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned object with keys: source, text, characters",
         "status": "success",
-        "call_id": "9fa7bced-79e9-4a76-b026-d939fff48e98",
-        "timestamp": "2026-08-12T20:25:23.518516+00:00"
+        "call_id": "0918b837-d1f2-4d08-8789-a539a216ebd5",
+        "timestamp": "2026-08-12T21:37:21.605016+00:00"
       },
       {
         "pattern": "ReAct",
         "thought": "Structured clauses are required so specialist agents can search the right policy domains.",
+        "decision_summary": "Structured clauses are required so specialist agents can search the right policy domains.",
+        "decision_source": "workflow",
+        "protocol": "mcp_json_schema",
+        "model_provider": null,
+        "model_name": null,
+        "used_live_llm": false,
         "action": {
           "tool": "extract_contract_clauses",
           "arguments": {
             "contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n"
           },
-          "call_id": "33a4f39d-a5e7-4bbe-93c0-aab1a2a7571e"
+          "call_id": "71062536-923c-44cc-90fa-a7d6805fc82c"
         },
-        "timestamp": "2026-08-12T20:25:23.518564+00:00"
+        "timestamp": "2026-08-12T21:37:21.605041+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 9 items",
         "status": "success",
-        "call_id": "33a4f39d-a5e7-4bbe-93c0-aab1a2a7571e",
-        "timestamp": "2026-08-12T20:25:23.518716+00:00"
+        "call_id": "71062536-923c-44cc-90fa-a7d6805fc82c",
+        "timestamp": "2026-08-12T21:37:21.605253+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the data_protection contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1462,20 +1575,26 @@
             "attempt": 0,
             "simulate_primary_failure": true
           },
-          "call_id": "b54a3d32-7583-4b63-8f5d-413d5eda320b"
+          "call_id": "ad6632da-b44d-4b46-99cc-c8cdf305e579"
         },
-        "timestamp": "2026-08-12T20:25:23.520201+00:00"
+        "timestamp": "2026-08-12T21:37:21.607398+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence",
         "status": "error",
-        "call_id": "b54a3d32-7583-4b63-8f5d-413d5eda320b",
-        "timestamp": "2026-08-12T20:25:23.520356+00:00"
+        "call_id": "ad6632da-b44d-4b46-99cc-c8cdf305e579",
+        "timestamp": "2026-08-12T21:37:21.607571+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the data_protection contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1485,20 +1604,26 @@
             "attempt": 1,
             "simulate_primary_failure": true
           },
-          "call_id": "fe08d62c-9713-44e4-825b-d9d4955113ab"
+          "call_id": "c51b3aef-dead-4caf-bd65-c01e1bc657c8"
         },
-        "timestamp": "2026-08-12T20:25:23.521955+00:00"
+        "timestamp": "2026-08-12T21:37:21.610150+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "fe08d62c-9713-44e4-825b-d9d4955113ab",
-        "timestamp": "2026-08-12T20:25:23.522186+00:00"
+        "call_id": "c51b3aef-dead-4caf-bd65-c01e1bc657c8",
+        "timestamp": "2026-08-12T21:37:21.610377+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the governing_law contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1508,20 +1633,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "5926e1d7-6d44-4d10-80f7-c027c71008ab"
+          "call_id": "9b0b3b01-9ab1-41ef-b277-65acf6ac94f1"
         },
-        "timestamp": "2026-08-12T20:25:23.522213+00:00"
+        "timestamp": "2026-08-12T21:37:21.610781+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "5926e1d7-6d44-4d10-80f7-c027c71008ab",
-        "timestamp": "2026-08-12T20:25:23.522367+00:00"
+        "call_id": "9b0b3b01-9ab1-41ef-b277-65acf6ac94f1",
+        "timestamp": "2026-08-12T21:37:21.610974+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the liability contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1531,20 +1662,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "136cc7fa-68ce-4d77-8df8-cd9a610314bd"
+          "call_id": "63985dda-d962-48fd-8f16-1d33f2948f52"
         },
-        "timestamp": "2026-08-12T20:25:23.522403+00:00"
+        "timestamp": "2026-08-12T21:37:21.611297+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "136cc7fa-68ce-4d77-8df8-cd9a610314bd",
-        "timestamp": "2026-08-12T20:25:23.522613+00:00"
+        "call_id": "63985dda-d962-48fd-8f16-1d33f2948f52",
+        "timestamp": "2026-08-12T21:37:21.611456+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the payment contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1554,20 +1691,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "8eed18ba-b507-4c2b-990b-35d5544595c9"
+          "call_id": "d1c38e84-d24b-4124-9a69-af0f37ffb0a6"
         },
-        "timestamp": "2026-08-12T20:25:23.522633+00:00"
+        "timestamp": "2026-08-12T21:37:21.611798+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "8eed18ba-b507-4c2b-990b-35d5544595c9",
-        "timestamp": "2026-08-12T20:25:23.522783+00:00"
+        "call_id": "d1c38e84-d24b-4124-9a69-af0f37ffb0a6",
+        "timestamp": "2026-08-12T21:37:21.611990+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the security contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1577,20 +1720,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "54940c9c-555a-4519-9eb4-386e8f0d0638"
+          "call_id": "733e5a57-c3c7-4e28-8c7d-722743b90747"
         },
-        "timestamp": "2026-08-12T20:25:23.522801+00:00"
+        "timestamp": "2026-08-12T21:37:21.612358+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "54940c9c-555a-4519-9eb4-386e8f0d0638",
-        "timestamp": "2026-08-12T20:25:23.522948+00:00"
+        "call_id": "733e5a57-c3c7-4e28-8c7d-722743b90747",
+        "timestamp": "2026-08-12T21:37:21.612549+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the service_levels contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1600,20 +1749,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "89ccc25e-8a19-4ebf-84db-3857565337f1"
+          "call_id": "081eb5c4-b8e3-4ccf-876b-9bbd66e77f36"
         },
-        "timestamp": "2026-08-12T20:25:23.522985+00:00"
+        "timestamp": "2026-08-12T21:37:21.612902+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "89ccc25e-8a19-4ebf-84db-3857565337f1",
-        "timestamp": "2026-08-12T20:25:23.523295+00:00"
+        "call_id": "081eb5c4-b8e3-4ccf-876b-9bbd66e77f36",
+        "timestamp": "2026-08-12T21:37:21.613094+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the termination contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1623,20 +1778,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "fa191790-f359-438e-bb9e-6ae9de5e25f3"
+          "call_id": "9be7caaf-797c-4a51-bea9-4aadf0e9926b"
         },
-        "timestamp": "2026-08-12T20:25:23.523330+00:00"
+        "timestamp": "2026-08-12T21:37:21.613477+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "fa191790-f359-438e-bb9e-6ae9de5e25f3",
-        "timestamp": "2026-08-12T20:25:23.523505+00:00"
+        "call_id": "9be7caaf-797c-4a51-bea9-4aadf0e9926b",
+        "timestamp": "2026-08-12T21:37:21.613650+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the data_protection contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1646,20 +1807,26 @@
             "attempt": 1,
             "simulate_primary_failure": true
           },
-          "call_id": "56fcc3e0-bbfc-4262-83fc-36f524d5a494"
+          "call_id": "e1ebb670-5f62-413d-8f97-9a8b67732652"
         },
-        "timestamp": "2026-08-12T20:25:23.530966+00:00"
+        "timestamp": "2026-08-12T21:37:21.621114+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "56fcc3e0-bbfc-4262-83fc-36f524d5a494",
-        "timestamp": "2026-08-12T20:25:23.531174+00:00"
+        "call_id": "e1ebb670-5f62-413d-8f97-9a8b67732652",
+        "timestamp": "2026-08-12T21:37:21.621410+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the governing_law contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1669,20 +1836,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "3b853a45-6d14-47ca-b747-e90417fdfb65"
+          "call_id": "46761952-65cf-4e56-a1bb-89939f68f51f"
         },
-        "timestamp": "2026-08-12T20:25:23.531199+00:00"
+        "timestamp": "2026-08-12T21:37:21.621793+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "3b853a45-6d14-47ca-b747-e90417fdfb65",
-        "timestamp": "2026-08-12T20:25:23.531525+00:00"
+        "call_id": "46761952-65cf-4e56-a1bb-89939f68f51f",
+        "timestamp": "2026-08-12T21:37:21.622030+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the liability contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1692,20 +1865,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "8bf76987-7c40-4ee5-a491-3bcc86b461cf"
+          "call_id": "2eaa7e06-4728-4538-a0f0-9cf2f2be2002"
         },
-        "timestamp": "2026-08-12T20:25:23.531553+00:00"
+        "timestamp": "2026-08-12T21:37:21.622403+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "8bf76987-7c40-4ee5-a491-3bcc86b461cf",
-        "timestamp": "2026-08-12T20:25:23.531725+00:00"
+        "call_id": "2eaa7e06-4728-4538-a0f0-9cf2f2be2002",
+        "timestamp": "2026-08-12T21:37:21.622634+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the payment contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1715,20 +1894,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "03fbb990-9fbb-49e2-9d4a-3d810ac37631"
+          "call_id": "b8aa5218-19bd-457d-a771-c1c7531f978b"
         },
-        "timestamp": "2026-08-12T20:25:23.531744+00:00"
+        "timestamp": "2026-08-12T21:37:21.623040+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "03fbb990-9fbb-49e2-9d4a-3d810ac37631",
-        "timestamp": "2026-08-12T20:25:23.531926+00:00"
+        "call_id": "b8aa5218-19bd-457d-a771-c1c7531f978b",
+        "timestamp": "2026-08-12T21:37:21.623225+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the security contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1738,20 +1923,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "ae5e3feb-4a80-42b5-8a54-1c75c2c1486a"
+          "call_id": "ab983f96-37ec-45d2-b25f-24fb159d277f"
         },
-        "timestamp": "2026-08-12T20:25:23.531946+00:00"
+        "timestamp": "2026-08-12T21:37:21.623587+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "ae5e3feb-4a80-42b5-8a54-1c75c2c1486a",
-        "timestamp": "2026-08-12T20:25:23.532124+00:00"
+        "call_id": "ab983f96-37ec-45d2-b25f-24fb159d277f",
+        "timestamp": "2026-08-12T21:37:21.623771+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the service_levels contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1761,20 +1952,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "59a820c7-561b-4dcf-81e5-67e8cc60aff7"
+          "call_id": "ce91e477-3c9b-4b1f-aeb7-0e8c075f7dbd"
         },
-        "timestamp": "2026-08-12T20:25:23.532142+00:00"
+        "timestamp": "2026-08-12T21:37:21.624193+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "59a820c7-561b-4dcf-81e5-67e8cc60aff7",
-        "timestamp": "2026-08-12T20:25:23.532271+00:00"
+        "call_id": "ce91e477-3c9b-4b1f-aeb7-0e8c075f7dbd",
+        "timestamp": "2026-08-12T21:37:21.624356+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the termination contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1784,20 +1981,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "a08c4b0d-bdee-4cf6-9c0b-a2cc6cf88696"
+          "call_id": "708d1121-3ab7-490d-9a38-b844bad05692"
         },
-        "timestamp": "2026-08-12T20:25:23.532289+00:00"
+        "timestamp": "2026-08-12T21:37:21.624733+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "a08c4b0d-bdee-4cf6-9c0b-a2cc6cf88696",
-        "timestamp": "2026-08-12T20:25:23.532463+00:00"
+        "call_id": "708d1121-3ab7-490d-9a38-b844bad05692",
+        "timestamp": "2026-08-12T21:37:21.624908+00:00"
       },
       {
         "pattern": "ReAct",
-        "thought": "Need authoritative policy evidence for the general contract clauses.",
+        "thought": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_summary": "Offline schema router matched the task to 'search_policy_knowledge_base' using the exposed function name, description, and JSON schema.",
+        "decision_source": "offline_schema_router",
+        "protocol": "mcp_json_schema",
+        "model_provider": "offline",
+        "model_name": "deterministic-schema-router-v1",
+        "used_live_llm": false,
         "action": {
           "tool": "search_policy_knowledge_base",
           "arguments": {
@@ -1807,20 +2010,26 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "73f0a128-9a48-432b-995a-d3b7164e265a"
+          "call_id": "79337697-0037-44dd-bd29-61cc9a4c2f09"
         },
-        "timestamp": "2026-08-12T20:25:23.532482+00:00"
+        "timestamp": "2026-08-12T21:37:21.625305+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "73f0a128-9a48-432b-995a-d3b7164e265a",
-        "timestamp": "2026-08-12T20:25:23.532655+00:00"
+        "call_id": "79337697-0037-44dd-bd29-61cc9a4c2f09",
+        "timestamp": "2026-08-12T21:37:21.625503+00:00"
       },
       {
         "pattern": "ReAct",
         "thought": "Risk and value thresholds determine whether autonomous execution must stop for human approval.",
+        "decision_summary": "Risk and value thresholds determine whether autonomous execution must stop for human approval.",
+        "decision_source": "workflow",
+        "protocol": "mcp_json_schema",
+        "model_provider": null,
+        "model_name": null,
+        "used_live_llm": false,
         "action": {
           "tool": "calculate_contract_risk",
           "arguments": {
@@ -1930,18 +2139,24 @@
             "approval_risk_threshold": 50,
             "approval_value_threshold_sar": 500000.0
           },
-          "call_id": "b4e27b61-e645-4974-bd39-480cc1b06b25"
+          "call_id": "722a9055-6c36-43d3-a544-eff6d64bd01d"
         },
-        "timestamp": "2026-08-12T20:25:23.541513+00:00"
+        "timestamp": "2026-08-12T21:37:21.634294+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned object with keys: risk_score, risk_level, approval_required",
         "status": "success",
-        "call_id": "b4e27b61-e645-4974-bd39-480cc1b06b25",
-        "timestamp": "2026-08-12T20:25:23.541640+00:00"
+        "call_id": "722a9055-6c36-43d3-a544-eff6d64bd01d",
+        "timestamp": "2026-08-12T21:37:21.634845+00:00"
       }
     ],
+    "reasoner_mode": "offline_schema_router",
+    "reasoner_modes": [
+      "workflow",
+      "offline_schema_router"
+    ],
+    "live_llm_tool_call_count": 0,
     "node_history": [
       "received",
       "guardrailed",
@@ -1957,8 +2172,8 @@
       "security_reviewed",
       "awaiting_approval"
     ],
-    "created_at": "2026-08-12T20:25:23.512905+00:00",
-    "updated_at": "2026-08-12T20:25:23.546965+00:00",
+    "created_at": "2026-08-12T21:37:21.599303+00:00",
+    "updated_at": "2026-08-12T21:37:21.638114+00:00",
     "flags": {
       "simulate_primary_failure": true,
       "simulate_quality_retry": true,
@@ -1971,5 +2186,5 @@
     "node_error": "",
     "additional_policy_queries": []
   },
-  "updated_at": "2026-08-12T20:25:23.546965+00:00"
+  "updated_at": "2026-08-12T21:37:21.638114+00:00"
 }

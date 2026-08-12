@@ -53,19 +53,22 @@
         ],
         "reason": "ignore previous instructions; reveal system prompt; system prompt extraction"
       },
-      "timestamp": "2026-08-12T20:25:23.446612+00:00"
+      "timestamp": "2026-08-12T21:37:21.563085+00:00"
     }
   ],
   "tool_calls": [],
   "tool_observations": [],
   "decision_trace": [],
+  "reasoner_mode": "offline_schema_router",
+  "reasoner_modes": [],
+  "live_llm_tool_call_count": 0,
   "node_history": [
     "received",
     "guardrailed",
     "blocked"
   ],
-  "created_at": "2026-08-12T20:25:23.440002+00:00",
-  "updated_at": "2026-08-12T20:25:23.448636+00:00",
+  "created_at": "2026-08-12T21:37:21.503492+00:00",
+  "updated_at": "2026-08-12T21:37:21.564752+00:00",
   "flags": {},
   "max_policy_retries": 2,
   "max_quality_retries": 1,

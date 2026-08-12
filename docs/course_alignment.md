@@ -1,17 +1,18 @@
 # Course Material Alignment
 
-The supplied course files were treated as design inputs rather than copied as isolated
+The supplied course files were used as architectural inputs rather than copied as isolated
 lab scripts.
 
 ## Day 1 — Advanced engineering patterns
 
 Applied concepts:
 
-- ReAct tool traces (`Thought -> Action -> Observation`)
-- Plan-and-Execute before action
-- Reflexion/self-critique
-- Hierarchical delegation
-- short-term shared state and tool interfaces
+- ReAct records (`Thought -> Action -> Observation`);
+- Plan-and-Execute before action;
+- Reflexion/self-critique;
+- Hierarchical delegation;
+- short-term shared state;
+- MCP-style tool descriptions and optional model-native function calling.
 
 The capstone combines all four named patterns instead of stopping at one sequential lab.
 
@@ -19,39 +20,43 @@ The capstone combines all four named patterns instead of stopping at one sequent
 
 Applied concepts:
 
-- real framework-managed nodes and edges;
+- a real finite-state orchestration framework;
+- executable nodes and framework-managed edges;
 - conditional routing;
-- cycles and bounded termination conditions;
-- shared state written by nodes;
+- cycles with bounded termination conditions;
+- shared state read and updated by nodes;
 - retry/fallback behavior;
-- checkpointing and human interruption.
+- durable checkpointing and human interruption.
 
-The supplied autonomous-research lab used a useful research/evaluation loop. ContractGuard
-generalizes that idea into three explicit loops and adds durable restart recovery.
+The autonomous-research lab's research/evaluation cycle is generalized into three loops
+and durable restart recovery.
 
 ## Day 3 — Multi-agent systems
 
 Applied concepts:
 
-- specialized Planner/Coordinator, Researcher, Analyst, Reviewer, Security, Writer, and
-  Tool/Storage responsibilities;
-- centralized coordination;
-- structured messages and shared memory;
-- direct specialist reporting rather than a single prompt role-playing several personas.
+- specialized Coordinator, Researcher, Analyst, Reviewer, Security, Writer, Guardian, and
+  Storage responsibilities;
+- centralized/hierarchical coordination;
+- typed messages and shared memory;
+- direct specialist reporting rather than one prompt role-playing many personas;
+- runtime least-privilege tool permissions.
 
-The report-agent lab inspired the role decomposition, but the capstone replaces the
-linear sequence with a conditional state graph and production controls.
+The report-agent lab inspired role decomposition, while ContractGuard replaces the linear
+sequence with a conditional state graph and production controls.
 
 ## Day 4 — Security and observability
 
 Applied concepts:
 
 - direct and indirect prompt-injection detection;
-- demonstrated blocked attack;
-- PII masking and strict output validation;
-- tool permission boundaries;
-- JSON logs, Prometheus metrics, latency/failure/retry events;
-- penetration-style non-happy-path evidence.
+- a demonstrated blocked attack;
+- strict function schemas and tool permission boundaries;
+- contract-path and identifier validation;
+- PII masking before optional external model use and before final output;
+- strict output validation and secret filtering;
+- JSON logs, Prometheus metrics, latency/failure/retry/model events;
+- penetration-style negative tests.
 
 ## Day 5 — Production deployment
 
@@ -61,8 +66,9 @@ Applied concepts:
 - retry budgets and circuit breakers;
 - durable SQLite checkpointing;
 - human-in-the-loop approval;
-- FastAPI;
-- Docker and Docker Compose;
+- FastAPI and optional API-key authentication;
+- non-root Docker and hardened Docker Compose;
 - MinIO/S3 simulated cloud storage;
 - Prometheus monitoring;
+- automated CI, MinIO smoke testing, and pre-publication verification;
 - professional repository and documentation structure.

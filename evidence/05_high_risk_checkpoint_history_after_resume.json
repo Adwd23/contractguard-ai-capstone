@@ -4,132 +4,132 @@
     "thread_id": "capstone-high-risk",
     "node": "received",
     "status": "received",
-    "created_at": "2026-08-12T20:25:23.512919+00:00"
+    "created_at": "2026-08-12T21:37:21.599319+00:00"
   },
   {
     "id": 17,
     "thread_id": "capstone-high-risk",
     "node": "guardrailed",
     "status": "guardrailed",
-    "created_at": "2026-08-12T20:25:23.515934+00:00"
+    "created_at": "2026-08-12T21:37:21.602646+00:00"
   },
   {
     "id": 18,
     "thread_id": "capstone-high-risk",
     "node": "planned",
     "status": "planned",
-    "created_at": "2026-08-12T20:25:23.517149+00:00"
+    "created_at": "2026-08-12T21:37:21.603742+00:00"
   },
   {
     "id": 19,
     "thread_id": "capstone-high-risk",
     "node": "ingested",
     "status": "ingested",
-    "created_at": "2026-08-12T20:25:23.518818+00:00"
+    "created_at": "2026-08-12T21:37:21.605440+00:00"
   },
   {
     "id": 20,
     "thread_id": "capstone-high-risk",
     "node": "researching",
     "status": "researching",
-    "created_at": "2026-08-12T20:25:23.520442+00:00"
+    "created_at": "2026-08-12T21:37:21.607680+00:00"
   },
   {
     "id": 21,
     "thread_id": "capstone-high-risk",
     "node": "researching",
     "status": "researching",
-    "created_at": "2026-08-12T20:25:23.523593+00:00"
+    "created_at": "2026-08-12T21:37:21.613766+00:00"
   },
   {
     "id": 22,
     "thread_id": "capstone-high-risk",
     "node": "analyzed",
     "status": "analyzed",
-    "created_at": "2026-08-12T20:25:23.525789+00:00"
+    "created_at": "2026-08-12T21:37:21.615954+00:00"
   },
   {
     "id": 23,
     "thread_id": "capstone-high-risk",
     "node": "quality_reviewed",
     "status": "quality_reviewed",
-    "created_at": "2026-08-12T20:25:23.528758+00:00"
+    "created_at": "2026-08-12T21:37:21.618308+00:00"
   },
   {
     "id": 24,
     "thread_id": "capstone-high-risk",
     "node": "researching",
     "status": "researching",
-    "created_at": "2026-08-12T20:25:23.532750+00:00"
+    "created_at": "2026-08-12T21:37:21.625598+00:00"
   },
   {
     "id": 25,
     "thread_id": "capstone-high-risk",
     "node": "analyzed",
     "status": "analyzed",
-    "created_at": "2026-08-12T20:25:23.535681+00:00"
+    "created_at": "2026-08-12T21:37:21.628886+00:00"
   },
   {
     "id": 26,
     "thread_id": "capstone-high-risk",
     "node": "quality_reviewed",
     "status": "quality_reviewed",
-    "created_at": "2026-08-12T20:25:23.538144+00:00"
+    "created_at": "2026-08-12T21:37:21.631764+00:00"
   },
   {
     "id": 27,
     "thread_id": "capstone-high-risk",
     "node": "security_reviewed",
     "status": "security_reviewed",
-    "created_at": "2026-08-12T20:25:23.541723+00:00"
+    "created_at": "2026-08-12T21:37:21.634946+00:00"
   },
   {
     "id": 28,
     "thread_id": "capstone-high-risk",
     "node": "awaiting_approval",
     "status": "awaiting_approval",
-    "created_at": "2026-08-12T20:25:23.546965+00:00"
+    "created_at": "2026-08-12T21:37:21.638114+00:00"
   },
   {
     "id": 29,
     "thread_id": "capstone-high-risk",
     "node": "reporting",
     "status": "reporting",
-    "created_at": "2026-08-12T20:25:23.566122+00:00"
+    "created_at": "2026-08-12T21:37:21.660100+00:00"
   },
   {
     "id": 30,
     "thread_id": "capstone-high-risk",
     "node": "output_validated",
     "status": "output_validated",
-    "created_at": "2026-08-12T20:25:23.571971+00:00"
+    "created_at": "2026-08-12T21:37:21.664437+00:00"
   },
   {
     "id": 31,
     "thread_id": "capstone-high-risk",
     "node": "reporting",
     "status": "reporting",
-    "created_at": "2026-08-12T20:25:23.577315+00:00"
+    "created_at": "2026-08-12T21:37:21.667127+00:00"
   },
   {
     "id": 32,
     "thread_id": "capstone-high-risk",
     "node": "output_validated",
     "status": "output_validated",
-    "created_at": "2026-08-12T20:25:23.581211+00:00"
+    "created_at": "2026-08-12T21:37:21.671516+00:00"
   },
   {
     "id": 33,
     "thread_id": "capstone-high-risk",
     "node": "persisting",
     "status": "persisting",
-    "created_at": "2026-08-12T20:25:23.584158+00:00"
+    "created_at": "2026-08-12T21:37:21.674265+00:00"
   },
   {
     "id": 34,
     "thread_id": "capstone-high-risk",
     "node": "completed",
     "status": "completed",
-    "created_at": "2026-08-12T20:25:23.586688+00:00"
+    "created_at": "2026-08-12T21:37:21.676725+00:00"
   }
 ]

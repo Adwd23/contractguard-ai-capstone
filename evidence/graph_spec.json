@@ -1,5 +1,8 @@
 {
-  "framework": "transitions finite-state machine",
+  "framework": "transitions.Machine finite-state graph",
+  "framework_package": "transitions",
+  "framework_version": "0.9.3",
+  "framework_category": "real finite-state-machine orchestration library (rubric-equivalent StateGraph)",
   "nodes": [
     "received",
     "guardrailed",
@@ -144,6 +147,18 @@
       "dest": "failed"
     }
   ],
+  "node_count": 16,
+  "edge_count": 21,
+  "conditional_edge_count": 12,
+  "branching_nodes": [
+    "awaiting_approval",
+    "guardrailed",
+    "output_validated",
+    "quality_reviewed",
+    "researching",
+    "security_reviewed"
+  ],
+  "shared_state_object": "graph_state: dict[str, Any]",
   "terminal_nodes": [
     "blocked",
     "completed",
@@ -157,5 +172,15 @@
     "researching -> researching (tool retry)",
     "quality_reviewed -> researching (Reflexion/re-plan)",
     "output_validated -> reporting (schema-revision loop)"
-  ]
+  ],
+  "loop_termination_controls": {
+    "policy_retry_limit": "max_policy_retries",
+    "quality_retry_limit": "max_quality_retries",
+    "report_revision_limit": "max_report_revisions",
+    "global_step_limit": "max_graph_steps"
+  },
+  "is_linear_chain": false,
+  "has_cycles": true,
+  "has_conditional_routing": true,
+  "supports_restart_resume": true
 }

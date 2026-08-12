@@ -2,7 +2,7 @@
 
 **Report ID:** CGA-capstone-high-risk  
 **Thread ID:** capstone-high-risk  
-**Generated:** 2026-08-12T20:25:23.577212+00:00  
+**Generated:** 2026-08-12T21:37:21.667020+00:00  
 **Vendor:** Falcon Cloud International LLC  
 **Contract value:** SAR 750,000.00  
 **Risk:** CRITICAL (100/100)  
