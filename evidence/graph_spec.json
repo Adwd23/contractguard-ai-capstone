@@ -1,0 +1,161 @@
+{
+  "framework": "transitions finite-state machine",
+  "nodes": [
+    "received",
+    "guardrailed",
+    "planned",
+    "ingested",
+    "researching",
+    "analyzed",
+    "quality_reviewed",
+    "security_reviewed",
+    "awaiting_approval",
+    "reporting",
+    "output_validated",
+    "persisting",
+    "completed",
+    "blocked",
+    "rejected",
+    "failed"
+  ],
+  "edges": [
+    {
+      "trigger": "advance",
+      "source": "received",
+      "dest": "guardrailed"
+    },
+    {
+      "trigger": "advance",
+      "source": "guardrailed",
+      "dest": "blocked",
+      "conditions": "_input_is_blocked"
+    },
+    {
+      "trigger": "advance",
+      "source": "guardrailed",
+      "dest": "planned",
+      "conditions": "_input_is_safe"
+    },
+    {
+      "trigger": "advance",
+      "source": "planned",
+      "dest": "ingested"
+    },
+    {
+      "trigger": "advance",
+      "source": "ingested",
+      "dest": "researching"
+    },
+    {
+      "trigger": "advance",
+      "source": "researching",
+      "dest": "researching",
+      "conditions": "_policy_error_can_retry",
+      "before": "_record_policy_retry"
+    },
+    {
+      "trigger": "advance",
+      "source": "researching",
+      "dest": "failed",
+      "conditions": "_policy_error_exhausted",
+      "before": "_mark_retry_exhausted"
+    },
+    {
+      "trigger": "advance",
+      "source": "researching",
+      "dest": "analyzed",
+      "conditions": "_policy_search_succeeded"
+    },
+    {
+      "trigger": "advance",
+      "source": "analyzed",
+      "dest": "quality_reviewed"
+    },
+    {
+      "trigger": "advance",
+      "source": "quality_reviewed",
+      "dest": "researching",
+      "conditions": "_quality_needs_retry",
+      "before": "_record_quality_retry"
+    },
+    {
+      "trigger": "advance",
+      "source": "quality_reviewed",
+      "dest": "security_reviewed",
+      "conditions": "_quality_gate_complete"
+    },
+    {
+      "trigger": "advance",
+      "source": "security_reviewed",
+      "dest": "awaiting_approval",
+      "conditions": "_approval_is_required"
+    },
+    {
+      "trigger": "advance",
+      "source": "security_reviewed",
+      "dest": "reporting",
+      "conditions": "_approval_not_required"
+    },
+    {
+      "trigger": "approve_contract",
+      "source": "awaiting_approval",
+      "dest": "reporting",
+      "before": "_apply_approval"
+    },
+    {
+      "trigger": "reject_contract",
+      "source": "awaiting_approval",
+      "dest": "rejected",
+      "before": "_apply_rejection"
+    },
+    {
+      "trigger": "advance",
+      "source": "reporting",
+      "dest": "output_validated"
+    },
+    {
+      "trigger": "advance",
+      "source": "output_validated",
+      "dest": "reporting",
+      "conditions": "_output_invalid_can_revise",
+      "before": "_record_report_revision"
+    },
+    {
+      "trigger": "advance",
+      "source": "output_validated",
+      "dest": "failed",
+      "conditions": "_output_invalid_exhausted",
+      "before": "_mark_output_exhausted"
+    },
+    {
+      "trigger": "advance",
+      "source": "output_validated",
+      "dest": "persisting",
+      "conditions": "_output_is_valid"
+    },
+    {
+      "trigger": "advance",
+      "source": "persisting",
+      "dest": "completed"
+    },
+    {
+      "trigger": "fail_workflow",
+      "source": "*",
+      "dest": "failed"
+    }
+  ],
+  "terminal_nodes": [
+    "blocked",
+    "completed",
+    "failed",
+    "rejected"
+  ],
+  "pause_nodes": [
+    "awaiting_approval"
+  ],
+  "loops": [
+    "researching -> researching (tool retry)",
+    "quality_reviewed -> researching (Reflexion/re-plan)",
+    "output_validated -> reporting (schema-revision loop)"
+  ]
+}

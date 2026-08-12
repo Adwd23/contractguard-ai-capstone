@@ -1,0 +1,2147 @@
+{
+  "thread_id": "capstone-high-risk",
+  "request_text": "Audit this high-value cloud vendor contract and enforce approval policy.",
+  "contract_path": "/mnt/data/contractguard-ai/data/samples/vendor_contract_high_risk.txt",
+  "contract_text_input": null,
+  "contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n",
+  "sanitized_contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n",
+  "contract_metadata": {
+    "vendor_name": "Falcon Cloud International LLC",
+    "contract_value_sar": 750000.0
+  },
+  "clauses": [
+    {
+      "clause_id": "C-01",
+      "heading": "Preamble",
+      "text": "VENDOR CLOUD SERVICES AGREEMENT Vendor: Falcon Cloud International LLC Contract Value: SAR 750,000 Customer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789",
+      "topic": "payment"
+    },
+    {
+      "clause_id": "C-02",
+      "heading": "1. DATA LOCATION AND PRIVACY",
+      "text": "The Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.",
+      "topic": "data_protection"
+    },
+    {
+      "clause_id": "C-03",
+      "heading": "2. BREACH NOTIFICATION",
+      "text": "The Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.",
+      "topic": "data_protection"
+    },
+    {
+      "clause_id": "C-04",
+      "heading": "3. INFORMATION SECURITY",
+      "text": "The Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.",
+      "topic": "security"
+    },
+    {
+      "clause_id": "C-05",
+      "heading": "4. PAYMENT",
+      "text": "Invoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.",
+      "topic": "payment"
+    },
+    {
+      "clause_id": "C-06",
+      "heading": "5. LIABILITY",
+      "text": "The Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.",
+      "topic": "liability"
+    },
+    {
+      "clause_id": "C-07",
+      "heading": "6. TERM AND TERMINATION",
+      "text": "The agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.",
+      "topic": "termination"
+    },
+    {
+      "clause_id": "C-08",
+      "heading": "7. GOVERNING LAW",
+      "text": "This agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.",
+      "topic": "governing_law"
+    },
+    {
+      "clause_id": "C-09",
+      "heading": "8. SERVICE LEVELS",
+      "text": "The Vendor targets 98.0 percent availability and provides no service credits.",
+      "topic": "service_levels"
+    }
+  ],
+  "plan": [
+    {
+      "step_id": "P1",
+      "owner": "Document Analyst Agent",
+      "objective": "Ingest and parse the PDF/file contract",
+      "status": "pending"
+    },
+    {
+      "step_id": "P2",
+      "owner": "Policy Research Agent",
+      "objective": "Retrieve evidence from corporate policy tools",
+      "status": "pending"
+    },
+    {
+      "step_id": "P3",
+      "owner": "Compliance Analyst Agent",
+      "objective": "Compare clauses with policy evidence and produce findings",
+      "status": "pending"
+    },
+    {
+      "step_id": "P4",
+      "owner": "Quality Reviewer Agent",
+      "objective": "Critique evidence coverage and re-plan if insufficient",
+      "status": "pending"
+    },
+    {
+      "step_id": "P5",
+      "owner": "Security Reviewer Agent",
+      "objective": "Calculate risk and route high-risk actions to a human",
+      "status": "pending"
+    },
+    {
+      "step_id": "P6",
+      "owner": "Report Writer Agent",
+      "objective": "Generate and validate the compliance report",
+      "status": "pending"
+    },
+    {
+      "step_id": "P7",
+      "owner": "Artifact Storage Agent",
+      "objective": "Persist report and audit artifacts",
+      "status": "pending"
+    }
+  ],
+  "policy_queries": [
+    {
+      "topic": "data_protection",
+      "query": "data residency Saudi Arabia subprocessors consent breach notification privacy"
+    },
+    {
+      "topic": "governing_law",
+      "query": "governing law Kingdom of Saudi Arabia jurisdiction"
+    },
+    {
+      "topic": "liability",
+      "query": "liability cap indemnity damages twelve months fees"
+    },
+    {
+      "topic": "payment",
+      "query": "invoice payment terms net 30 procurement approval threshold SAR"
+    },
+    {
+      "topic": "security",
+      "query": "ISO 27001 encryption access control audit penetration testing security"
+    },
+    {
+      "topic": "service_levels",
+      "query": "service levels uptime SLA availability credits"
+    },
+    {
+      "topic": "termination",
+      "query": "termination for convenience notice automatic renewal"
+    },
+    {
+      "topic": "general",
+      "query": "mandatory vendor contract compliance clauses and exceptions"
+    }
+  ],
+  "policy_evidence": [
+    {
+      "policy_name": "Data Protection Policy",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+      "section": "Saudi Data Residency",
+      "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
+      "score": 9.7942,
+      "topic": "data_protection"
+    },
+    {
+      "policy_name": "Legal Contracting Standard",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+      "section": "Governing Law",
+      "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
+      "score": 3.7192,
+      "topic": "data_protection"
+    },
+    {
+      "policy_name": "Legal Contracting Standard",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+      "section": "Governing Law",
+      "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
+      "score": 6.407,
+      "topic": "governing_law"
+    },
+    {
+      "policy_name": "Data Protection Policy",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+      "section": "Saudi Data Residency",
+      "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
+      "score": 3.2984,
+      "topic": "governing_law"
+    },
+    {
+      "policy_name": "Legal Contracting Standard",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+      "section": "Liability and Indemnity",
+      "excerpt": "## Liability and Indemnity\nThe vendor liability cap should be no lower than twelve months of fees. Confidentiality, intellectual-property infringement, privacy, security breach, fraud, and willful misconduct must have appropriate carve-outs or higher caps.",
+      "score": 8.5379,
+      "topic": "liability"
+    },
+    {
+      "policy_name": "Procurement Policy",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/procurement_policy.md",
+      "section": "Payment Terms",
+      "excerpt": "## Payment Terms\nStandard payment terms are Net 30 days after receipt of a correct invoice and acceptance of the relevant deliverables. Shorter payment terms require a documented exception approved by Procurement.",
+      "score": 13.7486,
+      "topic": "payment"
+    },
+    {
+      "policy_name": "Legal Contracting Standard",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+      "section": "Mandatory Records",
+      "excerpt": "## Mandatory Records\nMaterial exceptions, approvals, redlines, and final signed terms must be captured in an immutable audit record.",
+      "score": 1.6726,
+      "topic": "payment"
+    },
+    {
+      "policy_name": "Information Security Policy",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/information_security_policy.md",
+      "section": "Access Control",
+      "excerpt": "## Access Control\nAccess must follow least privilege, multi-factor authentication, role-based access control, quarterly access reviews, and prompt revocation. Administrative actions must produce tamper-evident audit logs.",
+      "score": 11.1299,
+      "topic": "security"
+    },
+    {
+      "policy_name": "Data Protection Policy",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+      "section": "Subprocessors",
+      "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
+      "score": 1.4349,
+      "topic": "security"
+    },
+    {
+      "policy_name": "Service Level Standard",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/service_level_standard.md",
+      "section": "Service Credits",
+      "excerpt": "## Service Credits\nThe contract must define service credits for missed availability, chronic-failure termination rights, and transparent incident reporting.",
+      "score": 8.7358,
+      "topic": "service_levels"
+    },
+    {
+      "policy_name": "Legal Contracting Standard",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+      "section": "Termination",
+      "excerpt": "## Termination\nThe organization must have a termination-for-convenience right on no more than 30 days' notice. Automatic renewal periods should not exceed one year and must include a practical non-renewal window.",
+      "score": 6.6613,
+      "topic": "termination"
+    },
+    {
+      "policy_name": "Data Protection Policy",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+      "section": "Subprocessors",
+      "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
+      "score": 1.8019,
+      "topic": "termination"
+    },
+    {
+      "policy_name": "Legal Contracting Standard",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+      "section": "Mandatory Records",
+      "excerpt": "## Mandatory Records\nMaterial exceptions, approvals, redlines, and final signed terms must be captured in an immutable audit record.",
+      "score": 4.0232,
+      "topic": "general"
+    },
+    {
+      "policy_name": "Data Protection Policy",
+      "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+      "section": "Data Subject and Deletion Duties",
+      "excerpt": "## Data Subject and Deletion Duties\nThe vendor must support access, correction, deletion, retention, and return requests. Data must be securely deleted or returned at contract termination and deletion must be certified.",
+      "score": 1.9763,
+      "topic": "general"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "F-01",
+      "topic": "data_protection",
+      "title": "Unrestricted cross-border data transfer",
+      "severity": "high",
+      "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+      "policy_reference": "Data Protection Policy — Saudi Data Residency",
+      "recommendation": "Require Saudi data residency or a documented transfer mechanism and prior written approval.",
+      "confidence": 0.92
+    },
+    {
+      "finding_id": "F-02",
+      "topic": "data_protection",
+      "title": "Subprocessor changes lack customer consent",
+      "severity": "high",
+      "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+      "policy_reference": "Data Protection Policy — Saudi Data Residency",
+      "recommendation": "Add prior notification, objection rights, and flow-down security obligations for subprocessors.",
+      "confidence": 0.92
+    },
+    {
+      "finding_id": "F-03",
+      "topic": "data_protection",
+      "title": "Breach notification is missing or slower than policy",
+      "severity": "high",
+      "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+      "policy_reference": "Data Protection Policy — Saudi Data Residency",
+      "recommendation": "Require notification within 24 hours of suspected or confirmed breach discovery.",
+      "confidence": 0.88
+    },
+    {
+      "finding_id": "F-04",
+      "topic": "payment",
+      "title": "Accelerated payment terms",
+      "severity": "medium",
+      "contract_excerpt": "vendor cloud services agreement vendor: falcon cloud international llc contract value: sar 750,000 customer contact: nora.alqahtani@example.com, +966501234567, national id 1023456789 invoices are payable within 15 days of issue, whether or not the relevant deliverables have been…",
+      "policy_reference": "Procurement Policy — Payment Terms",
+      "recommendation": "Change payment terms to Net 30 or longer and condition payment on accepted deliverables.",
+      "confidence": 0.92
+    },
+    {
+      "finding_id": "F-05",
+      "topic": "liability",
+      "title": "Liability cap is below corporate minimum",
+      "severity": "high",
+      "contract_excerpt": "the vendor's aggregate liability is capped at fees paid in the preceding one month. the cap applies to privacy, confidentiality, and security incidents.",
+      "policy_reference": "Legal Contracting Standard — Liability and Indemnity",
+      "recommendation": "Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.",
+      "confidence": 0.92
+    },
+    {
+      "finding_id": "F-06",
+      "topic": "termination",
+      "title": "Termination and renewal terms are restrictive",
+      "severity": "medium",
+      "contract_excerpt": "the agreement renews automatically for three years. the customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.",
+      "policy_reference": "Legal Contracting Standard — Termination",
+      "recommendation": "Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.",
+      "confidence": 0.9
+    },
+    {
+      "finding_id": "F-07",
+      "topic": "payment",
+      "title": "High-value procurement requires human approval",
+      "severity": "high",
+      "contract_excerpt": "Contract Value: SAR 750,000.00",
+      "policy_reference": "Procurement Policy — Payment Terms",
+      "recommendation": "Route the contract to Procurement and Legal for explicit approval before signature.",
+      "confidence": 1.0
+    }
+  ],
+  "risk_score": 99,
+  "risk_level": "CRITICAL",
+  "quality_score": 1.0,
+  "policy_retry_count": 1,
+  "quality_retry_count": 1,
+  "report_revision_count": 1,
+  "policy_search_error": "",
+  "needs_more_research": false,
+  "input_blocked": false,
+  "blocked_reason": "",
+  "approval_required": true,
+  "approval_status": "approved",
+  "approval_comment": "Approved conditionally after Legal confirmed remediation of all high-severity findings.",
+  "approver": "Capstone Human Reviewer",
+  "interrupt_payload": null,
+  "report": {
+    "report_id": "CGA-capstone-high-risk",
+    "thread_id": "capstone-high-risk",
+    "generated_at": "2026-08-12T20:21:44.713989+00:00",
+    "vendor_name": "Falcon Cloud International LLC",
+    "contract_value_sar": 750000.0,
+    "executive_summary": "The multi-agent audit identified 7 compliance finding(s) and assigned a CRITICAL risk rating of 99/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.",
+    "risk_score": 99,
+    "risk_level": "CRITICAL",
+    "findings": [
+      {
+        "finding_id": "F-01",
+        "topic": "data_protection",
+        "title": "Unrestricted cross-border data transfer",
+        "severity": "high",
+        "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+        "policy_reference": "Data Protection Policy — Saudi Data Residency",
+        "recommendation": "Require Saudi data residency or a documented transfer mechanism and prior written approval.",
+        "confidence": 0.92
+      },
+      {
+        "finding_id": "F-02",
+        "topic": "data_protection",
+        "title": "Subprocessor changes lack customer consent",
+        "severity": "high",
+        "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+        "policy_reference": "Data Protection Policy — Saudi Data Residency",
+        "recommendation": "Add prior notification, objection rights, and flow-down security obligations for subprocessors.",
+        "confidence": 0.92
+      },
+      {
+        "finding_id": "F-03",
+        "topic": "data_protection",
+        "title": "Breach notification is missing or slower than policy",
+        "severity": "high",
+        "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+        "policy_reference": "Data Protection Policy — Saudi Data Residency",
+        "recommendation": "Require notification within 24 hours of suspected or confirmed breach discovery.",
+        "confidence": 0.88
+      },
+      {
+        "finding_id": "F-04",
+        "topic": "payment",
+        "title": "Accelerated payment terms",
+        "severity": "medium",
+        "contract_excerpt": "vendor cloud services agreement vendor: falcon cloud international llc contract value: sar 750,000 customer contact: [REDACTED_EMAIL], [REDACTED_PHONE], national id [REDACTED_NATIONAL_ID] invoices are payable within 15 days of issue, whether or not the relevant deliverables have been…",
+        "policy_reference": "Procurement Policy — Payment Terms",
+        "recommendation": "Change payment terms to Net 30 or longer and condition payment on accepted deliverables.",
+        "confidence": 0.92
+      },
+      {
+        "finding_id": "F-05",
+        "topic": "liability",
+        "title": "Liability cap is below corporate minimum",
+        "severity": "high",
+        "contract_excerpt": "the vendor's aggregate liability is capped at fees paid in the preceding one month. the cap applies to privacy, confidentiality, and security incidents.",
+        "policy_reference": "Legal Contracting Standard — Liability and Indemnity",
+        "recommendation": "Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.",
+        "confidence": 0.92
+      },
+      {
+        "finding_id": "F-06",
+        "topic": "termination",
+        "title": "Termination and renewal terms are restrictive",
+        "severity": "medium",
+        "contract_excerpt": "the agreement renews automatically for three years. the customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.",
+        "policy_reference": "Legal Contracting Standard — Termination",
+        "recommendation": "Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.",
+        "confidence": 0.9
+      },
+      {
+        "finding_id": "F-07",
+        "topic": "payment",
+        "title": "High-value procurement requires human approval",
+        "severity": "high",
+        "contract_excerpt": "Contract Value: SAR 750,000.00",
+        "policy_reference": "Procurement Policy — Payment Terms",
+        "recommendation": "Route the contract to Procurement and Legal for explicit approval before signature.",
+        "confidence": 1.0
+      }
+    ],
+    "recommendations": [
+      "Require Saudi data residency or a documented transfer mechanism and prior written approval.",
+      "Add prior notification, objection rights, and flow-down security obligations for subprocessors.",
+      "Require notification within 24 hours of suspected or confirmed breach discovery.",
+      "Change payment terms to Net 30 or longer and condition payment on accepted deliverables.",
+      "Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.",
+      "Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.",
+      "Route the contract to Procurement and Legal for explicit approval before signature."
+    ],
+    "approval_status": "approved",
+    "approval_comment": "Approved conditionally after Legal confirmed remediation of all high-severity findings.",
+    "evidence_count": 14,
+    "pii_redactions": 3,
+    "agent_trace_summary": [
+      "Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.",
+      "Document Analyst Agent → Policy Research Agent: Extracted 9 clauses and contract metadata.",
+      "Policy Research Agent → Coordinator Agent: Policy tool failed; requesting graph retry.",
+      "Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.",
+      "Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.",
+      "Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 50%; re-planning targeted research.",
+      "Policy Research Agent → Compliance Analyst Agent: Retrieved 14 policy evidence records.",
+      "Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.",
+      "Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.",
+      "Security Reviewer Agent → Coordinator Agent: Risk classified as CRITICAL (99/100). Human approval required.",
+      "Report Writer Agent → Output Guardian Agent: Report draft revision 0 is ready for validation.",
+      "Output Guardian Agent → Report Writer Agent: Output schema validation failed: [{'type': 'missing', 'loc': ('recommendations',), 'msg': 'Field required', 'input': {'report_id': 'CGA-capstone-high-risk', 'thread_id': 'capstone-high-risk', 'generated_at': '2026-08-12T20:21:44.705650+00:00', 'vendor_name': 'Falcon Cloud International LLC', 'contract_value_sar': 750000.0, 'executive_summary': 'The multi-agent audit identified 7 compliance finding(s) and assigned a CRITICAL risk rating of 99/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.', 'risk_score': 99, 'risk_level': 'CRITICAL', 'findings': [{'finding_id': 'F-01', 'topic': 'data_protection', 'title': 'Unrestricted cross-border data transfer', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Require Saudi data residency or a documented transfer mechanism and prior written approval.', 'confidence': 0.92}, {'finding_id': 'F-02', 'topic': 'data_protection', 'title': 'Subprocessor changes lack customer consent', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Add prior notification, objection rights, and flow-down security obligations for subprocessors.', 'confidence': 0.92}, {'finding_id': 'F-03', 'topic': 'data_protection', 'title': 'Breach notification is missing or slower than policy', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Require notification within 24 hours of suspected or confirmed breach discovery.', 'confidence': 0.88}, {'finding_id': 'F-04', 'topic': 'payment', 'title': 'Accelerated payment terms', 'severity': 'medium', 'contract_excerpt': 'vendor cloud services agreement vendor: falcon cloud international llc contract value: sar 750,000 customer contact: [REDACTED_EMAIL], [REDACTED_PHONE], national id [REDACTED_NATIONAL_ID] invoices are payable within 15 days of issue, whether or not the relevant deliverables have been…', 'policy_reference': 'Procurement Policy — Payment Terms', 'recommendation': 'Change payment terms to Net 30 or longer and condition payment on accepted deliverables.', 'confidence': 0.92}, {'finding_id': 'F-05', 'topic': 'liability', 'title': 'Liability cap is below corporate minimum', 'severity': 'high', 'contract_excerpt': \"the vendor's aggregate liability is capped at fees paid in the preceding one month. the cap applies to privacy, confidentiality, and security incidents.\", 'policy_reference': 'Legal Contracting Standard — Liability and Indemnity', 'recommendation': 'Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.', 'confidence': 0.92}, {'finding_id': 'F-06', 'topic': 'termination', 'title': 'Termination and renewal terms are restrictive', 'severity': 'medium', 'contract_excerpt': 'the agreement renews automatically for three years. the customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.', 'policy_reference': 'Legal Contracting Standard — Termination', 'recommendation': \"Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.\", 'confidence': 0.9}, {'finding_id': 'F-07', 'topic': 'payment', 'title': 'High-value procurement requires human approval', 'severity': 'high', 'contract_excerpt': 'Contract Value: SAR 750,000.00', 'policy_reference': 'Procurement Policy — Payment Terms', 'recommendation': 'Route the contract to Procurement and Legal for explicit approval before signature.', 'confidence': 1.0}], 'approval_status': 'approved', 'approval_comment': 'Approved conditionally after Legal confirmed remediation of all high-severity findings.', 'evidence_count': 14, 'pii_redactions': 0, 'agent_trace_summary': ['Input Security Agent → Coordinator Agent: Input guardrail passed; execution may proceed.', 'Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.', 'Document Analyst Agent → Policy Research Agent: Extracted 9 clauses and contract metadata.', 'Policy Research Agent → Coordinator Agent: Policy tool failed; requesting graph retry.', 'Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.', 'Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.', 'Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 50%; re-planning targeted research.', 'Policy Research Agent → Compliance Analyst Agent: Retrieved 14 policy evidence records.', 'Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.', 'Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.', 'Security Reviewer Agent → Coordinator Agent: Risk classified as CRITICAL (99/100). Human approval required.']}}]"
+    ]
+  },
+  "final_markdown": "# ContractGuard AI Compliance Report\n\n**Report ID:** CGA-capstone-high-risk  \n**Thread ID:** capstone-high-risk  \n**Generated:** 2026-08-12T20:21:44.713989+00:00  \n**Vendor:** Falcon Cloud International LLC  \n**Contract value:** SAR 750,000.00  \n**Risk:** CRITICAL (99/100)  \n**Approval:** approved  \n\n## Executive Summary\n\nThe multi-agent audit identified 7 compliance finding(s) and assigned a CRITICAL risk rating of 99/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.\n\n## Compliance Findings\n\n| ID | Severity | Topic | Finding | Policy reference |\n|---|---|---|---|---|\n| F-01 | HIGH | data protection | Unrestricted cross-border data transfer | Data Protection Policy — Saudi Data Residency |\n| F-02 | HIGH | data protection | Subprocessor changes lack customer consent | Data Protection Policy — Saudi Data Residency |\n| F-03 | HIGH | data protection | Breach notification is missing or slower than policy | Data Protection Policy — Saudi Data Residency |\n| F-04 | MEDIUM | payment | Accelerated payment terms | Procurement Policy — Payment Terms |\n| F-05 | HIGH | liability | Liability cap is below corporate minimum | Legal Contracting Standard — Liability and Indemnity |\n| F-06 | MEDIUM | termination | Termination and renewal terms are restrictive | Legal Contracting Standard — Termination |\n| F-07 | HIGH | payment | High-value procurement requires human approval | Procurement Policy — Payment Terms |\n\n## Recommendations\n\n1. Require Saudi data residency or a documented transfer mechanism and prior written approval.\n2. Add prior notification, objection rights, and flow-down security obligations for subprocessors.\n3. Require notification within 24 hours of suspected or confirmed breach discovery.\n4. Change payment terms to Net 30 or longer and condition payment on accepted deliverables.\n5. Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.\n6. Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.\n7. Route the contract to Procurement and Legal for explicit approval before signature.\n\n## Human Approval Record\n\nApproved conditionally after Legal confirmed remediation of all high-severity findings.\n\n## Evidence and Data Protection\n\n- Policy evidence records: 14\n- PII items masked: 3\n\n## Agent Handoff Trace\n\n- Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.\n- Document Analyst Agent → Policy Research Agent: Extracted 9 clauses and contract metadata.\n- Policy Research Agent → Coordinator Agent: Policy tool failed; requesting graph retry.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 50%; re-planning targeted research.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 14 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.\n- Security Reviewer Agent → Coordinator Agent: Risk classified as CRITICAL (99/100). Human approval required.\n- Report Writer Agent → Output Guardian Agent: Report draft revision 0 is ready for validation.\n- Output Guardian Agent → Report Writer Agent: Output schema validation failed: [{'type': 'missing', 'loc': ('recommendations',), 'msg': 'Field required', 'input': {'report_id': 'CGA-capstone-high-risk', 'thread_id': 'capstone-high-risk', 'generated_at': '2026-08-12T20:21:44.705650+00:00', 'vendor_name': 'Falcon Cloud International LLC', 'contract_value_sar': 750000.0, 'executive_summary': 'The multi-agent audit identified 7 compliance finding(s) and assigned a CRITICAL risk rating of 99/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.', 'risk_score': 99, 'risk_level': 'CRITICAL', 'findings': [{'finding_id': 'F-01', 'topic': 'data_protection', 'title': 'Unrestricted cross-border data transfer', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Require Saudi data residency or a documented transfer mechanism and prior written approval.', 'confidence': 0.92}, {'finding_id': 'F-02', 'topic': 'data_protection', 'title': 'Subprocessor changes lack customer consent', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Add prior notification, objection rights, and flow-down security obligations for subprocessors.', 'confidence': 0.92}, {'finding_id': 'F-03', 'topic': 'data_protection', 'title': 'Breach notification is missing or slower than policy', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Require notification within 24 hours of suspected or confirmed breach discovery.', 'confidence': 0.88}, {'finding_id': 'F-04', 'topic': 'payment', 'title': 'Accelerated payment terms', 'severity': 'medium', 'contract_excerpt': 'vendor cloud services agreement vendor: falcon cloud international llc contract value: sar 750,000 customer contact: [REDACTED_EMAIL], [REDACTED_PHONE], national id [REDACTED_NATIONAL_ID] invoices are payable within 15 days of issue, whether or not the relevant deliverables have been…', 'policy_reference': 'Procurement Policy — Payment Terms', 'recommendation': 'Change payment terms to Net 30 or longer and condition payment on accepted deliverables.', 'confidence': 0.92}, {'finding_id': 'F-05', 'topic': 'liability', 'title': 'Liability cap is below corporate minimum', 'severity': 'high', 'contract_excerpt': \"the vendor's aggregate liability is capped at fees paid in the preceding one month. the cap applies to privacy, confidentiality, and security incidents.\", 'policy_reference': 'Legal Contracting Standard — Liability and Indemnity', 'recommendation': 'Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.', 'confidence': 0.92}, {'finding_id': 'F-06', 'topic': 'termination', 'title': 'Termination and renewal terms are restrictive', 'severity': 'medium', 'contract_excerpt': 'the agreement renews automatically for three years. the customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.', 'policy_reference': 'Legal Contracting Standard — Termination', 'recommendation': \"Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.\", 'confidence': 0.9}, {'finding_id': 'F-07', 'topic': 'payment', 'title': 'High-value procurement requires human approval', 'severity': 'high', 'contract_excerpt': 'Contract Value: SAR 750,000.00', 'policy_reference': 'Procurement Policy — Payment Terms', 'recommendation': 'Route the contract to Procurement and Legal for explicit approval before signature.', 'confidence': 1.0}], 'approval_status': 'approved', 'approval_comment': 'Approved conditionally after Legal confirmed remediation of all high-severity findings.', 'evidence_count': 14, 'pii_redactions': 0, 'agent_trace_summary': ['Input Security Agent → Coordinator Agent: Input guardrail passed; execution may proceed.', 'Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.', 'Document Analyst Agent → Policy Research Agent: Extracted 9 clauses and contract metadata.', 'Policy Research Agent → Coordinator Agent: Policy tool failed; requesting graph retry.', 'Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.', 'Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.', 'Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 50%; re-planning targeted research.', 'Policy Research Agent → Compliance Analyst Agent: Retrieved 14 policy evidence records.', 'Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.', 'Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.', 'Security Reviewer Agent → Coordinator Agent: Risk classified as CRITICAL (99/100). Human approval required.']}}]\n",
+  "output_valid": true,
+  "output_feedback": "",
+  "pii_redactions": 3,
+  "artifact_uri": "file:///mnt/data/contractguard-ai/evidence/artifacts/capstone-high-risk/compliance_report.md",
+  "storage_backend": "filesystem-fallback",
+  "status": "completed",
+  "errors": [],
+  "agent_messages": [
+    {
+      "sender": "Input Security Agent",
+      "recipient": "Coordinator Agent",
+      "message_type": "security",
+      "content": "Input guardrail passed; execution may proceed.",
+      "payload": {
+        "matches": []
+      },
+      "timestamp": "2026-08-12T20:21:44.502445+00:00"
+    },
+    {
+      "sender": "Coordinator Agent",
+      "recipient": "Document Analyst Agent",
+      "message_type": "plan",
+      "content": "Plan-and-Execute plan created with seven bounded steps.",
+      "payload": {
+        "steps": [
+          {
+            "step_id": "P1",
+            "owner": "Document Analyst Agent",
+            "objective": "Ingest and parse the PDF/file contract",
+            "status": "pending"
+          },
+          {
+            "step_id": "P2",
+            "owner": "Policy Research Agent",
+            "objective": "Retrieve evidence from corporate policy tools",
+            "status": "pending"
+          },
+          {
+            "step_id": "P3",
+            "owner": "Compliance Analyst Agent",
+            "objective": "Compare clauses with policy evidence and produce findings",
+            "status": "pending"
+          },
+          {
+            "step_id": "P4",
+            "owner": "Quality Reviewer Agent",
+            "objective": "Critique evidence coverage and re-plan if insufficient",
+            "status": "pending"
+          },
+          {
+            "step_id": "P5",
+            "owner": "Security Reviewer Agent",
+            "objective": "Calculate risk and route high-risk actions to a human",
+            "status": "pending"
+          },
+          {
+            "step_id": "P6",
+            "owner": "Report Writer Agent",
+            "objective": "Generate and validate the compliance report",
+            "status": "pending"
+          },
+          {
+            "step_id": "P7",
+            "owner": "Artifact Storage Agent",
+            "objective": "Persist report and audit artifacts",
+            "status": "pending"
+          }
+        ]
+      },
+      "timestamp": "2026-08-12T20:21:44.506267+00:00"
+    },
+    {
+      "sender": "Document Analyst Agent",
+      "recipient": "Policy Research Agent",
+      "message_type": "handoff",
+      "content": "Extracted 9 clauses and contract metadata.",
+      "payload": {
+        "metadata": {
+          "vendor_name": "Falcon Cloud International LLC",
+          "contract_value_sar": 750000.0
+        },
+        "topics": [
+          "data_protection",
+          "governing_law",
+          "liability",
+          "payment",
+          "security",
+          "service_levels",
+          "termination"
+        ]
+      },
+      "timestamp": "2026-08-12T20:21:44.510620+00:00"
+    },
+    {
+      "sender": "Policy Research Agent",
+      "recipient": "Coordinator Agent",
+      "message_type": "status",
+      "content": "Policy tool failed; requesting graph retry.",
+      "payload": {
+        "attempt": 1,
+        "error": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence"
+      },
+      "timestamp": "2026-08-12T20:21:44.512426+00:00"
+    },
+    {
+      "sender": "Policy Research Agent",
+      "recipient": "Compliance Analyst Agent",
+      "message_type": "result",
+      "content": "Retrieved 12 policy evidence records.",
+      "payload": {
+        "topics": [
+          "data_protection",
+          "governing_law",
+          "liability",
+          "payment",
+          "security",
+          "service_levels",
+          "termination"
+        ]
+      },
+      "timestamp": "2026-08-12T20:21:44.515750+00:00"
+    },
+    {
+      "sender": "Compliance Analyst Agent",
+      "recipient": "Quality Reviewer Agent",
+      "message_type": "result",
+      "content": "Generated 7 compliance findings from contract clauses and policy evidence.",
+      "payload": {
+        "severities": {
+          "high": 5,
+          "medium": 2
+        }
+      },
+      "timestamp": "2026-08-12T20:21:44.517817+00:00"
+    },
+    {
+      "sender": "Quality Reviewer Agent",
+      "recipient": "Coordinator Agent",
+      "message_type": "critique",
+      "content": "Evidence coverage score is 50%; re-planning targeted research.",
+      "payload": {
+        "missing_topics": [],
+        "quality_score": 0.5
+      },
+      "timestamp": "2026-08-12T20:21:44.520034+00:00"
+    },
+    {
+      "sender": "Policy Research Agent",
+      "recipient": "Compliance Analyst Agent",
+      "message_type": "result",
+      "content": "Retrieved 14 policy evidence records.",
+      "payload": {
+        "topics": [
+          "data_protection",
+          "general",
+          "governing_law",
+          "liability",
+          "payment",
+          "security",
+          "service_levels",
+          "termination"
+        ]
+      },
+      "timestamp": "2026-08-12T20:21:44.523902+00:00"
+    },
+    {
+      "sender": "Compliance Analyst Agent",
+      "recipient": "Quality Reviewer Agent",
+      "message_type": "result",
+      "content": "Generated 7 compliance findings from contract clauses and policy evidence.",
+      "payload": {
+        "severities": {
+          "high": 5,
+          "medium": 2
+        }
+      },
+      "timestamp": "2026-08-12T20:21:44.526805+00:00"
+    },
+    {
+      "sender": "Quality Reviewer Agent",
+      "recipient": "Coordinator Agent",
+      "message_type": "critique",
+      "content": "Evidence coverage score is 100%; quality gate passed.",
+      "payload": {
+        "missing_topics": [],
+        "quality_score": 1.0
+      },
+      "timestamp": "2026-08-12T20:21:44.548248+00:00"
+    },
+    {
+      "sender": "Security Reviewer Agent",
+      "recipient": "Coordinator Agent",
+      "message_type": "security",
+      "content": "Risk classified as CRITICAL (99/100). Human approval required.",
+      "payload": {
+        "risk_score": 99,
+        "risk_level": "CRITICAL",
+        "approval_required": true
+      },
+      "timestamp": "2026-08-12T20:21:44.553180+00:00"
+    },
+    {
+      "sender": "Report Writer Agent",
+      "recipient": "Output Guardian Agent",
+      "message_type": "handoff",
+      "content": "Report draft revision 0 is ready for validation.",
+      "payload": {
+        "report_id": "CGA-capstone-high-risk"
+      },
+      "timestamp": "2026-08-12T20:21:44.705716+00:00"
+    },
+    {
+      "sender": "Output Guardian Agent",
+      "recipient": "Report Writer Agent",
+      "message_type": "critique",
+      "content": "Output schema validation failed: [{'type': 'missing', 'loc': ('recommendations',), 'msg': 'Field required', 'input': {'report_id': 'CGA-capstone-high-risk', 'thread_id': 'capstone-high-risk', 'generated_at': '2026-08-12T20:21:44.705650+00:00', 'vendor_name': 'Falcon Cloud International LLC', 'contract_value_sar': 750000.0, 'executive_summary': 'The multi-agent audit identified 7 compliance finding(s) and assigned a CRITICAL risk rating of 99/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.', 'risk_score': 99, 'risk_level': 'CRITICAL', 'findings': [{'finding_id': 'F-01', 'topic': 'data_protection', 'title': 'Unrestricted cross-border data transfer', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Require Saudi data residency or a documented transfer mechanism and prior written approval.', 'confidence': 0.92}, {'finding_id': 'F-02', 'topic': 'data_protection', 'title': 'Subprocessor changes lack customer consent', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Add prior notification, objection rights, and flow-down security obligations for subprocessors.', 'confidence': 0.92}, {'finding_id': 'F-03', 'topic': 'data_protection', 'title': 'Breach notification is missing or slower than policy', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Require notification within 24 hours of suspected or confirmed breach discovery.', 'confidence': 0.88}, {'finding_id': 'F-04', 'topic': 'payment', 'title': 'Accelerated payment terms', 'severity': 'medium', 'contract_excerpt': 'vendor cloud services agreement vendor: falcon cloud international llc contract value: sar 750,000 customer contact: [REDACTED_EMAIL], [REDACTED_PHONE], national id [REDACTED_NATIONAL_ID] invoices are payable within 15 days of issue, whether or not the relevant deliverables have been…', 'policy_reference': 'Procurement Policy — Payment Terms', 'recommendation': 'Change payment terms to Net 30 or longer and condition payment on accepted deliverables.', 'confidence': 0.92}, {'finding_id': 'F-05', 'topic': 'liability', 'title': 'Liability cap is below corporate minimum', 'severity': 'high', 'contract_excerpt': \"the vendor's aggregate liability is capped at fees paid in the preceding one month. the cap applies to privacy, confidentiality, and security incidents.\", 'policy_reference': 'Legal Contracting Standard — Liability and Indemnity', 'recommendation': 'Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.', 'confidence': 0.92}, {'finding_id': 'F-06', 'topic': 'termination', 'title': 'Termination and renewal terms are restrictive', 'severity': 'medium', 'contract_excerpt': 'the agreement renews automatically for three years. the customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.', 'policy_reference': 'Legal Contracting Standard — Termination', 'recommendation': \"Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.\", 'confidence': 0.9}, {'finding_id': 'F-07', 'topic': 'payment', 'title': 'High-value procurement requires human approval', 'severity': 'high', 'contract_excerpt': 'Contract Value: SAR 750,000.00', 'policy_reference': 'Procurement Policy — Payment Terms', 'recommendation': 'Route the contract to Procurement and Legal for explicit approval before signature.', 'confidence': 1.0}], 'approval_status': 'approved', 'approval_comment': 'Approved conditionally after Legal confirmed remediation of all high-severity findings.', 'evidence_count': 14, 'pii_redactions': 0, 'agent_trace_summary': ['Input Security Agent → Coordinator Agent: Input guardrail passed; execution may proceed.', 'Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.', 'Document Analyst Agent → Policy Research Agent: Extracted 9 clauses and contract metadata.', 'Policy Research Agent → Coordinator Agent: Policy tool failed; requesting graph retry.', 'Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.', 'Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.', 'Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 50%; re-planning targeted research.', 'Policy Research Agent → Compliance Analyst Agent: Retrieved 14 policy evidence records.', 'Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.', 'Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.', 'Security Reviewer Agent → Coordinator Agent: Risk classified as CRITICAL (99/100). Human approval required.']}}]",
+      "payload": {
+        "revision": 0
+      },
+      "timestamp": "2026-08-12T20:21:44.710984+00:00"
+    },
+    {
+      "sender": "Report Writer Agent",
+      "recipient": "Output Guardian Agent",
+      "message_type": "handoff",
+      "content": "Report draft revision 1 is ready for validation.",
+      "payload": {
+        "report_id": "CGA-capstone-high-risk"
+      },
+      "timestamp": "2026-08-12T20:21:44.714014+00:00"
+    },
+    {
+      "sender": "Output Guardian Agent",
+      "recipient": "Artifact Storage Agent",
+      "message_type": "result",
+      "content": "Output schema passed and 3 PII item(s) were masked.",
+      "payload": {
+        "categories": [
+          "email",
+          "saudi_national_id",
+          "phone"
+        ]
+      },
+      "timestamp": "2026-08-12T20:21:44.718793+00:00"
+    },
+    {
+      "sender": "Artifact Storage Agent",
+      "recipient": "Coordinator Agent",
+      "message_type": "status",
+      "content": "Report persisted using filesystem-fallback.",
+      "payload": {
+        "uri": "file:///mnt/data/contractguard-ai/evidence/artifacts/capstone-high-risk/compliance_report.md",
+        "metadata_uri": "file:///mnt/data/contractguard-ai/evidence/artifacts/capstone-high-risk/run_metadata.json",
+        "backend": "filesystem-fallback"
+      },
+      "timestamp": "2026-08-12T20:21:44.722310+00:00"
+    }
+  ],
+  "tool_calls": [
+    {
+      "call_id": "406801ca-ac7a-4a9c-8115-7eb9ca2539bd",
+      "agent": "Document Analyst Agent",
+      "tool_name": "read_contract",
+      "arguments": {
+        "contract_path": "/mnt/data/contractguard-ai/data/samples/vendor_contract_high_risk.txt",
+        "contract_text": null
+      },
+      "rationale": "The document must be converted into trusted text before clause-level analysis.",
+      "timestamp": "2026-08-12T20:21:44.509531+00:00"
+    },
+    {
+      "call_id": "676ed762-5bf6-4ab7-af17-a67b06692e46",
+      "agent": "Document Analyst Agent",
+      "tool_name": "extract_contract_clauses",
+      "arguments": {
+        "contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n"
+      },
+      "rationale": "Structured clauses are required so specialist agents can search the right policy domains.",
+      "timestamp": "2026-08-12T20:21:44.510182+00:00"
+    },
+    {
+      "call_id": "3cf44338-792f-413f-bf4a-b96ea971cfe2",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "data residency Saudi Arabia subprocessors consent breach notification privacy",
+        "topic": "data_protection",
+        "top_k": 2,
+        "attempt": 0,
+        "simulate_primary_failure": true
+      },
+      "rationale": "Need authoritative policy evidence for the data_protection contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.512191+00:00"
+    },
+    {
+      "call_id": "eeef5857-33bf-4d23-8bc2-f600aa2d9081",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "data residency Saudi Arabia subprocessors consent breach notification privacy",
+        "topic": "data_protection",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": true
+      },
+      "rationale": "Need authoritative policy evidence for the data_protection contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.513979+00:00"
+    },
+    {
+      "call_id": "d79cc18f-3b02-4104-98b2-1891d5b9ffa4",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "governing law Kingdom of Saudi Arabia jurisdiction",
+        "topic": "governing_law",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the governing_law contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.514341+00:00"
+    },
+    {
+      "call_id": "62430736-4898-4e7d-aed2-ba87e9f8e903",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "liability cap indemnity damages twelve months fees",
+        "topic": "liability",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the liability contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.514702+00:00"
+    },
+    {
+      "call_id": "c5337102-0fe4-4ffd-8aeb-10e330795e6c",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "invoice payment terms net 30 procurement approval threshold SAR",
+        "topic": "payment",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the payment contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.514939+00:00"
+    },
+    {
+      "call_id": "5f79aaf3-58da-445d-8a1c-84bfdf2a8872",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "ISO 27001 encryption access control audit penetration testing security",
+        "topic": "security",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the security contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.515174+00:00"
+    },
+    {
+      "call_id": "de077072-b220-4107-81c8-c1bcdae7d4b5",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "service levels uptime SLA availability credits",
+        "topic": "service_levels",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the service_levels contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.515360+00:00"
+    },
+    {
+      "call_id": "2b5f34db-7623-4514-bc86-be2af71f76be",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "termination for convenience notice automatic renewal",
+        "topic": "termination",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the termination contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.515563+00:00"
+    },
+    {
+      "call_id": "d077bf30-fa8e-4437-9631-3cbc60525853",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "data residency Saudi Arabia subprocessors consent breach notification privacy",
+        "topic": "data_protection",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": true
+      },
+      "rationale": "Need authoritative policy evidence for the data_protection contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.522305+00:00"
+    },
+    {
+      "call_id": "9dacecc8-a0a9-4f8c-b382-8ad90f6b1871",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "governing law Kingdom of Saudi Arabia jurisdiction",
+        "topic": "governing_law",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the governing_law contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.522639+00:00"
+    },
+    {
+      "call_id": "4712c2e3-792f-43f5-ae01-bf322d6cda11",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "liability cap indemnity damages twelve months fees",
+        "topic": "liability",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the liability contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.522859+00:00"
+    },
+    {
+      "call_id": "1991263f-b18a-4447-8bf6-c1e478ba3170",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "invoice payment terms net 30 procurement approval threshold SAR",
+        "topic": "payment",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the payment contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.523041+00:00"
+    },
+    {
+      "call_id": "97b00861-fec2-4abb-ab54-f599bfcef82a",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "ISO 27001 encryption access control audit penetration testing security",
+        "topic": "security",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the security contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.523210+00:00"
+    },
+    {
+      "call_id": "be708d5c-87ed-41cb-a85a-3e81f7029fc3",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "service levels uptime SLA availability credits",
+        "topic": "service_levels",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the service_levels contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.523398+00:00"
+    },
+    {
+      "call_id": "83735479-d00e-47a5-8f3d-93064afef310",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "termination for convenience notice automatic renewal",
+        "topic": "termination",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the termination contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.523554+00:00"
+    },
+    {
+      "call_id": "6e93d2b0-9f35-4731-991d-b47c95ecbe30",
+      "agent": "Policy Research Agent",
+      "tool_name": "search_policy_knowledge_base",
+      "arguments": {
+        "query": "mandatory vendor contract compliance clauses and exceptions",
+        "topic": "general",
+        "top_k": 2,
+        "attempt": 1,
+        "simulate_primary_failure": false
+      },
+      "rationale": "Need authoritative policy evidence for the general contract clauses.",
+      "timestamp": "2026-08-12T20:21:44.523733+00:00"
+    },
+    {
+      "call_id": "d21b9bbf-7dac-4f0f-82ad-e242f2296aa7",
+      "agent": "Security Reviewer Agent",
+      "tool_name": "calculate_contract_risk",
+      "arguments": {
+        "findings": [
+          {
+            "finding_id": "F-01",
+            "topic": "data_protection",
+            "title": "Unrestricted cross-border data transfer",
+            "severity": "high",
+            "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+            "policy_reference": "Data Protection Policy — Saudi Data Residency",
+            "recommendation": "Require Saudi data residency or a documented transfer mechanism and prior written approval.",
+            "confidence": 0.92
+          },
+          {
+            "finding_id": "F-02",
+            "topic": "data_protection",
+            "title": "Subprocessor changes lack customer consent",
+            "severity": "high",
+            "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+            "policy_reference": "Data Protection Policy — Saudi Data Residency",
+            "recommendation": "Add prior notification, objection rights, and flow-down security obligations for subprocessors.",
+            "confidence": 0.92
+          },
+          {
+            "finding_id": "F-03",
+            "topic": "data_protection",
+            "title": "Breach notification is missing or slower than policy",
+            "severity": "high",
+            "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+            "policy_reference": "Data Protection Policy — Saudi Data Residency",
+            "recommendation": "Require notification within 24 hours of suspected or confirmed breach discovery.",
+            "confidence": 0.88
+          },
+          {
+            "finding_id": "F-04",
+            "topic": "payment",
+            "title": "Accelerated payment terms",
+            "severity": "medium",
+            "contract_excerpt": "vendor cloud services agreement vendor: falcon cloud international llc contract value: sar 750,000 customer contact: nora.alqahtani@example.com, +966501234567, national id 1023456789 invoices are payable within 15 days of issue, whether or not the relevant deliverables have been…",
+            "policy_reference": "Procurement Policy — Payment Terms",
+            "recommendation": "Change payment terms to Net 30 or longer and condition payment on accepted deliverables.",
+            "confidence": 0.92
+          },
+          {
+            "finding_id": "F-05",
+            "topic": "liability",
+            "title": "Liability cap is below corporate minimum",
+            "severity": "high",
+            "contract_excerpt": "the vendor's aggregate liability is capped at fees paid in the preceding one month. the cap applies to privacy, confidentiality, and security incidents.",
+            "policy_reference": "Legal Contracting Standard — Liability and Indemnity",
+            "recommendation": "Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.",
+            "confidence": 0.92
+          },
+          {
+            "finding_id": "F-06",
+            "topic": "termination",
+            "title": "Termination and renewal terms are restrictive",
+            "severity": "medium",
+            "contract_excerpt": "the agreement renews automatically for three years. the customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.",
+            "policy_reference": "Legal Contracting Standard — Termination",
+            "recommendation": "Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.",
+            "confidence": 0.9
+          },
+          {
+            "finding_id": "F-07",
+            "topic": "payment",
+            "title": "High-value procurement requires human approval",
+            "severity": "high",
+            "contract_excerpt": "Contract Value: SAR 750,000.00",
+            "policy_reference": "Procurement Policy — Payment Terms",
+            "recommendation": "Route the contract to Procurement and Legal for explicit approval before signature.",
+            "confidence": 1.0
+          }
+        ],
+        "contract_value_sar": 750000.0,
+        "approval_risk_threshold": 50,
+        "approval_value_threshold_sar": 500000.0
+      },
+      "rationale": "Risk and value thresholds determine whether autonomous execution must stop for human approval.",
+      "timestamp": "2026-08-12T20:21:44.552904+00:00"
+    },
+    {
+      "call_id": "d075bb68-f6ad-4cca-8d7d-aec5f426c59f",
+      "agent": "Artifact Storage Agent",
+      "tool_name": "store_report_artifact",
+      "arguments": {
+        "thread_id": "capstone-high-risk",
+        "markdown": "# ContractGuard AI Compliance Report\n\n**Report ID:** CGA-capstone-high-risk  \n**Thread ID:** capstone-high-risk  \n**Generated:** 2026-08-12T20:21:44.713989+00:00  \n**Vendor:** Falcon Cloud International LLC  \n**Contract value:** SAR 750,000.00  \n**Risk:** CRITICAL (99/100)  \n**Approval:** approved  \n\n## Executive Summary\n\nThe multi-agent audit identified 7 compliance finding(s) and assigned a CRITICAL risk rating of 99/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.\n\n## Compliance Findings\n\n| ID | Severity | Topic | Finding | Policy reference |\n|---|---|---|---|---|\n| F-01 | HIGH | data protection | Unrestricted cross-border data transfer | Data Protection Policy — Saudi Data Residency |\n| F-02 | HIGH | data protection | Subprocessor changes lack customer consent | Data Protection Policy — Saudi Data Residency |\n| F-03 | HIGH | data protection | Breach notification is missing or slower than policy | Data Protection Policy — Saudi Data Residency |\n| F-04 | MEDIUM | payment | Accelerated payment terms | Procurement Policy — Payment Terms |\n| F-05 | HIGH | liability | Liability cap is below corporate minimum | Legal Contracting Standard — Liability and Indemnity |\n| F-06 | MEDIUM | termination | Termination and renewal terms are restrictive | Legal Contracting Standard — Termination |\n| F-07 | HIGH | payment | High-value procurement requires human approval | Procurement Policy — Payment Terms |\n\n## Recommendations\n\n1. Require Saudi data residency or a documented transfer mechanism and prior written approval.\n2. Add prior notification, objection rights, and flow-down security obligations for subprocessors.\n3. Require notification within 24 hours of suspected or confirmed breach discovery.\n4. Change payment terms to Net 30 or longer and condition payment on accepted deliverables.\n5. Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.\n6. Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.\n7. Route the contract to Procurement and Legal for explicit approval before signature.\n\n## Human Approval Record\n\nApproved conditionally after Legal confirmed remediation of all high-severity findings.\n\n## Evidence and Data Protection\n\n- Policy evidence records: 14\n- PII items masked: 3\n\n## Agent Handoff Trace\n\n- Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.\n- Document Analyst Agent → Policy Research Agent: Extracted 9 clauses and contract metadata.\n- Policy Research Agent → Coordinator Agent: Policy tool failed; requesting graph retry.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 50%; re-planning targeted research.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 14 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.\n- Security Reviewer Agent → Coordinator Agent: Risk classified as CRITICAL (99/100). Human approval required.\n- Report Writer Agent → Output Guardian Agent: Report draft revision 0 is ready for validation.\n- Output Guardian Agent → Report Writer Agent: Output schema validation failed: [{'type': 'missing', 'loc': ('recommendations',), 'msg': 'Field required', 'input': {'report_id': 'CGA-capstone-high-risk', 'thread_id': 'capstone-high-risk', 'generated_at': '2026-08-12T20:21:44.705650+00:00', 'vendor_name': 'Falcon Cloud International LLC', 'contract_value_sar': 750000.0, 'executive_summary': 'The multi-agent audit identified 7 compliance finding(s) and assigned a CRITICAL risk rating of 99/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.', 'risk_score': 99, 'risk_level': 'CRITICAL', 'findings': [{'finding_id': 'F-01', 'topic': 'data_protection', 'title': 'Unrestricted cross-border data transfer', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Require Saudi data residency or a documented transfer mechanism and prior written approval.', 'confidence': 0.92}, {'finding_id': 'F-02', 'topic': 'data_protection', 'title': 'Subprocessor changes lack customer consent', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Add prior notification, objection rights, and flow-down security obligations for subprocessors.', 'confidence': 0.92}, {'finding_id': 'F-03', 'topic': 'data_protection', 'title': 'Breach notification is missing or slower than policy', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Require notification within 24 hours of suspected or confirmed breach discovery.', 'confidence': 0.88}, {'finding_id': 'F-04', 'topic': 'payment', 'title': 'Accelerated payment terms', 'severity': 'medium', 'contract_excerpt': 'vendor cloud services agreement vendor: falcon cloud international llc contract value: sar 750,000 customer contact: [REDACTED_EMAIL], [REDACTED_PHONE], national id [REDACTED_NATIONAL_ID] invoices are payable within 15 days of issue, whether or not the relevant deliverables have been…', 'policy_reference': 'Procurement Policy — Payment Terms', 'recommendation': 'Change payment terms to Net 30 or longer and condition payment on accepted deliverables.', 'confidence': 0.92}, {'finding_id': 'F-05', 'topic': 'liability', 'title': 'Liability cap is below corporate minimum', 'severity': 'high', 'contract_excerpt': \"the vendor's aggregate liability is capped at fees paid in the preceding one month. the cap applies to privacy, confidentiality, and security incidents.\", 'policy_reference': 'Legal Contracting Standard — Liability and Indemnity', 'recommendation': 'Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.', 'confidence': 0.92}, {'finding_id': 'F-06', 'topic': 'termination', 'title': 'Termination and renewal terms are restrictive', 'severity': 'medium', 'contract_excerpt': 'the agreement renews automatically for three years. the customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.', 'policy_reference': 'Legal Contracting Standard — Termination', 'recommendation': \"Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.\", 'confidence': 0.9}, {'finding_id': 'F-07', 'topic': 'payment', 'title': 'High-value procurement requires human approval', 'severity': 'high', 'contract_excerpt': 'Contract Value: SAR 750,000.00', 'policy_reference': 'Procurement Policy — Payment Terms', 'recommendation': 'Route the contract to Procurement and Legal for explicit approval before signature.', 'confidence': 1.0}], 'approval_status': 'approved', 'approval_comment': 'Approved conditionally after Legal confirmed remediation of all high-severity findings.', 'evidence_count': 14, 'pii_redactions': 0, 'agent_trace_summary': ['Input Security Agent → Coordinator Agent: Input guardrail passed; execution may proceed.', 'Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.', 'Document Analyst Agent → Policy Research Agent: Extracted 9 clauses and contract metadata.', 'Policy Research Agent → Coordinator Agent: Policy tool failed; requesting graph retry.', 'Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.', 'Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.', 'Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 50%; re-planning targeted research.', 'Policy Research Agent → Compliance Analyst Agent: Retrieved 14 policy evidence records.', 'Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.', 'Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.', 'Security Reviewer Agent → Coordinator Agent: Risk classified as CRITICAL (99/100). Human approval required.']}}]\n",
+        "metadata": {
+          "thread_id": "capstone-high-risk",
+          "status": "persisting",
+          "risk_score": 99,
+          "risk_level": "CRITICAL",
+          "quality_score": 1.0,
+          "node_history": [
+            "received",
+            "guardrailed",
+            "planned",
+            "ingested",
+            "researching",
+            "researching",
+            "analyzed",
+            "quality_reviewed",
+            "researching",
+            "analyzed",
+            "quality_reviewed",
+            "security_reviewed",
+            "awaiting_approval",
+            "reporting",
+            "output_validated",
+            "reporting",
+            "output_validated"
+          ],
+          "tool_calls": 19,
+          "policy_retries": 1,
+          "report_revisions": 1,
+          "pii_redactions": 3
+        }
+      },
+      "rationale": "The validated result and audit metadata must be stored as a production artifact.",
+      "timestamp": "2026-08-12T20:21:44.721684+00:00"
+    }
+  ],
+  "tool_observations": [
+    {
+      "call_id": "406801ca-ac7a-4a9c-8115-7eb9ca2539bd",
+      "tool_name": "read_contract",
+      "status": "success",
+      "summary": "Returned object with keys: source, text, characters",
+      "output": {
+        "source": "/mnt/data/contractguard-ai/data/samples/vendor_contract_high_risk.txt",
+        "text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n",
+        "characters": 1593
+      },
+      "latency_ms": 0.3921840000202792,
+      "timestamp": "2026-08-12T20:21:44.510140+00:00"
+    },
+    {
+      "call_id": "676ed762-5bf6-4ab7-af17-a67b06692e46",
+      "tool_name": "extract_contract_clauses",
+      "status": "success",
+      "summary": "Returned 9 items",
+      "output": [
+        {
+          "clause_id": "C-01",
+          "heading": "Preamble",
+          "text": "VENDOR CLOUD SERVICES AGREEMENT Vendor: Falcon Cloud International LLC Contract Value: SAR 750,000 Customer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789",
+          "topic": "payment"
+        },
+        {
+          "clause_id": "C-02",
+          "heading": "1. DATA LOCATION AND PRIVACY",
+          "text": "The Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.",
+          "topic": "data_protection"
+        },
+        {
+          "clause_id": "C-03",
+          "heading": "2. BREACH NOTIFICATION",
+          "text": "The Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.",
+          "topic": "data_protection"
+        },
+        {
+          "clause_id": "C-04",
+          "heading": "3. INFORMATION SECURITY",
+          "text": "The Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.",
+          "topic": "security"
+        },
+        {
+          "clause_id": "C-05",
+          "heading": "4. PAYMENT",
+          "text": "Invoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.",
+          "topic": "payment"
+        },
+        {
+          "clause_id": "C-06",
+          "heading": "5. LIABILITY",
+          "text": "The Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.",
+          "topic": "liability"
+        },
+        {
+          "clause_id": "C-07",
+          "heading": "6. TERM AND TERMINATION",
+          "text": "The agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.",
+          "topic": "termination"
+        },
+        {
+          "clause_id": "C-08",
+          "heading": "7. GOVERNING LAW",
+          "text": "This agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.",
+          "topic": "governing_law"
+        },
+        {
+          "clause_id": "C-09",
+          "heading": "8. SERVICE LEVELS",
+          "text": "The Vendor targets 98.0 percent availability and provides no service credits.",
+          "topic": "service_levels"
+        }
+      ],
+      "latency_ms": 0.17050800011020328,
+      "timestamp": "2026-08-12T20:21:44.510408+00:00"
+    },
+    {
+      "call_id": "3cf44338-792f-413f-bf4a-b96ea971cfe2",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "error",
+      "summary": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence",
+      "output": null,
+      "latency_ms": 0.07054799993966299,
+      "timestamp": "2026-08-12T20:21:44.512403+00:00"
+    },
+    {
+      "call_id": "eeef5857-33bf-4d23-8bc2-f600aa2d9081",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 2 items",
+      "output": [
+        {
+          "policy_name": "Data Protection Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+          "section": "Saudi Data Residency",
+          "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
+          "score": 9.7942,
+          "topic": "data_protection"
+        },
+        {
+          "policy_name": "Legal Contracting Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+          "section": "Governing Law",
+          "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
+          "score": 3.7192,
+          "topic": "data_protection"
+        }
+      ],
+      "latency_ms": 0.24476400017192645,
+      "timestamp": "2026-08-12T20:21:44.514307+00:00"
+    },
+    {
+      "call_id": "d79cc18f-3b02-4104-98b2-1891d5b9ffa4",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 2 items",
+      "output": [
+        {
+          "policy_name": "Legal Contracting Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+          "section": "Governing Law",
+          "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
+          "score": 6.407,
+          "topic": "governing_law"
+        },
+        {
+          "policy_name": "Data Protection Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+          "section": "Saudi Data Residency",
+          "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
+          "score": 3.2984,
+          "topic": "governing_law"
+        }
+      ],
+      "latency_ms": 0.24901900019358436,
+      "timestamp": "2026-08-12T20:21:44.514668+00:00"
+    },
+    {
+      "call_id": "62430736-4898-4e7d-aed2-ba87e9f8e903",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 1 items",
+      "output": [
+        {
+          "policy_name": "Legal Contracting Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+          "section": "Liability and Indemnity",
+          "excerpt": "## Liability and Indemnity\nThe vendor liability cap should be no lower than twelve months of fees. Confidentiality, intellectual-property infringement, privacy, security breach, fraud, and willful misconduct must have appropriate carve-outs or higher caps.",
+          "score": 8.5379,
+          "topic": "liability"
+        }
+      ],
+      "latency_ms": 0.15610100012963812,
+      "timestamp": "2026-08-12T20:21:44.514916+00:00"
+    },
+    {
+      "call_id": "c5337102-0fe4-4ffd-8aeb-10e330795e6c",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 2 items",
+      "output": [
+        {
+          "policy_name": "Procurement Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/procurement_policy.md",
+          "section": "Payment Terms",
+          "excerpt": "## Payment Terms\nStandard payment terms are Net 30 days after receipt of a correct invoice and acceptance of the relevant deliverables. Shorter payment terms require a documented exception approved by Procurement.",
+          "score": 13.7486,
+          "topic": "payment"
+        },
+        {
+          "policy_name": "Legal Contracting Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+          "section": "Mandatory Records",
+          "excerpt": "## Mandatory Records\nMaterial exceptions, approvals, redlines, and final signed terms must be captured in an immutable audit record.",
+          "score": 1.6726,
+          "topic": "payment"
+        }
+      ],
+      "latency_ms": 0.15865299997130933,
+      "timestamp": "2026-08-12T20:21:44.515155+00:00"
+    },
+    {
+      "call_id": "5f79aaf3-58da-445d-8a1c-84bfdf2a8872",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 2 items",
+      "output": [
+        {
+          "policy_name": "Information Security Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/information_security_policy.md",
+          "section": "Access Control",
+          "excerpt": "## Access Control\nAccess must follow least privilege, multi-factor authentication, role-based access control, quarterly access reviews, and prompt revocation. Administrative actions must produce tamper-evident audit logs.",
+          "score": 11.1299,
+          "topic": "security"
+        },
+        {
+          "policy_name": "Data Protection Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+          "section": "Subprocessors",
+          "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
+          "score": 1.4349,
+          "topic": "security"
+        }
+      ],
+      "latency_ms": 0.13009499980398687,
+      "timestamp": "2026-08-12T20:21:44.515345+00:00"
+    },
+    {
+      "call_id": "de077072-b220-4107-81c8-c1bcdae7d4b5",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 1 items",
+      "output": [
+        {
+          "policy_name": "Service Level Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/service_level_standard.md",
+          "section": "Service Credits",
+          "excerpt": "## Service Credits\nThe contract must define service credits for missed availability, chronic-failure termination rights, and transparent incident reporting.",
+          "score": 8.7358,
+          "topic": "service_levels"
+        }
+      ],
+      "latency_ms": 0.10561500016592618,
+      "timestamp": "2026-08-12T20:21:44.515525+00:00"
+    },
+    {
+      "call_id": "2b5f34db-7623-4514-bc86-be2af71f76be",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 2 items",
+      "output": [
+        {
+          "policy_name": "Legal Contracting Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+          "section": "Termination",
+          "excerpt": "## Termination\nThe organization must have a termination-for-convenience right on no more than 30 days' notice. Automatic renewal periods should not exceed one year and must include a practical non-renewal window.",
+          "score": 6.6613,
+          "topic": "termination"
+        },
+        {
+          "policy_name": "Data Protection Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+          "section": "Subprocessors",
+          "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
+          "score": 1.8019,
+          "topic": "termination"
+        }
+      ],
+      "latency_ms": 0.11361300016687892,
+      "timestamp": "2026-08-12T20:21:44.515723+00:00"
+    },
+    {
+      "call_id": "d077bf30-fa8e-4437-9631-3cbc60525853",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 2 items",
+      "output": [
+        {
+          "policy_name": "Data Protection Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+          "section": "Saudi Data Residency",
+          "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
+          "score": 9.7942,
+          "topic": "data_protection"
+        },
+        {
+          "policy_name": "Legal Contracting Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+          "section": "Governing Law",
+          "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
+          "score": 3.7192,
+          "topic": "data_protection"
+        }
+      ],
+      "latency_ms": 0.22043300009499944,
+      "timestamp": "2026-08-12T20:21:44.522609+00:00"
+    },
+    {
+      "call_id": "9dacecc8-a0a9-4f8c-b382-8ad90f6b1871",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 2 items",
+      "output": [
+        {
+          "policy_name": "Legal Contracting Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+          "section": "Governing Law",
+          "excerpt": "## Governing Law\nUnless the General Counsel approves an exception, vendor contracts must be governed by the laws of the Kingdom of Saudi Arabia and disputes must be heard in competent Saudi courts.",
+          "score": 6.407,
+          "topic": "governing_law"
+        },
+        {
+          "policy_name": "Data Protection Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+          "section": "Saudi Data Residency",
+          "excerpt": "## Saudi Data Residency\nPersonal data and regulated business data must be stored and primarily processed inside the Kingdom of Saudi Arabia. A cross-border transfer requires a documented legal mechanism, Data Protection Officer review, and prior written approval from the organization.",
+          "score": 3.2984,
+          "topic": "governing_law"
+        }
+      ],
+      "latency_ms": 0.12083499996151659,
+      "timestamp": "2026-08-12T20:21:44.522837+00:00"
+    },
+    {
+      "call_id": "4712c2e3-792f-43f5-ae01-bf322d6cda11",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 1 items",
+      "output": [
+        {
+          "policy_name": "Legal Contracting Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+          "section": "Liability and Indemnity",
+          "excerpt": "## Liability and Indemnity\nThe vendor liability cap should be no lower than twelve months of fees. Confidentiality, intellectual-property infringement, privacy, security breach, fraud, and willful misconduct must have appropriate carve-outs or higher caps.",
+          "score": 8.5379,
+          "topic": "liability"
+        }
+      ],
+      "latency_ms": 0.11705099996106583,
+      "timestamp": "2026-08-12T20:21:44.523023+00:00"
+    },
+    {
+      "call_id": "1991263f-b18a-4447-8bf6-c1e478ba3170",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 2 items",
+      "output": [
+        {
+          "policy_name": "Procurement Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/procurement_policy.md",
+          "section": "Payment Terms",
+          "excerpt": "## Payment Terms\nStandard payment terms are Net 30 days after receipt of a correct invoice and acceptance of the relevant deliverables. Shorter payment terms require a documented exception approved by Procurement.",
+          "score": 13.7486,
+          "topic": "payment"
+        },
+        {
+          "policy_name": "Legal Contracting Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+          "section": "Mandatory Records",
+          "excerpt": "## Mandatory Records\nMaterial exceptions, approvals, redlines, and final signed terms must be captured in an immutable audit record.",
+          "score": 1.6726,
+          "topic": "payment"
+        }
+      ],
+      "latency_ms": 0.11051000001316424,
+      "timestamp": "2026-08-12T20:21:44.523192+00:00"
+    },
+    {
+      "call_id": "97b00861-fec2-4abb-ab54-f599bfcef82a",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 2 items",
+      "output": [
+        {
+          "policy_name": "Information Security Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/information_security_policy.md",
+          "section": "Access Control",
+          "excerpt": "## Access Control\nAccess must follow least privilege, multi-factor authentication, role-based access control, quarterly access reviews, and prompt revocation. Administrative actions must produce tamper-evident audit logs.",
+          "score": 11.1299,
+          "topic": "security"
+        },
+        {
+          "policy_name": "Data Protection Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+          "section": "Subprocessors",
+          "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
+          "score": 1.4349,
+          "topic": "security"
+        }
+      ],
+      "latency_ms": 0.11539199999788252,
+      "timestamp": "2026-08-12T20:21:44.523378+00:00"
+    },
+    {
+      "call_id": "be708d5c-87ed-41cb-a85a-3e81f7029fc3",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 1 items",
+      "output": [
+        {
+          "policy_name": "Service Level Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/service_level_standard.md",
+          "section": "Service Credits",
+          "excerpt": "## Service Credits\nThe contract must define service credits for missed availability, chronic-failure termination rights, and transparent incident reporting.",
+          "score": 8.7358,
+          "topic": "service_levels"
+        }
+      ],
+      "latency_ms": 0.1014580000173737,
+      "timestamp": "2026-08-12T20:21:44.523538+00:00"
+    },
+    {
+      "call_id": "83735479-d00e-47a5-8f3d-93064afef310",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 2 items",
+      "output": [
+        {
+          "policy_name": "Legal Contracting Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+          "section": "Termination",
+          "excerpt": "## Termination\nThe organization must have a termination-for-convenience right on no more than 30 days' notice. Automatic renewal periods should not exceed one year and must include a practical non-renewal window.",
+          "score": 6.6613,
+          "topic": "termination"
+        },
+        {
+          "policy_name": "Data Protection Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+          "section": "Subprocessors",
+          "excerpt": "## Subprocessors\nA vendor must provide advance notice of every subprocessor, obtain written consent where required, maintain an up-to-date subprocessor register, and flow down equivalent confidentiality, privacy, and security obligations. The organization must have an objection and termination right.",
+          "score": 1.8019,
+          "topic": "termination"
+        }
+      ],
+      "latency_ms": 0.11191899989171361,
+      "timestamp": "2026-08-12T20:21:44.523712+00:00"
+    },
+    {
+      "call_id": "6e93d2b0-9f35-4731-991d-b47c95ecbe30",
+      "tool_name": "search_policy_knowledge_base",
+      "status": "success",
+      "summary": "Returned 2 items",
+      "output": [
+        {
+          "policy_name": "Legal Contracting Standard",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/legal_contracting_standard.md",
+          "section": "Mandatory Records",
+          "excerpt": "## Mandatory Records\nMaterial exceptions, approvals, redlines, and final signed terms must be captured in an immutable audit record.",
+          "score": 4.0232,
+          "topic": "general"
+        },
+        {
+          "policy_name": "Data Protection Policy",
+          "policy_path": "/mnt/data/contractguard-ai/data/policies/data_protection_policy.md",
+          "section": "Data Subject and Deletion Duties",
+          "excerpt": "## Data Subject and Deletion Duties\nThe vendor must support access, correction, deletion, retention, and return requests. Data must be securely deleted or returned at contract termination and deletion must be certified.",
+          "score": 1.9763,
+          "topic": "general"
+        }
+      ],
+      "latency_ms": 0.1079449998542259,
+      "timestamp": "2026-08-12T20:21:44.523879+00:00"
+    },
+    {
+      "call_id": "d21b9bbf-7dac-4f0f-82ad-e242f2296aa7",
+      "tool_name": "calculate_contract_risk",
+      "status": "success",
+      "summary": "Returned object with keys: risk_score, risk_level, approval_required",
+      "output": {
+        "risk_score": 99,
+        "risk_level": "CRITICAL",
+        "approval_required": true
+      },
+      "latency_ms": 0.10982300000250689,
+      "timestamp": "2026-08-12T20:21:44.553138+00:00"
+    },
+    {
+      "call_id": "d075bb68-f6ad-4cca-8d7d-aec5f426c59f",
+      "tool_name": "store_report_artifact",
+      "status": "success",
+      "summary": "Returned object with keys: uri, metadata_uri, backend",
+      "output": {
+        "uri": "file:///mnt/data/contractguard-ai/evidence/artifacts/capstone-high-risk/compliance_report.md",
+        "metadata_uri": "file:///mnt/data/contractguard-ai/evidence/artifacts/capstone-high-risk/run_metadata.json",
+        "backend": "filesystem-fallback"
+      },
+      "latency_ms": 0.37220099989099253,
+      "timestamp": "2026-08-12T20:21:44.722282+00:00"
+    }
+  ],
+  "decision_trace": [
+    {
+      "pattern": "ReAct",
+      "thought": "The document must be converted into trusted text before clause-level analysis.",
+      "action": {
+        "tool": "read_contract",
+        "arguments": {
+          "contract_path": "/mnt/data/contractguard-ai/data/samples/vendor_contract_high_risk.txt",
+          "contract_text": null
+        },
+        "call_id": "406801ca-ac7a-4a9c-8115-7eb9ca2539bd"
+      },
+      "timestamp": "2026-08-12T20:21:44.509531+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned object with keys: source, text, characters",
+      "status": "success",
+      "call_id": "406801ca-ac7a-4a9c-8115-7eb9ca2539bd",
+      "timestamp": "2026-08-12T20:21:44.510140+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Structured clauses are required so specialist agents can search the right policy domains.",
+      "action": {
+        "tool": "extract_contract_clauses",
+        "arguments": {
+          "contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n"
+        },
+        "call_id": "676ed762-5bf6-4ab7-af17-a67b06692e46"
+      },
+      "timestamp": "2026-08-12T20:21:44.510182+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 9 items",
+      "status": "success",
+      "call_id": "676ed762-5bf6-4ab7-af17-a67b06692e46",
+      "timestamp": "2026-08-12T20:21:44.510408+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the data_protection contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "data residency Saudi Arabia subprocessors consent breach notification privacy",
+          "topic": "data_protection",
+          "top_k": 2,
+          "attempt": 0,
+          "simulate_primary_failure": true
+        },
+        "call_id": "3cf44338-792f-413f-bf4a-b96ea971cfe2"
+      },
+      "timestamp": "2026-08-12T20:21:44.512191+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence",
+      "status": "error",
+      "call_id": "3cf44338-792f-413f-bf4a-b96ea971cfe2",
+      "timestamp": "2026-08-12T20:21:44.512403+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the data_protection contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "data residency Saudi Arabia subprocessors consent breach notification privacy",
+          "topic": "data_protection",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": true
+        },
+        "call_id": "eeef5857-33bf-4d23-8bc2-f600aa2d9081"
+      },
+      "timestamp": "2026-08-12T20:21:44.513979+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 2 items",
+      "status": "success",
+      "call_id": "eeef5857-33bf-4d23-8bc2-f600aa2d9081",
+      "timestamp": "2026-08-12T20:21:44.514307+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the governing_law contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "governing law Kingdom of Saudi Arabia jurisdiction",
+          "topic": "governing_law",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "d79cc18f-3b02-4104-98b2-1891d5b9ffa4"
+      },
+      "timestamp": "2026-08-12T20:21:44.514341+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 2 items",
+      "status": "success",
+      "call_id": "d79cc18f-3b02-4104-98b2-1891d5b9ffa4",
+      "timestamp": "2026-08-12T20:21:44.514668+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the liability contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "liability cap indemnity damages twelve months fees",
+          "topic": "liability",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "62430736-4898-4e7d-aed2-ba87e9f8e903"
+      },
+      "timestamp": "2026-08-12T20:21:44.514702+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 1 items",
+      "status": "success",
+      "call_id": "62430736-4898-4e7d-aed2-ba87e9f8e903",
+      "timestamp": "2026-08-12T20:21:44.514916+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the payment contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "invoice payment terms net 30 procurement approval threshold SAR",
+          "topic": "payment",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "c5337102-0fe4-4ffd-8aeb-10e330795e6c"
+      },
+      "timestamp": "2026-08-12T20:21:44.514939+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 2 items",
+      "status": "success",
+      "call_id": "c5337102-0fe4-4ffd-8aeb-10e330795e6c",
+      "timestamp": "2026-08-12T20:21:44.515155+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the security contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "ISO 27001 encryption access control audit penetration testing security",
+          "topic": "security",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "5f79aaf3-58da-445d-8a1c-84bfdf2a8872"
+      },
+      "timestamp": "2026-08-12T20:21:44.515174+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 2 items",
+      "status": "success",
+      "call_id": "5f79aaf3-58da-445d-8a1c-84bfdf2a8872",
+      "timestamp": "2026-08-12T20:21:44.515345+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the service_levels contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "service levels uptime SLA availability credits",
+          "topic": "service_levels",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "de077072-b220-4107-81c8-c1bcdae7d4b5"
+      },
+      "timestamp": "2026-08-12T20:21:44.515360+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 1 items",
+      "status": "success",
+      "call_id": "de077072-b220-4107-81c8-c1bcdae7d4b5",
+      "timestamp": "2026-08-12T20:21:44.515525+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the termination contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "termination for convenience notice automatic renewal",
+          "topic": "termination",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "2b5f34db-7623-4514-bc86-be2af71f76be"
+      },
+      "timestamp": "2026-08-12T20:21:44.515563+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 2 items",
+      "status": "success",
+      "call_id": "2b5f34db-7623-4514-bc86-be2af71f76be",
+      "timestamp": "2026-08-12T20:21:44.515723+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the data_protection contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "data residency Saudi Arabia subprocessors consent breach notification privacy",
+          "topic": "data_protection",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": true
+        },
+        "call_id": "d077bf30-fa8e-4437-9631-3cbc60525853"
+      },
+      "timestamp": "2026-08-12T20:21:44.522305+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 2 items",
+      "status": "success",
+      "call_id": "d077bf30-fa8e-4437-9631-3cbc60525853",
+      "timestamp": "2026-08-12T20:21:44.522609+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the governing_law contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "governing law Kingdom of Saudi Arabia jurisdiction",
+          "topic": "governing_law",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "9dacecc8-a0a9-4f8c-b382-8ad90f6b1871"
+      },
+      "timestamp": "2026-08-12T20:21:44.522639+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 2 items",
+      "status": "success",
+      "call_id": "9dacecc8-a0a9-4f8c-b382-8ad90f6b1871",
+      "timestamp": "2026-08-12T20:21:44.522837+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the liability contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "liability cap indemnity damages twelve months fees",
+          "topic": "liability",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "4712c2e3-792f-43f5-ae01-bf322d6cda11"
+      },
+      "timestamp": "2026-08-12T20:21:44.522859+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 1 items",
+      "status": "success",
+      "call_id": "4712c2e3-792f-43f5-ae01-bf322d6cda11",
+      "timestamp": "2026-08-12T20:21:44.523023+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the payment contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "invoice payment terms net 30 procurement approval threshold SAR",
+          "topic": "payment",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "1991263f-b18a-4447-8bf6-c1e478ba3170"
+      },
+      "timestamp": "2026-08-12T20:21:44.523041+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 2 items",
+      "status": "success",
+      "call_id": "1991263f-b18a-4447-8bf6-c1e478ba3170",
+      "timestamp": "2026-08-12T20:21:44.523192+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the security contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "ISO 27001 encryption access control audit penetration testing security",
+          "topic": "security",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "97b00861-fec2-4abb-ab54-f599bfcef82a"
+      },
+      "timestamp": "2026-08-12T20:21:44.523210+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 2 items",
+      "status": "success",
+      "call_id": "97b00861-fec2-4abb-ab54-f599bfcef82a",
+      "timestamp": "2026-08-12T20:21:44.523378+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the service_levels contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "service levels uptime SLA availability credits",
+          "topic": "service_levels",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "be708d5c-87ed-41cb-a85a-3e81f7029fc3"
+      },
+      "timestamp": "2026-08-12T20:21:44.523398+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 1 items",
+      "status": "success",
+      "call_id": "be708d5c-87ed-41cb-a85a-3e81f7029fc3",
+      "timestamp": "2026-08-12T20:21:44.523538+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the termination contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "termination for convenience notice automatic renewal",
+          "topic": "termination",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "83735479-d00e-47a5-8f3d-93064afef310"
+      },
+      "timestamp": "2026-08-12T20:21:44.523554+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 2 items",
+      "status": "success",
+      "call_id": "83735479-d00e-47a5-8f3d-93064afef310",
+      "timestamp": "2026-08-12T20:21:44.523712+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Need authoritative policy evidence for the general contract clauses.",
+      "action": {
+        "tool": "search_policy_knowledge_base",
+        "arguments": {
+          "query": "mandatory vendor contract compliance clauses and exceptions",
+          "topic": "general",
+          "top_k": 2,
+          "attempt": 1,
+          "simulate_primary_failure": false
+        },
+        "call_id": "6e93d2b0-9f35-4731-991d-b47c95ecbe30"
+      },
+      "timestamp": "2026-08-12T20:21:44.523733+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned 2 items",
+      "status": "success",
+      "call_id": "6e93d2b0-9f35-4731-991d-b47c95ecbe30",
+      "timestamp": "2026-08-12T20:21:44.523879+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "Risk and value thresholds determine whether autonomous execution must stop for human approval.",
+      "action": {
+        "tool": "calculate_contract_risk",
+        "arguments": {
+          "findings": [
+            {
+              "finding_id": "F-01",
+              "topic": "data_protection",
+              "title": "Unrestricted cross-border data transfer",
+              "severity": "high",
+              "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+              "policy_reference": "Data Protection Policy — Saudi Data Residency",
+              "recommendation": "Require Saudi data residency or a documented transfer mechanism and prior written approval.",
+              "confidence": 0.92
+            },
+            {
+              "finding_id": "F-02",
+              "topic": "data_protection",
+              "title": "Subprocessor changes lack customer consent",
+              "severity": "high",
+              "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+              "policy_reference": "Data Protection Policy — Saudi Data Residency",
+              "recommendation": "Add prior notification, objection rights, and flow-down security obligations for subprocessors.",
+              "confidence": 0.92
+            },
+            {
+              "finding_id": "F-03",
+              "topic": "data_protection",
+              "title": "Breach notification is missing or slower than policy",
+              "severity": "high",
+              "contract_excerpt": "the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…",
+              "policy_reference": "Data Protection Policy — Saudi Data Residency",
+              "recommendation": "Require notification within 24 hours of suspected or confirmed breach discovery.",
+              "confidence": 0.88
+            },
+            {
+              "finding_id": "F-04",
+              "topic": "payment",
+              "title": "Accelerated payment terms",
+              "severity": "medium",
+              "contract_excerpt": "vendor cloud services agreement vendor: falcon cloud international llc contract value: sar 750,000 customer contact: nora.alqahtani@example.com, +966501234567, national id 1023456789 invoices are payable within 15 days of issue, whether or not the relevant deliverables have been…",
+              "policy_reference": "Procurement Policy — Payment Terms",
+              "recommendation": "Change payment terms to Net 30 or longer and condition payment on accepted deliverables.",
+              "confidence": 0.92
+            },
+            {
+              "finding_id": "F-05",
+              "topic": "liability",
+              "title": "Liability cap is below corporate minimum",
+              "severity": "high",
+              "contract_excerpt": "the vendor's aggregate liability is capped at fees paid in the preceding one month. the cap applies to privacy, confidentiality, and security incidents.",
+              "policy_reference": "Legal Contracting Standard — Liability and Indemnity",
+              "recommendation": "Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.",
+              "confidence": 0.92
+            },
+            {
+              "finding_id": "F-06",
+              "topic": "termination",
+              "title": "Termination and renewal terms are restrictive",
+              "severity": "medium",
+              "contract_excerpt": "the agreement renews automatically for three years. the customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.",
+              "policy_reference": "Legal Contracting Standard — Termination",
+              "recommendation": "Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.",
+              "confidence": 0.9
+            },
+            {
+              "finding_id": "F-07",
+              "topic": "payment",
+              "title": "High-value procurement requires human approval",
+              "severity": "high",
+              "contract_excerpt": "Contract Value: SAR 750,000.00",
+              "policy_reference": "Procurement Policy — Payment Terms",
+              "recommendation": "Route the contract to Procurement and Legal for explicit approval before signature.",
+              "confidence": 1.0
+            }
+          ],
+          "contract_value_sar": 750000.0,
+          "approval_risk_threshold": 50,
+          "approval_value_threshold_sar": 500000.0
+        },
+        "call_id": "d21b9bbf-7dac-4f0f-82ad-e242f2296aa7"
+      },
+      "timestamp": "2026-08-12T20:21:44.552904+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned object with keys: risk_score, risk_level, approval_required",
+      "status": "success",
+      "call_id": "d21b9bbf-7dac-4f0f-82ad-e242f2296aa7",
+      "timestamp": "2026-08-12T20:21:44.553138+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "thought": "The validated result and audit metadata must be stored as a production artifact.",
+      "action": {
+        "tool": "store_report_artifact",
+        "arguments": {
+          "thread_id": "capstone-high-risk",
+          "markdown": "# ContractGuard AI Compliance Report\n\n**Report ID:** CGA-capstone-high-risk  \n**Thread ID:** capstone-high-risk  \n**Generated:** 2026-08-12T20:21:44.713989+00:00  \n**Vendor:** Falcon Cloud International LLC  \n**Contract value:** SAR 750,000.00  \n**Risk:** CRITICAL (99/100)  \n**Approval:** approved  \n\n## Executive Summary\n\nThe multi-agent audit identified 7 compliance finding(s) and assigned a CRITICAL risk rating of 99/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.\n\n## Compliance Findings\n\n| ID | Severity | Topic | Finding | Policy reference |\n|---|---|---|---|---|\n| F-01 | HIGH | data protection | Unrestricted cross-border data transfer | Data Protection Policy — Saudi Data Residency |\n| F-02 | HIGH | data protection | Subprocessor changes lack customer consent | Data Protection Policy — Saudi Data Residency |\n| F-03 | HIGH | data protection | Breach notification is missing or slower than policy | Data Protection Policy — Saudi Data Residency |\n| F-04 | MEDIUM | payment | Accelerated payment terms | Procurement Policy — Payment Terms |\n| F-05 | HIGH | liability | Liability cap is below corporate minimum | Legal Contracting Standard — Liability and Indemnity |\n| F-06 | MEDIUM | termination | Termination and renewal terms are restrictive | Legal Contracting Standard — Termination |\n| F-07 | HIGH | payment | High-value procurement requires human approval | Procurement Policy — Payment Terms |\n\n## Recommendations\n\n1. Require Saudi data residency or a documented transfer mechanism and prior written approval.\n2. Add prior notification, objection rights, and flow-down security obligations for subprocessors.\n3. Require notification within 24 hours of suspected or confirmed breach discovery.\n4. Change payment terms to Net 30 or longer and condition payment on accepted deliverables.\n5. Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.\n6. Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.\n7. Route the contract to Procurement and Legal for explicit approval before signature.\n\n## Human Approval Record\n\nApproved conditionally after Legal confirmed remediation of all high-severity findings.\n\n## Evidence and Data Protection\n\n- Policy evidence records: 14\n- PII items masked: 3\n\n## Agent Handoff Trace\n\n- Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.\n- Document Analyst Agent → Policy Research Agent: Extracted 9 clauses and contract metadata.\n- Policy Research Agent → Coordinator Agent: Policy tool failed; requesting graph retry.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 50%; re-planning targeted research.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 14 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.\n- Security Reviewer Agent → Coordinator Agent: Risk classified as CRITICAL (99/100). Human approval required.\n- Report Writer Agent → Output Guardian Agent: Report draft revision 0 is ready for validation.\n- Output Guardian Agent → Report Writer Agent: Output schema validation failed: [{'type': 'missing', 'loc': ('recommendations',), 'msg': 'Field required', 'input': {'report_id': 'CGA-capstone-high-risk', 'thread_id': 'capstone-high-risk', 'generated_at': '2026-08-12T20:21:44.705650+00:00', 'vendor_name': 'Falcon Cloud International LLC', 'contract_value_sar': 750000.0, 'executive_summary': 'The multi-agent audit identified 7 compliance finding(s) and assigned a CRITICAL risk rating of 99/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.', 'risk_score': 99, 'risk_level': 'CRITICAL', 'findings': [{'finding_id': 'F-01', 'topic': 'data_protection', 'title': 'Unrestricted cross-border data transfer', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Require Saudi data residency or a documented transfer mechanism and prior written approval.', 'confidence': 0.92}, {'finding_id': 'F-02', 'topic': 'data_protection', 'title': 'Subprocessor changes lack customer consent', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Add prior notification, objection rights, and flow-down security obligations for subprocessors.', 'confidence': 0.92}, {'finding_id': 'F-03', 'topic': 'data_protection', 'title': 'Breach notification is missing or slower than policy', 'severity': 'high', 'contract_excerpt': 'the vendor may store and process all customer data outside the kingdom of saudi arabia in any jurisdiction and in global locations selected at its discretion. the vendor may appoint or replace any subprocessor without notice and without customer consent. personal data may includ…', 'policy_reference': 'Data Protection Policy — Saudi Data Residency', 'recommendation': 'Require notification within 24 hours of suspected or confirmed breach discovery.', 'confidence': 0.88}, {'finding_id': 'F-04', 'topic': 'payment', 'title': 'Accelerated payment terms', 'severity': 'medium', 'contract_excerpt': 'vendor cloud services agreement vendor: falcon cloud international llc contract value: sar 750,000 customer contact: [REDACTED_EMAIL], [REDACTED_PHONE], national id [REDACTED_NATIONAL_ID] invoices are payable within 15 days of issue, whether or not the relevant deliverables have been…', 'policy_reference': 'Procurement Policy — Payment Terms', 'recommendation': 'Change payment terms to Net 30 or longer and condition payment on accepted deliverables.', 'confidence': 0.92}, {'finding_id': 'F-05', 'topic': 'liability', 'title': 'Liability cap is below corporate minimum', 'severity': 'high', 'contract_excerpt': \"the vendor's aggregate liability is capped at fees paid in the preceding one month. the cap applies to privacy, confidentiality, and security incidents.\", 'policy_reference': 'Legal Contracting Standard — Liability and Indemnity', 'recommendation': 'Increase the vendor liability cap to at least twelve months of fees, with carve-outs for privacy and security.', 'confidence': 0.92}, {'finding_id': 'F-06', 'topic': 'termination', 'title': 'Termination and renewal terms are restrictive', 'severity': 'medium', 'contract_excerpt': 'the agreement renews automatically for three years. the customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.', 'policy_reference': 'Legal Contracting Standard — Termination', 'recommendation': \"Add termination for convenience on 30 days' notice and limit automatic renewal to one-year periods.\", 'confidence': 0.9}, {'finding_id': 'F-07', 'topic': 'payment', 'title': 'High-value procurement requires human approval', 'severity': 'high', 'contract_excerpt': 'Contract Value: SAR 750,000.00', 'policy_reference': 'Procurement Policy — Payment Terms', 'recommendation': 'Route the contract to Procurement and Legal for explicit approval before signature.', 'confidence': 1.0}], 'approval_status': 'approved', 'approval_comment': 'Approved conditionally after Legal confirmed remediation of all high-severity findings.', 'evidence_count': 14, 'pii_redactions': 0, 'agent_trace_summary': ['Input Security Agent → Coordinator Agent: Input guardrail passed; execution may proceed.', 'Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.', 'Document Analyst Agent → Policy Research Agent: Extracted 9 clauses and contract metadata.', 'Policy Research Agent → Coordinator Agent: Policy tool failed; requesting graph retry.', 'Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.', 'Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.', 'Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 50%; re-planning targeted research.', 'Policy Research Agent → Compliance Analyst Agent: Retrieved 14 policy evidence records.', 'Compliance Analyst Agent → Quality Reviewer Agent: Generated 7 compliance findings from contract clauses and policy evidence.', 'Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.', 'Security Reviewer Agent → Coordinator Agent: Risk classified as CRITICAL (99/100). Human approval required.']}}]\n",
+          "metadata": {
+            "thread_id": "capstone-high-risk",
+            "status": "persisting",
+            "risk_score": 99,
+            "risk_level": "CRITICAL",
+            "quality_score": 1.0,
+            "node_history": [
+              "received",
+              "guardrailed",
+              "planned",
+              "ingested",
+              "researching",
+              "researching",
+              "analyzed",
+              "quality_reviewed",
+              "researching",
+              "analyzed",
+              "quality_reviewed",
+              "security_reviewed",
+              "awaiting_approval",
+              "reporting",
+              "output_validated",
+              "reporting",
+              "output_validated",
+              "persisting",
+              "completed"
+            ],
+            "tool_calls": 19,
+            "policy_retries": 1,
+            "report_revisions": 1,
+            "pii_redactions": 3
+          }
+        },
+        "call_id": "d075bb68-f6ad-4cca-8d7d-aec5f426c59f"
+      },
+      "timestamp": "2026-08-12T20:21:44.721684+00:00"
+    },
+    {
+      "pattern": "ReAct",
+      "observation": "Returned object with keys: uri, metadata_uri, backend",
+      "status": "success",
+      "call_id": "d075bb68-f6ad-4cca-8d7d-aec5f426c59f",
+      "timestamp": "2026-08-12T20:21:44.722282+00:00"
+    }
+  ],
+  "node_history": [
+    "received",
+    "guardrailed",
+    "planned",
+    "ingested",
+    "researching",
+    "researching",
+    "analyzed",
+    "quality_reviewed",
+    "researching",
+    "analyzed",
+    "quality_reviewed",
+    "security_reviewed",
+    "awaiting_approval",
+    "reporting",
+    "output_validated",
+    "reporting",
+    "output_validated",
+    "persisting",
+    "completed"
+  ],
+  "created_at": "2026-08-12T20:21:44.494970+00:00",
+  "updated_at": "2026-08-12T20:21:44.725902+00:00",
+  "flags": {
+    "simulate_primary_failure": true,
+    "simulate_quality_retry": true,
+    "simulate_output_validation_failure": true
+  },
+  "max_policy_retries": 2,
+  "max_quality_retries": 1,
+  "max_report_revisions": 2,
+  "workflow_node": "completed",
+  "node_error": "",
+  "additional_policy_queries": []
+}
