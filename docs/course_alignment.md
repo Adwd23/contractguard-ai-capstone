@@ -20,13 +20,13 @@ The capstone combines all four named patterns instead of stopping at one sequent
 
 Applied concepts:
 
-- a real finite-state orchestration framework;
-- executable nodes and framework-managed edges;
+- a real LangGraph `StateGraph`;
+- executable nodes and `add_edge` / `add_conditional_edges` routing;
 - conditional routing;
 - cycles with bounded termination conditions;
 - shared state read and updated by nodes;
 - retry/fallback behavior;
-- durable checkpointing and human interruption.
+- durable `SqliteSaver` checkpointing plus `interrupt()` / `Command(resume=...)`.
 
 The autonomous-research lab's research/evaluation cycle is generalized into three loops
 and durable restart recovery.

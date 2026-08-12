@@ -1,53 +1,24 @@
-# Submission Checklist
+# Submission Checklist — v1.3 Trainer-Fix Edition
 
-## Repository
-
-- [x] Clear project description on the landing page
-- [x] Professional English README and English-only documentation
-- [x] Architecture and GitHub-renderable Mermaid graph using nodes, edges, state, agents, and tools
-- [x] Setup, prerequisites, environment variables, execution, and expected outputs
-- [x] `.gitignore` excludes secrets, keys, caches, and mutable checkpoint databases
-- [x] Meaningful incremental Git history rather than one bulk upload
-- [x] Training program and June 2026 session attribution
-- [x] SDAIA Academy GitHub link
-- [x] GitHub Actions for tests/evidence plus Docker-to-MinIO smoke validation
-- [x] Automated pre-publication checker
-- [x] Git author, repository owner, and project implementer set to `Adwd23`
-- [ ] Create the `Adwd23`-owned empty GitHub repository and push `main`
-
-## Rubric execution evidence
-
-- [x] Real schema-validated function calls with ReAct records
-- [x] Offline MCP-style schema router plus optional provider-native function calling adapters
-- [x] Plan-and-Execute and short-term shared state
-- [x] Real state-machine framework with nodes, edges, conditions, and bounded cycles
-- [x] Ten distinct agents, typed messages, and explicit centralized coordination
-- [x] Runtime per-agent tool permissions
-- [x] Prompt-injection attack blocked with zero tools
-- [x] Strict function schemas, path boundary, safe thread IDs, and API-key option
-- [x] Pre-model context minimization and PII masking
-- [x] Output secret/schema guardrail and PII masking
-- [x] JSONL logs and Prometheus metrics
-- [x] Tool failure/retry and Reflexion/re-search loops executed
-- [x] Persistent SQLite checkpoint survives restart
-- [x] Human approval interrupt pauses and resumes
-- [x] FastAPI, hardened Docker/Compose, MinIO, and Prometheus artifacts
-- [x] Executed notebook, tests, reports, logs, metrics, and JSON snapshots
-
-## Final pre-push commands
-
-```bash
-python scripts/prepublish_check.py
-git status
-git log --oneline --decorate
-git remote add origin https://github.com/Adwd23/contractguard-ai-capstone.git
-git push -u origin main
-```
-
-After the push, confirm that:
-
-1. `README.md` renders on the repository landing page.
-2. `notebooks/ContractGuard_Capstone_Executed.ipynb` displays saved outputs.
-3. Both GitHub Actions jobs pass.
-4. The Actions artifacts include the evidence bundle and MinIO smoke result.
-5. No `.env`, API key, mutable SQLite database, or real contract data is tracked.
+- [ ] Repository is owned by **Adwd23**.
+- [ ] Repository name is `contractguard-ai-capstone`.
+- [ ] Repository About description is populated with the text in `docs/github_publication.md`.
+- [ ] README is visible from the repository landing page.
+- [ ] Project content is English only.
+- [ ] `StateGraph(AuditState)` is present in executable workflow code.
+- [ ] At least five `add_conditional_edges(...)` calls are visible in `workflow.py`.
+- [ ] A bounded graph cycle is present and demonstrated.
+- [ ] `InputGuardrail.enforce()` blocks the real attack before any tool call.
+- [ ] `OutputGuardrail.enforce()` masks PII and validates the report.
+- [ ] Independent specialist agent classes are visible under `src/contractguard/agents/`.
+- [ ] `interrupt(...)` and `Command(resume=...)` are both present and demonstrated.
+- [ ] SQLite checkpoint survives a service restart.
+- [ ] `uvicorn` is imported and used by the API launcher.
+- [ ] `ipykernel` is imported and used by the notebook evidence builder.
+- [ ] Dockerfile and Compose files are present.
+- [ ] MinIO smoke job is green.
+- [ ] Executed notebook is regenerated from v1.3 code.
+- [ ] `evidence/prepublish_report.json` reports `ready_to_publish: true`.
+- [ ] No `.env`, API key, runtime checkpoint DB, or generated cache is committed.
+- [ ] Incremental commit history is present.
+- [ ] Both GitHub Actions jobs are green before resubmission.

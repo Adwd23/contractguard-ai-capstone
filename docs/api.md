@@ -3,7 +3,7 @@
 Run locally:
 
 ```bash
-uvicorn contractguard.api:app --host 0.0.0.0 --port 8000
+python -m contractguard.server
 ```
 
 Open `/docs` for the generated OpenAPI interface.

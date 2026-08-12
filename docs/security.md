@@ -1,66 +1,38 @@
-# Security Model and Penetration Evidence
+# Security Design
 
-## Threat model
+## Input enforcement
 
-ContractGuard processes untrusted user instructions and contract documents. Threats
-include direct or indirect prompt injection, sensitive-data leakage, secret leakage,
-unauthorized tools, model-generated argument injection, path traversal, oversized input,
-unbounded loops, and unauthorized continuation of high-risk work.
+The first graph node is backed by `InputGuardrail.enforce()`. It examines the user request and untrusted contract content before any tool-capable specialist can execute. If a prompt-injection, instruction-override, destructive-command, or jailbreak pattern is detected, it raises `GuardrailViolation`, records a structured security event, and the graph routes directly to `blocked`.
 
-## Enforced controls
+The required attack demonstration uses an uploaded contract containing an indirect prompt injection. The resulting evidence must show:
 
-- Prompt-injection patterns are enforced before the function registry is reachable.
-- Uploaded TXT/Markdown/PDF content is previewed as untrusted input for the guardrail.
-- Contract paths are checked at both the service and tool layers against
-  `CONTRACT_ALLOWED_ROOTS`; the default local root is `data/`.
-- Request text, inline contracts, file paths, files, thread IDs, approval comments, and
-  function arguments have explicit bounds.
-- Thread IDs accept only safe characters, preventing artifact-directory traversal.
-- Tool names are registered and each specialist has a separate runtime allow-list.
-- Pydantic tool schemas use `extra="forbid"`, rejecting undeclared model-generated fields.
-- Retry counters and a global graph-step ceiling prevent unbounded execution.
-- Before optional external summary generation, raw contract excerpts are removed and PII
-  is masked from the minimal context.
-- Final output is recursively PII-masked, checked for secret-like patterns, and validated
-  against a strict report schema.
-- High-risk/value work pauses and can resume only with an explicit approve/reject decision
-  and approver identity.
-- Setting `CONTRACTGUARD_API_KEY` protects all `/audits` endpoints with `X-API-Key`.
-- API keys are environment variables or an untracked `.env`; `.gitignore` excludes them.
-- JSONL audit events, Prometheus metrics, and checkpoint history support investigation.
-- The Docker API runs non-root with a read-only root filesystem, all Linux capabilities
-  dropped, and `no-new-privileges` enabled.
+```text
+status = blocked
+guardrail_enforced = true
+tool_calls = []
+node_history = received -> input_guardrail -> blocked
+```
 
-## Demonstrated attack
+## Output and privacy enforcement
 
-`data/samples/prompt_injection_contract.txt` contains an instruction to ignore previous
-instructions, reveal the system prompt, and override policy. The executed demonstration
-produces `evidence/01_prompt_injection_blocked.json` with:
+`OutputGuardrail.enforce()` runs before artifact persistence. It masks email addresses, phone numbers, Saudi national IDs, Saudi IBANs, and payment-card-like values; blocks secret-like material; and validates the report against the strict `AuditReport` Pydantic schema. Invalid output is routed back to `report_writer` within a bounded revision budget.
 
-- terminal status `blocked`;
-- matched threat patterns and a block reason;
-- zero tool calls;
-- graph path `received -> guardrailed -> blocked`.
+## Tool isolation
 
-## Demonstrated data protection
+Every specialist has an explicit tool allow-list. A call outside the role's permissions raises `AgentToolPermissionError`. Tool arguments are validated against strict Pydantic input schemas before execution.
 
-The synthetic high-risk contract contains an email address, Saudi phone number, and Saudi
-national ID. They may exist in the internal educational checkpoint state, but they are
-recursively masked before report validation and storage. The demonstration asserts at
-least three redactions and verifies that raw values are absent from final Markdown.
+## Filesystem and API boundaries
 
-A separate regression test proves that optional external summary generation receives no
-`contract_excerpt` field and receives `[REDACTED_EMAIL]` rather than the raw address.
+- Contract files must resolve under `CONTRACT_ALLOWED_ROOTS`.
+- Thread identifiers use a restricted safe format.
+- `/audits` routes support optional `X-API-Key` authentication.
+- `.env` and runtime secret files are ignored by Git.
+- Raw contract excerpts are excluded from optional external model summary calls; only minimized, redacted context is sent.
 
-## Additional negative tests
+## Checkpoint integrity
 
-The automated suite also proves:
+The graph uses the LangGraph SQLite checkpointer with strict MessagePack deserialization enabled through `LANGGRAPH_STRICT_MSGPACK=true`. The checkpoint database is treated as integrity-sensitive runtime data and is not committed.
 
-- a specialist cannot call a function outside its allow-list;
-- `/etc/hosts` cannot be read as a contract;
-- unknown function arguments fail strict schema validation;
-- `../escape` is rejected as a thread identifier;
-- API-key-protected audit endpoints reject missing credentials;
-- benign discussion of prompt-injection defenses is not falsely blocked.
+## Observability
 
-The sample contracts and identities are fictional training data, not production records.
+Security and failure events are structured JSONL records, including guardrail blocks, denied tool permissions, failed tools, retries, human interrupts, and terminal outcomes. Prometheus counters/histograms capture tool, node, LLM, guardrail, retry, and latency signals.

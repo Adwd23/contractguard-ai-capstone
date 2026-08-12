@@ -12,7 +12,7 @@ minimal sanitized proof of concept.
 
 ## Supported version
 
-The maintained capstone version is `1.2.x` on the `main` branch.
+The maintained capstone version is `1.3.x` on the `main` branch.
 
 ## Secret policy
 

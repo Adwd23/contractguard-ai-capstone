@@ -1,315 +1,315 @@
 # ContractGuard AI
 
-**Secure, observable, resumable multi-agent vendor-contract audit platform**
+**v1.3 Trainer-Fix Edition** — a secure, observable, resumable multi-agent system for vendor-contract auditing and compliance review.
 
-**Repository owner and project implementer:** [Adwd23](https://github.com/Adwd23)
+**Repository owner / project implementer:** Adwd23
+**Training program:** SDAIA Academy — *Advanced Agentic AI Systems Engineering*
+**Cohort/session:** June 2026
+**SDAIA Academy GitHub:** https://github.com/SDAIAAcademy
 
-ContractGuard AI audits vendor contracts against corporate policies. It reads PDF, TXT,
-or Markdown contracts; extracts and classifies clauses; retrieves policy evidence;
-produces clause-level findings; calculates risk; pauses high-risk decisions for human
-approval; resumes from a durable checkpoint after restart; validates and redacts the
-output; and stores the final report in MinIO/S3 or a filesystem fallback.
+> GitHub About description to use: **Secure LangGraph multi-agent system for vendor contract auditing, compliance analysis, guardrails, human approval, and production monitoring.**
 
-This repository was completed for the **SDAIA Academy — Advanced Agentic AI Systems
-Engineering** five-day capstone, **June 2026 session (30 training hours)**. Program
-reference: [SDAIA Academy on GitHub](https://github.com/SDAIAAcademy).
+## What the system does
 
-## Why this is an agentic system
+ContractGuard AI receives a vendor contract, blocks prompt-injection attempts before any tool can run, extracts clauses, retrieves internal policy evidence, evaluates compliance, scores risk, pauses for a human decision when the contract is high risk, validates and redacts the final report, and stores the approved artifact. The workflow is implemented as a genuine `langgraph.graph.StateGraph` with durable SQLite checkpoints.
 
-The implementation combines four named course patterns:
+The project intentionally demonstrates both the happy path and the failure/security paths required by the capstone rubric: a blocked indirect prompt injection, a real tool retry, a Reflexion re-search loop, a persistent Human-in-the-Loop interrupt that survives process restart, `Command(resume=...)`, output-schema regeneration, PII masking, structured logs, Prometheus metrics, Docker, MinIO/S3, FastAPI, and executed evidence.
 
-- **Plan-and-Execute:** the Coordinator creates a seven-step typed plan.
-- **ReAct:** tool decisions and observations are recorded as structured traces.
-- **Reflexion/self-critique:** the Quality Reviewer can route the graph back to research.
-- **Hierarchical delegation:** a central Coordinator delegates to independent specialists.
+## v1.3 trainer-feedback fixes
 
-Ten separately instantiated agents exchange typed messages through one serializable
-shared state. The workflow is controlled by the real `transitions.Machine` finite-state
-orchestration library—not a hand-written linear `if/else` chain. It contains 16 nodes,
-conditional branches, three bounded cycles, terminal outcomes, and a durable human pause.
-See the [renderable graph](docs/agent_graph.md) and
-[architecture document](docs/architecture.md).
+This edition was rebuilt so the requirements are visible in executable code rather than only in documentation.
 
-## Tool use and function calling
+| Trainer observation | v1.3 implementation | Primary proof |
+|---|---|---|
+| `uvicorn` and `ipykernel` were declared but not visibly used | `uvicorn` is imported and invoked in the API launcher; `ipykernel` is imported and printed by the notebook evidence builder | `src/contractguard/server.py`, `scripts/build_executed_notebook.py`, `tests/test_trainer_fixes.py` |
+| Guardrail wording looked like a comment/claim | `InputGuardrail.enforce()` raises `GuardrailViolation` and is called before any tool-capable node; `OutputGuardrail.enforce()` masks/validates before storage | `src/contractguard/guardrails.py`, `src/contractguard/agents/input_security.py`, `src/contractguard/agents/output_guardian.py` |
+| State graph appeared linear | The workflow contains five explicit `add_conditional_edges(...)` calls plus three bounded cycles | `src/contractguard/workflow.py`, `/graph`, `evidence/graph_spec.json` |
+| `interrupt()` appeared without a demonstrated resume | The approval node calls `interrupt(...)`; the external resume path calls `graph.invoke(Command(resume=...))`; the node returns `Command(goto=...)` | `src/contractguard/workflow.py`, restart/HITL evidence files |
+| Multiple roles looked like one agent role-playing personas | Each specialist is a separate Python class in its own module, with its own responsibility and tool allow-list | `src/contractguard/agents/` and structured `AgentMessage` records |
+| GitHub About description was empty | The exact description is documented in this README and `docs/github_publication.md` | GitHub repository About panel after publication |
+| Grader JSON confidence failure | All generated evidence JSON is parsed by the pre-publication gate and the CI workflow fails on invalid JSON | `scripts/prepublish_check.py` |
 
-Six real functions are exposed with names, descriptions, and Pydantic-generated JSON
-Schemas. Every invocation passes through schema validation, an agent-specific allow-list,
-structured logging, latency metrics, and a ReAct observation.
+See [`docs/trainer_feedback_fixes.md`](docs/trainer_feedback_fixes.md) for the evaluator-oriented checklist.
 
-Tool schemas reject undeclared fields. Thread IDs and file paths are bounded to prevent
-artifact/path traversal, and optional external summary generation receives no raw contract
-excerpts: the minimum context is selected and PII-masked before a provider call.
+## Architecture
 
-The default `LLM_PROVIDER=offline` mode uses a deterministic **schema-aware MCP-style tool
-router**, so the full evidence suite is reproducible without sending contract data to an
-external service. For a live model-native function-call demonstration, the same interface
-supports **Gemini**, **OpenRouter**, and **Groq** through environment variables. Application
-code keeps path, retry, simulation, approval, and persistence arguments locked even when a
-model may refine safe search arguments.
+### Real graph orchestration
 
-## Architecture at a glance
+The workflow is built with:
 
-```text
-Input Security -> Coordinator -> Document Analyst -> Policy Research
-        |                               ^                 |
-        +-> BLOCKED             Reflexion/re-search <--- Quality Reviewer
-                                                          |
-Compliance Analyst -> Security Reviewer -> [HITL approval] -> Report Writer
-                                                        ^          |
-                                                        +-- Output Guardian
-                                                                   |
-                                                            Artifact Storage
+```python
+from langgraph.graph import END, START, StateGraph
+from langgraph.types import Command, interrupt
+
+workflow = StateGraph(AuditState)
 ```
 
-### Specialist agents
+The graph contains 16 named nodes and explicit branches. Five calls to `add_conditional_edges(...)` implement:
 
-| Agent | Responsibility |
-|---|---|
-| Input Security | Blocks direct and indirect prompt injection before any function executes |
-| Coordinator | Creates the plan and coordinates specialist handoffs |
-| Document Analyst | Reads the contract and extracts structured clauses |
-| Policy Research | Selects and invokes policy-search functions through the schema router |
-| Compliance Analyst | Compares clauses with retrieved policy evidence |
-| Quality Reviewer | Scores coverage and performs Reflexion/re-search |
-| Security Reviewer | Calculates risk and decides whether approval is mandatory |
-| Report Writer | Produces the structured report and optional LLM summary |
-| Output Guardian | Enforces the strict schema, secret checks, and PII masking |
-| Artifact Storage | Persists the validated report and audit metadata |
+1. safe input vs. blocked input;
+2. policy-search success vs. bounded retry vs. terminal failure;
+3. quality pass vs. Reflexion/re-search;
+4. automatic continuation vs. human approval;
+5. valid output vs. bounded report revision vs. terminal failure.
 
-## Capstone feature map
-
-- **Agentic reasoning and tools:** real function registry, JSON Schema, ReAct traces,
-  Plan-and-Execute, short-term state, offline MCP routing, and optional live function calling.
-- **Graph orchestration:** 16 framework nodes, conditional edges, shared state, retries,
-  Reflexion, report revision, and bounded termination controls.
-- **Multi-agent specialization:** ten named roles with typed messages and centralized
-  coordination.
-- **Security and observability:** attack blocking, strict tool schemas, per-agent tool
-  permissions, safe thread IDs, contract-path allow-list, pre-model data minimization,
-  output validation, PII masking, JSONL logs, Prometheus metrics, and optional API-key
-  authentication.
-- **Production readiness:** SQLite WAL checkpoints, restart recovery, real HITL pause/resume,
-  FastAPI, non-root Docker image, hardened Compose service, MinIO, and Prometheus.
-- **Execution evidence:** tests, JSON snapshots, checkpoint histories, logs, metrics,
-  reports, graph specification, and an executed notebook.
-
-## Repository structure
+Three cycles are deliberate and bounded:
 
 ```text
-src/contractguard/       Agents, graph, reasoner, tools, guardrails, persistence, API
-src/contractguard/_vendor/transitions/
-                         Exact MIT-licensed offline fallback for transitions 0.9.3
-data/policies/           Educational corporate-policy knowledge base
-data/samples/            Safe, high-risk, and prompt-injection contract samples
-scripts/                 Evidence, live function-call, MinIO smoke, and publish gates
-tests/                   Security, graph, persistence, function-routing, and API tests
-notebooks/               Source and executed evaluator notebooks
-evidence/                Captured outputs, logs, metrics, reports, and test results
-docs/                    Graph, architecture, security, API, and rubric traceability
-deploy/                   Prometheus configuration
-SECURITY.md               Responsible disclosure and secret-handling policy
+policy_research -> policy_research      # failed tool retry
+quality_reviewer -> policy_research     # Reflexion / targeted re-search
+output_guardian -> report_writer        # schema/output revision
 ```
 
-## Local setup
+The shared state is `AuditState`, a typed object read and updated by graph nodes. The compiled graph receives the real LangGraph SQLite checkpointer:
 
-Prerequisites: Python 3.11+, Git, and optionally Docker Desktop.
+```python
+graph = workflow.compile(checkpointer=sqlite_persistence.saver)
+```
+
+### Human-in-the-Loop
+
+High-risk contracts route to `approval_gate -> human_approval`. The approval node pauses with:
+
+```python
+decision_payload = interrupt(state["interrupt_payload"])
+```
+
+A different service process can reopen the SQLite checkpoint database and resume the same thread with:
+
+```python
+graph.invoke(Command(resume={"decision": "approve", ...}), config=config)
+```
+
+The approval node then uses `Command(goto="report_writer")` or `Command(goto="rejected")`.
+
+### Multi-agent team
+
+ContractGuard AI uses centralized coordination with independent specialist classes:
+
+- **Input Security Agent** — enforces the prompt-injection boundary before tools.
+- **Coordinator Agent** — Plan-and-Execute decomposition and handoff tracking.
+- **Document Analyst Agent** — reads the contract and extracts clauses.
+- **Policy Research Agent** — retrieves policy evidence through schema-described functions.
+- **Compliance Analyst Agent** — compares clauses with policy evidence.
+- **Quality Reviewer Agent** — Reflexion/self-critique and re-search decisions.
+- **Security Reviewer Agent** — calculates risk and decides whether HITL is required.
+- **Report Writer Agent** — creates the structured compliance report.
+- **Output Guardian Agent** — validates schema and masks PII.
+- **Artifact Storage Agent** — persists the final report to filesystem or MinIO/S3.
+
+Each agent is instantiated separately. Agents communicate through structured `AgentMessage` objects stored in the shared state. Tool-capable agents have explicit least-privilege allow-lists.
+
+### Agentic reasoning and tools
+
+The system names and implements course patterns:
+
+- **Plan-and-Execute** — the Coordinator creates a staged plan and specialists execute it.
+- **ReAct** — each function call records a decision summary/action and the returned observation.
+- **Reflexion/self-critique** — the Quality Reviewer can send the graph back to policy research.
+- **Hierarchical Delegation** — a central coordinator delegates work to specialist agents.
+
+Six real local functions are registered with strict Pydantic-generated JSON schemas. The default reproducible mode uses an MCP-style JSON-schema router. Optional provider-native function calling is available for Gemini, OpenRouter, and Groq.
+
+## Security and guardrails
+
+### Enforced input guardrail
+
+`InputGuardrail.enforce()` inspects the user request and untrusted contract content before the document/tool nodes are reachable. A detected injection raises `GuardrailViolation`; the graph routes directly to `blocked`. The attack evidence asserts that the number of tool calls remains zero.
+
+### Enforced output/data protection
+
+`OutputGuardrail.enforce()` performs:
+
+- email, phone, Saudi national-ID, IBAN, and card masking;
+- secret-like pattern blocking;
+- strict `AuditReport` schema validation;
+- bounded report regeneration on schema failure.
+
+Additional controls include contract-path allow-listing, safe thread-ID validation, API-key authentication when configured, per-agent tool permissions, minimized model context, and structured security logs.
+
+## Observability
+
+The project records JSONL logs and Prometheus metrics instead of relying on print statements. Captured signals include:
+
+- node starts/completions/failures and latency;
+- tool calls, failures, and latency;
+- LLM provider/operation status, token estimates, and latency;
+- guardrail blocks;
+- graph retries/replans;
+- human interrupts;
+- terminal workflow outcomes.
+
+Prometheus configuration is in `deploy/prometheus.yml`; metrics are also exposed at `GET /metrics`.
+
+## Production story
+
+- **Persistence:** `langgraph.checkpoint.sqlite.SqliteSaver` survives service restart.
+- **HITL:** real `interrupt()` + `Command(resume=...)` workflow.
+- **API:** FastAPI service with optional `X-API-Key` protection.
+- **Runtime:** `python -m contractguard.server` imports and calls `uvicorn.run(...)`.
+- **Containerization:** `Dockerfile` and `docker-compose.yml`.
+- **Object storage:** MinIO/S3-backed artifact storage with a filesystem fallback for local deterministic evidence.
+- **Monitoring:** Prometheus-compatible metrics and JSONL logs.
+- **CI:** GitHub Actions installs the actual dependencies, runs tests and the complete evidence demonstration, executes the notebook, validates JSON, and runs a Docker/MinIO smoke test.
+
+## Repository layout
+
+```text
+contractguard-ai/
+├── src/contractguard/
+│   ├── agents/                  # independent specialist agent classes
+│   ├── api.py                   # FastAPI app and endpoints
+│   ├── server.py                # direct uvicorn launcher
+│   ├── state.py                 # shared AuditState
+│   ├── workflow.py              # StateGraph + add_conditional_edges + interrupt/Command
+│   ├── persistence.py           # LangGraph SqliteSaver
+│   ├── guardrails.py            # executable input/output guardrails
+│   ├── tools.py                 # strict schema-described function registry
+│   ├── llm.py                   # offline schema router + optional native function calling
+│   └── observability.py         # JSONL logs + Prometheus metrics
+├── data/
+│   ├── policies/
+│   └── samples/
+├── docs/
+├── evidence/                    # regenerated by the evidence runner/CI
+├── notebooks/
+├── scripts/
+├── tests/
+├── Dockerfile
+├── docker-compose.yml
+└── .github/workflows/ci.yml
+```
+
+## Quick start
+
+### 1. Prerequisites
+
+- Python 3.11 or newer
+- Git
+- Docker Desktop only if you want the MinIO/container demonstration
+
+### 2. Create an environment and install
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
+```
+
+macOS/Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+Windows PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Install the complete development environment:
+
+```bash
 python -m pip install --upgrade pip
 pip install -r requirements-dev.txt
 pip install -e .
+pip check
 ```
 
-Run all tests and reproduce the scored evidence:
+### 3. Configure environment variables
+
+```bash
+cp .env.example .env
+```
+
+The default `LLM_PROVIDER=offline` requires no API key and still executes real local functions through the schema-described tool registry. To demonstrate provider-native function calling, configure exactly one optional provider in the untracked `.env` file.
+
+Never commit `.env` or real API keys.
+
+### 4. Run tests
 
 ```bash
 pytest
+```
+
+### 5. Reproduce capstone evidence
+
+```bash
 python scripts/run_capstone_demo.py
 python scripts/build_executed_notebook.py
 python scripts/prepublish_check.py --skip-runtime
 ```
 
-The demo deliberately proves the non-happy paths:
+The demo fails immediately if a required security, retry, persistence, HITL, redaction, or graph assertion does not hold.
 
-1. an uploaded indirect prompt injection is blocked before any tool runs;
-2. a low-risk contract completes autonomously;
-3. a simulated policy-index timeout fires the retry edge;
-4. a quality failure fires the Reflexion/re-search edge;
-5. a high-risk contract pauses at the human-approval node;
-6. the service is closed and recreated from SQLite;
-7. human approval resumes the same thread;
-8. an intentionally malformed first report fires the schema-revision loop;
-9. email, phone, and Saudi national ID values are masked before storage.
-
-Open `notebooks/ContractGuard_Capstone_Executed.ipynb` for captured output and
-`evidence/run_summary.json` for evaluator-friendly proof flags.
-
-## Optional live LLM function calling
-
-Copy the environment template and enable one provider. Never commit the real key.
+### 6. Run the API
 
 ```bash
-cp .env.example .env
+python -m contractguard.server
 ```
 
-Local commands automatically load the untracked `.env`; explicit shell/container
-environment variables take precedence.
+Default address:
 
-Gemini example:
-
-```dotenv
-LLM_PROVIDER=gemini
-GEMINI_API_KEY=replace_me
-GEMINI_MODEL=gemini-2.5-flash
+```text
+http://127.0.0.1:8000
 ```
 
-OpenRouter example:
+Useful endpoints:
 
-```dotenv
-LLM_PROVIDER=openrouter
-OPENROUTER_API_KEY=replace_me
-OPENROUTER_MODEL=google/gemini-2.5-flash
+```text
+GET  /health
+GET  /graph
+POST /audits
+GET  /audits/{thread_id}
+GET  /audits/{thread_id}/history
+POST /audits/{thread_id}/resume
+GET  /metrics
 ```
 
-Groq example:
+If `CONTRACTGUARD_API_KEY` is set, all `/audits` routes require an `X-API-Key` header.
 
-```dotenv
-LLM_PROVIDER=groq
-GROQ_API_KEY=replace_me
-GROQ_MODEL=openai/gpt-oss-20b
-```
-
-Run the native-call proof after exporting the selected provider variables or loading them
-from the ignored `.env` file:
+## Docker + MinIO
 
 ```bash
-python scripts/run_live_function_call_demo.py
+docker compose up --build -d
+python scripts/docker_minio_smoke.py
+docker compose down -v
 ```
 
-The script writes `evidence/06_live_llm_function_call.json` only when a real model-native
-function call occurs. Live calls log provider, model, operation, success/failure, latency,
-and token usage without logging the API key. Raw contract excerpts are never sent by the
-summary adapter, and its minimal context is PII-masked first. Offline evidence remains the
-grading-safe default because it requires no secret and makes no external model request.
-
-## CLI examples
-
-Start a low-risk audit:
-
-```bash
-contractguard start \
-  --thread-id demo-low \
-  --request "Audit this contract against all corporate policies" \
-  --contract data/samples/vendor_contract_low_risk.txt
-```
-
-Start the high-risk retry/HITL scenario:
-
-```bash
-contractguard start \
-  --thread-id demo-high \
-  --request "Audit and enforce approval policy" \
-  --contract data/samples/vendor_contract_high_risk.txt \
-  --simulate-primary-failure \
-  --simulate-quality-retry \
-  --simulate-output-validation-failure
-```
-
-Resume the durable human interrupt:
-
-```bash
-contractguard resume demo-high approve \
-  --approver "legal.manager" \
-  --comment "Approved subject to redline remediation."
-```
-
-## FastAPI
-
-```bash
-uvicorn contractguard.api:app --reload
-```
-
-Use `/docs` for OpenAPI. Endpoints include health, graph, start, status, checkpoint history,
-resume, and Prometheus metrics. When `CONTRACTGUARD_API_KEY` is set, all `/audits`
-endpoints require the `X-API-Key` header. Contract file paths are restricted to
-`CONTRACT_ALLOWED_ROOTS`. See [docs/api.md](docs/api.md).
-
-## Docker Compose simulated cloud environment
-
-```bash
-cp .env.example .env
-# Replace the sample MinIO password and optionally set CONTRACTGUARD_API_KEY.
-docker compose up --build
-```
-
-Services:
-
-- ContractGuard API: port 8000
-- MinIO S3 API: port 9000; console: port 9001
-- Prometheus: port 9090
-
-The API container runs as a non-root user with a read-only root filesystem, dropped Linux
-capabilities, `no-new-privileges`, a bounded temporary filesystem, persistent evidence
-volume, health check, environment-only secrets, and MinIO-backed artifact storage. The
-second GitHub Actions job runs `scripts/docker_minio_smoke.py`, submits a real audit, and
-verifies both stored objects through the MinIO SDK.
+This proves that the validated report is written through the configured MinIO/S3 backend. The same smoke path runs in GitHub Actions.
 
 ## Evidence index
 
+After a successful evidence run, the repository contains:
+
 | Evidence | What it proves |
 |---|---|
-| `evidence/01_prompt_injection_blocked.json` | Real attack blocked with zero tool calls |
-| `evidence/02_low_risk_completed.json` | Complete autonomous path and schema-routed tools |
-| `evidence/03_high_risk_paused_for_human.json` | Retry, Reflexion, risk routing, and HITL pause |
-| `evidence/04_checkpoint_loaded_after_restart.json` | State survived a new service process/object |
-| `evidence/05_high_risk_resumed_and_completed.json` | Human resume, output revision, PII masking, artifact |
-| `evidence/execution_log.jsonl` | Structured node, tool, model, failure, and security events |
-| `evidence/metrics_*.prom` | Prometheus counters and latency histograms |
-| `evidence/graph_spec.json` | Framework package/version, nodes, edges, branches, and loops |
-| `evidence/pytest_results.txt` | Automated regression-test results |
-| `evidence/06_live_llm_function_call.json` | Optional real provider-native function-call proof |
-| `evidence/07_minio_docker_smoke.json` | Docker API stored and verified objects in MinIO (CI artifact) |
-| executed notebook | Captured narrative and outputs for every rubric deliverable |
+| `evidence/01_prompt_injection_blocked.json` | real attack blocked before any function tool |
+| `evidence/02_low_risk_completed.json` | autonomous safe path and real tool calls |
+| `evidence/03_high_risk_paused_for_human.json` | tool retry, Reflexion loop, and HITL pause |
+| `evidence/04_checkpoint_loaded_after_restart.json` | persisted interrupt restored by a new service instance |
+| `evidence/05_high_risk_resumed_and_completed.json` | `Command(resume=...)`, human decision, output revision, PII masking |
+| `evidence/graph_spec.json` | LangGraph nodes, edges, branches, loops, APIs, checkpointer |
+| `evidence/execution_log.jsonl` | structured security/tool/retry/HITL monitoring |
+| `evidence/metrics_before_restart.prom` | Prometheus metrics |
+| `evidence/pytest_results.txt` | automated regression results |
+| `evidence/run_summary.json` | machine-readable rubric assertions |
+| `notebooks/ContractGuard_Capstone_Executed.ipynb` | executed evidence notebook with captured outputs |
 
-The exact rubric-to-evidence map is in
-[docs/rubric_traceability.md](docs/rubric_traceability.md), and the course-file mapping is
-in [docs/course_alignment.md](docs/course_alignment.md).
+The complete rubric mapping is in [`docs/rubric_traceability.md`](docs/rubric_traceability.md).
 
-## Before pushing to GitHub
+## Publication checklist
 
-Run the full publication gate first. It recompiles the repository, reruns all tests and
-scenarios, rebuilds the executed notebook, scans tracked files for likely secrets, and
-validates Git/documentation/evidence readiness.
+Before resubmitting:
 
-```bash
-python scripts/prepublish_check.py
-```
+1. Publish this Git repository as `https://github.com/Adwd23/contractguard-ai-capstone`.
+2. In the GitHub **About** panel, set the repository description to:
+   **Secure LangGraph multi-agent system for vendor contract auditing, compliance analysis, guardrails, human approval, and production monitoring.**
+3. Wait until both GitHub Actions jobs are green.
+4. Confirm the executed notebook and evidence files were regenerated by the current v1.3 commit.
+5. Confirm the repository is public if the trainer requires direct access.
 
-Then connect the Adwd23-owned repository:
+Detailed instructions are in [`docs/github_publication.md`](docs/github_publication.md).
 
-```bash
-git status
-git log --oneline --decorate
-git remote add origin https://github.com/Adwd23/contractguard-ai-capstone.git
-git push -u origin main
-```
+## License
 
-Confirm that the README renders, the executed notebook displays outputs, both GitHub
-Actions jobs pass, and no `.env`, API key, mutable SQLite database, or real personal
-contract data is tracked. The detailed checklist is in
-[docs/submission_checklist.md](docs/submission_checklist.md).
-
-## Limitations
-
-The bundled policies and contracts are educational simulations, not legal advice.
-Authentication is optional for local grading and should be mandatory behind an enterprise
-identity provider in a real deployment. Replace sample policies with approved sources,
-add organization-specific RBAC, and complete legal/security review before processing real
-contracts.
-
-## License and third-party notices
-
-Project code is MIT licensed. The offline fallback for `transitions` 0.9.3 retains its
-upstream MIT license; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Project code is released under the MIT License. See `THIRD_PARTY_NOTICES.md` for major runtime dependencies and their upstream project references.

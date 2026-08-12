@@ -1,25 +1,14 @@
 # Third-Party Notices
 
-## transitions 0.9.3
+ContractGuard AI uses open-source runtime libraries distributed under their respective licenses. Major dependencies include:
 
-The project declares `transitions==0.9.3` as its finite-state graph dependency. For the
-fully offline executed evidence notebook, a small unmodified copy of the package core,
-initializer, version file, and MIT license is vendored under
-`src/contractguard/_vendor/transitions/` and used only when the installed package is
-unavailable.
+- **LangGraph** — stateful graph orchestration and HITL APIs — MIT License.
+- **LangGraph Checkpoint / SQLite** — persistent graph checkpoints — MIT License.
+- **FastAPI** — HTTP API framework — MIT License.
+- **Uvicorn** — ASGI application server — BSD-3-Clause License.
+- **Pydantic** — validation and schema generation — MIT License.
+- **Prometheus Python Client** — monitoring metrics — Apache-2.0 License.
+- **MinIO Python SDK** — S3-compatible artifact client — Apache-2.0 License.
+- **PyPDF** — PDF text extraction — BSD-3-Clause License.
 
-Copyright (c) 2024 Tal Yarkoni, Alexander Neumann. Licensed under the MIT License. The
-complete license text is retained at `src/contractguard/_vendor/transitions/LICENSE`.
-
-## MinIO container and Python SDK
-
-The Docker Compose simulation references an external MinIO container image and the Python
-`minio` SDK. The container image is not redistributed inside this repository. Their use is
-subject to the licenses published by their respective upstream projects.
-
-## Other Python dependencies
-
-FastAPI, Uvicorn, Pydantic, Prometheus Client, pypdf, HTTPX, python-dotenv, pytest,
-nbformat, nbclient, IPython kernel components, and pandas remain governed by their upstream
-licenses. See `pyproject.toml`, `requirements.txt`, and `requirements-dev.txt` for the
-version ranges used by this project.
+This repository does not vendor the source code of these libraries. They are installed from the dependency manifests. Refer to each upstream project for the complete license text and notices.
