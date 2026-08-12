@@ -250,7 +250,7 @@
   "report": {
     "report_id": "CGA-capstone-low-risk",
     "thread_id": "capstone-low-risk",
-    "generated_at": "2026-08-12T22:02:14.514555+00:00",
+    "generated_at": "2026-08-12T22:04:04.875416+00:00",
     "vendor_name": "Riyadh Analytics Company",
     "contract_value_sar": 125000.0,
     "executive_summary": "The multi-agent audit identified 0 compliance finding(s) and assigned a LOW risk rating of 0/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.",
@@ -274,7 +274,7 @@
       "Security Reviewer Agent → Coordinator Agent: Risk classified as LOW (0/100). No approval interrupt required."
     ]
   },
-  "final_markdown": "# ContractGuard AI Compliance Report\n\n**Report ID:** CGA-capstone-low-risk  \n**Thread ID:** capstone-low-risk  \n**Generated:** 2026-08-12T22:02:14.514555+00:00  \n**Vendor:** Riyadh Analytics Company  \n**Contract value:** SAR 125,000.00  \n**Risk:** LOW (0/100)  \n**Approval:** not_required  \n\n## Executive Summary\n\nThe multi-agent audit identified 0 compliance finding(s) and assigned a LOW risk rating of 0/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.\n\n## Compliance Findings\n\nNo policy deviations were detected.\n\n## Detailed Findings and Masked Evidence\n\nNo detailed findings.\n\n## Recommendations\n\n1. Proceed under the standard approved contract template and retain the audit record.\n\n## Human Approval Record\n\nNo human comment was supplied.\n\n## Evidence and Data Protection\n\n- Policy evidence records: 12\n- PII items masked: 0\n\n## Agent Handoff Trace\n\n- Input Security Agent → Coordinator Agent: Input guardrail passed; execution may proceed.\n- Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.\n- Document Analyst Agent → Policy Research Agent: Extracted 8 clauses and contract metadata.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 0 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.\n- Security Reviewer Agent → Coordinator Agent: Risk classified as LOW (0/100). No approval interrupt required.\n",
+  "final_markdown": "# ContractGuard AI Compliance Report\n\n**Report ID:** CGA-capstone-low-risk  \n**Thread ID:** capstone-low-risk  \n**Generated:** 2026-08-12T22:04:04.875416+00:00  \n**Vendor:** Riyadh Analytics Company  \n**Contract value:** SAR 125,000.00  \n**Risk:** LOW (0/100)  \n**Approval:** not_required  \n\n## Executive Summary\n\nThe multi-agent audit identified 0 compliance finding(s) and assigned a LOW risk rating of 0/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.\n\n## Compliance Findings\n\nNo policy deviations were detected.\n\n## Detailed Findings and Masked Evidence\n\nNo detailed findings.\n\n## Recommendations\n\n1. Proceed under the standard approved contract template and retain the audit record.\n\n## Human Approval Record\n\nNo human comment was supplied.\n\n## Evidence and Data Protection\n\n- Policy evidence records: 12\n- PII items masked: 0\n\n## Agent Handoff Trace\n\n- Input Security Agent → Coordinator Agent: Input guardrail passed; execution may proceed.\n- Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.\n- Document Analyst Agent → Policy Research Agent: Extracted 8 clauses and contract metadata.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 0 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.\n- Security Reviewer Agent → Coordinator Agent: Risk classified as LOW (0/100). No approval interrupt required.\n",
   "output_valid": true,
   "output_feedback": "",
   "pii_redactions": 0,
@@ -291,7 +291,7 @@
       "payload": {
         "matches": []
       },
-      "timestamp": "2026-08-12T22:02:14.498915+00:00"
+      "timestamp": "2026-08-12T22:04:04.859442+00:00"
     },
     {
       "sender": "Coordinator Agent",
@@ -344,7 +344,7 @@
           }
         ]
       },
-      "timestamp": "2026-08-12T22:02:14.500257+00:00"
+      "timestamp": "2026-08-12T22:04:04.860714+00:00"
     },
     {
       "sender": "Document Analyst Agent",
@@ -366,7 +366,7 @@
           "termination"
         ]
       },
-      "timestamp": "2026-08-12T22:02:14.502207+00:00"
+      "timestamp": "2026-08-12T22:04:04.862727+00:00"
     },
     {
       "sender": "Policy Research Agent",
@@ -384,7 +384,7 @@
           "termination"
         ]
       },
-      "timestamp": "2026-08-12T22:02:14.507941+00:00"
+      "timestamp": "2026-08-12T22:04:04.868315+00:00"
     },
     {
       "sender": "Compliance Analyst Agent",
@@ -394,7 +394,7 @@
       "payload": {
         "severities": {}
       },
-      "timestamp": "2026-08-12T22:02:14.509631+00:00"
+      "timestamp": "2026-08-12T22:04:04.870283+00:00"
     },
     {
       "sender": "Quality Reviewer Agent",
@@ -405,7 +405,7 @@
         "missing_topics": [],
         "quality_score": 1.0
       },
-      "timestamp": "2026-08-12T22:02:14.511259+00:00"
+      "timestamp": "2026-08-12T22:04:04.871927+00:00"
     },
     {
       "sender": "Security Reviewer Agent",
@@ -417,7 +417,7 @@
         "risk_level": "LOW",
         "approval_required": false
       },
-      "timestamp": "2026-08-12T22:02:14.512994+00:00"
+      "timestamp": "2026-08-12T22:04:04.873740+00:00"
     },
     {
       "sender": "Report Writer Agent",
@@ -427,7 +427,7 @@
       "payload": {
         "report_id": "CGA-capstone-low-risk"
       },
-      "timestamp": "2026-08-12T22:02:14.514577+00:00"
+      "timestamp": "2026-08-12T22:04:04.875438+00:00"
     },
     {
       "sender": "Output Guardian Agent",
@@ -437,7 +437,7 @@
       "payload": {
         "categories": []
       },
-      "timestamp": "2026-08-12T22:02:14.516601+00:00"
+      "timestamp": "2026-08-12T22:04:04.877548+00:00"
     },
     {
       "sender": "Artifact Storage Agent",
@@ -449,12 +449,12 @@
         "metadata_uri": "file:///mnt/data/contractguard-ai-adwd23/evidence/artifacts/capstone-low-risk/run_metadata.json",
         "backend": "filesystem-fallback"
       },
-      "timestamp": "2026-08-12T22:02:14.518762+00:00"
+      "timestamp": "2026-08-12T22:04:04.879832+00:00"
     }
   ],
   "tool_calls": [
     {
-      "call_id": "8cd31935-4a60-47db-9d12-071fd55a1d50",
+      "call_id": "6b9b2234-9205-44fa-92fc-7e91b01f8fa0",
       "agent": "Document Analyst Agent",
       "tool_name": "read_contract",
       "arguments": {
@@ -467,10 +467,10 @@
       "model_provider": null,
       "model_name": null,
       "used_live_llm": false,
-      "timestamp": "2026-08-12T22:02:14.501295+00:00"
+      "timestamp": "2026-08-12T22:04:04.861776+00:00"
     },
     {
-      "call_id": "7d98c052-3f3f-4728-a64f-313f37553622",
+      "call_id": "48e13590-e058-42a6-9b4a-5d98d300e082",
       "agent": "Document Analyst Agent",
       "tool_name": "extract_contract_clauses",
       "arguments": {
@@ -482,10 +482,10 @@
       "model_provider": null,
       "model_name": null,
       "used_live_llm": false,
-      "timestamp": "2026-08-12T22:02:14.501577+00:00"
+      "timestamp": "2026-08-12T22:04:04.862066+00:00"
     },
     {
-      "call_id": "d87d7186-6d7a-41b5-bf59-cb6cb80165e7",
+      "call_id": "d68b4f49-c7c7-480a-a4cd-3a65e99f3cfc",
       "agent": "Policy Research Agent",
       "tool_name": "search_policy_knowledge_base",
       "arguments": {
@@ -501,10 +501,10 @@
       "model_provider": "offline",
       "model_name": "deterministic-schema-router-v1",
       "used_live_llm": false,
-      "timestamp": "2026-08-12T22:02:14.504209+00:00"
+      "timestamp": "2026-08-12T22:04:04.864638+00:00"
     },
     {
-      "call_id": "09da4488-542e-45a4-a196-8e19b62d0c5d",
+      "call_id": "0a91c1b8-6ea8-4d8c-86a3-b10f06fcfd10",
       "agent": "Policy Research Agent",
       "tool_name": "search_policy_knowledge_base",
       "arguments": {
@@ -520,10 +520,10 @@
       "model_provider": "offline",
       "model_name": "deterministic-schema-router-v1",
       "used_live_llm": false,
-      "timestamp": "2026-08-12T22:02:14.504891+00:00"
+      "timestamp": "2026-08-12T22:04:04.865315+00:00"
     },
     {
-      "call_id": "e626e91d-a16e-4a42-a489-6cb78ea9aebb",
+      "call_id": "bc8ede9c-ff7f-42c0-b691-5f3d075882bd",
       "agent": "Policy Research Agent",
       "tool_name": "search_policy_knowledge_base",
       "arguments": {
@@ -539,10 +539,10 @@
       "model_provider": "offline",
       "model_name": "deterministic-schema-router-v1",
       "used_live_llm": false,
-      "timestamp": "2026-08-12T22:02:14.505457+00:00"
+      "timestamp": "2026-08-12T22:04:04.865852+00:00"
     },
     {
-      "call_id": "fa33f53f-469c-4c49-b6d1-49311bb72816",
+      "call_id": "d6ca2566-165b-4878-924b-b6ab81dc980d",
       "agent": "Policy Research Agent",
       "tool_name": "search_policy_knowledge_base",
       "arguments": {
@@ -558,10 +558,10 @@
       "model_provider": "offline",
       "model_name": "deterministic-schema-router-v1",
       "used_live_llm": false,
-      "timestamp": "2026-08-12T22:02:14.505950+00:00"
+      "timestamp": "2026-08-12T22:04:04.866511+00:00"
     },
     {
-      "call_id": "4dd26797-3c7c-4e7d-ba4c-804b45f90f40",
+      "call_id": "cf1b9d63-d8ad-42b3-885e-d2465db7a3ae",
       "agent": "Policy Research Agent",
       "tool_name": "search_policy_knowledge_base",
       "arguments": {
@@ -577,10 +577,10 @@
       "model_provider": "offline",
       "model_name": "deterministic-schema-router-v1",
       "used_live_llm": false,
-      "timestamp": "2026-08-12T22:02:14.506455+00:00"
+      "timestamp": "2026-08-12T22:04:04.867064+00:00"
     },
     {
-      "call_id": "a918e0ed-8f53-49ec-810f-d397c20d8099",
+      "call_id": "3c16c426-f9e8-4b03-a65a-dfceb4f74a50",
       "agent": "Policy Research Agent",
       "tool_name": "search_policy_knowledge_base",
       "arguments": {
@@ -596,10 +596,10 @@
       "model_provider": "offline",
       "model_name": "deterministic-schema-router-v1",
       "used_live_llm": false,
-      "timestamp": "2026-08-12T22:02:14.507201+00:00"
+      "timestamp": "2026-08-12T22:04:04.867598+00:00"
     },
     {
-      "call_id": "c4cec751-2676-4e96-a9ef-d88fea23b690",
+      "call_id": "d9704a11-004d-415d-a63e-acb637c7a619",
       "agent": "Policy Research Agent",
       "tool_name": "search_policy_knowledge_base",
       "arguments": {
@@ -615,10 +615,10 @@
       "model_provider": "offline",
       "model_name": "deterministic-schema-router-v1",
       "used_live_llm": false,
-      "timestamp": "2026-08-12T22:02:14.507730+00:00"
+      "timestamp": "2026-08-12T22:04:04.868120+00:00"
     },
     {
-      "call_id": "83e82ba0-4662-4cae-8fa4-bfdd5ae19fb2",
+      "call_id": "723744d1-42e3-4ddb-8023-c5546e09002a",
       "agent": "Security Reviewer Agent",
       "tool_name": "calculate_contract_risk",
       "arguments": {
@@ -633,15 +633,15 @@
       "model_provider": null,
       "model_name": null,
       "used_live_llm": false,
-      "timestamp": "2026-08-12T22:02:14.512830+00:00"
+      "timestamp": "2026-08-12T22:04:04.873562+00:00"
     },
     {
-      "call_id": "d3348d6d-8737-4c6e-996e-106a8c40e296",
+      "call_id": "638ce209-5a2f-4298-8813-f293b13f8f52",
       "agent": "Artifact Storage Agent",
       "tool_name": "store_report_artifact",
       "arguments": {
         "thread_id": "capstone-low-risk",
-        "markdown": "# ContractGuard AI Compliance Report\n\n**Report ID:** CGA-capstone-low-risk  \n**Thread ID:** capstone-low-risk  \n**Generated:** 2026-08-12T22:02:14.514555+00:00  \n**Vendor:** Riyadh Analytics Company  \n**Contract value:** SAR 125,000.00  \n**Risk:** LOW (0/100)  \n**Approval:** not_required  \n\n## Executive Summary\n\nThe multi-agent audit identified 0 compliance finding(s) and assigned a LOW risk rating of 0/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.\n\n## Compliance Findings\n\nNo policy deviations were detected.\n\n## Detailed Findings and Masked Evidence\n\nNo detailed findings.\n\n## Recommendations\n\n1. Proceed under the standard approved contract template and retain the audit record.\n\n## Human Approval Record\n\nNo human comment was supplied.\n\n## Evidence and Data Protection\n\n- Policy evidence records: 12\n- PII items masked: 0\n\n## Agent Handoff Trace\n\n- Input Security Agent → Coordinator Agent: Input guardrail passed; execution may proceed.\n- Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.\n- Document Analyst Agent → Policy Research Agent: Extracted 8 clauses and contract metadata.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 0 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.\n- Security Reviewer Agent → Coordinator Agent: Risk classified as LOW (0/100). No approval interrupt required.\n",
+        "markdown": "# ContractGuard AI Compliance Report\n\n**Report ID:** CGA-capstone-low-risk  \n**Thread ID:** capstone-low-risk  \n**Generated:** 2026-08-12T22:04:04.875416+00:00  \n**Vendor:** Riyadh Analytics Company  \n**Contract value:** SAR 125,000.00  \n**Risk:** LOW (0/100)  \n**Approval:** not_required  \n\n## Executive Summary\n\nThe multi-agent audit identified 0 compliance finding(s) and assigned a LOW risk rating of 0/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.\n\n## Compliance Findings\n\nNo policy deviations were detected.\n\n## Detailed Findings and Masked Evidence\n\nNo detailed findings.\n\n## Recommendations\n\n1. Proceed under the standard approved contract template and retain the audit record.\n\n## Human Approval Record\n\nNo human comment was supplied.\n\n## Evidence and Data Protection\n\n- Policy evidence records: 12\n- PII items masked: 0\n\n## Agent Handoff Trace\n\n- Input Security Agent → Coordinator Agent: Input guardrail passed; execution may proceed.\n- Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.\n- Document Analyst Agent → Policy Research Agent: Extracted 8 clauses and contract metadata.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 0 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.\n- Security Reviewer Agent → Coordinator Agent: Risk classified as LOW (0/100). No approval interrupt required.\n",
         "metadata": {
           "thread_id": "capstone-low-risk",
           "status": "persisting",
@@ -672,12 +672,12 @@
       "model_provider": null,
       "model_name": null,
       "used_live_llm": false,
-      "timestamp": "2026-08-12T22:02:14.518323+00:00"
+      "timestamp": "2026-08-12T22:04:04.879473+00:00"
     }
   ],
   "tool_observations": [
     {
-      "call_id": "8cd31935-4a60-47db-9d12-071fd55a1d50",
+      "call_id": "6b9b2234-9205-44fa-92fc-7e91b01f8fa0",
       "tool_name": "read_contract",
       "status": "success",
       "summary": "Returned object with keys: source, text, characters",
@@ -686,11 +686,11 @@
         "text": "MANAGED ANALYTICS SERVICES AGREEMENT\nVendor: Riyadh Analytics Company\nContract Value: SAR 125,000\n\n1. DATA PROTECTION\nAll personal and regulated business data will be stored and processed inside the Kingdom of Saudi Arabia. Subprocessors require 30 days' prior notice, written consent where required, equivalent obligations, and customer objection rights. Suspected or confirmed breaches will be reported within 24 hours.\n\n2. INFORMATION SECURITY\nThe Vendor maintains ISO 27001 certification, encrypts data in transit and at rest, uses multi-factor access control, performs annual penetration testing, and grants reasonable audit rights.\n\n3. PAYMENT\nCorrect invoices are payable Net 30 days after accepted deliverables and must reference a valid purchase order.\n\n4. LIABILITY\nThe liability cap is twelve months of fees with carve-outs for confidentiality, privacy, security breach, fraud, and intellectual-property infringement.\n\n5. TERMINATION\nThe Customer may terminate for convenience on 30 days' notice. Renewal is limited to one year and the Customer may opt out before renewal.\n\n6. GOVERNING LAW\nThe agreement is governed by the laws of the Kingdom of Saudi Arabia and the competent Saudi courts have jurisdiction.\n\n7. SERVICE LEVELS\nMonthly uptime is 99.9 percent with service credits and chronic-failure termination rights.\n",
         "characters": 1332
       },
-      "latency_ms": 0.14650400044047274,
-      "timestamp": "2026-08-12T22:02:14.501549+00:00"
+      "latency_ms": 0.14684599955216981,
+      "timestamp": "2026-08-12T22:04:04.862038+00:00"
     },
     {
-      "call_id": "7d98c052-3f3f-4728-a64f-313f37553622",
+      "call_id": "48e13590-e058-42a6-9b4a-5d98d300e082",
       "tool_name": "extract_contract_clauses",
       "status": "success",
       "summary": "Returned 8 items",
@@ -744,11 +744,11 @@
           "topic": "service_levels"
         }
       ],
-      "latency_ms": 0.29516699942178093,
-      "timestamp": "2026-08-12T22:02:14.501965+00:00"
+      "latency_ms": 0.289518000499811,
+      "timestamp": "2026-08-12T22:04:04.862440+00:00"
     },
     {
-      "call_id": "d87d7186-6d7a-41b5-bf59-cb6cb80165e7",
+      "call_id": "d68b4f49-c7c7-480a-a4cd-3a65e99f3cfc",
       "tool_name": "search_policy_knowledge_base",
       "status": "success",
       "summary": "Returned 2 items",
@@ -770,11 +770,11 @@
           "topic": "data_protection"
         }
       ],
-      "latency_ms": 0.20367000070109498,
-      "timestamp": "2026-08-12T22:02:14.504520+00:00"
+      "latency_ms": 0.20211299943184713,
+      "timestamp": "2026-08-12T22:04:04.864952+00:00"
     },
     {
-      "call_id": "09da4488-542e-45a4-a196-8e19b62d0c5d",
+      "call_id": "0a91c1b8-6ea8-4d8c-86a3-b10f06fcfd10",
       "tool_name": "search_policy_knowledge_base",
       "status": "success",
       "summary": "Returned 2 items",
@@ -796,11 +796,11 @@
           "topic": "governing_law"
         }
       ],
-      "latency_ms": 0.14482100050372537,
-      "timestamp": "2026-08-12T22:02:14.505098+00:00"
+      "latency_ms": 0.12790199980372563,
+      "timestamp": "2026-08-12T22:04:04.865506+00:00"
     },
     {
-      "call_id": "e626e91d-a16e-4a42-a489-6cb78ea9aebb",
+      "call_id": "bc8ede9c-ff7f-42c0-b691-5f3d075882bd",
       "tool_name": "search_policy_knowledge_base",
       "status": "success",
       "summary": "Returned 1 items",
@@ -814,11 +814,11 @@
           "topic": "liability"
         }
       ],
-      "latency_ms": 0.10705400018196087,
-      "timestamp": "2026-08-12T22:02:14.505620+00:00"
+      "latency_ms": 0.11407399961171905,
+      "timestamp": "2026-08-12T22:04:04.866022+00:00"
     },
     {
-      "call_id": "fa33f53f-469c-4c49-b6d1-49311bb72816",
+      "call_id": "d6ca2566-165b-4878-924b-b6ab81dc980d",
       "tool_name": "search_policy_knowledge_base",
       "status": "success",
       "summary": "Returned 2 items",
@@ -840,11 +840,11 @@
           "topic": "payment"
         }
       ],
-      "latency_ms": 0.12918699940200895,
-      "timestamp": "2026-08-12T22:02:14.506133+00:00"
+      "latency_ms": 0.15142199936235556,
+      "timestamp": "2026-08-12T22:04:04.866725+00:00"
     },
     {
-      "call_id": "4dd26797-3c7c-4e7d-ba4c-804b45f90f40",
+      "call_id": "cf1b9d63-d8ad-42b3-885e-d2465db7a3ae",
       "tool_name": "search_policy_knowledge_base",
       "status": "success",
       "summary": "Returned 2 items",
@@ -866,11 +866,11 @@
           "topic": "security"
         }
       ],
-      "latency_ms": 0.17644199942878913,
-      "timestamp": "2026-08-12T22:02:14.506759+00:00"
+      "latency_ms": 0.12701500054390635,
+      "timestamp": "2026-08-12T22:04:04.867246+00:00"
     },
     {
-      "call_id": "a918e0ed-8f53-49ec-810f-d397c20d8099",
+      "call_id": "3c16c426-f9e8-4b03-a65a-dfceb4f74a50",
       "tool_name": "search_policy_knowledge_base",
       "status": "success",
       "summary": "Returned 1 items",
@@ -884,11 +884,11 @@
           "topic": "service_levels"
         }
       ],
-      "latency_ms": 0.11951900069107069,
-      "timestamp": "2026-08-12T22:02:14.507381+00:00"
+      "latency_ms": 0.11169199933647178,
+      "timestamp": "2026-08-12T22:04:04.867764+00:00"
     },
     {
-      "call_id": "c4cec751-2676-4e96-a9ef-d88fea23b690",
+      "call_id": "d9704a11-004d-415d-a63e-acb637c7a619",
       "tool_name": "search_policy_knowledge_base",
       "status": "success",
       "summary": "Returned 2 items",
@@ -910,11 +910,11 @@
           "topic": "termination"
         }
       ],
-      "latency_ms": 0.1267119996555266,
-      "timestamp": "2026-08-12T22:02:14.507915+00:00"
+      "latency_ms": 0.11784900016209576,
+      "timestamp": "2026-08-12T22:04:04.868290+00:00"
     },
     {
-      "call_id": "83e82ba0-4662-4cae-8fa4-bfdd5ae19fb2",
+      "call_id": "723744d1-42e3-4ddb-8023-c5546e09002a",
       "tool_name": "calculate_contract_risk",
       "status": "success",
       "summary": "Returned object with keys: risk_score, risk_level, approval_required",
@@ -923,11 +923,11 @@
         "risk_level": "LOW",
         "approval_required": false
       },
-      "latency_ms": 0.03782600015256321,
-      "timestamp": "2026-08-12T22:02:14.512975+00:00"
+      "latency_ms": 0.041507999412715435,
+      "timestamp": "2026-08-12T22:04:04.873721+00:00"
     },
     {
-      "call_id": "d3348d6d-8737-4c6e-996e-106a8c40e296",
+      "call_id": "638ce209-5a2f-4298-8813-f293b13f8f52",
       "tool_name": "store_report_artifact",
       "status": "success",
       "summary": "Returned object with keys: uri, metadata_uri, backend",
@@ -936,8 +936,8 @@
         "metadata_uri": "file:///mnt/data/contractguard-ai-adwd23/evidence/artifacts/capstone-low-risk/run_metadata.json",
         "backend": "filesystem-fallback"
       },
-      "latency_ms": 0.2842269996108371,
-      "timestamp": "2026-08-12T22:02:14.518739+00:00"
+      "latency_ms": 0.2186980000260519,
+      "timestamp": "2026-08-12T22:04:04.879814+00:00"
     }
   ],
   "decision_trace": [
@@ -956,16 +956,16 @@
           "contract_path": "/mnt/data/contractguard-ai-adwd23/data/samples/vendor_contract_low_risk.txt",
           "contract_text": null
         },
-        "call_id": "8cd31935-4a60-47db-9d12-071fd55a1d50"
+        "call_id": "6b9b2234-9205-44fa-92fc-7e91b01f8fa0"
       },
-      "timestamp": "2026-08-12T22:02:14.501295+00:00"
+      "timestamp": "2026-08-12T22:04:04.861776+00:00"
     },
     {
       "pattern": "ReAct",
       "observation": "Returned object with keys: source, text, characters",
       "status": "success",
-      "call_id": "8cd31935-4a60-47db-9d12-071fd55a1d50",
-      "timestamp": "2026-08-12T22:02:14.501549+00:00"
+      "call_id": "6b9b2234-9205-44fa-92fc-7e91b01f8fa0",
+      "timestamp": "2026-08-12T22:04:04.862038+00:00"
     },
     {
       "pattern": "ReAct",
@@ -981,16 +981,16 @@
         "arguments": {
           "contract_text": "MANAGED ANALYTICS SERVICES AGREEMENT\nVendor: Riyadh Analytics Company\nContract Value: SAR 125,000\n\n1. DATA PROTECTION\nAll personal and regulated business data will be stored and processed inside the Kingdom of Saudi Arabia. Subprocessors require 30 days' prior notice, written consent where required, equivalent obligations, and customer objection rights. Suspected or confirmed breaches will be reported within 24 hours.\n\n2. INFORMATION SECURITY\nThe Vendor maintains ISO 27001 certification, encrypts data in transit and at rest, uses multi-factor access control, performs annual penetration testing, and grants reasonable audit rights.\n\n3. PAYMENT\nCorrect invoices are payable Net 30 days after accepted deliverables and must reference a valid purchase order.\n\n4. LIABILITY\nThe liability cap is twelve months of fees with carve-outs for confidentiality, privacy, security breach, fraud, and intellectual-property infringement.\n\n5. TERMINATION\nThe Customer may terminate for convenience on 30 days' notice. Renewal is limited to one year and the Customer may opt out before renewal.\n\n6. GOVERNING LAW\nThe agreement is governed by the laws of the Kingdom of Saudi Arabia and the competent Saudi courts have jurisdiction.\n\n7. SERVICE LEVELS\nMonthly uptime is 99.9 percent with service credits and chronic-failure termination rights.\n"
         },
-        "call_id": "7d98c052-3f3f-4728-a64f-313f37553622"
+        "call_id": "48e13590-e058-42a6-9b4a-5d98d300e082"
       },
-      "timestamp": "2026-08-12T22:02:14.501577+00:00"
+      "timestamp": "2026-08-12T22:04:04.862066+00:00"
     },
     {
       "pattern": "ReAct",
       "observation": "Returned 8 items",
       "status": "success",
-      "call_id": "7d98c052-3f3f-4728-a64f-313f37553622",
-      "timestamp": "2026-08-12T22:02:14.501965+00:00"
+      "call_id": "48e13590-e058-42a6-9b4a-5d98d300e082",
+      "timestamp": "2026-08-12T22:04:04.862440+00:00"
     },
     {
       "pattern": "ReAct",
@@ -1010,16 +1010,16 @@
           "attempt": 0,
           "simulate_primary_failure": false
         },
-        "call_id": "d87d7186-6d7a-41b5-bf59-cb6cb80165e7"
+        "call_id": "d68b4f49-c7c7-480a-a4cd-3a65e99f3cfc"
       },
-      "timestamp": "2026-08-12T22:02:14.504209+00:00"
+      "timestamp": "2026-08-12T22:04:04.864638+00:00"
     },
     {
       "pattern": "ReAct",
       "observation": "Returned 2 items",
       "status": "success",
-      "call_id": "d87d7186-6d7a-41b5-bf59-cb6cb80165e7",
-      "timestamp": "2026-08-12T22:02:14.504520+00:00"
+      "call_id": "d68b4f49-c7c7-480a-a4cd-3a65e99f3cfc",
+      "timestamp": "2026-08-12T22:04:04.864952+00:00"
     },
     {
       "pattern": "ReAct",
@@ -1039,16 +1039,16 @@
           "attempt": 0,
           "simulate_primary_failure": false
         },
-        "call_id": "09da4488-542e-45a4-a196-8e19b62d0c5d"
+        "call_id": "0a91c1b8-6ea8-4d8c-86a3-b10f06fcfd10"
       },
-      "timestamp": "2026-08-12T22:02:14.504891+00:00"
+      "timestamp": "2026-08-12T22:04:04.865315+00:00"
     },
     {
       "pattern": "ReAct",
       "observation": "Returned 2 items",
       "status": "success",
-      "call_id": "09da4488-542e-45a4-a196-8e19b62d0c5d",
-      "timestamp": "2026-08-12T22:02:14.505098+00:00"
+      "call_id": "0a91c1b8-6ea8-4d8c-86a3-b10f06fcfd10",
+      "timestamp": "2026-08-12T22:04:04.865506+00:00"
     },
     {
       "pattern": "ReAct",
@@ -1068,16 +1068,16 @@
           "attempt": 0,
           "simulate_primary_failure": false
         },
-        "call_id": "e626e91d-a16e-4a42-a489-6cb78ea9aebb"
+        "call_id": "bc8ede9c-ff7f-42c0-b691-5f3d075882bd"
       },
-      "timestamp": "2026-08-12T22:02:14.505457+00:00"
+      "timestamp": "2026-08-12T22:04:04.865852+00:00"
     },
     {
       "pattern": "ReAct",
       "observation": "Returned 1 items",
       "status": "success",
-      "call_id": "e626e91d-a16e-4a42-a489-6cb78ea9aebb",
-      "timestamp": "2026-08-12T22:02:14.505620+00:00"
+      "call_id": "bc8ede9c-ff7f-42c0-b691-5f3d075882bd",
+      "timestamp": "2026-08-12T22:04:04.866022+00:00"
     },
     {
       "pattern": "ReAct",
@@ -1097,16 +1097,16 @@
           "attempt": 0,
           "simulate_primary_failure": false
         },
-        "call_id": "fa33f53f-469c-4c49-b6d1-49311bb72816"
+        "call_id": "d6ca2566-165b-4878-924b-b6ab81dc980d"
       },
-      "timestamp": "2026-08-12T22:02:14.505950+00:00"
+      "timestamp": "2026-08-12T22:04:04.866511+00:00"
     },
     {
       "pattern": "ReAct",
       "observation": "Returned 2 items",
       "status": "success",
-      "call_id": "fa33f53f-469c-4c49-b6d1-49311bb72816",
-      "timestamp": "2026-08-12T22:02:14.506133+00:00"
+      "call_id": "d6ca2566-165b-4878-924b-b6ab81dc980d",
+      "timestamp": "2026-08-12T22:04:04.866725+00:00"
     },
     {
       "pattern": "ReAct",
@@ -1126,16 +1126,16 @@
           "attempt": 0,
           "simulate_primary_failure": false
         },
-        "call_id": "4dd26797-3c7c-4e7d-ba4c-804b45f90f40"
+        "call_id": "cf1b9d63-d8ad-42b3-885e-d2465db7a3ae"
       },
-      "timestamp": "2026-08-12T22:02:14.506455+00:00"
+      "timestamp": "2026-08-12T22:04:04.867064+00:00"
     },
     {
       "pattern": "ReAct",
       "observation": "Returned 2 items",
       "status": "success",
-      "call_id": "4dd26797-3c7c-4e7d-ba4c-804b45f90f40",
-      "timestamp": "2026-08-12T22:02:14.506759+00:00"
+      "call_id": "cf1b9d63-d8ad-42b3-885e-d2465db7a3ae",
+      "timestamp": "2026-08-12T22:04:04.867246+00:00"
     },
     {
       "pattern": "ReAct",
@@ -1155,16 +1155,16 @@
           "attempt": 0,
           "simulate_primary_failure": false
         },
-        "call_id": "a918e0ed-8f53-49ec-810f-d397c20d8099"
+        "call_id": "3c16c426-f9e8-4b03-a65a-dfceb4f74a50"
       },
-      "timestamp": "2026-08-12T22:02:14.507201+00:00"
+      "timestamp": "2026-08-12T22:04:04.867598+00:00"
     },
     {
       "pattern": "ReAct",
       "observation": "Returned 1 items",
       "status": "success",
-      "call_id": "a918e0ed-8f53-49ec-810f-d397c20d8099",
-      "timestamp": "2026-08-12T22:02:14.507381+00:00"
+      "call_id": "3c16c426-f9e8-4b03-a65a-dfceb4f74a50",
+      "timestamp": "2026-08-12T22:04:04.867764+00:00"
     },
     {
       "pattern": "ReAct",
@@ -1184,16 +1184,16 @@
           "attempt": 0,
           "simulate_primary_failure": false
         },
-        "call_id": "c4cec751-2676-4e96-a9ef-d88fea23b690"
+        "call_id": "d9704a11-004d-415d-a63e-acb637c7a619"
       },
-      "timestamp": "2026-08-12T22:02:14.507730+00:00"
+      "timestamp": "2026-08-12T22:04:04.868120+00:00"
     },
     {
       "pattern": "ReAct",
       "observation": "Returned 2 items",
       "status": "success",
-      "call_id": "c4cec751-2676-4e96-a9ef-d88fea23b690",
-      "timestamp": "2026-08-12T22:02:14.507915+00:00"
+      "call_id": "d9704a11-004d-415d-a63e-acb637c7a619",
+      "timestamp": "2026-08-12T22:04:04.868290+00:00"
     },
     {
       "pattern": "ReAct",
@@ -1212,16 +1212,16 @@
           "approval_risk_threshold": 50,
           "approval_value_threshold_sar": 500000.0
         },
-        "call_id": "83e82ba0-4662-4cae-8fa4-bfdd5ae19fb2"
+        "call_id": "723744d1-42e3-4ddb-8023-c5546e09002a"
       },
-      "timestamp": "2026-08-12T22:02:14.512830+00:00"
+      "timestamp": "2026-08-12T22:04:04.873562+00:00"
     },
     {
       "pattern": "ReAct",
       "observation": "Returned object with keys: risk_score, risk_level, approval_required",
       "status": "success",
-      "call_id": "83e82ba0-4662-4cae-8fa4-bfdd5ae19fb2",
-      "timestamp": "2026-08-12T22:02:14.512975+00:00"
+      "call_id": "723744d1-42e3-4ddb-8023-c5546e09002a",
+      "timestamp": "2026-08-12T22:04:04.873721+00:00"
     },
     {
       "pattern": "ReAct",
@@ -1236,7 +1236,7 @@
         "tool": "store_report_artifact",
         "arguments": {
           "thread_id": "capstone-low-risk",
-          "markdown": "# ContractGuard AI Compliance Report\n\n**Report ID:** CGA-capstone-low-risk  \n**Thread ID:** capstone-low-risk  \n**Generated:** 2026-08-12T22:02:14.514555+00:00  \n**Vendor:** Riyadh Analytics Company  \n**Contract value:** SAR 125,000.00  \n**Risk:** LOW (0/100)  \n**Approval:** not_required  \n\n## Executive Summary\n\nThe multi-agent audit identified 0 compliance finding(s) and assigned a LOW risk rating of 0/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.\n\n## Compliance Findings\n\nNo policy deviations were detected.\n\n## Detailed Findings and Masked Evidence\n\nNo detailed findings.\n\n## Recommendations\n\n1. Proceed under the standard approved contract template and retain the audit record.\n\n## Human Approval Record\n\nNo human comment was supplied.\n\n## Evidence and Data Protection\n\n- Policy evidence records: 12\n- PII items masked: 0\n\n## Agent Handoff Trace\n\n- Input Security Agent → Coordinator Agent: Input guardrail passed; execution may proceed.\n- Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.\n- Document Analyst Agent → Policy Research Agent: Extracted 8 clauses and contract metadata.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 0 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.\n- Security Reviewer Agent → Coordinator Agent: Risk classified as LOW (0/100). No approval interrupt required.\n",
+          "markdown": "# ContractGuard AI Compliance Report\n\n**Report ID:** CGA-capstone-low-risk  \n**Thread ID:** capstone-low-risk  \n**Generated:** 2026-08-12T22:04:04.875416+00:00  \n**Vendor:** Riyadh Analytics Company  \n**Contract value:** SAR 125,000.00  \n**Risk:** LOW (0/100)  \n**Approval:** not_required  \n\n## Executive Summary\n\nThe multi-agent audit identified 0 compliance finding(s) and assigned a LOW risk rating of 0/100. The result was produced from clause extraction, policy retrieval, specialist review, security routing, and output validation rather than a single prompt.\n\n## Compliance Findings\n\nNo policy deviations were detected.\n\n## Detailed Findings and Masked Evidence\n\nNo detailed findings.\n\n## Recommendations\n\n1. Proceed under the standard approved contract template and retain the audit record.\n\n## Human Approval Record\n\nNo human comment was supplied.\n\n## Evidence and Data Protection\n\n- Policy evidence records: 12\n- PII items masked: 0\n\n## Agent Handoff Trace\n\n- Input Security Agent → Coordinator Agent: Input guardrail passed; execution may proceed.\n- Coordinator Agent → Document Analyst Agent: Plan-and-Execute plan created with seven bounded steps.\n- Document Analyst Agent → Policy Research Agent: Extracted 8 clauses and contract metadata.\n- Policy Research Agent → Compliance Analyst Agent: Retrieved 12 policy evidence records.\n- Compliance Analyst Agent → Quality Reviewer Agent: Generated 0 compliance findings from contract clauses and policy evidence.\n- Quality Reviewer Agent → Coordinator Agent: Evidence coverage score is 100%; quality gate passed.\n- Security Reviewer Agent → Coordinator Agent: Risk classified as LOW (0/100). No approval interrupt required.\n",
           "metadata": {
             "thread_id": "capstone-low-risk",
             "status": "persisting",
@@ -1263,16 +1263,16 @@
             "pii_redactions": 0
           }
         },
-        "call_id": "d3348d6d-8737-4c6e-996e-106a8c40e296"
+        "call_id": "638ce209-5a2f-4298-8813-f293b13f8f52"
       },
-      "timestamp": "2026-08-12T22:02:14.518323+00:00"
+      "timestamp": "2026-08-12T22:04:04.879473+00:00"
     },
     {
       "pattern": "ReAct",
       "observation": "Returned object with keys: uri, metadata_uri, backend",
       "status": "success",
-      "call_id": "d3348d6d-8737-4c6e-996e-106a8c40e296",
-      "timestamp": "2026-08-12T22:02:14.518739+00:00"
+      "call_id": "638ce209-5a2f-4298-8813-f293b13f8f52",
+      "timestamp": "2026-08-12T22:04:04.879814+00:00"
     }
   ],
   "reasoner_mode": "offline_schema_router",
@@ -1295,8 +1295,8 @@
     "persisting",
     "completed"
   ],
-  "created_at": "2026-08-12T22:02:14.494600+00:00",
-  "updated_at": "2026-08-12T22:02:14.521877+00:00",
+  "created_at": "2026-08-12T22:04:04.856550+00:00",
+  "updated_at": "2026-08-12T22:04:04.881683+00:00",
   "flags": {},
   "max_policy_retries": 2,
   "max_quality_retries": 1,
