@@ -1,11 +1,20 @@
 services:
   contractguard:
     build: .
+    init: true
     environment:
       CONTRACTGUARD_ROOT: /app
+      CONTRACT_ALLOWED_ROOTS: /app/data
+      CONTRACTGUARD_API_KEY: ${CONTRACTGUARD_API_KEY:-}
       LLM_PROVIDER: ${LLM_PROVIDER:-offline}
+      LLM_TIMEOUT_SECONDS: ${LLM_TIMEOUT_SECONDS:-45}
       GROQ_API_KEY: ${GROQ_API_KEY:-}
       GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-20b}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_MODEL: ${OPENROUTER_MODEL:-google/gemini-2.5-flash}
+      OPENROUTER_SITE_URL: ${OPENROUTER_SITE_URL:-https://github.com/SDAIAAcademy}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
       CHECKPOINT_DB: /app/evidence/checkpoints.sqlite
       LOG_FILE: /app/evidence/execution_log.jsonl
       METRICS_FILE: /app/evidence/metrics.prom
@@ -21,8 +30,18 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      minio:
-        condition: service_healthy
+      - minio
+    command:
+      - sh
+      - -c
+      - python scripts/wait_for_minio.py && exec uvicorn contractguard.api:app --host 0.0.0.0 --port 8000
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
 
   minio:
@@ -36,11 +55,8 @@ services:
     ports:
       - "9000:9000"
       - "9001:9001"
-    healthcheck:
-      test: ["CMD", "mc", "ready", "local"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
 
   prometheus:
@@ -51,7 +67,10 @@ services:
     ports:
       - "9090:9090"
     depends_on:
-      - contractguard
+      contractguard:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
 
 volumes:

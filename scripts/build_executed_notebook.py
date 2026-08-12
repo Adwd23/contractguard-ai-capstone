@@ -23,12 +23,12 @@ cells.append(
 
 **Program:** SDAIA Academy — Advanced Agentic AI Systems Engineering  
 **Cohort/session:** June 2026  
-**Project:** Secure Multi-Agent Vendor Contract Audit Platform
+**Project:** Secure, observable, resumable multi-agent vendor-contract audit platform
 
-This notebook executes and preserves evidence for all six rubric deliverables: real tool
-use and named reasoning patterns, framework-managed graph orchestration, role-specialized
-agents, security and observability, durable checkpoint/HITL/cloud artifacts, and
-professional documentation.
+This notebook executes and preserves evidence for all six rubric deliverables: real,
+schema-validated tool use and named reasoning patterns, framework-managed graph
+orchestration, role-specialized agents, security and observability, durable
+checkpoint/HITL/cloud artifacts, and professional documentation.
 """
     )
 )
@@ -97,9 +97,12 @@ cells.append(
     nbf.v4.new_markdown_cell(
         """## 3. Deliverable 1 — Agentic reasoning and real function tools
 
-The Coordinator implements **Plan-and-Execute**. Every registered function call records a
+The Coordinator implements **Plan-and-Execute**. Every function is described by a
+Pydantic-generated JSON Schema and invoked through the MCP-style registry. The default
+reproducible mode uses a deterministic schema-aware router; the same interface supports
+provider-native function calling with Gemini, OpenRouter, or Groq. Each call records a
 concise **ReAct** triple: rationale/Thought, Action, and Observation. The Quality Reviewer
-implements **Reflexion/self-critique**. The coordinator-to-specialist topology is
+implements **Reflexion/self-critique**, and the coordinator-to-specialist topology is
 **Hierarchical Delegation**.
 """
     )
@@ -114,6 +117,11 @@ for call in low['tool_calls']:
     tool_rows.append({
         'agent': call['agent'],
         'tool': call['tool_name'],
+        'decision_source': call['decision_source'],
+        'protocol': call['protocol'],
+        'provider': call.get('model_provider') or '',
+        'model': call.get('model_name') or '',
+        'live_llm': call.get('used_live_llm', False),
         'rationale': call['rationale'],
         'status': obs['status'],
         'latency_ms': round(obs['latency_ms'], 3),
@@ -122,8 +130,15 @@ for call in low['tool_calls']:
 display(pd.DataFrame(tool_rows))
 print('Named reasoning patterns:', summary['reasoning_patterns'])
 print('Shared state keys carried across steps:', len(low.keys()))
+print('Reasoner modes:', low.get('reasoner_modes'))
 assert len(low['tool_calls']) >= 6
 assert 'ReAct' in {d.get('pattern') for d in low['decision_trace']}
+assert any(c['decision_source'] in {'offline_schema_router', 'llm_function_call'} for c in low['tool_calls'])
+assert any(c['protocol'] in {'mcp_json_schema', 'provider_native_function_call'} for c in low['tool_calls'])
+policy_calls = [c for c in low['tool_calls'] if c['tool_name'] == 'search_policy_knowledge_base']
+assert policy_calls
+assert all(c['decision_source'] == 'offline_schema_router' for c in policy_calls)
+assert all(c['protocol'] == 'mcp_json_schema' for c in policy_calls)
 """
     )
 )
@@ -132,9 +147,10 @@ cells.append(
     nbf.v4.new_markdown_cell(
         """## 4. Deliverable 2 — Genuine graph orchestration with conditions and loops
 
-The graph is built by the `transitions.Machine` framework. Conditions decide branches;
-shared state is read and updated by node callbacks; three bounded cycles support tool
-retry, Reflexion/re-search, and report revision.
+The graph is built by the real `transitions.Machine` finite-state orchestration framework
+(`transitions==0.9.3`). Conditions decide branches; shared state is read and updated by
+node callbacks; three bounded cycles support tool retry, Reflexion/re-search, and report
+revision. The generated specification explicitly proves that this is not a linear chain.
 """
     )
 )
@@ -142,13 +158,18 @@ cells.append(
     nbf.v4.new_code_cell(
         """graph = json.loads((PROJECT_ROOT / 'evidence' / 'graph_spec.json').read_text())
 print('Framework:', graph['framework'])
-print('Node count:', len(graph['nodes']))
+print('Package/version:', graph['framework_package'], graph['framework_version'])
+print('Nodes/edges/conditional:', graph['node_count'], graph['edge_count'], graph['conditional_edge_count'])
+print('Branching nodes:', graph['branching_nodes'])
 print('Loops:')
 for loop in graph['loops']:
     print(' -', loop)
 edge_frame = pd.DataFrame(graph['edges'])[['trigger', 'source', 'dest', 'conditions', 'before']].fillna('')
 display(edge_frame)
-assert len(graph['nodes']) >= 10
+assert graph['node_count'] >= 10
+assert graph['is_linear_chain'] is False
+assert graph['has_cycles'] is True
+assert graph['has_conditional_routing'] is True
 assert any(edge['source'] == edge['dest'] for edge in graph['edges'])
 assert any(edge.get('conditions') for edge in graph['edges'])
 """
@@ -211,9 +232,12 @@ cells.append(
     nbf.v4.new_markdown_cell(
         """## 7. Deliverable 4 — Security guardrails and structured observability
 
-The malicious uploaded contract is inspected before the tool registry is reachable. The
-output guardrail masks PII and validates a strict Pydantic schema. Monitoring is JSONL +
-Prometheus, not print statements.
+The malicious uploaded contract is inspected before the tool registry is reachable.
+Every agent has an explicit tool allowlist, tool arguments use strict Pydantic schemas,
+contract paths are confined to configured roots, and thread IDs have a safe format.
+Before optional cloud-model use, raw contract excerpts are excluded and PII is masked.
+The output guardrail also masks PII and validates a strict Pydantic schema. Monitoring is
+JSONL + Prometheus, not print statements.
 """
     )
 )
@@ -224,8 +248,11 @@ print('Attack terminal status:', blocked['status'])
 print('Detected reason:', blocked['blocked_reason'])
 print('Tool calls after block:', len(blocked['tool_calls']))
 print('Blocked path:', ' -> '.join(blocked['node_history']))
+print('Per-agent tool permissions:')
+print(json.dumps(summary['tool_interface']['agent_tool_permissions'], indent=2))
 assert blocked['status'] == 'blocked'
 assert len(blocked['tool_calls']) == 0
+assert summary['proof']['per_agent_tool_permissions_configured'] is True
 """
     )
 )
@@ -245,6 +272,7 @@ assert 'tool_call_failed' in set(log_frame['event'])
 assert 'guardrail_blocked' in set(log_frame['event'])
 assert 'human_interrupt' in set(log_frame['event'])
 assert 'contractguard_tool_calls_total' in metrics_text
+assert 'contractguard_llm_calls_total' in metrics_text
 """
     )
 )
@@ -281,7 +309,10 @@ assert final['pii_redactions'] >= 3
 
 cells.append(
     nbf.v4.new_code_cell(
-        """cloud_files = ['Dockerfile', 'docker-compose.yml', 'deploy/prometheus.yml', 'src/contractguard/api.py']
+        """cloud_files = [
+    'Dockerfile', 'docker-compose.yml', 'deploy/prometheus.yml', 'src/contractguard/api.py',
+    'scripts/docker_minio_smoke.py', '.github/workflows/ci.yml'
+]
 cloud_evidence = []
 for relative in cloud_files:
     path = PROJECT_ROOT / relative
@@ -310,16 +341,18 @@ cells.append(
     nbf.v4.new_markdown_cell(
         """## 10. Automated tests
 
-The test suite covers direct/indirect injection, PII masking, real tool search, low-risk
-completion, graph retry, restart persistence, HITL resume, output revision, artifact
-storage, and FastAPI endpoints.
+The test suite covers direct/indirect injection, PII masking, real tool search, strict tool
+schemas, per-agent tool permissions, safe thread IDs, contract-path isolation, offline
+schema routing, mocked provider-native function calls, provider fallback, pre-model data
+minimization/redaction, low-risk completion, graph retry, restart persistence, HITL resume,
+output revision, artifact storage, API-key enforcement, and FastAPI endpoints.
 """
     )
 )
 cells.append(
     nbf.v4.new_code_cell(
         """tests = subprocess.run(
-    [sys.executable, '-m', 'pytest', '-q', '--color=no'],
+    [sys.executable, '-m', 'pytest', '--override-ini', 'addopts=', '-q', '--color=no'],
     cwd=PROJECT_ROOT,
     text=True,
     capture_output=True,
@@ -328,6 +361,21 @@ cells.append(
 )
 print(tests.stdout)
 (PROJECT_ROOT / 'evidence' / 'pytest_results.txt').write_text(tests.stdout + tests.stderr)
+collected = subprocess.run(
+    [sys.executable, '-m', 'pytest', '--collect-only', '-q', '--color=no'],
+    cwd=PROJECT_ROOT,
+    text=True,
+    capture_output=True,
+    check=True,
+    env={**os.environ, 'PYTHONPATH': str(PROJECT_ROOT / 'src')},
+)
+test_count = sum(
+    int(line.rsplit(':', 1)[1].strip())
+    for line in collected.stdout.splitlines()
+    if line.startswith('tests/') and line.rsplit(':', 1)[1].strip().isdigit()
+)
+print('Collected tests:', test_count)
+assert test_count >= 16
 """
     )
 )
@@ -339,9 +387,9 @@ cells.append(
 - Professional README with setup, API keys, expected outputs, deployment, evidence index,
   training attribution, and SDAIA Academy link.
 - Technical architecture using nodes, edges, state, agents, tools, conditions, loops, and
-  checkpointers.
+  checkpointers, plus a GitHub-renderable Mermaid graph.
 - Rubric traceability, security model, API reference, tests, `.gitignore`, Docker/Compose,
-  CI workflow, and retained third-party license.
+  MinIO runtime smoke test, pre-publication gate, CI workflow, and third-party notices.
 - Executed notebook and captured JSON/log/metric/report evidence.
 
 The only external submission step is pushing this prepared Git repository to the
@@ -352,9 +400,12 @@ trainee's chosen GitHub repository.
 cells.append(
     nbf.v4.new_code_cell(
         """required = [
-    'README.md', '.gitignore', 'docs/architecture.md', 'docs/rubric_traceability.md',
+    'README.md', 'README.md', '.gitignore', '.env.example',
+    'docs/architecture.md', 'docs/agent_graph.md', 'docs/rubric_traceability.md',
     'docs/security.md', 'docs/api.md', 'Dockerfile', 'docker-compose.yml',
-    '.github/workflows/ci.yml', 'THIRD_PARTY_NOTICES.md',
+    '.github/workflows/ci.yml', 'scripts/prepublish_check.py',
+    'scripts/run_live_function_call_demo.py', 'scripts/docker_minio_smoke.py',
+    'THIRD_PARTY_NOTICES.md',
 ]
 rows = [{'file': item, 'exists': (PROJECT_ROOT / item).exists()} for item in required]
 display(pd.DataFrame(rows))
@@ -368,7 +419,7 @@ nb["cells"] = cells
 raw_path = ROOT / "notebooks" / "ContractGuard_Capstone.ipynb"
 nbf.write(nb, raw_path)
 
-client = NotebookClient(nb, timeout=180, kernel_name="python3", resources={"metadata": {"path": str(ROOT)}})
+client = NotebookClient(nb, timeout=240, kernel_name="python3", resources={"metadata": {"path": str(ROOT)}})
 executed = client.execute()
 nbf.write(executed, OUT)
 print(OUT)
