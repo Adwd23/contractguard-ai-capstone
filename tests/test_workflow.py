@@ -18,7 +18,8 @@ def test_indirect_prompt_injection_is_blocked_before_tools(isolated_settings) ->
             )
         )
     assert state["status"] == "blocked"
-    assert state["node_history"] == ["received", "guardrailed", "blocked"]
+    assert state["node_history"] == ["received", "input_guardrail", "blocked"]
+    assert state["guardrail_enforced"] is True
     assert state["tool_calls"] == []
 
 
@@ -57,13 +58,14 @@ def test_retry_pause_restart_resume_and_output_revision(isolated_settings) -> No
     assert paused["status"] == "awaiting_approval"
     assert paused["policy_retry_count"] == 1
     assert paused["quality_retry_count"] == 1
-    assert paused["node_history"].count("researching") >= 3
+    assert paused["node_history"].count("policy_research") >= 3
     service.close()
 
     # A completely new service object reads the same SQLite checkpoint.
     restarted = ContractGuardService(isolated_settings)
     loaded = restarted.get("high-risk-test")
-    assert loaded["node"] == "awaiting_approval"
+    assert loaded["node"] == "human_approval"
+    assert loaded["state"]["status"] == "awaiting_approval"
     final = restarted.resume(
         "high-risk-test",
         ResumeRequest(

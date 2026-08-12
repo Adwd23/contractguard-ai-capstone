@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from pathlib import Path
+import argparse
 import nbformat as nbf
+import ipykernel
 from nbclient import NotebookClient
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,7 +21,7 @@ nb["metadata"] = {
 cells = []
 cells.append(
     nbf.v4.new_markdown_cell(
-        """# ContractGuard AI — Executed Capstone Evidence
+        """# ContractGuard AI v1.3 Trainer-Fix — Executed Capstone Evidence
 
 **Program:** SDAIA Academy — Advanced Agentic AI Systems Engineering  
 **Cohort/session:** June 2026  
@@ -37,7 +39,7 @@ checkpoint/HITL/cloud artifacts, and professional documentation.
 cells.append(
     nbf.v4.new_code_cell(
         """from pathlib import Path
-import json, os, subprocess, sys
+import json, os, subprocess, sys, ipykernel
 import pandas as pd
 from IPython.display import display, Markdown
 
@@ -47,6 +49,7 @@ if PROJECT_ROOT.name == 'notebooks':
 sys.path.insert(0, str(PROJECT_ROOT / 'src'))
 print('Project root:', PROJECT_ROOT)
 print('Python:', sys.version.split()[0])
+print('ipykernel:', ipykernel.__version__)
 """
     )
 )
@@ -146,12 +149,12 @@ assert all(c['protocol'] == 'mcp_json_schema' for c in policy_calls)
 
 cells.append(
     nbf.v4.new_markdown_cell(
-        """## 4. Deliverable 2 — Genuine graph orchestration with conditions and loops
+        """## 4. Deliverable 2 — Genuine LangGraph StateGraph orchestration
 
-The graph is built by the real `transitions.Machine` finite-state orchestration framework
-(`transitions==0.9.3`). Conditions decide branches; shared state is read and updated by
-node callbacks; three bounded cycles support tool retry, Reflexion/re-search, and report
-revision. The generated specification explicitly proves that this is not a linear chain.
+The workflow is a real `langgraph.graph.StateGraph(AuditState)` compiled with a durable
+`SqliteSaver`. Five explicit `add_conditional_edges(...)` calls implement security routing,
+tool retry, Reflexion/re-search, risk escalation, and output revision. Three bounded cycles
+terminate on counters/conditions, so this is not a linear hardcoded chain.
 """
     )
 )
@@ -165,14 +168,16 @@ print('Branching nodes:', graph['branching_nodes'])
 print('Loops:')
 for loop in graph['loops']:
     print(' -', loop)
-edge_frame = pd.DataFrame(graph['edges'])[['trigger', 'source', 'dest', 'conditions', 'before']].fillna('')
+edge_frame = pd.DataFrame(graph['edges'])[['source', 'dest', 'kind', 'condition']].fillna('')
 display(edge_frame)
 assert graph['node_count'] >= 10
 assert graph['is_linear_chain'] is False
 assert graph['has_cycles'] is True
 assert graph['has_conditional_routing'] is True
+assert graph['framework_package'] == 'langgraph'
+assert graph['conditional_routing_api'] == 'StateGraph.add_conditional_edges'
 assert any(edge['source'] == edge['dest'] for edge in graph['edges'])
-assert any(edge.get('conditions') for edge in graph['edges'])
+assert any(edge.get('kind') == 'conditional' for edge in graph['edges'])
 """
     )
 )
@@ -194,12 +199,12 @@ failed_tools = [o for o in paused['tool_observations'] if o['status'] == 'error'
 print('Failed tool observations:', json.dumps(failed_tools, indent=2))
 print('Policy retry count:', paused['policy_retry_count'])
 print('Quality re-plan count:', paused['quality_retry_count'])
-print('Research node visits:', paused['node_history'].count('researching'))
+print('Policy-research node visits:', paused['node_history'].count('policy_research'))
 print('Node path:', ' -> '.join(paused['node_history']))
 assert failed_tools
 assert paused['policy_retry_count'] >= 1
 assert paused['quality_retry_count'] >= 1
-assert paused['node_history'].count('researching') >= 3
+assert paused['node_history'].count('policy_research') >= 3
 """
     )
 )
@@ -282,9 +287,9 @@ cells.append(
     nbf.v4.new_markdown_cell(
         """## 8. Deliverable 5 — Persistent checkpoint, real HITL pause/resume, and cloud artifact
 
-A high-risk contract stops at `awaiting_approval`. The first service object is closed.
-A fresh service object opens the same SQLite database, reloads the thread, applies a human
-decision, and continues from the paused node.
+A high-risk contract reaches the real `human_approval` LangGraph node and pauses by calling
+`interrupt(...)`. The first service object is closed. A fresh service opens the same
+`SqliteSaver` database and resumes the exact thread with `Command(resume=...)`.
 """
     )
 )
@@ -299,7 +304,8 @@ print('Human decision:', final['approval_status'], '-', final['approver'])
 print('Output revision count:', final['report_revision_count'])
 print('PII redactions:', final['pii_redactions'])
 print('Artifact URI:', final['artifact_uri'])
-assert loaded['node'] == 'awaiting_approval'
+assert loaded['node'] == 'human_approval'
+assert loaded['state']['status'] == 'awaiting_approval'
 assert final['status'] == 'completed'
 assert final['approval_status'] == 'approved'
 assert final['report_revision_count'] >= 1
@@ -376,7 +382,7 @@ test_count = sum(
     if line.startswith('tests/') and line.rsplit(':', 1)[1].strip().isdigit()
 )
 print('Collected tests:', test_count)
-assert test_count >= 16
+assert test_count >= 20
 """
     )
 )
@@ -393,8 +399,9 @@ cells.append(
   MinIO runtime smoke test, pre-publication gate, CI workflow, and third-party notices.
 - Executed notebook and captured JSON/log/metric/report evidence.
 
-The only external submission step is pushing this prepared Git repository to the
-Adwd23-owned GitHub repository.
+The remaining external submission steps are publishing this prepared Git repository under
+Adwd23 and setting the GitHub About description to the value documented in
+`docs/github_publication.md`.
 """
     )
 )
@@ -420,7 +427,19 @@ nb["cells"] = cells
 raw_path = ROOT / "notebooks" / "ContractGuard_Capstone.ipynb"
 nbf.write(nb, raw_path)
 
-client = NotebookClient(nb, timeout=240, kernel_name="python3", resources={"metadata": {"path": str(ROOT)}})
-executed = client.execute()
-nbf.write(executed, OUT)
-print(OUT)
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--template-only",
+    action="store_true",
+    help="Write the English v1.3 notebook template without claiming it was executed.",
+)
+args = parser.parse_args()
+if args.template_only:
+    print(raw_path)
+else:
+    client = NotebookClient(
+        nb, timeout=240, kernel_name="python3", resources={"metadata": {"path": str(ROOT)}}
+    )
+    executed = client.execute()
+    nbf.write(executed, OUT)
+    print(OUT)

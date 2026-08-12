@@ -5,7 +5,7 @@ on:
   pull_request:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: contractguard-${{ github.workflow }}-${{ github.ref }}
@@ -47,6 +47,18 @@ jobs:
             notebooks/ContractGuard_Capstone_Executed.ipynb
           if-no-files-found: error
           retention-days: 14
+      - name: Refresh v1.3 executed evidence on main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "Adwd23"
+          git config user.email "Adwd23@users.noreply.github.com"
+          git add evidence notebooks/ContractGuard_Capstone_Executed.ipynb
+          if ! git diff --cached --quiet; then
+            git commit -m "test: refresh v1.3 execution evidence [skip ci]"
+            git push
+          else
+            echo "Execution evidence is already current."
+          fi
 
   docker-minio-smoke:
     runs-on: ubuntu-latest

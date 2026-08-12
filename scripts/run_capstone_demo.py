@@ -149,7 +149,7 @@ def main() -> int:
     assert paused["quality_retry_count"] >= 1
     assert paused["approval_required"] is True
     assert paused["interrupt_payload"]["type"] == "human_approval_required"
-    assert paused["node_history"].count("researching") >= 3
+    assert paused["node_history"].count("policy_research") >= 3
     paused_history = service.history("capstone-high-risk")
     write_json(evidence_dir / "03_high_risk_paused_for_human.json", paused)
     write_json(evidence_dir / "03_high_risk_checkpoint_history_before_restart.json", paused_history)
@@ -161,7 +161,9 @@ def main() -> int:
 
     restarted_service = ContractGuardService(settings)
     loaded = restarted_service.get("capstone-high-risk")
-    assert loaded["node"] == "awaiting_approval"
+    assert loaded["node"] == "human_approval"
+    assert loaded["state"]["status"] == "awaiting_approval"
+    assert "human_approval" in loaded.get("next", [])
     assert loaded["state"]["risk_score"] == paused["risk_score"]
     write_json(evidence_dir / "04_checkpoint_loaded_after_restart.json", loaded)
 
@@ -202,11 +204,14 @@ def main() -> int:
         item for item in low.get("tool_observations", []) if item.get("status") == "success"
     ]
     graph_is_real = (
-        graph_spec.get("framework_package") == "transitions"
+        graph_spec.get("framework_package") == "langgraph"
         and graph_spec.get("is_linear_chain") is False
         and graph_spec.get("has_cycles") is True
         and graph_spec.get("has_conditional_routing") is True
-        and int(graph_spec.get("conditional_edge_count", 0)) >= 1
+        and int(graph_spec.get("conditional_edge_count", 0)) >= 5
+        and graph_spec.get("conditional_routing_api") == "StateGraph.add_conditional_edges"
+        and graph_spec.get("hitl_pause_api") == "langgraph.types.interrupt"
+        and graph_spec.get("hitl_resume_api") == "langgraph.types.Command(resume=...)"
     )
     specialized_agents = {message["sender"] for message in final.get("agent_messages", [])}
     least_privilege_ok = (
@@ -232,12 +237,32 @@ def main() -> int:
         "real_framework_graph_has_conditions_and_cycles": graph_is_real,
         "multiple_specialized_agents_communicated": len(specialized_agents) >= 8,
         "per_agent_tool_permissions_configured": least_privilege_ok,
+        "langgraph_stategraph_is_real": (
+            graph_spec.get("builder_api") == "StateGraph(AuditState)"
+            and graph_spec.get("framework_package") == "langgraph"
+        ),
+        "explicit_conditional_edges_are_real": (
+            graph_spec.get("conditional_routing_api") == "StateGraph.add_conditional_edges"
+            and int(graph_spec.get("conditional_edge_count", 0)) >= 5
+        ),
+        "input_guardrail_enforced_before_tools": (
+            blocked.get("guardrail_enforced") is True and blocked.get("tool_calls") == []
+        ),
+        "output_guardrail_enforced": final.get("output_guardrail_enforced") is True,
+        "langgraph_interrupt_and_command_resume": (
+            paused["status"] == "awaiting_approval"
+            and final["approval_status"] == "approved"
+        ),
         "prompt_injection_was_blocked": (
             blocked["status"] == "blocked" and not blocked["tool_calls"]
         ),
         "tool_failure_retry_fired": paused["policy_retry_count"] >= 1,
         "quality_replan_loop_fired": paused["quality_retry_count"] >= 1,
-        "persistent_checkpoint_survived_restart": loaded["node"] == "awaiting_approval",
+        "persistent_checkpoint_survived_restart": (
+            loaded["node"] == "human_approval"
+            and loaded["state"]["status"] == "awaiting_approval"
+            and "human_approval" in loaded.get("next", [])
+        ),
         "human_pause_resumed": (
             final["approval_status"] == "approved" and final["status"] == "completed"
         ),
@@ -257,7 +282,7 @@ def main() -> int:
 
     summary = {
         "project": "ContractGuard AI",
-        "version": "1.1.0",
+        "version": "1.3.0",
         "all_assertions_passed": all(proof.values()),
         "framework": graph_spec["framework"],
         "framework_package": graph_spec["framework_package"],

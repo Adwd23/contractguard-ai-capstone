@@ -30,7 +30,7 @@ def test_fastapi_start_status_graph_metrics(isolated_settings) -> None:
 
         graph = client.get("/graph")
         assert graph.status_code == 200
-        assert "researching -> researching (tool retry)" in graph.json()["loops"]
+        assert "policy_research -> policy_research (bounded tool retry)" in graph.json()["loops"]
 
         metrics = client.get("/metrics")
         assert metrics.status_code == 200
