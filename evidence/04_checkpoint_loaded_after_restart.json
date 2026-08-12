@@ -404,7 +404,7 @@
         "payload": {
           "matches": []
         },
-        "timestamp": "2026-08-12T21:37:21.602547+00:00"
+        "timestamp": "2026-08-12T21:38:46.200675+00:00"
       },
       {
         "sender": "Coordinator Agent",
@@ -457,7 +457,7 @@
             }
           ]
         },
-        "timestamp": "2026-08-12T21:37:21.603636+00:00"
+        "timestamp": "2026-08-12T21:38:46.201620+00:00"
       },
       {
         "sender": "Document Analyst Agent",
@@ -479,7 +479,7 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T21:37:21.605367+00:00"
+        "timestamp": "2026-08-12T21:38:46.202943+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -490,7 +490,7 @@
           "attempt": 1,
           "error": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence"
         },
-        "timestamp": "2026-08-12T21:37:21.607590+00:00"
+        "timestamp": "2026-08-12T21:38:46.204642+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -508,7 +508,7 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T21:37:21.613674+00:00"
+        "timestamp": "2026-08-12T21:38:46.210013+00:00"
       },
       {
         "sender": "Compliance Analyst Agent",
@@ -521,7 +521,7 @@
             "medium": 3
           }
         },
-        "timestamp": "2026-08-12T21:37:21.615869+00:00"
+        "timestamp": "2026-08-12T21:38:46.211670+00:00"
       },
       {
         "sender": "Quality Reviewer Agent",
@@ -532,7 +532,7 @@
           "missing_topics": [],
           "quality_score": 0.5
         },
-        "timestamp": "2026-08-12T21:37:21.618223+00:00"
+        "timestamp": "2026-08-12T21:38:46.213218+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -551,7 +551,7 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T21:37:21.625528+00:00"
+        "timestamp": "2026-08-12T21:38:46.219599+00:00"
       },
       {
         "sender": "Compliance Analyst Agent",
@@ -564,7 +564,7 @@
             "medium": 3
           }
         },
-        "timestamp": "2026-08-12T21:37:21.628770+00:00"
+        "timestamp": "2026-08-12T21:38:46.221775+00:00"
       },
       {
         "sender": "Quality Reviewer Agent",
@@ -575,7 +575,7 @@
           "missing_topics": [],
           "quality_score": 1.0
         },
-        "timestamp": "2026-08-12T21:37:21.631683+00:00"
+        "timestamp": "2026-08-12T21:38:46.224279+00:00"
       },
       {
         "sender": "Security Reviewer Agent",
@@ -587,12 +587,12 @@
           "risk_level": "CRITICAL",
           "approval_required": true
         },
-        "timestamp": "2026-08-12T21:37:21.634871+00:00"
+        "timestamp": "2026-08-12T21:38:46.226434+00:00"
       }
     ],
     "tool_calls": [
       {
-        "call_id": "0918b837-d1f2-4d08-8789-a539a216ebd5",
+        "call_id": "32892e20-f117-4f12-a1fc-a039560d824d",
         "agent": "Document Analyst Agent",
         "tool_name": "read_contract",
         "arguments": {
@@ -605,10 +605,10 @@
         "model_provider": null,
         "model_name": null,
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.604805+00:00"
+        "timestamp": "2026-08-12T21:38:46.202507+00:00"
       },
       {
-        "call_id": "71062536-923c-44cc-90fa-a7d6805fc82c",
+        "call_id": "991d7f84-a3aa-4842-96aa-87176a2e75f7",
         "agent": "Document Analyst Agent",
         "tool_name": "extract_contract_clauses",
         "arguments": {
@@ -620,10 +620,10 @@
         "model_provider": null,
         "model_name": null,
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.605041+00:00"
+        "timestamp": "2026-08-12T21:38:46.202761+00:00"
       },
       {
-        "call_id": "ad6632da-b44d-4b46-99cc-c8cdf305e579",
+        "call_id": "61ad94de-09ff-49aa-8de0-4ab4b795de76",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -639,10 +639,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.607398+00:00"
+        "timestamp": "2026-08-12T21:38:46.204481+00:00"
       },
       {
-        "call_id": "c51b3aef-dead-4caf-bd65-c01e1bc657c8",
+        "call_id": "357e1bd3-7ad4-4e93-bda1-21d843c500e4",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -658,10 +658,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.610150+00:00"
+        "timestamp": "2026-08-12T21:38:46.206398+00:00"
       },
       {
-        "call_id": "9b0b3b01-9ab1-41ef-b277-65acf6ac94f1",
+        "call_id": "12e52579-da5a-4db6-bf6e-12092a907ff2",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -677,10 +677,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.610781+00:00"
+        "timestamp": "2026-08-12T21:38:46.207090+00:00"
       },
       {
-        "call_id": "63985dda-d962-48fd-8f16-1d33f2948f52",
+        "call_id": "9085482f-9f26-4b3e-b6a7-865b06fcbade",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -696,10 +696,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.611297+00:00"
+        "timestamp": "2026-08-12T21:38:46.207634+00:00"
       },
       {
-        "call_id": "d1c38e84-d24b-4124-9a69-af0f37ffb0a6",
+        "call_id": "ec25dd6c-c4b7-4919-a899-5810c82718cf",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -715,10 +715,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.611798+00:00"
+        "timestamp": "2026-08-12T21:38:46.208117+00:00"
       },
       {
-        "call_id": "733e5a57-c3c7-4e28-8c7d-722743b90747",
+        "call_id": "15ae2ac9-d9a6-42ae-96c8-5969213a1cc7",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -734,10 +734,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.612358+00:00"
+        "timestamp": "2026-08-12T21:38:46.208613+00:00"
       },
       {
-        "call_id": "081eb5c4-b8e3-4ccf-876b-9bbd66e77f36",
+        "call_id": "0c7cd513-c6a8-4937-ab36-940d25bfb645",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -753,10 +753,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.612902+00:00"
+        "timestamp": "2026-08-12T21:38:46.209269+00:00"
       },
       {
-        "call_id": "9be7caaf-797c-4a51-bea9-4aadf0e9926b",
+        "call_id": "1f755269-4b30-4f94-a5fd-2d4beb1a3a1b",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -772,10 +772,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.613477+00:00"
+        "timestamp": "2026-08-12T21:38:46.209817+00:00"
       },
       {
-        "call_id": "e1ebb670-5f62-413d-8f97-9a8b67732652",
+        "call_id": "b92d304d-0d75-4815-8261-75871e59f23e",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -791,10 +791,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.621114+00:00"
+        "timestamp": "2026-08-12T21:38:46.215284+00:00"
       },
       {
-        "call_id": "46761952-65cf-4e56-a1bb-89939f68f51f",
+        "call_id": "641048d6-3b67-4593-acf4-e2a4664f654e",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -810,10 +810,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.621793+00:00"
+        "timestamp": "2026-08-12T21:38:46.215830+00:00"
       },
       {
-        "call_id": "2eaa7e06-4728-4538-a0f0-9cf2f2be2002",
+        "call_id": "0f355349-bcdb-472a-bc88-a166c43b3bb3",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -829,10 +829,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.622403+00:00"
+        "timestamp": "2026-08-12T21:38:46.216494+00:00"
       },
       {
-        "call_id": "b8aa5218-19bd-457d-a771-c1c7531f978b",
+        "call_id": "c58bd089-df96-4aa4-9847-58cef6d1ddb3",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -848,10 +848,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.623040+00:00"
+        "timestamp": "2026-08-12T21:38:46.217007+00:00"
       },
       {
-        "call_id": "ab983f96-37ec-45d2-b25f-24fb159d277f",
+        "call_id": "d58880a9-b176-4aab-bed4-4d85fd62e01f",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -867,10 +867,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.623587+00:00"
+        "timestamp": "2026-08-12T21:38:46.217556+00:00"
       },
       {
-        "call_id": "ce91e477-3c9b-4b1f-aeb7-0e8c075f7dbd",
+        "call_id": "bcb77024-7e20-4965-aff7-2b3c97129152",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -886,10 +886,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.624193+00:00"
+        "timestamp": "2026-08-12T21:38:46.218109+00:00"
       },
       {
-        "call_id": "708d1121-3ab7-490d-9a38-b844bad05692",
+        "call_id": "82b3790b-f097-42b3-8f1b-784387ed2e82",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -905,10 +905,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.624733+00:00"
+        "timestamp": "2026-08-12T21:38:46.218642+00:00"
       },
       {
-        "call_id": "79337697-0037-44dd-bd29-61cc9a4c2f09",
+        "call_id": "2514b92f-7351-4879-bdc2-0983d139cbc5",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -924,10 +924,10 @@
         "model_provider": "offline",
         "model_name": "deterministic-schema-router-v1",
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.625305+00:00"
+        "timestamp": "2026-08-12T21:38:46.219365+00:00"
       },
       {
-        "call_id": "722a9055-6c36-43d3-a544-eff6d64bd01d",
+        "call_id": "897478b3-258a-409d-9ce7-5a6fd1591c1b",
         "agent": "Security Reviewer Agent",
         "tool_name": "calculate_contract_risk",
         "arguments": {
@@ -1043,12 +1043,12 @@
         "model_provider": null,
         "model_name": null,
         "used_live_llm": false,
-        "timestamp": "2026-08-12T21:37:21.634294+00:00"
+        "timestamp": "2026-08-12T21:38:46.226279+00:00"
       }
     ],
     "tool_observations": [
       {
-        "call_id": "0918b837-d1f2-4d08-8789-a539a216ebd5",
+        "call_id": "32892e20-f117-4f12-a1fc-a039560d824d",
         "tool_name": "read_contract",
         "status": "success",
         "summary": "Returned object with keys: source, text, characters",
@@ -1057,11 +1057,11 @@
           "text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n",
           "characters": 1593
         },
-        "latency_ms": 0.14065900086279726,
-        "timestamp": "2026-08-12T21:37:21.605016+00:00"
+        "latency_ms": 0.14272699991124682,
+        "timestamp": "2026-08-12T21:38:46.202734+00:00"
       },
       {
-        "call_id": "71062536-923c-44cc-90fa-a7d6805fc82c",
+        "call_id": "991d7f84-a3aa-4842-96aa-87176a2e75f7",
         "tool_name": "extract_contract_clauses",
         "status": "success",
         "summary": "Returned 9 items",
@@ -1121,20 +1121,20 @@
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.10848400052054785,
-        "timestamp": "2026-08-12T21:37:21.605253+00:00"
+        "latency_ms": 0.09159799992630724,
+        "timestamp": "2026-08-12T21:38:46.202908+00:00"
       },
       {
-        "call_id": "ad6632da-b44d-4b46-99cc-c8cdf305e579",
+        "call_id": "61ad94de-09ff-49aa-8de0-4ab4b795de76",
         "tool_name": "search_policy_knowledge_base",
         "status": "error",
         "summary": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence",
         "output": null,
-        "latency_ms": 0.04809599977306789,
-        "timestamp": "2026-08-12T21:37:21.607571+00:00"
+        "latency_ms": 0.04713300040748436,
+        "timestamp": "2026-08-12T21:38:46.204626+00:00"
       },
       {
-        "call_id": "c51b3aef-dead-4caf-bd65-c01e1bc657c8",
+        "call_id": "357e1bd3-7ad4-4e93-bda1-21d843c500e4",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1156,11 +1156,11 @@
             "topic": "data_protection"
           }
         ],
-        "latency_ms": 0.15401500058942474,
-        "timestamp": "2026-08-12T21:37:21.610377+00:00"
+        "latency_ms": 0.22709800032316707,
+        "timestamp": "2026-08-12T21:38:46.206710+00:00"
       },
       {
-        "call_id": "9b0b3b01-9ab1-41ef-b277-65acf6ac94f1",
+        "call_id": "12e52579-da5a-4db6-bf6e-12092a907ff2",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1182,11 +1182,11 @@
             "topic": "governing_law"
           }
         ],
-        "latency_ms": 0.1322920006714412,
-        "timestamp": "2026-08-12T21:37:21.610974+00:00"
+        "latency_ms": 0.1293499999519554,
+        "timestamp": "2026-08-12T21:38:46.207279+00:00"
       },
       {
-        "call_id": "63985dda-d962-48fd-8f16-1d33f2948f52",
+        "call_id": "9085482f-9f26-4b3e-b6a7-865b06fcbade",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1200,11 +1200,11 @@
             "topic": "liability"
           }
         ],
-        "latency_ms": 0.10339000073145144,
-        "timestamp": "2026-08-12T21:37:21.611456+00:00"
+        "latency_ms": 0.10353500056226039,
+        "timestamp": "2026-08-12T21:38:46.207790+00:00"
       },
       {
-        "call_id": "d1c38e84-d24b-4124-9a69-af0f37ffb0a6",
+        "call_id": "ec25dd6c-c4b7-4919-a899-5810c82718cf",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1226,11 +1226,11 @@
             "topic": "payment"
           }
         ],
-        "latency_ms": 0.1338599995506229,
-        "timestamp": "2026-08-12T21:37:21.611990+00:00"
+        "latency_ms": 0.11925400031032041,
+        "timestamp": "2026-08-12T21:38:46.208287+00:00"
       },
       {
-        "call_id": "733e5a57-c3c7-4e28-8c7d-722743b90747",
+        "call_id": "15ae2ac9-d9a6-42ae-96c8-5969213a1cc7",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1252,11 +1252,11 @@
             "topic": "security"
           }
         ],
-        "latency_ms": 0.13372000012168428,
-        "timestamp": "2026-08-12T21:37:21.612549+00:00"
+        "latency_ms": 0.13403200046013808,
+        "timestamp": "2026-08-12T21:38:46.208804+00:00"
       },
       {
-        "call_id": "081eb5c4-b8e3-4ccf-876b-9bbd66e77f36",
+        "call_id": "0c7cd513-c6a8-4937-ab36-940d25bfb645",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1270,11 +1270,11 @@
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.10588700024527498,
-        "timestamp": "2026-08-12T21:37:21.613094+00:00"
+        "latency_ms": 0.13389800005825236,
+        "timestamp": "2026-08-12T21:38:46.209470+00:00"
       },
       {
-        "call_id": "9be7caaf-797c-4a51-bea9-4aadf0e9926b",
+        "call_id": "1f755269-4b30-4f94-a5fd-2d4beb1a3a1b",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1296,11 +1296,11 @@
             "topic": "termination"
           }
         ],
-        "latency_ms": 0.12001499999314547,
-        "timestamp": "2026-08-12T21:37:21.613650+00:00"
+        "latency_ms": 0.11704100052156718,
+        "timestamp": "2026-08-12T21:38:46.209988+00:00"
       },
       {
-        "call_id": "e1ebb670-5f62-413d-8f97-9a8b67732652",
+        "call_id": "b92d304d-0d75-4815-8261-75871e59f23e",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1322,11 +1322,11 @@
             "topic": "data_protection"
           }
         ],
-        "latency_ms": 0.21665500025846995,
-        "timestamp": "2026-08-12T21:37:21.621410+00:00"
+        "latency_ms": 0.14202700003806967,
+        "timestamp": "2026-08-12T21:38:46.215490+00:00"
       },
       {
-        "call_id": "46761952-65cf-4e56-a1bb-89939f68f51f",
+        "call_id": "641048d6-3b67-4593-acf4-e2a4664f654e",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1348,11 +1348,11 @@
             "topic": "governing_law"
           }
         ],
-        "latency_ms": 0.12562899974000175,
-        "timestamp": "2026-08-12T21:37:21.622030+00:00"
+        "latency_ms": 0.2155089996449533,
+        "timestamp": "2026-08-12T21:38:46.216115+00:00"
       },
       {
-        "call_id": "2eaa7e06-4728-4538-a0f0-9cf2f2be2002",
+        "call_id": "0f355349-bcdb-472a-bc88-a166c43b3bb3",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1366,11 +1366,11 @@
             "topic": "liability"
           }
         ],
-        "latency_ms": 0.1657739994698204,
-        "timestamp": "2026-08-12T21:37:21.622634+00:00"
+        "latency_ms": 0.11543399978108937,
+        "timestamp": "2026-08-12T21:38:46.216669+00:00"
       },
       {
-        "call_id": "b8aa5218-19bd-457d-a771-c1c7531f978b",
+        "call_id": "c58bd089-df96-4aa4-9847-58cef6d1ddb3",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1392,11 +1392,11 @@
             "topic": "payment"
           }
         ],
-        "latency_ms": 0.1287969998884364,
-        "timestamp": "2026-08-12T21:37:21.623225+00:00"
+        "latency_ms": 0.12739000067085726,
+        "timestamp": "2026-08-12T21:38:46.217190+00:00"
       },
       {
-        "call_id": "ab983f96-37ec-45d2-b25f-24fb159d277f",
+        "call_id": "d58880a9-b176-4aab-bed4-4d85fd62e01f",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1418,11 +1418,11 @@
             "topic": "security"
           }
         ],
-        "latency_ms": 0.12876099935965613,
-        "timestamp": "2026-08-12T21:37:21.623771+00:00"
+        "latency_ms": 0.13493700043909485,
+        "timestamp": "2026-08-12T21:38:46.217752+00:00"
       },
       {
-        "call_id": "ce91e477-3c9b-4b1f-aeb7-0e8c075f7dbd",
+        "call_id": "bcb77024-7e20-4965-aff7-2b3c97129152",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1436,11 +1436,11 @@
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.1084810000975267,
-        "timestamp": "2026-08-12T21:37:21.624356+00:00"
+        "latency_ms": 0.10009200013882946,
+        "timestamp": "2026-08-12T21:38:46.218261+00:00"
       },
       {
-        "call_id": "708d1121-3ab7-490d-9a38-b844bad05692",
+        "call_id": "82b3790b-f097-42b3-8f1b-784387ed2e82",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1462,11 +1462,11 @@
             "topic": "termination"
           }
         ],
-        "latency_ms": 0.11869100035255542,
-        "timestamp": "2026-08-12T21:37:21.624908+00:00"
+        "latency_ms": 0.13158199999452336,
+        "timestamp": "2026-08-12T21:38:46.218833+00:00"
       },
       {
-        "call_id": "79337697-0037-44dd-bd29-61cc9a4c2f09",
+        "call_id": "2514b92f-7351-4879-bdc2-0983d139cbc5",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1488,11 +1488,11 @@
             "topic": "general"
           }
         ],
-        "latency_ms": 0.13683899942407152,
-        "timestamp": "2026-08-12T21:37:21.625503+00:00"
+        "latency_ms": 0.1388890004818677,
+        "timestamp": "2026-08-12T21:38:46.219570+00:00"
       },
       {
-        "call_id": "722a9055-6c36-43d3-a544-eff6d64bd01d",
+        "call_id": "897478b3-258a-409d-9ce7-5a6fd1591c1b",
         "tool_name": "calculate_contract_risk",
         "status": "success",
         "summary": "Returned object with keys: risk_score, risk_level, approval_required",
@@ -1501,8 +1501,8 @@
           "risk_level": "CRITICAL",
           "approval_required": true
         },
-        "latency_ms": 0.0503209994349163,
-        "timestamp": "2026-08-12T21:37:21.634845+00:00"
+        "latency_ms": 0.04911899941362208,
+        "timestamp": "2026-08-12T21:38:46.226416+00:00"
       }
     ],
     "decision_trace": [
@@ -1521,16 +1521,16 @@
             "contract_path": "/mnt/data/contractguard-ai/data/samples/vendor_contract_high_risk.txt",
             "contract_text": null
           },
-          "call_id": "0918b837-d1f2-4d08-8789-a539a216ebd5"
+          "call_id": "32892e20-f117-4f12-a1fc-a039560d824d"
         },
-        "timestamp": "2026-08-12T21:37:21.604805+00:00"
+        "timestamp": "2026-08-12T21:38:46.202507+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned object with keys: source, text, characters",
         "status": "success",
-        "call_id": "0918b837-d1f2-4d08-8789-a539a216ebd5",
-        "timestamp": "2026-08-12T21:37:21.605016+00:00"
+        "call_id": "32892e20-f117-4f12-a1fc-a039560d824d",
+        "timestamp": "2026-08-12T21:38:46.202734+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1546,16 +1546,16 @@
           "arguments": {
             "contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n"
           },
-          "call_id": "71062536-923c-44cc-90fa-a7d6805fc82c"
+          "call_id": "991d7f84-a3aa-4842-96aa-87176a2e75f7"
         },
-        "timestamp": "2026-08-12T21:37:21.605041+00:00"
+        "timestamp": "2026-08-12T21:38:46.202761+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 9 items",
         "status": "success",
-        "call_id": "71062536-923c-44cc-90fa-a7d6805fc82c",
-        "timestamp": "2026-08-12T21:37:21.605253+00:00"
+        "call_id": "991d7f84-a3aa-4842-96aa-87176a2e75f7",
+        "timestamp": "2026-08-12T21:38:46.202908+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1575,16 +1575,16 @@
             "attempt": 0,
             "simulate_primary_failure": true
           },
-          "call_id": "ad6632da-b44d-4b46-99cc-c8cdf305e579"
+          "call_id": "61ad94de-09ff-49aa-8de0-4ab4b795de76"
         },
-        "timestamp": "2026-08-12T21:37:21.607398+00:00"
+        "timestamp": "2026-08-12T21:38:46.204481+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence",
         "status": "error",
-        "call_id": "ad6632da-b44d-4b46-99cc-c8cdf305e579",
-        "timestamp": "2026-08-12T21:37:21.607571+00:00"
+        "call_id": "61ad94de-09ff-49aa-8de0-4ab4b795de76",
+        "timestamp": "2026-08-12T21:38:46.204626+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1604,16 +1604,16 @@
             "attempt": 1,
             "simulate_primary_failure": true
           },
-          "call_id": "c51b3aef-dead-4caf-bd65-c01e1bc657c8"
+          "call_id": "357e1bd3-7ad4-4e93-bda1-21d843c500e4"
         },
-        "timestamp": "2026-08-12T21:37:21.610150+00:00"
+        "timestamp": "2026-08-12T21:38:46.206398+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "c51b3aef-dead-4caf-bd65-c01e1bc657c8",
-        "timestamp": "2026-08-12T21:37:21.610377+00:00"
+        "call_id": "357e1bd3-7ad4-4e93-bda1-21d843c500e4",
+        "timestamp": "2026-08-12T21:38:46.206710+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1633,16 +1633,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "9b0b3b01-9ab1-41ef-b277-65acf6ac94f1"
+          "call_id": "12e52579-da5a-4db6-bf6e-12092a907ff2"
         },
-        "timestamp": "2026-08-12T21:37:21.610781+00:00"
+        "timestamp": "2026-08-12T21:38:46.207090+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "9b0b3b01-9ab1-41ef-b277-65acf6ac94f1",
-        "timestamp": "2026-08-12T21:37:21.610974+00:00"
+        "call_id": "12e52579-da5a-4db6-bf6e-12092a907ff2",
+        "timestamp": "2026-08-12T21:38:46.207279+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1662,16 +1662,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "63985dda-d962-48fd-8f16-1d33f2948f52"
+          "call_id": "9085482f-9f26-4b3e-b6a7-865b06fcbade"
         },
-        "timestamp": "2026-08-12T21:37:21.611297+00:00"
+        "timestamp": "2026-08-12T21:38:46.207634+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "63985dda-d962-48fd-8f16-1d33f2948f52",
-        "timestamp": "2026-08-12T21:37:21.611456+00:00"
+        "call_id": "9085482f-9f26-4b3e-b6a7-865b06fcbade",
+        "timestamp": "2026-08-12T21:38:46.207790+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1691,16 +1691,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "d1c38e84-d24b-4124-9a69-af0f37ffb0a6"
+          "call_id": "ec25dd6c-c4b7-4919-a899-5810c82718cf"
         },
-        "timestamp": "2026-08-12T21:37:21.611798+00:00"
+        "timestamp": "2026-08-12T21:38:46.208117+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "d1c38e84-d24b-4124-9a69-af0f37ffb0a6",
-        "timestamp": "2026-08-12T21:37:21.611990+00:00"
+        "call_id": "ec25dd6c-c4b7-4919-a899-5810c82718cf",
+        "timestamp": "2026-08-12T21:38:46.208287+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1720,16 +1720,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "733e5a57-c3c7-4e28-8c7d-722743b90747"
+          "call_id": "15ae2ac9-d9a6-42ae-96c8-5969213a1cc7"
         },
-        "timestamp": "2026-08-12T21:37:21.612358+00:00"
+        "timestamp": "2026-08-12T21:38:46.208613+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "733e5a57-c3c7-4e28-8c7d-722743b90747",
-        "timestamp": "2026-08-12T21:37:21.612549+00:00"
+        "call_id": "15ae2ac9-d9a6-42ae-96c8-5969213a1cc7",
+        "timestamp": "2026-08-12T21:38:46.208804+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1749,16 +1749,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "081eb5c4-b8e3-4ccf-876b-9bbd66e77f36"
+          "call_id": "0c7cd513-c6a8-4937-ab36-940d25bfb645"
         },
-        "timestamp": "2026-08-12T21:37:21.612902+00:00"
+        "timestamp": "2026-08-12T21:38:46.209269+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "081eb5c4-b8e3-4ccf-876b-9bbd66e77f36",
-        "timestamp": "2026-08-12T21:37:21.613094+00:00"
+        "call_id": "0c7cd513-c6a8-4937-ab36-940d25bfb645",
+        "timestamp": "2026-08-12T21:38:46.209470+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1778,16 +1778,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "9be7caaf-797c-4a51-bea9-4aadf0e9926b"
+          "call_id": "1f755269-4b30-4f94-a5fd-2d4beb1a3a1b"
         },
-        "timestamp": "2026-08-12T21:37:21.613477+00:00"
+        "timestamp": "2026-08-12T21:38:46.209817+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "9be7caaf-797c-4a51-bea9-4aadf0e9926b",
-        "timestamp": "2026-08-12T21:37:21.613650+00:00"
+        "call_id": "1f755269-4b30-4f94-a5fd-2d4beb1a3a1b",
+        "timestamp": "2026-08-12T21:38:46.209988+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1807,16 +1807,16 @@
             "attempt": 1,
             "simulate_primary_failure": true
           },
-          "call_id": "e1ebb670-5f62-413d-8f97-9a8b67732652"
+          "call_id": "b92d304d-0d75-4815-8261-75871e59f23e"
         },
-        "timestamp": "2026-08-12T21:37:21.621114+00:00"
+        "timestamp": "2026-08-12T21:38:46.215284+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "e1ebb670-5f62-413d-8f97-9a8b67732652",
-        "timestamp": "2026-08-12T21:37:21.621410+00:00"
+        "call_id": "b92d304d-0d75-4815-8261-75871e59f23e",
+        "timestamp": "2026-08-12T21:38:46.215490+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1836,16 +1836,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "46761952-65cf-4e56-a1bb-89939f68f51f"
+          "call_id": "641048d6-3b67-4593-acf4-e2a4664f654e"
         },
-        "timestamp": "2026-08-12T21:37:21.621793+00:00"
+        "timestamp": "2026-08-12T21:38:46.215830+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "46761952-65cf-4e56-a1bb-89939f68f51f",
-        "timestamp": "2026-08-12T21:37:21.622030+00:00"
+        "call_id": "641048d6-3b67-4593-acf4-e2a4664f654e",
+        "timestamp": "2026-08-12T21:38:46.216115+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1865,16 +1865,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "2eaa7e06-4728-4538-a0f0-9cf2f2be2002"
+          "call_id": "0f355349-bcdb-472a-bc88-a166c43b3bb3"
         },
-        "timestamp": "2026-08-12T21:37:21.622403+00:00"
+        "timestamp": "2026-08-12T21:38:46.216494+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "2eaa7e06-4728-4538-a0f0-9cf2f2be2002",
-        "timestamp": "2026-08-12T21:37:21.622634+00:00"
+        "call_id": "0f355349-bcdb-472a-bc88-a166c43b3bb3",
+        "timestamp": "2026-08-12T21:38:46.216669+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1894,16 +1894,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "b8aa5218-19bd-457d-a771-c1c7531f978b"
+          "call_id": "c58bd089-df96-4aa4-9847-58cef6d1ddb3"
         },
-        "timestamp": "2026-08-12T21:37:21.623040+00:00"
+        "timestamp": "2026-08-12T21:38:46.217007+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "b8aa5218-19bd-457d-a771-c1c7531f978b",
-        "timestamp": "2026-08-12T21:37:21.623225+00:00"
+        "call_id": "c58bd089-df96-4aa4-9847-58cef6d1ddb3",
+        "timestamp": "2026-08-12T21:38:46.217190+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1923,16 +1923,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "ab983f96-37ec-45d2-b25f-24fb159d277f"
+          "call_id": "d58880a9-b176-4aab-bed4-4d85fd62e01f"
         },
-        "timestamp": "2026-08-12T21:37:21.623587+00:00"
+        "timestamp": "2026-08-12T21:38:46.217556+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "ab983f96-37ec-45d2-b25f-24fb159d277f",
-        "timestamp": "2026-08-12T21:37:21.623771+00:00"
+        "call_id": "d58880a9-b176-4aab-bed4-4d85fd62e01f",
+        "timestamp": "2026-08-12T21:38:46.217752+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1952,16 +1952,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "ce91e477-3c9b-4b1f-aeb7-0e8c075f7dbd"
+          "call_id": "bcb77024-7e20-4965-aff7-2b3c97129152"
         },
-        "timestamp": "2026-08-12T21:37:21.624193+00:00"
+        "timestamp": "2026-08-12T21:38:46.218109+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "ce91e477-3c9b-4b1f-aeb7-0e8c075f7dbd",
-        "timestamp": "2026-08-12T21:37:21.624356+00:00"
+        "call_id": "bcb77024-7e20-4965-aff7-2b3c97129152",
+        "timestamp": "2026-08-12T21:38:46.218261+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1981,16 +1981,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "708d1121-3ab7-490d-9a38-b844bad05692"
+          "call_id": "82b3790b-f097-42b3-8f1b-784387ed2e82"
         },
-        "timestamp": "2026-08-12T21:37:21.624733+00:00"
+        "timestamp": "2026-08-12T21:38:46.218642+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "708d1121-3ab7-490d-9a38-b844bad05692",
-        "timestamp": "2026-08-12T21:37:21.624908+00:00"
+        "call_id": "82b3790b-f097-42b3-8f1b-784387ed2e82",
+        "timestamp": "2026-08-12T21:38:46.218833+00:00"
       },
       {
         "pattern": "ReAct",
@@ -2010,16 +2010,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "79337697-0037-44dd-bd29-61cc9a4c2f09"
+          "call_id": "2514b92f-7351-4879-bdc2-0983d139cbc5"
         },
-        "timestamp": "2026-08-12T21:37:21.625305+00:00"
+        "timestamp": "2026-08-12T21:38:46.219365+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "79337697-0037-44dd-bd29-61cc9a4c2f09",
-        "timestamp": "2026-08-12T21:37:21.625503+00:00"
+        "call_id": "2514b92f-7351-4879-bdc2-0983d139cbc5",
+        "timestamp": "2026-08-12T21:38:46.219570+00:00"
       },
       {
         "pattern": "ReAct",
@@ -2139,16 +2139,16 @@
             "approval_risk_threshold": 50,
             "approval_value_threshold_sar": 500000.0
           },
-          "call_id": "722a9055-6c36-43d3-a544-eff6d64bd01d"
+          "call_id": "897478b3-258a-409d-9ce7-5a6fd1591c1b"
         },
-        "timestamp": "2026-08-12T21:37:21.634294+00:00"
+        "timestamp": "2026-08-12T21:38:46.226279+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned object with keys: risk_score, risk_level, approval_required",
         "status": "success",
-        "call_id": "722a9055-6c36-43d3-a544-eff6d64bd01d",
-        "timestamp": "2026-08-12T21:37:21.634845+00:00"
+        "call_id": "897478b3-258a-409d-9ce7-5a6fd1591c1b",
+        "timestamp": "2026-08-12T21:38:46.226416+00:00"
       }
     ],
     "reasoner_mode": "offline_schema_router",
@@ -2172,8 +2172,8 @@
       "security_reviewed",
       "awaiting_approval"
     ],
-    "created_at": "2026-08-12T21:37:21.599303+00:00",
-    "updated_at": "2026-08-12T21:37:21.638114+00:00",
+    "created_at": "2026-08-12T21:38:46.197940+00:00",
+    "updated_at": "2026-08-12T21:38:46.228655+00:00",
     "flags": {
       "simulate_primary_failure": true,
       "simulate_quality_retry": true,
@@ -2186,5 +2186,5 @@
     "node_error": "",
     "additional_policy_queries": []
   },
-  "updated_at": "2026-08-12T21:37:21.638114+00:00"
+  "updated_at": "2026-08-12T21:38:46.228655+00:00"
 }
