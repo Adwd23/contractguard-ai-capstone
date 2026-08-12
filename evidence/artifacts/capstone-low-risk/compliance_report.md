@@ -2,7 +2,7 @@
 
 **Report ID:** CGA-capstone-low-risk  
 **Thread ID:** capstone-low-risk  
-**Generated:** 2026-08-12T21:38:46.188220+00:00  
+**Generated:** 2026-08-12T21:39:51.801661+00:00  
 **Vendor:** Riyadh Analytics Company  
 **Contract value:** SAR 125,000.00  
 **Risk:** LOW (0/100)  
