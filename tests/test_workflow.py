@@ -136,3 +136,51 @@ def test_optional_llm_summary_receives_minimized_redacted_context(
     assert "[REDACTED_EMAIL]" in captured["user"]
     parsed = json.loads(captured["user"])
     assert all("contract_excerpt" not in finding for finding in parsed["findings"])
+
+
+def test_ten_distinct_agent_objects_exchange_structured_messages(isolated_settings) -> None:
+    """Prove multi-agent specialization is runtime object separation, not persona prompting."""
+    path = isolated_settings.project_root / "data" / "samples" / "vendor_contract_low_risk.txt"
+    with ContractGuardService(isolated_settings) as service:
+        assert len(service.agents) == 10
+        assert len({type(agent) for agent in service.agents.values()}) == 10
+        state = service.start(
+            AuditStartRequest(
+                thread_id="multi-agent-object-test",
+                request_text="Audit this contract and show specialist handoffs.",
+                contract_path=str(path),
+            )
+        )
+
+    messages = state["agent_messages"]
+    senders = {message["sender"] for message in messages}
+    recipients = {message["recipient"] for message in messages}
+    assert len(senders) >= 8
+    assert "Coordinator Agent" in senders
+    assert "Policy Research Agent" in senders
+    assert "Quality Reviewer Agent" in senders
+    assert "Report Writer Agent" in senders
+    assert "Document Analyst Agent" in recipients
+    assert "Output Guardian Agent" in recipients
+    assert all(
+        {"sender", "recipient", "message_type", "content", "payload", "timestamp"}.issubset(message)
+        for message in messages
+    )
+
+
+def test_runtime_langgraph_builder_registers_conditional_branches(isolated_settings) -> None:
+    """Inspect the actual StateGraph builder, not a documentation-only edge list."""
+    with ContractGuardService(isolated_settings) as service:
+        graph = service.graph_spec()
+
+    runtime = graph["runtime_builder_introspection"]
+    assert runtime["conditional_branch_count"] >= 5
+    assert {
+        "input_guardrail",
+        "policy_research",
+        "quality_reviewer",
+        "security_reviewer",
+        "output_guardian",
+    }.issubset(set(runtime["conditional_branch_sources"]))
+    assert graph["has_conditional_routing"] is True
+    assert graph["is_linear_chain"] is False
