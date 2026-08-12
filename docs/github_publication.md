@@ -18,17 +18,21 @@ Set the repository to Public if direct trainer access is required.
 
 ## Push the prepared Git history
 
+The **Full Repo v1.3** archive already has this target configured as `origin`. After extracting it, verify and push:
+
+```bash
+git remote -v
+git push -u origin main
+```
+
+If you extracted a copy without the remote configuration, set it explicitly:
+
 ```bash
 git remote add origin https://github.com/Adwd23/contractguard-ai-capstone.git
 git push -u origin main
 ```
 
-If `origin` already exists:
-
-```bash
-git remote set-url origin https://github.com/Adwd23/contractguard-ai-capstone.git
-git push -u origin main
-```
+In GitHub Desktop, use **File → Add Local Repository**, choose the extracted `contractguard-ai` folder, verify the History tab, and then use **Push origin / Publish branch** while signed in as **Adwd23**.
 
 ## After the first push
 

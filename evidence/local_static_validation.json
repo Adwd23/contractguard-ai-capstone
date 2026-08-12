@@ -4,7 +4,7 @@
   "version": "1.3.0",
   "owner": "Adwd23",
   "validation_mode": "static-only",
-  "generated_at": "2026-08-12T22:58:13.115977+00:00",
+  "generated_at": "2026-08-12T22:59:30.757080+00:00",
   "ready_to_publish": true,
   "runtime_evidence_executed": false,
   "checks": [
@@ -72,7 +72,7 @@
       "name": "incremental_git_history",
       "passed": true,
       "mandatory": true,
-      "detail": "commit_count=18"
+      "detail": "commit_count=20"
     },
     {
       "name": "git_history_public_identity",
@@ -100,9 +100,9 @@
     },
     {
       "name": "github_origin_configured",
-      "passed": false,
+      "passed": true,
       "mandatory": false,
-      "detail": "pending: add https://github.com/Adwd23/contractguard-ai-capstone as origin"
+      "detail": "https://github.com/Adwd23/contractguard-ai-capstone.git"
     },
     {
       "name": "github_about_description",
