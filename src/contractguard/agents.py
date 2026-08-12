@@ -359,14 +359,29 @@ class ComplianceAnalystAgent(BaseAgent):
             )
 
         security_text = " ".join(item["text"] for item in by_topic.get("security", [])).lower()
-        if not ("iso 27001" in security_text and "encrypt" in security_text):
+        security_negation = any(
+            term in security_text
+            for term in (
+                "no iso 27001",
+                "no encryption",
+                "encryption commitment",
+                "not guaranteed",
+                "no customer audit",
+            )
+        )
+        security_positive = (
+            "iso 27001" in security_text
+            and "encrypt" in security_text
+            and any(term in security_text for term in ("audit right", "penetration testing", "penetration-test"))
+        )
+        if not security_positive or security_negation:
             add(
                 "security",
                 "Security baseline is incomplete",
-                "medium",
+                "high" if security_negation else "medium",
                 security_text or "No dedicated security clause detected.",
                 "Require ISO 27001-equivalent controls, encryption in transit/at rest, audit rights, and annual testing.",
-                0.86,
+                0.9 if security_negation else 0.86,
             )
 
         payment_text = " ".join(item["text"] for item in by_topic.get("payment", [])).lower()
@@ -411,13 +426,39 @@ class ComplianceAnalystAgent(BaseAgent):
             )
 
         law_text = " ".join(item["text"] for item in by_topic.get("governing_law", [])).lower()
-        if law_text and not any(term in law_text for term in ("saudi arabia", "kingdom of saudi arabia", "ksa")):
+        ksa_law_positive = any(
+            term in law_text
+            for term in (
+                "governed by the laws of the kingdom of saudi arabia",
+                "laws of the kingdom of saudi arabia",
+                "saudi courts have jurisdiction",
+            )
+        )
+        foreign_law_signal = any(
+            term in law_text
+            for term in ("delaware", "england and wales", "new york", "outside saudi arabia", "foreign courts")
+        )
+        if law_text and (foreign_law_signal or not ksa_law_positive):
             add(
                 "governing_law",
                 "Non-KSA governing law",
                 "high",
                 law_text,
                 "Use the laws and courts of the Kingdom of Saudi Arabia unless Legal approves an exception.",
+            )
+
+        service_text = " ".join(item["text"] for item in by_topic.get("service_levels", [])).lower()
+        if service_text and (
+            any(term in service_text for term in ("98.0 percent", "98 percent", "98%"))
+            or "no service credits" in service_text
+        ):
+            add(
+                "service_levels",
+                "Service levels are below the enterprise standard",
+                "medium",
+                service_text,
+                "Require at least 99.9% monthly availability, service credits, and chronic-failure termination rights.",
+                0.93,
             )
 
         value = float(metadata.get("contract_value_sar", 0.0) or 0.0)
@@ -689,6 +730,17 @@ def render_report_markdown(report: dict[str, Any]) -> str:
     recommendations = "\n".join(f"{index}. {item}" for index, item in enumerate(report["recommendations"], 1))
     trace = "\n".join(f"- {item}" for item in report.get("agent_trace_summary", []))
     findings_table = "\n".join(rows) if findings else "No policy deviations were detected."
+    finding_details = "\n\n".join(
+        (
+            f"### {item['finding_id']} — {item['title']}\n\n"
+            f"- **Severity:** {item['severity'].upper()}\n"
+            f"- **Topic:** {item['topic'].replace('_', ' ')}\n"
+            f"- **Masked contract excerpt:** {item['contract_excerpt']}\n"
+            f"- **Policy reference:** {item['policy_reference']}\n"
+            f"- **Recommendation:** {item['recommendation']}"
+        )
+        for item in findings
+    )
     return f"""# ContractGuard AI Compliance Report
 
 **Report ID:** {report['report_id']}  
@@ -706,6 +758,10 @@ def render_report_markdown(report: dict[str, Any]) -> str:
 ## Compliance Findings
 
 {findings_table}
+
+## Detailed Findings and Masked Evidence
+
+{finding_details or 'No detailed findings.'}
 
 ## Recommendations
 

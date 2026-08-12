@@ -294,6 +294,16 @@
       },
       {
         "finding_id": "F-04",
+        "topic": "security",
+        "title": "Security baseline is incomplete",
+        "severity": "high",
+        "contract_excerpt": "the vendor will use commercially reasonable security. no iso 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.",
+        "policy_reference": "Information Security Policy — Access Control",
+        "recommendation": "Require ISO 27001-equivalent controls, encryption in transit/at rest, audit rights, and annual testing.",
+        "confidence": 0.9
+      },
+      {
+        "finding_id": "F-05",
         "topic": "payment",
         "title": "Accelerated payment terms",
         "severity": "medium",
@@ -303,7 +313,7 @@
         "confidence": 0.92
       },
       {
-        "finding_id": "F-05",
+        "finding_id": "F-06",
         "topic": "liability",
         "title": "Liability cap is below corporate minimum",
         "severity": "high",
@@ -313,7 +323,7 @@
         "confidence": 0.92
       },
       {
-        "finding_id": "F-06",
+        "finding_id": "F-07",
         "topic": "termination",
         "title": "Termination and renewal terms are restrictive",
         "severity": "medium",
@@ -323,7 +333,27 @@
         "confidence": 0.9
       },
       {
-        "finding_id": "F-07",
+        "finding_id": "F-08",
+        "topic": "governing_law",
+        "title": "Non-KSA governing law",
+        "severity": "high",
+        "contract_excerpt": "this agreement is governed by the laws of the state of delaware and disputes are subject to courts outside saudi arabia.",
+        "policy_reference": "Legal Contracting Standard — Governing Law",
+        "recommendation": "Use the laws and courts of the Kingdom of Saudi Arabia unless Legal approves an exception.",
+        "confidence": 0.92
+      },
+      {
+        "finding_id": "F-09",
+        "topic": "service_levels",
+        "title": "Service levels are below the enterprise standard",
+        "severity": "medium",
+        "contract_excerpt": "the vendor targets 98.0 percent availability and provides no service credits.",
+        "policy_reference": "Service Level Standard — Service Credits",
+        "recommendation": "Require at least 99.9% monthly availability, service credits, and chronic-failure termination rights.",
+        "confidence": 0.93
+      },
+      {
+        "finding_id": "F-10",
         "topic": "payment",
         "title": "High-value procurement requires human approval",
         "severity": "high",
@@ -333,7 +363,7 @@
         "confidence": 1.0
       }
     ],
-    "risk_score": 99,
+    "risk_score": 100,
     "risk_level": "CRITICAL",
     "quality_score": 1.0,
     "policy_retry_count": 1,
@@ -350,10 +380,10 @@
     "interrupt_payload": {
       "type": "human_approval_required",
       "thread_id": "capstone-high-risk",
-      "risk_score": 99,
+      "risk_score": 100,
       "risk_level": "CRITICAL",
       "contract_value_sar": 750000.0,
-      "finding_count": 7,
+      "finding_count": 10,
       "instruction": "Resume with decision=approve or decision=reject and an approver identity."
     },
     "report": null,
@@ -374,7 +404,7 @@
         "payload": {
           "matches": []
         },
-        "timestamp": "2026-08-12T20:21:44.502445+00:00"
+        "timestamp": "2026-08-12T20:25:23.515835+00:00"
       },
       {
         "sender": "Coordinator Agent",
@@ -427,7 +457,7 @@
             }
           ]
         },
-        "timestamp": "2026-08-12T20:21:44.506267+00:00"
+        "timestamp": "2026-08-12T20:25:23.517035+00:00"
       },
       {
         "sender": "Document Analyst Agent",
@@ -449,7 +479,7 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T20:21:44.510620+00:00"
+        "timestamp": "2026-08-12T20:25:23.518751+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -460,7 +490,7 @@
           "attempt": 1,
           "error": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence"
         },
-        "timestamp": "2026-08-12T20:21:44.512426+00:00"
+        "timestamp": "2026-08-12T20:25:23.520374+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -478,20 +508,20 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T20:21:44.515750+00:00"
+        "timestamp": "2026-08-12T20:25:23.523529+00:00"
       },
       {
         "sender": "Compliance Analyst Agent",
         "recipient": "Quality Reviewer Agent",
         "message_type": "result",
-        "content": "Generated 7 compliance findings from contract clauses and policy evidence.",
+        "content": "Generated 10 compliance findings from contract clauses and policy evidence.",
         "payload": {
           "severities": {
-            "high": 5,
-            "medium": 2
+            "high": 7,
+            "medium": 3
           }
         },
-        "timestamp": "2026-08-12T20:21:44.517817+00:00"
+        "timestamp": "2026-08-12T20:25:23.525703+00:00"
       },
       {
         "sender": "Quality Reviewer Agent",
@@ -502,7 +532,7 @@
           "missing_topics": [],
           "quality_score": 0.5
         },
-        "timestamp": "2026-08-12T20:21:44.520034+00:00"
+        "timestamp": "2026-08-12T20:25:23.528672+00:00"
       },
       {
         "sender": "Policy Research Agent",
@@ -521,20 +551,20 @@
             "termination"
           ]
         },
-        "timestamp": "2026-08-12T20:21:44.523902+00:00"
+        "timestamp": "2026-08-12T20:25:23.532681+00:00"
       },
       {
         "sender": "Compliance Analyst Agent",
         "recipient": "Quality Reviewer Agent",
         "message_type": "result",
-        "content": "Generated 7 compliance findings from contract clauses and policy evidence.",
+        "content": "Generated 10 compliance findings from contract clauses and policy evidence.",
         "payload": {
           "severities": {
-            "high": 5,
-            "medium": 2
+            "high": 7,
+            "medium": 3
           }
         },
-        "timestamp": "2026-08-12T20:21:44.526805+00:00"
+        "timestamp": "2026-08-12T20:25:23.535545+00:00"
       },
       {
         "sender": "Quality Reviewer Agent",
@@ -545,24 +575,24 @@
           "missing_topics": [],
           "quality_score": 1.0
         },
-        "timestamp": "2026-08-12T20:21:44.548248+00:00"
+        "timestamp": "2026-08-12T20:25:23.538063+00:00"
       },
       {
         "sender": "Security Reviewer Agent",
         "recipient": "Coordinator Agent",
         "message_type": "security",
-        "content": "Risk classified as CRITICAL (99/100). Human approval required.",
+        "content": "Risk classified as CRITICAL (100/100). Human approval required.",
         "payload": {
-          "risk_score": 99,
+          "risk_score": 100,
           "risk_level": "CRITICAL",
           "approval_required": true
         },
-        "timestamp": "2026-08-12T20:21:44.553180+00:00"
+        "timestamp": "2026-08-12T20:25:23.541658+00:00"
       }
     ],
     "tool_calls": [
       {
-        "call_id": "406801ca-ac7a-4a9c-8115-7eb9ca2539bd",
+        "call_id": "9fa7bced-79e9-4a76-b026-d939fff48e98",
         "agent": "Document Analyst Agent",
         "tool_name": "read_contract",
         "arguments": {
@@ -570,20 +600,20 @@
           "contract_text": null
         },
         "rationale": "The document must be converted into trusted text before clause-level analysis.",
-        "timestamp": "2026-08-12T20:21:44.509531+00:00"
+        "timestamp": "2026-08-12T20:25:23.518281+00:00"
       },
       {
-        "call_id": "676ed762-5bf6-4ab7-af17-a67b06692e46",
+        "call_id": "33a4f39d-a5e7-4bbe-93c0-aab1a2a7571e",
         "agent": "Document Analyst Agent",
         "tool_name": "extract_contract_clauses",
         "arguments": {
           "contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n"
         },
         "rationale": "Structured clauses are required so specialist agents can search the right policy domains.",
-        "timestamp": "2026-08-12T20:21:44.510182+00:00"
+        "timestamp": "2026-08-12T20:25:23.518564+00:00"
       },
       {
-        "call_id": "3cf44338-792f-413f-bf4a-b96ea971cfe2",
+        "call_id": "b54a3d32-7583-4b63-8f5d-413d5eda320b",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -594,10 +624,10 @@
           "simulate_primary_failure": true
         },
         "rationale": "Need authoritative policy evidence for the data_protection contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.512191+00:00"
+        "timestamp": "2026-08-12T20:25:23.520201+00:00"
       },
       {
-        "call_id": "eeef5857-33bf-4d23-8bc2-f600aa2d9081",
+        "call_id": "fe08d62c-9713-44e4-825b-d9d4955113ab",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -608,10 +638,10 @@
           "simulate_primary_failure": true
         },
         "rationale": "Need authoritative policy evidence for the data_protection contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.513979+00:00"
+        "timestamp": "2026-08-12T20:25:23.521955+00:00"
       },
       {
-        "call_id": "d79cc18f-3b02-4104-98b2-1891d5b9ffa4",
+        "call_id": "5926e1d7-6d44-4d10-80f7-c027c71008ab",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -622,10 +652,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the governing_law contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.514341+00:00"
+        "timestamp": "2026-08-12T20:25:23.522213+00:00"
       },
       {
-        "call_id": "62430736-4898-4e7d-aed2-ba87e9f8e903",
+        "call_id": "136cc7fa-68ce-4d77-8df8-cd9a610314bd",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -636,10 +666,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the liability contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.514702+00:00"
+        "timestamp": "2026-08-12T20:25:23.522403+00:00"
       },
       {
-        "call_id": "c5337102-0fe4-4ffd-8aeb-10e330795e6c",
+        "call_id": "8eed18ba-b507-4c2b-990b-35d5544595c9",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -650,10 +680,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the payment contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.514939+00:00"
+        "timestamp": "2026-08-12T20:25:23.522633+00:00"
       },
       {
-        "call_id": "5f79aaf3-58da-445d-8a1c-84bfdf2a8872",
+        "call_id": "54940c9c-555a-4519-9eb4-386e8f0d0638",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -664,10 +694,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the security contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.515174+00:00"
+        "timestamp": "2026-08-12T20:25:23.522801+00:00"
       },
       {
-        "call_id": "de077072-b220-4107-81c8-c1bcdae7d4b5",
+        "call_id": "89ccc25e-8a19-4ebf-84db-3857565337f1",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -678,10 +708,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the service_levels contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.515360+00:00"
+        "timestamp": "2026-08-12T20:25:23.522985+00:00"
       },
       {
-        "call_id": "2b5f34db-7623-4514-bc86-be2af71f76be",
+        "call_id": "fa191790-f359-438e-bb9e-6ae9de5e25f3",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -692,10 +722,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the termination contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.515563+00:00"
+        "timestamp": "2026-08-12T20:25:23.523330+00:00"
       },
       {
-        "call_id": "d077bf30-fa8e-4437-9631-3cbc60525853",
+        "call_id": "56fcc3e0-bbfc-4262-83fc-36f524d5a494",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -706,10 +736,10 @@
           "simulate_primary_failure": true
         },
         "rationale": "Need authoritative policy evidence for the data_protection contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.522305+00:00"
+        "timestamp": "2026-08-12T20:25:23.530966+00:00"
       },
       {
-        "call_id": "9dacecc8-a0a9-4f8c-b382-8ad90f6b1871",
+        "call_id": "3b853a45-6d14-47ca-b747-e90417fdfb65",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -720,10 +750,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the governing_law contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.522639+00:00"
+        "timestamp": "2026-08-12T20:25:23.531199+00:00"
       },
       {
-        "call_id": "4712c2e3-792f-43f5-ae01-bf322d6cda11",
+        "call_id": "8bf76987-7c40-4ee5-a491-3bcc86b461cf",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -734,10 +764,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the liability contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.522859+00:00"
+        "timestamp": "2026-08-12T20:25:23.531553+00:00"
       },
       {
-        "call_id": "1991263f-b18a-4447-8bf6-c1e478ba3170",
+        "call_id": "03fbb990-9fbb-49e2-9d4a-3d810ac37631",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -748,10 +778,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the payment contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.523041+00:00"
+        "timestamp": "2026-08-12T20:25:23.531744+00:00"
       },
       {
-        "call_id": "97b00861-fec2-4abb-ab54-f599bfcef82a",
+        "call_id": "ae5e3feb-4a80-42b5-8a54-1c75c2c1486a",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -762,10 +792,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the security contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.523210+00:00"
+        "timestamp": "2026-08-12T20:25:23.531946+00:00"
       },
       {
-        "call_id": "be708d5c-87ed-41cb-a85a-3e81f7029fc3",
+        "call_id": "59a820c7-561b-4dcf-81e5-67e8cc60aff7",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -776,10 +806,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the service_levels contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.523398+00:00"
+        "timestamp": "2026-08-12T20:25:23.532142+00:00"
       },
       {
-        "call_id": "83735479-d00e-47a5-8f3d-93064afef310",
+        "call_id": "a08c4b0d-bdee-4cf6-9c0b-a2cc6cf88696",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -790,10 +820,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the termination contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.523554+00:00"
+        "timestamp": "2026-08-12T20:25:23.532289+00:00"
       },
       {
-        "call_id": "6e93d2b0-9f35-4731-991d-b47c95ecbe30",
+        "call_id": "73f0a128-9a48-432b-995a-d3b7164e265a",
         "agent": "Policy Research Agent",
         "tool_name": "search_policy_knowledge_base",
         "arguments": {
@@ -804,10 +834,10 @@
           "simulate_primary_failure": false
         },
         "rationale": "Need authoritative policy evidence for the general contract clauses.",
-        "timestamp": "2026-08-12T20:21:44.523733+00:00"
+        "timestamp": "2026-08-12T20:25:23.532482+00:00"
       },
       {
-        "call_id": "d21b9bbf-7dac-4f0f-82ad-e242f2296aa7",
+        "call_id": "b4e27b61-e645-4974-bd39-480cc1b06b25",
         "agent": "Security Reviewer Agent",
         "tool_name": "calculate_contract_risk",
         "arguments": {
@@ -844,6 +874,16 @@
             },
             {
               "finding_id": "F-04",
+              "topic": "security",
+              "title": "Security baseline is incomplete",
+              "severity": "high",
+              "contract_excerpt": "the vendor will use commercially reasonable security. no iso 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.",
+              "policy_reference": "Information Security Policy — Access Control",
+              "recommendation": "Require ISO 27001-equivalent controls, encryption in transit/at rest, audit rights, and annual testing.",
+              "confidence": 0.9
+            },
+            {
+              "finding_id": "F-05",
               "topic": "payment",
               "title": "Accelerated payment terms",
               "severity": "medium",
@@ -853,7 +893,7 @@
               "confidence": 0.92
             },
             {
-              "finding_id": "F-05",
+              "finding_id": "F-06",
               "topic": "liability",
               "title": "Liability cap is below corporate minimum",
               "severity": "high",
@@ -863,7 +903,7 @@
               "confidence": 0.92
             },
             {
-              "finding_id": "F-06",
+              "finding_id": "F-07",
               "topic": "termination",
               "title": "Termination and renewal terms are restrictive",
               "severity": "medium",
@@ -873,7 +913,27 @@
               "confidence": 0.9
             },
             {
-              "finding_id": "F-07",
+              "finding_id": "F-08",
+              "topic": "governing_law",
+              "title": "Non-KSA governing law",
+              "severity": "high",
+              "contract_excerpt": "this agreement is governed by the laws of the state of delaware and disputes are subject to courts outside saudi arabia.",
+              "policy_reference": "Legal Contracting Standard — Governing Law",
+              "recommendation": "Use the laws and courts of the Kingdom of Saudi Arabia unless Legal approves an exception.",
+              "confidence": 0.92
+            },
+            {
+              "finding_id": "F-09",
+              "topic": "service_levels",
+              "title": "Service levels are below the enterprise standard",
+              "severity": "medium",
+              "contract_excerpt": "the vendor targets 98.0 percent availability and provides no service credits.",
+              "policy_reference": "Service Level Standard — Service Credits",
+              "recommendation": "Require at least 99.9% monthly availability, service credits, and chronic-failure termination rights.",
+              "confidence": 0.93
+            },
+            {
+              "finding_id": "F-10",
               "topic": "payment",
               "title": "High-value procurement requires human approval",
               "severity": "high",
@@ -888,12 +948,12 @@
           "approval_value_threshold_sar": 500000.0
         },
         "rationale": "Risk and value thresholds determine whether autonomous execution must stop for human approval.",
-        "timestamp": "2026-08-12T20:21:44.552904+00:00"
+        "timestamp": "2026-08-12T20:25:23.541513+00:00"
       }
     ],
     "tool_observations": [
       {
-        "call_id": "406801ca-ac7a-4a9c-8115-7eb9ca2539bd",
+        "call_id": "9fa7bced-79e9-4a76-b026-d939fff48e98",
         "tool_name": "read_contract",
         "status": "success",
         "summary": "Returned object with keys: source, text, characters",
@@ -902,11 +962,11 @@
           "text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n",
           "characters": 1593
         },
-        "latency_ms": 0.3921840000202792,
-        "timestamp": "2026-08-12T20:21:44.510140+00:00"
+        "latency_ms": 0.11867600005643908,
+        "timestamp": "2026-08-12T20:25:23.518516+00:00"
       },
       {
-        "call_id": "676ed762-5bf6-4ab7-af17-a67b06692e46",
+        "call_id": "33a4f39d-a5e7-4bbe-93c0-aab1a2a7571e",
         "tool_name": "extract_contract_clauses",
         "status": "success",
         "summary": "Returned 9 items",
@@ -966,20 +1026,20 @@
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.17050800011020328,
-        "timestamp": "2026-08-12T20:21:44.510408+00:00"
+        "latency_ms": 0.10276600005454384,
+        "timestamp": "2026-08-12T20:25:23.518716+00:00"
       },
       {
-        "call_id": "3cf44338-792f-413f-bf4a-b96ea971cfe2",
+        "call_id": "b54a3d32-7583-4b63-8f5d-413d5eda320b",
         "tool_name": "search_policy_knowledge_base",
         "status": "error",
         "summary": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence",
         "output": null,
-        "latency_ms": 0.07054799993966299,
-        "timestamp": "2026-08-12T20:21:44.512403+00:00"
+        "latency_ms": 0.03631200002018886,
+        "timestamp": "2026-08-12T20:25:23.520356+00:00"
       },
       {
-        "call_id": "eeef5857-33bf-4d23-8bc2-f600aa2d9081",
+        "call_id": "fe08d62c-9713-44e4-825b-d9d4955113ab",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1001,11 +1061,11 @@
             "topic": "data_protection"
           }
         ],
-        "latency_ms": 0.24476400017192645,
-        "timestamp": "2026-08-12T20:21:44.514307+00:00"
+        "latency_ms": 0.16809199996714597,
+        "timestamp": "2026-08-12T20:25:23.522186+00:00"
       },
       {
-        "call_id": "d79cc18f-3b02-4104-98b2-1891d5b9ffa4",
+        "call_id": "5926e1d7-6d44-4d10-80f7-c027c71008ab",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1027,11 +1087,11 @@
             "topic": "governing_law"
           }
         ],
-        "latency_ms": 0.24901900019358436,
-        "timestamp": "2026-08-12T20:21:44.514668+00:00"
+        "latency_ms": 0.11153700006616418,
+        "timestamp": "2026-08-12T20:25:23.522367+00:00"
       },
       {
-        "call_id": "62430736-4898-4e7d-aed2-ba87e9f8e903",
+        "call_id": "136cc7fa-68ce-4d77-8df8-cd9a610314bd",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1045,11 +1105,11 @@
             "topic": "liability"
           }
         ],
-        "latency_ms": 0.15610100012963812,
-        "timestamp": "2026-08-12T20:21:44.514916+00:00"
+        "latency_ms": 0.15586399990752398,
+        "timestamp": "2026-08-12T20:25:23.522613+00:00"
       },
       {
-        "call_id": "c5337102-0fe4-4ffd-8aeb-10e330795e6c",
+        "call_id": "8eed18ba-b507-4c2b-990b-35d5544595c9",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1071,11 +1131,11 @@
             "topic": "payment"
           }
         ],
-        "latency_ms": 0.15865299997130933,
-        "timestamp": "2026-08-12T20:21:44.515155+00:00"
+        "latency_ms": 0.1101529999232298,
+        "timestamp": "2026-08-12T20:25:23.522783+00:00"
       },
       {
-        "call_id": "5f79aaf3-58da-445d-8a1c-84bfdf2a8872",
+        "call_id": "54940c9c-555a-4519-9eb4-386e8f0d0638",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1097,11 +1157,11 @@
             "topic": "security"
           }
         ],
-        "latency_ms": 0.13009499980398687,
-        "timestamp": "2026-08-12T20:21:44.515345+00:00"
+        "latency_ms": 0.11028900007659104,
+        "timestamp": "2026-08-12T20:25:23.522948+00:00"
       },
       {
-        "call_id": "de077072-b220-4107-81c8-c1bcdae7d4b5",
+        "call_id": "89ccc25e-8a19-4ebf-84db-3857565337f1",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1115,11 +1175,11 @@
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.10561500016592618,
-        "timestamp": "2026-08-12T20:21:44.515525+00:00"
+        "latency_ms": 0.08407700011048291,
+        "timestamp": "2026-08-12T20:25:23.523295+00:00"
       },
       {
-        "call_id": "2b5f34db-7623-4514-bc86-be2af71f76be",
+        "call_id": "fa191790-f359-438e-bb9e-6ae9de5e25f3",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1141,11 +1201,11 @@
             "topic": "termination"
           }
         ],
-        "latency_ms": 0.11361300016687892,
-        "timestamp": "2026-08-12T20:21:44.515723+00:00"
+        "latency_ms": 0.12620000006791088,
+        "timestamp": "2026-08-12T20:25:23.523505+00:00"
       },
       {
-        "call_id": "d077bf30-fa8e-4437-9631-3cbc60525853",
+        "call_id": "56fcc3e0-bbfc-4262-83fc-36f524d5a494",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1167,11 +1227,11 @@
             "topic": "data_protection"
           }
         ],
-        "latency_ms": 0.22043300009499944,
-        "timestamp": "2026-08-12T20:21:44.522609+00:00"
+        "latency_ms": 0.14436900005421194,
+        "timestamp": "2026-08-12T20:25:23.531174+00:00"
       },
       {
-        "call_id": "9dacecc8-a0a9-4f8c-b382-8ad90f6b1871",
+        "call_id": "3b853a45-6d14-47ca-b747-e90417fdfb65",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1193,11 +1253,11 @@
             "topic": "governing_law"
           }
         ],
-        "latency_ms": 0.12083499996151659,
-        "timestamp": "2026-08-12T20:21:44.522837+00:00"
+        "latency_ms": 0.2333039999484754,
+        "timestamp": "2026-08-12T20:25:23.531525+00:00"
       },
       {
-        "call_id": "4712c2e3-792f-43f5-ae01-bf322d6cda11",
+        "call_id": "8bf76987-7c40-4ee5-a491-3bcc86b461cf",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1211,11 +1271,11 @@
             "topic": "liability"
           }
         ],
-        "latency_ms": 0.11705099996106583,
-        "timestamp": "2026-08-12T20:21:44.523023+00:00"
+        "latency_ms": 0.12383300008877995,
+        "timestamp": "2026-08-12T20:25:23.531725+00:00"
       },
       {
-        "call_id": "1991263f-b18a-4447-8bf6-c1e478ba3170",
+        "call_id": "03fbb990-9fbb-49e2-9d4a-3d810ac37631",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1237,11 +1297,11 @@
             "topic": "payment"
           }
         ],
-        "latency_ms": 0.11051000001316424,
-        "timestamp": "2026-08-12T20:21:44.523192+00:00"
+        "latency_ms": 0.13754999986304028,
+        "timestamp": "2026-08-12T20:25:23.531926+00:00"
       },
       {
-        "call_id": "97b00861-fec2-4abb-ab54-f599bfcef82a",
+        "call_id": "ae5e3feb-4a80-42b5-8a54-1c75c2c1486a",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1263,11 +1323,11 @@
             "topic": "security"
           }
         ],
-        "latency_ms": 0.11539199999788252,
-        "timestamp": "2026-08-12T20:21:44.523378+00:00"
+        "latency_ms": 0.13721100003749598,
+        "timestamp": "2026-08-12T20:25:23.532124+00:00"
       },
       {
-        "call_id": "be708d5c-87ed-41cb-a85a-3e81f7029fc3",
+        "call_id": "59a820c7-561b-4dcf-81e5-67e8cc60aff7",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 1 items",
@@ -1281,11 +1341,11 @@
             "topic": "service_levels"
           }
         ],
-        "latency_ms": 0.1014580000173737,
-        "timestamp": "2026-08-12T20:21:44.523538+00:00"
+        "latency_ms": 0.08558299987271312,
+        "timestamp": "2026-08-12T20:25:23.532271+00:00"
       },
       {
-        "call_id": "83735479-d00e-47a5-8f3d-93064afef310",
+        "call_id": "a08c4b0d-bdee-4cf6-9c0b-a2cc6cf88696",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1307,11 +1367,11 @@
             "topic": "termination"
           }
         ],
-        "latency_ms": 0.11191899989171361,
-        "timestamp": "2026-08-12T20:21:44.523712+00:00"
+        "latency_ms": 0.12656600006266672,
+        "timestamp": "2026-08-12T20:25:23.532463+00:00"
       },
       {
-        "call_id": "6e93d2b0-9f35-4731-991d-b47c95ecbe30",
+        "call_id": "73f0a128-9a48-432b-995a-d3b7164e265a",
         "tool_name": "search_policy_knowledge_base",
         "status": "success",
         "summary": "Returned 2 items",
@@ -1333,21 +1393,21 @@
             "topic": "general"
           }
         ],
-        "latency_ms": 0.1079449998542259,
-        "timestamp": "2026-08-12T20:21:44.523879+00:00"
+        "latency_ms": 0.10920199997599411,
+        "timestamp": "2026-08-12T20:25:23.532655+00:00"
       },
       {
-        "call_id": "d21b9bbf-7dac-4f0f-82ad-e242f2296aa7",
+        "call_id": "b4e27b61-e645-4974-bd39-480cc1b06b25",
         "tool_name": "calculate_contract_risk",
         "status": "success",
         "summary": "Returned object with keys: risk_score, risk_level, approval_required",
         "output": {
-          "risk_score": 99,
+          "risk_score": 100,
           "risk_level": "CRITICAL",
           "approval_required": true
         },
-        "latency_ms": 0.10982300000250689,
-        "timestamp": "2026-08-12T20:21:44.553138+00:00"
+        "latency_ms": 0.046978000000308384,
+        "timestamp": "2026-08-12T20:25:23.541640+00:00"
       }
     ],
     "decision_trace": [
@@ -1360,16 +1420,16 @@
             "contract_path": "/mnt/data/contractguard-ai/data/samples/vendor_contract_high_risk.txt",
             "contract_text": null
           },
-          "call_id": "406801ca-ac7a-4a9c-8115-7eb9ca2539bd"
+          "call_id": "9fa7bced-79e9-4a76-b026-d939fff48e98"
         },
-        "timestamp": "2026-08-12T20:21:44.509531+00:00"
+        "timestamp": "2026-08-12T20:25:23.518281+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned object with keys: source, text, characters",
         "status": "success",
-        "call_id": "406801ca-ac7a-4a9c-8115-7eb9ca2539bd",
-        "timestamp": "2026-08-12T20:21:44.510140+00:00"
+        "call_id": "9fa7bced-79e9-4a76-b026-d939fff48e98",
+        "timestamp": "2026-08-12T20:25:23.518516+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1379,16 +1439,16 @@
           "arguments": {
             "contract_text": "VENDOR CLOUD SERVICES AGREEMENT\nVendor: Falcon Cloud International LLC\nContract Value: SAR 750,000\nCustomer Contact: nora.alqahtani@example.com, +966501234567, National ID 1023456789\n\n1. DATA LOCATION AND PRIVACY\nThe Vendor may store and process all customer data outside the Kingdom of Saudi Arabia in any jurisdiction and in global locations selected at its discretion. The Vendor may appoint or replace any subprocessor without notice and without customer consent. Personal data may include the customer contact listed above.\n\n2. BREACH NOTIFICATION\nThe Vendor will notify the Customer within 72 hours after confirming a material breach, or later when commercially reasonable.\n\n3. INFORMATION SECURITY\nThe Vendor will use commercially reasonable security. No ISO 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.\n\n4. PAYMENT\nInvoices are payable within 15 days of issue, whether or not the relevant deliverables have been accepted.\n\n5. LIABILITY\nThe Vendor's aggregate liability is capped at fees paid in the preceding one month. The cap applies to privacy, confidentiality, and security incidents.\n\n6. TERM AND TERMINATION\nThe agreement renews automatically for three years. The Customer may terminate only for uncured material breach after 90 days and has no termination-for-convenience right.\n\n7. GOVERNING LAW\nThis agreement is governed by the laws of the State of Delaware and disputes are subject to courts outside Saudi Arabia.\n\n8. SERVICE LEVELS\nThe Vendor targets 98.0 percent availability and provides no service credits.\n"
           },
-          "call_id": "676ed762-5bf6-4ab7-af17-a67b06692e46"
+          "call_id": "33a4f39d-a5e7-4bbe-93c0-aab1a2a7571e"
         },
-        "timestamp": "2026-08-12T20:21:44.510182+00:00"
+        "timestamp": "2026-08-12T20:25:23.518564+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 9 items",
         "status": "success",
-        "call_id": "676ed762-5bf6-4ab7-af17-a67b06692e46",
-        "timestamp": "2026-08-12T20:21:44.510408+00:00"
+        "call_id": "33a4f39d-a5e7-4bbe-93c0-aab1a2a7571e",
+        "timestamp": "2026-08-12T20:25:23.518716+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1402,16 +1462,16 @@
             "attempt": 0,
             "simulate_primary_failure": true
           },
-          "call_id": "3cf44338-792f-413f-bf4a-b96ea971cfe2"
+          "call_id": "b54a3d32-7583-4b63-8f5d-413d5eda320b"
         },
-        "timestamp": "2026-08-12T20:21:44.512191+00:00"
+        "timestamp": "2026-08-12T20:25:23.520201+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "ConnectionError: Simulated primary policy-index timeout for retry-path evidence",
         "status": "error",
-        "call_id": "3cf44338-792f-413f-bf4a-b96ea971cfe2",
-        "timestamp": "2026-08-12T20:21:44.512403+00:00"
+        "call_id": "b54a3d32-7583-4b63-8f5d-413d5eda320b",
+        "timestamp": "2026-08-12T20:25:23.520356+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1425,16 +1485,16 @@
             "attempt": 1,
             "simulate_primary_failure": true
           },
-          "call_id": "eeef5857-33bf-4d23-8bc2-f600aa2d9081"
+          "call_id": "fe08d62c-9713-44e4-825b-d9d4955113ab"
         },
-        "timestamp": "2026-08-12T20:21:44.513979+00:00"
+        "timestamp": "2026-08-12T20:25:23.521955+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "eeef5857-33bf-4d23-8bc2-f600aa2d9081",
-        "timestamp": "2026-08-12T20:21:44.514307+00:00"
+        "call_id": "fe08d62c-9713-44e4-825b-d9d4955113ab",
+        "timestamp": "2026-08-12T20:25:23.522186+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1448,16 +1508,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "d79cc18f-3b02-4104-98b2-1891d5b9ffa4"
+          "call_id": "5926e1d7-6d44-4d10-80f7-c027c71008ab"
         },
-        "timestamp": "2026-08-12T20:21:44.514341+00:00"
+        "timestamp": "2026-08-12T20:25:23.522213+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "d79cc18f-3b02-4104-98b2-1891d5b9ffa4",
-        "timestamp": "2026-08-12T20:21:44.514668+00:00"
+        "call_id": "5926e1d7-6d44-4d10-80f7-c027c71008ab",
+        "timestamp": "2026-08-12T20:25:23.522367+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1471,16 +1531,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "62430736-4898-4e7d-aed2-ba87e9f8e903"
+          "call_id": "136cc7fa-68ce-4d77-8df8-cd9a610314bd"
         },
-        "timestamp": "2026-08-12T20:21:44.514702+00:00"
+        "timestamp": "2026-08-12T20:25:23.522403+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "62430736-4898-4e7d-aed2-ba87e9f8e903",
-        "timestamp": "2026-08-12T20:21:44.514916+00:00"
+        "call_id": "136cc7fa-68ce-4d77-8df8-cd9a610314bd",
+        "timestamp": "2026-08-12T20:25:23.522613+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1494,16 +1554,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "c5337102-0fe4-4ffd-8aeb-10e330795e6c"
+          "call_id": "8eed18ba-b507-4c2b-990b-35d5544595c9"
         },
-        "timestamp": "2026-08-12T20:21:44.514939+00:00"
+        "timestamp": "2026-08-12T20:25:23.522633+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "c5337102-0fe4-4ffd-8aeb-10e330795e6c",
-        "timestamp": "2026-08-12T20:21:44.515155+00:00"
+        "call_id": "8eed18ba-b507-4c2b-990b-35d5544595c9",
+        "timestamp": "2026-08-12T20:25:23.522783+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1517,16 +1577,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "5f79aaf3-58da-445d-8a1c-84bfdf2a8872"
+          "call_id": "54940c9c-555a-4519-9eb4-386e8f0d0638"
         },
-        "timestamp": "2026-08-12T20:21:44.515174+00:00"
+        "timestamp": "2026-08-12T20:25:23.522801+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "5f79aaf3-58da-445d-8a1c-84bfdf2a8872",
-        "timestamp": "2026-08-12T20:21:44.515345+00:00"
+        "call_id": "54940c9c-555a-4519-9eb4-386e8f0d0638",
+        "timestamp": "2026-08-12T20:25:23.522948+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1540,16 +1600,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "de077072-b220-4107-81c8-c1bcdae7d4b5"
+          "call_id": "89ccc25e-8a19-4ebf-84db-3857565337f1"
         },
-        "timestamp": "2026-08-12T20:21:44.515360+00:00"
+        "timestamp": "2026-08-12T20:25:23.522985+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "de077072-b220-4107-81c8-c1bcdae7d4b5",
-        "timestamp": "2026-08-12T20:21:44.515525+00:00"
+        "call_id": "89ccc25e-8a19-4ebf-84db-3857565337f1",
+        "timestamp": "2026-08-12T20:25:23.523295+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1563,16 +1623,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "2b5f34db-7623-4514-bc86-be2af71f76be"
+          "call_id": "fa191790-f359-438e-bb9e-6ae9de5e25f3"
         },
-        "timestamp": "2026-08-12T20:21:44.515563+00:00"
+        "timestamp": "2026-08-12T20:25:23.523330+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "2b5f34db-7623-4514-bc86-be2af71f76be",
-        "timestamp": "2026-08-12T20:21:44.515723+00:00"
+        "call_id": "fa191790-f359-438e-bb9e-6ae9de5e25f3",
+        "timestamp": "2026-08-12T20:25:23.523505+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1586,16 +1646,16 @@
             "attempt": 1,
             "simulate_primary_failure": true
           },
-          "call_id": "d077bf30-fa8e-4437-9631-3cbc60525853"
+          "call_id": "56fcc3e0-bbfc-4262-83fc-36f524d5a494"
         },
-        "timestamp": "2026-08-12T20:21:44.522305+00:00"
+        "timestamp": "2026-08-12T20:25:23.530966+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "d077bf30-fa8e-4437-9631-3cbc60525853",
-        "timestamp": "2026-08-12T20:21:44.522609+00:00"
+        "call_id": "56fcc3e0-bbfc-4262-83fc-36f524d5a494",
+        "timestamp": "2026-08-12T20:25:23.531174+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1609,16 +1669,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "9dacecc8-a0a9-4f8c-b382-8ad90f6b1871"
+          "call_id": "3b853a45-6d14-47ca-b747-e90417fdfb65"
         },
-        "timestamp": "2026-08-12T20:21:44.522639+00:00"
+        "timestamp": "2026-08-12T20:25:23.531199+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "9dacecc8-a0a9-4f8c-b382-8ad90f6b1871",
-        "timestamp": "2026-08-12T20:21:44.522837+00:00"
+        "call_id": "3b853a45-6d14-47ca-b747-e90417fdfb65",
+        "timestamp": "2026-08-12T20:25:23.531525+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1632,16 +1692,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "4712c2e3-792f-43f5-ae01-bf322d6cda11"
+          "call_id": "8bf76987-7c40-4ee5-a491-3bcc86b461cf"
         },
-        "timestamp": "2026-08-12T20:21:44.522859+00:00"
+        "timestamp": "2026-08-12T20:25:23.531553+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "4712c2e3-792f-43f5-ae01-bf322d6cda11",
-        "timestamp": "2026-08-12T20:21:44.523023+00:00"
+        "call_id": "8bf76987-7c40-4ee5-a491-3bcc86b461cf",
+        "timestamp": "2026-08-12T20:25:23.531725+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1655,16 +1715,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "1991263f-b18a-4447-8bf6-c1e478ba3170"
+          "call_id": "03fbb990-9fbb-49e2-9d4a-3d810ac37631"
         },
-        "timestamp": "2026-08-12T20:21:44.523041+00:00"
+        "timestamp": "2026-08-12T20:25:23.531744+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "1991263f-b18a-4447-8bf6-c1e478ba3170",
-        "timestamp": "2026-08-12T20:21:44.523192+00:00"
+        "call_id": "03fbb990-9fbb-49e2-9d4a-3d810ac37631",
+        "timestamp": "2026-08-12T20:25:23.531926+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1678,16 +1738,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "97b00861-fec2-4abb-ab54-f599bfcef82a"
+          "call_id": "ae5e3feb-4a80-42b5-8a54-1c75c2c1486a"
         },
-        "timestamp": "2026-08-12T20:21:44.523210+00:00"
+        "timestamp": "2026-08-12T20:25:23.531946+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "97b00861-fec2-4abb-ab54-f599bfcef82a",
-        "timestamp": "2026-08-12T20:21:44.523378+00:00"
+        "call_id": "ae5e3feb-4a80-42b5-8a54-1c75c2c1486a",
+        "timestamp": "2026-08-12T20:25:23.532124+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1701,16 +1761,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "be708d5c-87ed-41cb-a85a-3e81f7029fc3"
+          "call_id": "59a820c7-561b-4dcf-81e5-67e8cc60aff7"
         },
-        "timestamp": "2026-08-12T20:21:44.523398+00:00"
+        "timestamp": "2026-08-12T20:25:23.532142+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 1 items",
         "status": "success",
-        "call_id": "be708d5c-87ed-41cb-a85a-3e81f7029fc3",
-        "timestamp": "2026-08-12T20:21:44.523538+00:00"
+        "call_id": "59a820c7-561b-4dcf-81e5-67e8cc60aff7",
+        "timestamp": "2026-08-12T20:25:23.532271+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1724,16 +1784,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "83735479-d00e-47a5-8f3d-93064afef310"
+          "call_id": "a08c4b0d-bdee-4cf6-9c0b-a2cc6cf88696"
         },
-        "timestamp": "2026-08-12T20:21:44.523554+00:00"
+        "timestamp": "2026-08-12T20:25:23.532289+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "83735479-d00e-47a5-8f3d-93064afef310",
-        "timestamp": "2026-08-12T20:21:44.523712+00:00"
+        "call_id": "a08c4b0d-bdee-4cf6-9c0b-a2cc6cf88696",
+        "timestamp": "2026-08-12T20:25:23.532463+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1747,16 +1807,16 @@
             "attempt": 1,
             "simulate_primary_failure": false
           },
-          "call_id": "6e93d2b0-9f35-4731-991d-b47c95ecbe30"
+          "call_id": "73f0a128-9a48-432b-995a-d3b7164e265a"
         },
-        "timestamp": "2026-08-12T20:21:44.523733+00:00"
+        "timestamp": "2026-08-12T20:25:23.532482+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned 2 items",
         "status": "success",
-        "call_id": "6e93d2b0-9f35-4731-991d-b47c95ecbe30",
-        "timestamp": "2026-08-12T20:21:44.523879+00:00"
+        "call_id": "73f0a128-9a48-432b-995a-d3b7164e265a",
+        "timestamp": "2026-08-12T20:25:23.532655+00:00"
       },
       {
         "pattern": "ReAct",
@@ -1797,6 +1857,16 @@
               },
               {
                 "finding_id": "F-04",
+                "topic": "security",
+                "title": "Security baseline is incomplete",
+                "severity": "high",
+                "contract_excerpt": "the vendor will use commercially reasonable security. no iso 27001 certification, encryption commitment, penetration-test report, or customer audit right is guaranteed.",
+                "policy_reference": "Information Security Policy — Access Control",
+                "recommendation": "Require ISO 27001-equivalent controls, encryption in transit/at rest, audit rights, and annual testing.",
+                "confidence": 0.9
+              },
+              {
+                "finding_id": "F-05",
                 "topic": "payment",
                 "title": "Accelerated payment terms",
                 "severity": "medium",
@@ -1806,7 +1876,7 @@
                 "confidence": 0.92
               },
               {
-                "finding_id": "F-05",
+                "finding_id": "F-06",
                 "topic": "liability",
                 "title": "Liability cap is below corporate minimum",
                 "severity": "high",
@@ -1816,7 +1886,7 @@
                 "confidence": 0.92
               },
               {
-                "finding_id": "F-06",
+                "finding_id": "F-07",
                 "topic": "termination",
                 "title": "Termination and renewal terms are restrictive",
                 "severity": "medium",
@@ -1826,7 +1896,27 @@
                 "confidence": 0.9
               },
               {
-                "finding_id": "F-07",
+                "finding_id": "F-08",
+                "topic": "governing_law",
+                "title": "Non-KSA governing law",
+                "severity": "high",
+                "contract_excerpt": "this agreement is governed by the laws of the state of delaware and disputes are subject to courts outside saudi arabia.",
+                "policy_reference": "Legal Contracting Standard — Governing Law",
+                "recommendation": "Use the laws and courts of the Kingdom of Saudi Arabia unless Legal approves an exception.",
+                "confidence": 0.92
+              },
+              {
+                "finding_id": "F-09",
+                "topic": "service_levels",
+                "title": "Service levels are below the enterprise standard",
+                "severity": "medium",
+                "contract_excerpt": "the vendor targets 98.0 percent availability and provides no service credits.",
+                "policy_reference": "Service Level Standard — Service Credits",
+                "recommendation": "Require at least 99.9% monthly availability, service credits, and chronic-failure termination rights.",
+                "confidence": 0.93
+              },
+              {
+                "finding_id": "F-10",
                 "topic": "payment",
                 "title": "High-value procurement requires human approval",
                 "severity": "high",
@@ -1840,16 +1930,16 @@
             "approval_risk_threshold": 50,
             "approval_value_threshold_sar": 500000.0
           },
-          "call_id": "d21b9bbf-7dac-4f0f-82ad-e242f2296aa7"
+          "call_id": "b4e27b61-e645-4974-bd39-480cc1b06b25"
         },
-        "timestamp": "2026-08-12T20:21:44.552904+00:00"
+        "timestamp": "2026-08-12T20:25:23.541513+00:00"
       },
       {
         "pattern": "ReAct",
         "observation": "Returned object with keys: risk_score, risk_level, approval_required",
         "status": "success",
-        "call_id": "d21b9bbf-7dac-4f0f-82ad-e242f2296aa7",
-        "timestamp": "2026-08-12T20:21:44.553138+00:00"
+        "call_id": "b4e27b61-e645-4974-bd39-480cc1b06b25",
+        "timestamp": "2026-08-12T20:25:23.541640+00:00"
       }
     ],
     "node_history": [
@@ -1867,8 +1957,8 @@
       "security_reviewed",
       "awaiting_approval"
     ],
-    "created_at": "2026-08-12T20:21:44.494970+00:00",
-    "updated_at": "2026-08-12T20:21:44.678008+00:00",
+    "created_at": "2026-08-12T20:25:23.512905+00:00",
+    "updated_at": "2026-08-12T20:25:23.546965+00:00",
     "flags": {
       "simulate_primary_failure": true,
       "simulate_quality_retry": true,
@@ -1881,5 +1971,5 @@
     "node_error": "",
     "additional_policy_queries": []
   },
-  "updated_at": "2026-08-12T20:21:44.678008+00:00"
+  "updated_at": "2026-08-12T20:25:23.546965+00:00"
 }

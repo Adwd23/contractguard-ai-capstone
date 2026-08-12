@@ -49,9 +49,13 @@ def compact(state: dict[str, Any]) -> dict[str, Any]:
 
 def main() -> int:
     evidence_dir = PROJECT_ROOT / "evidence"
+    evidence_readme = evidence_dir / "README.md"
+    readme_text = evidence_readme.read_text(encoding="utf-8") if evidence_readme.exists() else ""
     if evidence_dir.exists():
         shutil.rmtree(evidence_dir)
     evidence_dir.mkdir(parents=True)
+    if readme_text:
+        evidence_readme.write_text(readme_text, encoding="utf-8")
 
     settings = Settings.from_env(PROJECT_ROOT)
     high_contract = PROJECT_ROOT / "data" / "samples" / "vendor_contract_high_risk.txt"

@@ -1,7 +1,7 @@
 {
   "thread_id": "capstone-high-risk",
   "status": "persisting",
-  "risk_score": 99,
+  "risk_score": 100,
   "risk_level": "CRITICAL",
   "quality_score": 1.0,
   "node_history": [

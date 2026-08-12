@@ -2,7 +2,7 @@
 
 **Report ID:** CGA-capstone-low-risk  
 **Thread ID:** capstone-low-risk  
-**Generated:** 2026-08-12T20:21:44.436918+00:00  
+**Generated:** 2026-08-12T20:25:23.467210+00:00  
 **Vendor:** Riyadh Analytics Company  
 **Contract value:** SAR 125,000.00  
 **Risk:** LOW (0/100)  
@@ -15,6 +15,10 @@ The multi-agent audit identified 0 compliance finding(s) and assigned a LOW risk
 ## Compliance Findings
 
 No policy deviations were detected.
+
+## Detailed Findings and Masked Evidence
+
+No detailed findings.
 
 ## Recommendations
 

@@ -319,7 +319,7 @@ storage, and FastAPI endpoints.
 cells.append(
     nbf.v4.new_code_cell(
         """tests = subprocess.run(
-    [sys.executable, '-m', 'pytest', '-q'],
+    [sys.executable, '-m', 'pytest', '-q', '--color=no'],
     cwd=PROJECT_ROOT,
     text=True,
     capture_output=True,

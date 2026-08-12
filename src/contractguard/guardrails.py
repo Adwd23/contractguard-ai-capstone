@@ -120,12 +120,20 @@ def output_guardrail(report: dict[str, Any]) -> dict[str, Any]:
     try:
         validated = AuditReport.model_validate(masked)
     except ValidationError as exc:
+        problems = [
+            {
+                "location": ".".join(str(part) for part in item.get("loc", ())),
+                "message": item.get("msg", "invalid value"),
+                "type": item.get("type", "validation_error"),
+            }
+            for item in exc.errors(include_url=False)
+        ]
         return {
             "valid": False,
             "report": None,
             "redactions": count,
             "categories": categories,
-            "feedback": f"Output schema validation failed: {exc.errors(include_url=False)}",
+            "feedback": f"Output schema validation failed: {problems}",
         }
 
     validated.pii_redactions = count
