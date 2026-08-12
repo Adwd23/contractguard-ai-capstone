@@ -2,6 +2,9 @@
 
 **v1.3.1 Automated-Grader Hardened Edition** — a secure, observable, resumable multi-agent system for vendor-contract auditing and compliance review.
 
+## Made By
+**Abdulwahab Alolyan**
+
 **Repository owner / project implementer:** Adwd23
 **Training program:** SDAIA Academy — *Advanced Agentic AI Systems Engineering*
 **Cohort/session:** June 2026
