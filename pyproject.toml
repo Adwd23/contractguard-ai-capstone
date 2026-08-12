@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "contractguard-ai"
-version = "1.3.0"
+version = "1.3.1"
 description = "Secure, observable, resumable multi-agent vendor contract audit platform"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -20,7 +20,7 @@ dependencies = [
   "python-dotenv>=1.0,<2",
   "langgraph==1.2.10",
   "langgraph-checkpoint>=4.1.1,<5",
-  "langgraph-checkpoint-sqlite==3.1.1",
+  "langgraph-checkpoint-sqlite==3.1.0",
   "minio>=7.2,<8",
 ]
 

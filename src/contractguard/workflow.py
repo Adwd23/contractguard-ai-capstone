@@ -230,13 +230,19 @@ class ContractAuditWorkflow:
         snapshot = self.graph.get_state(self.persistence.config(thread_id))
         return dict(snapshot.values)
 
-    @classmethod
-    def graph_spec(cls) -> dict[str, Any]:
+    def graph_spec(self) -> dict[str, Any]:
         try:
             langgraph_version = version("langgraph")
         except PackageNotFoundError:
             langgraph_version = "declared-in-requirements"
-        conditional = [edge for edge in cls.EDGE_SPECS if edge["kind"] == "conditional"]
+        conditional = [edge for edge in self.EDGE_SPECS if edge["kind"] == "conditional"]
+        # Introspect the actual LangGraph builder in addition to the human-readable
+        # EDGE_SPECS index. This makes runtime evidence prove that conditional branches
+        # were registered on StateGraph rather than merely described in documentation.
+        builder_branch_sources = sorted(str(source) for source in self.builder.branches.keys())
+        builder_branch_count = sum(len(branch_map) for branch_map in self.builder.branches.values())
+        builder_nodes = sorted(str(name) for name in self.builder.nodes.keys())
+        builder_edges = sorted((str(source), str(dest)) for source, dest in self.builder.edges)
         return {
             "framework": "LangGraph StateGraph",
             "framework_package": "langgraph",
@@ -246,10 +252,10 @@ class ContractAuditWorkflow:
             "hitl_pause_api": "langgraph.types.interrupt",
             "hitl_resume_api": "langgraph.types.Command(resume=...)",
             "persistent_checkpointer": "langgraph.checkpoint.sqlite.SqliteSaver",
-            "nodes": list(cls.NODE_NAMES),
-            "edges": [deepcopy(item) for item in cls.EDGE_SPECS],
-            "node_count": len(cls.NODE_NAMES),
-            "edge_count": len(cls.EDGE_SPECS),
+            "nodes": list(self.NODE_NAMES),
+            "edges": [deepcopy(item) for item in self.EDGE_SPECS],
+            "node_count": len(self.NODE_NAMES),
+            "edge_count": len(self.EDGE_SPECS),
             "conditional_edge_count": len(conditional),
             "branching_nodes": [
                 "input_guardrail",
@@ -260,6 +266,14 @@ class ContractAuditWorkflow:
             ],
             "shared_state_object": "AuditState (TypedDict)",
             "terminal_nodes": sorted(TERMINAL_NODES),
+            "runtime_builder_introspection": {
+                "node_count": len(builder_nodes),
+                "nodes": builder_nodes,
+                "static_edge_count": len(builder_edges),
+                "static_edges": builder_edges,
+                "conditional_branch_count": builder_branch_count,
+                "conditional_branch_sources": builder_branch_sources,
+            },
             "pause_node": "human_approval",
             "loops": [
                 "policy_research -> policy_research (bounded tool retry)",
@@ -272,9 +286,9 @@ class ContractAuditWorkflow:
                 "report_revision_limit": "MAX_REPORT_REVISIONS",
                 "global_recursion_limit": "MAX_GRAPH_STEPS",
             },
-            "is_linear_chain": False,
+            "is_linear_chain": builder_branch_count == 0,
             "has_cycles": True,
-            "has_conditional_routing": True,
+            "has_conditional_routing": builder_branch_count >= 5,
             "supports_restart_resume": True,
         }
 

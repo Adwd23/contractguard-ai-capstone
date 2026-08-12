@@ -67,7 +67,13 @@ def compact(state: dict[str, Any]) -> dict[str, Any]:
 def main() -> int:
     evidence_dir = PROJECT_ROOT / "evidence"
     preserved: dict[str, str] = {}
-    for name in ("README.md", "06_live_llm_function_call.json", "07_minio_docker_smoke.json"):
+    for name in (
+        "README.md",
+        "grader_manifest.json",
+        "local_static_validation.json",
+        "06_live_llm_function_call.json",
+        "07_minio_docker_smoke.json",
+    ):
         path = evidence_dir / name
         if path.exists():
             preserved[name] = path.read_text(encoding="utf-8")
@@ -212,6 +218,9 @@ def main() -> int:
         and graph_spec.get("conditional_routing_api") == "StateGraph.add_conditional_edges"
         and graph_spec.get("hitl_pause_api") == "langgraph.types.interrupt"
         and graph_spec.get("hitl_resume_api") == "langgraph.types.Command(resume=...)"
+        and int(graph_spec.get("runtime_builder_introspection", {}).get("conditional_branch_count", 0)) >= 5
+        and set(graph_spec.get("runtime_builder_introspection", {}).get("conditional_branch_sources", []))
+        >= {"input_guardrail", "policy_research", "quality_reviewer", "security_reviewer", "output_guardian"}
     )
     specialized_agents = {message["sender"] for message in final.get("agent_messages", [])}
     least_privilege_ok = (
@@ -282,7 +291,7 @@ def main() -> int:
 
     summary = {
         "project": "ContractGuard AI",
-        "version": "1.3.0",
+        "version": "1.3.1",
         "all_assertions_passed": all(proof.values()),
         "framework": graph_spec["framework"],
         "framework_package": graph_spec["framework_package"],
@@ -310,6 +319,7 @@ def main() -> int:
             "conditional_edge_count": graph_spec["conditional_edge_count"],
             "branching_nodes": graph_spec["branching_nodes"],
             "loops": graph_spec["loops"],
+            "runtime_builder_introspection": graph_spec["runtime_builder_introspection"],
         },
         "scenarios": {
             "blocked_attack": compact(blocked),

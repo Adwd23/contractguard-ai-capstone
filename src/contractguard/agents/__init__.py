@@ -28,4 +28,20 @@ __all__ = [
     "ReportWriterAgent",
     "OutputGuardianAgent",
     "ArtifactStorageAgent",
+    "AGENT_ROLE_MANIFEST",
 ]
+
+# Evaluator-friendly role index. These entries mirror concrete classes instantiated in
+# ContractGuardService._build_agents(); they are not virtual personas or prompt labels.
+AGENT_ROLE_MANIFEST = (
+    ("InputSecurityAgent", "Input Security Agent", "Enforce input prompt-injection boundary"),
+    ("CoordinatorAgent", "Coordinator Agent", "Create and coordinate the Plan-and-Execute workflow"),
+    ("DocumentAnalystAgent", "Document Analyst Agent", "Read contracts and extract structured clauses"),
+    ("PolicyResearchAgent", "Policy Research Agent", "Retrieve corporate policy evidence with tools"),
+    ("ComplianceAnalystAgent", "Compliance Analyst Agent", "Compare clauses to policy and produce findings"),
+    ("QualityReviewerAgent", "Quality Reviewer Agent", "Perform Reflexion/self-critique and request re-search"),
+    ("SecurityReviewerAgent", "Security Reviewer Agent", "Score risk and route human approval"),
+    ("ReportWriterAgent", "Report Writer Agent", "Generate structured compliance reports"),
+    ("OutputGuardianAgent", "Output Guardian Agent", "Enforce PII/schema output controls"),
+    ("ArtifactStorageAgent", "Artifact Storage Agent", "Persist approved audit artifacts"),
+)

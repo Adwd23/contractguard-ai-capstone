@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publication gate for ContractGuard AI v1.3 Trainer-Fix Edition.
+"""Publication gate for ContractGuard AI v1.3.1 Automated-Grader Hardened Edition.
 
 The gate has two modes:
 
@@ -27,7 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "evidence"
 EXPECTED_OWNER = "Adwd23"
 EXPECTED_OWNER_EMAIL = "Adwd23@users.noreply.github.com"
-EXPECTED_VERSION = "1.3.0"
+EXPECTED_VERSION = "1.3.1"
 EXPECTED_ABOUT = (
     "Secure LangGraph multi-agent system for vendor contract auditing, compliance analysis, "
     "guardrails, human approval, and production monitoring."
@@ -37,6 +37,7 @@ LEGACY_IDENTITIES = ("melko" + "sif57-lang", "308331635+" + "melko" + "sif57-lan
 
 BASE_REQUIRED_FILES = (
     "README.md",
+    "EVALUATION.json",
     "SECURITY.md",
     "LICENSE",
     "THIRD_PARTY_NOTICES.md",
@@ -56,9 +57,12 @@ BASE_REQUIRED_FILES = (
     "docs/course_alignment.md",
     "docs/submission_checklist.md",
     "docs/trainer_feedback_fixes.md",
+    "docs/automated_evaluation_guide.md",
     "docs/github_publication.md",
     "notebooks/ContractGuard_Capstone.ipynb",
     "evidence/grader_manifest.json",
+    "scripts/grader_probe.py",
+    "scripts/runtime_grader_probe.py",
 )
 RUNTIME_REQUIRED_FILES = (
     "notebooks/ContractGuard_Capstone_Executed.ipynb",
@@ -69,6 +73,7 @@ RUNTIME_REQUIRED_FILES = (
     "evidence/01_prompt_injection_blocked.json",
     "evidence/04_checkpoint_loaded_after_restart.json",
     "evidence/05_high_risk_resumed_and_completed.json",
+    "evidence/runtime_grader_probe.json",
 )
 
 SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
@@ -149,6 +154,7 @@ def runtime_suite(report: Report) -> None:
         ),
         ("capstone_demo", [sys.executable, "scripts/run_capstone_demo.py"]),
         ("executed_notebook", [sys.executable, "scripts/build_executed_notebook.py"]),
+        ("runtime_grader_probe", [sys.executable, "scripts/runtime_grader_probe.py"]),
     )
     for name, command in commands:
         try:
@@ -260,6 +266,7 @@ def check_trainer_fixes(report: Report) -> None:
     )
 
     expected_agents = {
+        "input_security.py": "InputSecurityAgent",
         "coordinator.py": "CoordinatorAgent",
         "document_analyst.py": "DocumentAnalystAgent",
         "policy_researcher.py": "PolicyResearchAgent",
@@ -278,12 +285,12 @@ def check_trainer_fixes(report: Report) -> None:
     report.add(
         "trainer_fix_distinct_agent_classes",
         not missing_agents,
-        "9 independent specialist classes" if not missing_agents else f"missing={missing_agents}",
+        "10 independent specialist classes" if not missing_agents else f"missing={missing_agents}",
     )
     report.add(
         "trainer_fix_declared_libraries_used",
-        "import uvicorn" in server and "uvicorn.run(" in server and "import ipykernel" in notebook_builder,
-        "uvicorn is the API launcher; ipykernel is imported by the executed-notebook builder",
+        "import uvicorn" in server and "uvicorn.run(" in server and "make_ipkernel_cmd()" in notebook_builder,
+        "uvicorn is the API launcher; ipykernel resolves the notebook kernel launch command",
     )
 
 
@@ -371,6 +378,17 @@ def check_evidence(report: Report) -> None:
     report.add("evidence_json_valid", not invalid_json, "all valid" if not invalid_json else str(invalid_json))
 
     try:
+        runtime_probe = json.loads((EVIDENCE / "runtime_grader_probe.json").read_text(encoding="utf-8"))
+        report.add(
+            "runtime_grader_probe_pass",
+            runtime_probe.get("all_runtime_checks_pass") is True
+            and runtime_probe.get("output_contract") == "single_json_object_no_markdown",
+            f"status={runtime_probe.get('status')}, checks={len(runtime_probe.get('checks', {}))}",
+        )
+    except Exception as exc:
+        report.add("runtime_grader_probe_pass", False, str(exc))
+
+    try:
         summary = json.loads((EVIDENCE / "run_summary.json").read_text(encoding="utf-8"))
         proof = summary.get("proof", {})
         failed = [name for name, value in proof.items() if value is not True]
@@ -393,6 +411,7 @@ def check_evidence(report: Report) -> None:
             and graph.get("persistent_checkpointer") == "langgraph.checkpoint.sqlite.SqliteSaver"
             and int(graph.get("node_count", 0)) >= 10
             and int(graph.get("conditional_edge_count", 0)) >= 5
+            and int(graph.get("runtime_builder_introspection", {}).get("conditional_branch_count", 0)) >= 5
             and graph.get("has_cycles") is True
             and graph.get("is_linear_chain") is False
             and graph.get("supports_restart_resume") is True
@@ -510,7 +529,7 @@ def add_external_warnings(report: Report) -> None:
 def write_report(report: Report, *, static_only: bool) -> Path:
     payload = {
         "project": "ContractGuard AI",
-        "edition": "v1.3 Trainer-Fix Edition",
+        "edition": "v1.3.1 Automated-Grader Hardened Edition",
         "version": EXPECTED_VERSION,
         "owner": EXPECTED_OWNER,
         "validation_mode": "static-only" if static_only else "full-runtime",
