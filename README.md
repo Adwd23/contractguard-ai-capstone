@@ -13,7 +13,7 @@
 
 ContractGuard AI receives a vendor contract, blocks prompt-injection attempts before any tool can run, extracts clauses, retrieves internal policy evidence, evaluates compliance, scores risk, pauses for a human decision when the contract is high risk, validates and redacts the final report, and stores the approved artifact. The workflow is implemented as a genuine `langgraph.graph.StateGraph` with durable SQLite checkpoints.
 
-The project intentionally demonstrates both the happy path and the failure/security paths required by the capstone rubric: a blocked indirect prompt injection, a real tool retry, a Reflexion re-search loop, a persistent Human-in-the-Loop interrupt that survives process restart, `Command(resume=...)`, output-schema regeneration, PII masking, structured logs, Prometheus metrics, Docker, MinIO/S3, FastAPI, and executed evidence.
+The project is designed to demonstrate both the happy path and the failure/security paths required by the capstone rubric: a blocked indirect prompt injection, a real tool retry, a Reflexion re-search loop, a persistent Human-in-the-Loop interrupt that survives process restart, `Command(resume=...)`, output-schema regeneration, PII masking, structured logs, Prometheus metrics, Docker, MinIO/S3, FastAPI, and a reproducible executed-evidence pipeline.
 
 ## v1.3 trainer-feedback fixes
 
@@ -27,7 +27,7 @@ This edition was rebuilt so the requirements are visible in executable code rath
 | `interrupt()` appeared without a demonstrated resume | The approval node calls `interrupt(...)`; the external resume path calls `graph.invoke(Command(resume=...))`; the node returns `Command(goto=...)` | `src/contractguard/workflow.py`, restart/HITL evidence files |
 | Multiple roles looked like one agent role-playing personas | Each specialist is a separate Python class in its own module, with its own responsibility and tool allow-list | `src/contractguard/agents/` and structured `AgentMessage` records |
 | GitHub About description was empty | The exact description is documented in this README and `docs/github_publication.md` | GitHub repository About panel after publication |
-| Grader JSON confidence failure | All generated evidence JSON is parsed by the pre-publication gate and the CI workflow fails on invalid JSON | `scripts/prepublish_check.py` |
+| Grader JSON confidence failure | `scripts/grader_probe.py` emits one strict JSON document, all generated evidence JSON is parsed by the pre-publication gate, and CI fails on invalid JSON | `scripts/grader_probe.py`, `evidence/grader_manifest.json`, `scripts/prepublish_check.py` |
 
 See [`docs/trainer_feedback_fixes.md`](docs/trainer_feedback_fixes.md) for the evaluator-oriented checklist.
 
@@ -278,6 +278,8 @@ docker compose down -v
 This proves that the validated report is written through the configured MinIO/S3 backend. The same smoke path runs in GitHub Actions.
 
 ## Evidence index
+
+The downloadable v1.3 archive includes `evidence/grader_manifest.json` and `evidence/local_static_validation.json` for deterministic source-level verification. It deliberately does **not** preserve stale v1.2 runtime output. On the first v1.3 GitHub Actions run, the current LangGraph dependencies are installed and the runtime evidence below is regenerated and committed by the workflow.
 
 After a successful evidence run, the repository contains:
 
