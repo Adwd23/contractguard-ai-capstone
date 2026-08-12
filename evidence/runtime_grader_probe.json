@@ -1,0 +1,191 @@
+{
+  "all_runtime_checks_pass": true,
+  "checks": {
+    "artifact_persisted": true,
+    "bounded_graph_cycle_executed": true,
+    "checkpoint_survived_restart": true,
+    "command_resume_completed": true,
+    "conditional_edges_present": true,
+    "guardrail_enforced": true,
+    "human_interrupt_paused": true,
+    "input_attack_blocked": true,
+    "multiple_agents_communicated": true,
+    "output_guardrail_enforced": true,
+    "output_revision_executed": true,
+    "pii_masking_executed": true,
+    "prometheus_metrics_exist": true,
+    "react_trace_present": true,
+    "real_tools_executed": true,
+    "reflexion_retry_executed": true,
+    "runtime_stategraph_branches_registered": true,
+    "stategraph_non_linear": true,
+    "structured_logs_exist": true,
+    "tool_failure_retry_executed": true,
+    "zero_tools_after_block": true
+  },
+  "edition": "v1.3.1 Automated-Grader Hardened Edition",
+  "evidence": {
+    "blocked_attack": "evidence/01_prompt_injection_blocked.json",
+    "graph": "evidence/graph_spec.json",
+    "high_risk_pause": "evidence/03_high_risk_paused_for_human.json",
+    "logs": "evidence/execution_log.jsonl",
+    "low_risk_tools": "evidence/02_low_risk_completed.json",
+    "metrics": "evidence/metrics_before_restart.prom",
+    "restart_checkpoint": "evidence/04_checkpoint_loaded_after_restart.json",
+    "resume_completion": "evidence/05_high_risk_resumed_and_completed.json"
+  },
+  "observed": {
+    "agent_recipients": [
+      "Artifact Storage Agent",
+      "Compliance Analyst Agent",
+      "Coordinator Agent",
+      "Document Analyst Agent",
+      "Output Guardian Agent",
+      "Policy Research Agent",
+      "Quality Reviewer Agent",
+      "Report Writer Agent"
+    ],
+    "agent_senders": [
+      "Artifact Storage Agent",
+      "Compliance Analyst Agent",
+      "Coordinator Agent",
+      "Document Analyst Agent",
+      "Input Security Agent",
+      "Output Guardian Agent",
+      "Policy Research Agent",
+      "Quality Reviewer Agent",
+      "Report Writer Agent",
+      "Security Reviewer Agent"
+    ],
+    "approval_status": "approved",
+    "artifact_uri": "file:///home/runner/work/contractguard-ai-capstone/contractguard-ai-capstone/evidence/artifacts/capstone-high-risk/compliance_report.md",
+    "branching_nodes": [
+      "input_guardrail",
+      "policy_research",
+      "quality_reviewer",
+      "security_reviewer",
+      "output_guardian"
+    ],
+    "conditional_edge_count": 12,
+    "failed_tool_observations": 1,
+    "loops": [
+      "policy_research -> policy_research (bounded tool retry)",
+      "quality_reviewer -> policy_research (bounded Reflexion/re-search)",
+      "output_guardian -> report_writer (bounded schema revision)"
+    ],
+    "pii_redactions": 3,
+    "policy_retry_count": 1,
+    "quality_retry_count": 1,
+    "report_revision_count": 1,
+    "runtime_builder_introspection": {
+      "conditional_branch_count": 5,
+      "conditional_branch_sources": [
+        "input_guardrail",
+        "output_guardian",
+        "policy_research",
+        "quality_reviewer",
+        "security_reviewer"
+      ],
+      "node_count": 16,
+      "nodes": [
+        "approval_gate",
+        "artifact_storage",
+        "blocked",
+        "completed",
+        "compliance_analyst",
+        "coordinator",
+        "document_analyst",
+        "failed",
+        "human_approval",
+        "input_guardrail",
+        "output_guardian",
+        "policy_research",
+        "quality_reviewer",
+        "rejected",
+        "report_writer",
+        "security_reviewer"
+      ],
+      "static_edge_count": 11,
+      "static_edges": [
+        [
+          "__start__",
+          "input_guardrail"
+        ],
+        [
+          "approval_gate",
+          "human_approval"
+        ],
+        [
+          "artifact_storage",
+          "completed"
+        ],
+        [
+          "blocked",
+          "__end__"
+        ],
+        [
+          "completed",
+          "__end__"
+        ],
+        [
+          "compliance_analyst",
+          "quality_reviewer"
+        ],
+        [
+          "coordinator",
+          "document_analyst"
+        ],
+        [
+          "document_analyst",
+          "policy_research"
+        ],
+        [
+          "failed",
+          "__end__"
+        ],
+        [
+          "rejected",
+          "__end__"
+        ],
+        [
+          "report_writer",
+          "output_guardian"
+        ]
+      ]
+    },
+    "tool_call_count": 11
+  },
+  "output_contract": "single_json_object_no_markdown",
+  "owner": "Adwd23",
+  "project": "ContractGuard AI",
+  "runner_capture": {
+    "stderr_was_captured": false,
+    "stdout_was_captured": false
+  },
+  "schema_version": "1.0",
+  "status": "pass",
+  "summary_proof": {
+    "cloud_deployment_artifacts_exist": true,
+    "explicit_conditional_edges_are_real": true,
+    "human_pause_resumed": true,
+    "input_guardrail_enforced_before_tools": true,
+    "langgraph_interrupt_and_command_resume": true,
+    "langgraph_stategraph_is_real": true,
+    "multiple_specialized_agents_communicated": true,
+    "output_guardrail_enforced": true,
+    "output_validation_revision_fired": true,
+    "per_agent_tool_permissions_configured": true,
+    "persistent_checkpoint_survived_restart": true,
+    "pii_was_masked": true,
+    "prometheus_metrics_exist": true,
+    "prompt_injection_was_blocked": true,
+    "quality_replan_loop_fired": true,
+    "real_framework_graph_has_conditions_and_cycles": true,
+    "real_schema_validated_tools_executed": true,
+    "schema_driven_tool_router_used": true,
+    "shared_state_carried_across_nodes": true,
+    "structured_logs_exist": true,
+    "tool_failure_retry_fired": true
+  },
+  "version": "1.3.1"
+}

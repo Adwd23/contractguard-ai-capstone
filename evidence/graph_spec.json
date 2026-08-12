@@ -1,0 +1,278 @@
+{
+  "framework": "LangGraph StateGraph",
+  "framework_package": "langgraph",
+  "framework_version": "1.2.10",
+  "builder_api": "StateGraph(AuditState)",
+  "conditional_routing_api": "StateGraph.add_conditional_edges",
+  "hitl_pause_api": "langgraph.types.interrupt",
+  "hitl_resume_api": "langgraph.types.Command(resume=...)",
+  "persistent_checkpointer": "langgraph.checkpoint.sqlite.SqliteSaver",
+  "nodes": [
+    "input_guardrail",
+    "coordinator",
+    "document_analyst",
+    "policy_research",
+    "compliance_analyst",
+    "quality_reviewer",
+    "security_reviewer",
+    "approval_gate",
+    "human_approval",
+    "report_writer",
+    "output_guardian",
+    "artifact_storage",
+    "completed",
+    "blocked",
+    "rejected",
+    "failed"
+  ],
+  "edges": [
+    {
+      "source": "START",
+      "dest": "input_guardrail",
+      "kind": "normal"
+    },
+    {
+      "source": "input_guardrail",
+      "dest": "blocked",
+      "kind": "conditional",
+      "condition": "blocked"
+    },
+    {
+      "source": "input_guardrail",
+      "dest": "coordinator",
+      "kind": "conditional",
+      "condition": "safe"
+    },
+    {
+      "source": "coordinator",
+      "dest": "document_analyst",
+      "kind": "normal"
+    },
+    {
+      "source": "document_analyst",
+      "dest": "policy_research",
+      "kind": "normal"
+    },
+    {
+      "source": "policy_research",
+      "dest": "policy_research",
+      "kind": "conditional",
+      "condition": "retry"
+    },
+    {
+      "source": "policy_research",
+      "dest": "compliance_analyst",
+      "kind": "conditional",
+      "condition": "success"
+    },
+    {
+      "source": "policy_research",
+      "dest": "failed",
+      "kind": "conditional",
+      "condition": "failed"
+    },
+    {
+      "source": "compliance_analyst",
+      "dest": "quality_reviewer",
+      "kind": "normal"
+    },
+    {
+      "source": "quality_reviewer",
+      "dest": "policy_research",
+      "kind": "conditional",
+      "condition": "retry"
+    },
+    {
+      "source": "quality_reviewer",
+      "dest": "security_reviewer",
+      "kind": "conditional",
+      "condition": "pass"
+    },
+    {
+      "source": "security_reviewer",
+      "dest": "approval_gate",
+      "kind": "conditional",
+      "condition": "human"
+    },
+    {
+      "source": "security_reviewer",
+      "dest": "report_writer",
+      "kind": "conditional",
+      "condition": "automatic"
+    },
+    {
+      "source": "approval_gate",
+      "dest": "human_approval",
+      "kind": "normal"
+    },
+    {
+      "source": "human_approval",
+      "dest": "report_writer",
+      "kind": "Command",
+      "condition": "approve"
+    },
+    {
+      "source": "human_approval",
+      "dest": "rejected",
+      "kind": "Command",
+      "condition": "reject"
+    },
+    {
+      "source": "report_writer",
+      "dest": "output_guardian",
+      "kind": "normal"
+    },
+    {
+      "source": "output_guardian",
+      "dest": "report_writer",
+      "kind": "conditional",
+      "condition": "revise"
+    },
+    {
+      "source": "output_guardian",
+      "dest": "artifact_storage",
+      "kind": "conditional",
+      "condition": "valid"
+    },
+    {
+      "source": "output_guardian",
+      "dest": "failed",
+      "kind": "conditional",
+      "condition": "failed"
+    },
+    {
+      "source": "artifact_storage",
+      "dest": "completed",
+      "kind": "normal"
+    },
+    {
+      "source": "completed",
+      "dest": "END",
+      "kind": "normal"
+    },
+    {
+      "source": "blocked",
+      "dest": "END",
+      "kind": "normal"
+    },
+    {
+      "source": "rejected",
+      "dest": "END",
+      "kind": "normal"
+    },
+    {
+      "source": "failed",
+      "dest": "END",
+      "kind": "normal"
+    }
+  ],
+  "node_count": 16,
+  "edge_count": 25,
+  "conditional_edge_count": 12,
+  "branching_nodes": [
+    "input_guardrail",
+    "policy_research",
+    "quality_reviewer",
+    "security_reviewer",
+    "output_guardian"
+  ],
+  "shared_state_object": "AuditState (TypedDict)",
+  "terminal_nodes": [
+    "blocked",
+    "completed",
+    "failed",
+    "rejected"
+  ],
+  "runtime_builder_introspection": {
+    "node_count": 16,
+    "nodes": [
+      "approval_gate",
+      "artifact_storage",
+      "blocked",
+      "completed",
+      "compliance_analyst",
+      "coordinator",
+      "document_analyst",
+      "failed",
+      "human_approval",
+      "input_guardrail",
+      "output_guardian",
+      "policy_research",
+      "quality_reviewer",
+      "rejected",
+      "report_writer",
+      "security_reviewer"
+    ],
+    "static_edge_count": 11,
+    "static_edges": [
+      [
+        "__start__",
+        "input_guardrail"
+      ],
+      [
+        "approval_gate",
+        "human_approval"
+      ],
+      [
+        "artifact_storage",
+        "completed"
+      ],
+      [
+        "blocked",
+        "__end__"
+      ],
+      [
+        "completed",
+        "__end__"
+      ],
+      [
+        "compliance_analyst",
+        "quality_reviewer"
+      ],
+      [
+        "coordinator",
+        "document_analyst"
+      ],
+      [
+        "document_analyst",
+        "policy_research"
+      ],
+      [
+        "failed",
+        "__end__"
+      ],
+      [
+        "rejected",
+        "__end__"
+      ],
+      [
+        "report_writer",
+        "output_guardian"
+      ]
+    ],
+    "conditional_branch_count": 5,
+    "conditional_branch_sources": [
+      "input_guardrail",
+      "output_guardian",
+      "policy_research",
+      "quality_reviewer",
+      "security_reviewer"
+    ]
+  },
+  "pause_node": "human_approval",
+  "loops": [
+    "policy_research -> policy_research (bounded tool retry)",
+    "quality_reviewer -> policy_research (bounded Reflexion/re-search)",
+    "output_guardian -> report_writer (bounded schema revision)"
+  ],
+  "loop_termination_controls": {
+    "policy_retry_limit": "MAX_POLICY_RETRIES",
+    "quality_retry_limit": "MAX_QUALITY_RETRIES",
+    "report_revision_limit": "MAX_REPORT_REVISIONS",
+    "global_recursion_limit": "MAX_GRAPH_STEPS"
+  },
+  "is_linear_chain": false,
+  "has_cycles": true,
+  "has_conditional_routing": true,
+  "supports_restart_resume": true
+}

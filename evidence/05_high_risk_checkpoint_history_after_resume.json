@@ -1,0 +1,231 @@
+[
+  {
+    "id": 1,
+    "thread_id": "capstone-high-risk",
+    "node": "unknown",
+    "status": "unknown",
+    "next": [
+      "__start__"
+    ],
+    "checkpoint_id": "1f196a7c-e958-6be0-bfff-443eba89e9ec",
+    "created_at": "2026-08-12T23:44:49.480793+00:00"
+  },
+  {
+    "id": 2,
+    "thread_id": "capstone-high-risk",
+    "node": "START",
+    "status": "received",
+    "next": [
+      "input_guardrail"
+    ],
+    "checkpoint_id": "1f196a7c-e95a-6c96-8000-584b1dc2996b",
+    "created_at": "2026-08-12T23:44:49.481621+00:00"
+  },
+  {
+    "id": 3,
+    "thread_id": "capstone-high-risk",
+    "node": "input_guardrail",
+    "status": "input_guardrail",
+    "next": [
+      "coordinator"
+    ],
+    "checkpoint_id": "1f196a7c-e960-6d5b-8001-e612b359cb9d",
+    "created_at": "2026-08-12T23:44:49.484100+00:00"
+  },
+  {
+    "id": 4,
+    "thread_id": "capstone-high-risk",
+    "node": "coordinator",
+    "status": "coordinator",
+    "next": [
+      "document_analyst"
+    ],
+    "checkpoint_id": "1f196a7c-e963-6ba2-8002-1713e816a4b0",
+    "created_at": "2026-08-12T23:44:49.485285+00:00"
+  },
+  {
+    "id": 5,
+    "thread_id": "capstone-high-risk",
+    "node": "document_analyst",
+    "status": "document_analyst",
+    "next": [
+      "policy_research"
+    ],
+    "checkpoint_id": "1f196a7c-e969-62d7-8003-1da25b4d58d4",
+    "created_at": "2026-08-12T23:44:49.487517+00:00"
+  },
+  {
+    "id": 6,
+    "thread_id": "capstone-high-risk",
+    "node": "policy_research",
+    "status": "policy_research",
+    "next": [
+      "policy_research"
+    ],
+    "checkpoint_id": "1f196a7c-e96e-6f2c-8004-76b7e357420c",
+    "created_at": "2026-08-12T23:44:49.489881+00:00"
+  },
+  {
+    "id": 7,
+    "thread_id": "capstone-high-risk",
+    "node": "policy_research",
+    "status": "policy_research",
+    "next": [
+      "compliance_analyst"
+    ],
+    "checkpoint_id": "1f196a7c-e981-6c72-8005-125299a89b58",
+    "created_at": "2026-08-12T23:44:49.497574+00:00"
+  },
+  {
+    "id": 8,
+    "thread_id": "capstone-high-risk",
+    "node": "compliance_analyst",
+    "status": "compliance_analyst",
+    "next": [
+      "quality_reviewer"
+    ],
+    "checkpoint_id": "1f196a7c-e985-6d55-8006-92d97c042470",
+    "created_at": "2026-08-12T23:44:49.499254+00:00"
+  },
+  {
+    "id": 9,
+    "thread_id": "capstone-high-risk",
+    "node": "quality_reviewer",
+    "status": "quality_reviewer",
+    "next": [
+      "policy_research"
+    ],
+    "checkpoint_id": "1f196a7c-e98a-608b-8007-4e3d3e1d1d63",
+    "created_at": "2026-08-12T23:44:49.500975+00:00"
+  },
+  {
+    "id": 10,
+    "thread_id": "capstone-high-risk",
+    "node": "policy_research",
+    "status": "policy_research",
+    "next": [
+      "compliance_analyst"
+    ],
+    "checkpoint_id": "1f196a7c-e99f-6f3c-8008-4134c75c80a4",
+    "created_at": "2026-08-12T23:44:49.509953+00:00"
+  },
+  {
+    "id": 11,
+    "thread_id": "capstone-high-risk",
+    "node": "compliance_analyst",
+    "status": "compliance_analyst",
+    "next": [
+      "quality_reviewer"
+    ],
+    "checkpoint_id": "1f196a7c-e9a4-6bd5-8009-18b3c34e236d",
+    "created_at": "2026-08-12T23:44:49.511914+00:00"
+  },
+  {
+    "id": 12,
+    "thread_id": "capstone-high-risk",
+    "node": "quality_reviewer",
+    "status": "quality_reviewer",
+    "next": [
+      "security_reviewer"
+    ],
+    "checkpoint_id": "1f196a7c-e9a9-6734-800a-f39eb65d6224",
+    "created_at": "2026-08-12T23:44:49.513843+00:00"
+  },
+  {
+    "id": 13,
+    "thread_id": "capstone-high-risk",
+    "node": "security_reviewer",
+    "status": "security_reviewer",
+    "next": [
+      "approval_gate"
+    ],
+    "checkpoint_id": "1f196a7c-e9ae-6b2a-800b-6469b3031b27",
+    "created_at": "2026-08-12T23:44:49.515992+00:00"
+  },
+  {
+    "id": 14,
+    "thread_id": "capstone-high-risk",
+    "node": "human_approval",
+    "status": "awaiting_approval",
+    "next": [
+      "human_approval"
+    ],
+    "checkpoint_id": "1f196a7c-e9b2-6cb6-800c-48584b431a7b",
+    "created_at": "2026-08-12T23:44:49.517670+00:00"
+  },
+  {
+    "id": 15,
+    "thread_id": "capstone-high-risk",
+    "node": "human_approval",
+    "status": "approved",
+    "next": [
+      "report_writer"
+    ],
+    "checkpoint_id": "1f196a7c-ea72-6425-800d-384f267374fb",
+    "created_at": "2026-08-12T23:44:49.596090+00:00"
+  },
+  {
+    "id": 16,
+    "thread_id": "capstone-high-risk",
+    "node": "report_writer",
+    "status": "report_writer",
+    "next": [
+      "output_guardian"
+    ],
+    "checkpoint_id": "1f196a7c-ea79-6afc-800e-aab086871e44",
+    "created_at": "2026-08-12T23:44:49.599135+00:00"
+  },
+  {
+    "id": 17,
+    "thread_id": "capstone-high-risk",
+    "node": "output_guardian",
+    "status": "output_guardian",
+    "next": [
+      "report_writer"
+    ],
+    "checkpoint_id": "1f196a7c-ea83-6210-800f-5b7fac2821e4",
+    "created_at": "2026-08-12T23:44:49.603002+00:00"
+  },
+  {
+    "id": 18,
+    "thread_id": "capstone-high-risk",
+    "node": "report_writer",
+    "status": "report_writer",
+    "next": [
+      "output_guardian"
+    ],
+    "checkpoint_id": "1f196a7c-ea8a-6484-8010-7213d1264205",
+    "created_at": "2026-08-12T23:44:49.605931+00:00"
+  },
+  {
+    "id": 19,
+    "thread_id": "capstone-high-risk",
+    "node": "output_guardian",
+    "status": "output_guardian",
+    "next": [
+      "artifact_storage"
+    ],
+    "checkpoint_id": "1f196a7c-ea93-6e18-8011-3ecf6ab9913a",
+    "created_at": "2026-08-12T23:44:49.609864+00:00"
+  },
+  {
+    "id": 20,
+    "thread_id": "capstone-high-risk",
+    "node": "artifact_storage",
+    "status": "artifact_storage",
+    "next": [
+      "completed"
+    ],
+    "checkpoint_id": "1f196a7c-ea9b-6679-8012-9496c5534f59",
+    "created_at": "2026-08-12T23:44:49.612944+00:00"
+  },
+  {
+    "id": 21,
+    "thread_id": "capstone-high-risk",
+    "node": "completed",
+    "status": "completed",
+    "next": [],
+    "checkpoint_id": "1f196a7c-eaa0-606d-8013-89f503999c17",
+    "created_at": "2026-08-12T23:44:49.614839+00:00"
+  }
+]

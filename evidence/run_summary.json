@@ -1,0 +1,543 @@
+{
+  "project": "ContractGuard AI",
+  "version": "1.3.1",
+  "all_assertions_passed": true,
+  "framework": "LangGraph StateGraph",
+  "framework_package": "langgraph",
+  "framework_version": "1.2.10",
+  "reasoning_patterns": [
+    "Plan-and-Execute",
+    "ReAct",
+    "Reflexion/self-critique",
+    "Hierarchical delegation"
+  ],
+  "coordination_strategy": "Centralized Coordinator Agent with typed shared-state specialist handoffs",
+  "tool_interface": {
+    "mode": "MCP-style JSON-schema function registry",
+    "registered_tool_count": 6,
+    "registered_tools": [
+      "read_contract",
+      "extract_contract_clauses",
+      "search_policy_knowledge_base",
+      "calculate_contract_risk",
+      "mask_pii",
+      "store_report_artifact"
+    ],
+    "default_reasoner": "offline_schema_router",
+    "optional_native_providers": [
+      "Gemini",
+      "OpenRouter",
+      "Groq"
+    ],
+    "agent_tool_permissions": {
+      "Input Security Agent": [],
+      "Coordinator Agent": [],
+      "Document Analyst Agent": [
+        "extract_contract_clauses",
+        "read_contract"
+      ],
+      "Policy Research Agent": [
+        "search_policy_knowledge_base"
+      ],
+      "Compliance Analyst Agent": [],
+      "Quality Reviewer Agent": [],
+      "Security Reviewer Agent": [
+        "calculate_contract_risk"
+      ],
+      "Report Writer Agent": [],
+      "Output Guardian Agent": [],
+      "Artifact Storage Agent": [
+        "store_report_artifact"
+      ]
+    }
+  },
+  "graph": {
+    "node_count": 16,
+    "edge_count": 25,
+    "conditional_edge_count": 12,
+    "branching_nodes": [
+      "input_guardrail",
+      "policy_research",
+      "quality_reviewer",
+      "security_reviewer",
+      "output_guardian"
+    ],
+    "loops": [
+      "policy_research -> policy_research (bounded tool retry)",
+      "quality_reviewer -> policy_research (bounded Reflexion/re-search)",
+      "output_guardian -> report_writer (bounded schema revision)"
+    ],
+    "runtime_builder_introspection": {
+      "node_count": 16,
+      "nodes": [
+        "approval_gate",
+        "artifact_storage",
+        "blocked",
+        "completed",
+        "compliance_analyst",
+        "coordinator",
+        "document_analyst",
+        "failed",
+        "human_approval",
+        "input_guardrail",
+        "output_guardian",
+        "policy_research",
+        "quality_reviewer",
+        "rejected",
+        "report_writer",
+        "security_reviewer"
+      ],
+      "static_edge_count": 11,
+      "static_edges": [
+        [
+          "__start__",
+          "input_guardrail"
+        ],
+        [
+          "approval_gate",
+          "human_approval"
+        ],
+        [
+          "artifact_storage",
+          "completed"
+        ],
+        [
+          "blocked",
+          "__end__"
+        ],
+        [
+          "completed",
+          "__end__"
+        ],
+        [
+          "compliance_analyst",
+          "quality_reviewer"
+        ],
+        [
+          "coordinator",
+          "document_analyst"
+        ],
+        [
+          "document_analyst",
+          "policy_research"
+        ],
+        [
+          "failed",
+          "__end__"
+        ],
+        [
+          "rejected",
+          "__end__"
+        ],
+        [
+          "report_writer",
+          "output_guardian"
+        ]
+      ],
+      "conditional_branch_count": 5,
+      "conditional_branch_sources": [
+        "input_guardrail",
+        "output_guardian",
+        "policy_research",
+        "quality_reviewer",
+        "security_reviewer"
+      ]
+    }
+  },
+  "scenarios": {
+    "blocked_attack": {
+      "thread_id": "capstone-attack-blocked",
+      "status": "blocked",
+      "workflow_node": "blocked",
+      "node_history": [
+        "received",
+        "input_guardrail",
+        "blocked"
+      ],
+      "tool_call_count": 0,
+      "tool_names": [],
+      "tool_decision_sources": [],
+      "tool_protocols": [],
+      "model_routes": [],
+      "reasoner_mode": "offline_schema_router",
+      "reasoner_modes": [],
+      "live_llm_tool_call_count": 0,
+      "tool_observation_statuses": [],
+      "agent_names": [
+        "Input Security Agent"
+      ],
+      "agent_message_count": 1,
+      "decision_patterns": [],
+      "policy_retry_count": 0,
+      "quality_retry_count": 0,
+      "report_revision_count": 0,
+      "risk_score": 0,
+      "risk_level": "LOW",
+      "approval_required": false,
+      "approval_status": "not_required",
+      "pii_redactions": 0,
+      "artifact_uri": "",
+      "storage_backend": "",
+      "blocked_reason": "ignore previous instructions; reveal system prompt; system prompt extraction",
+      "errors": []
+    },
+    "low_risk": {
+      "thread_id": "capstone-low-risk",
+      "status": "completed",
+      "workflow_node": "completed",
+      "node_history": [
+        "received",
+        "input_guardrail",
+        "coordinator",
+        "document_analyst",
+        "policy_research",
+        "compliance_analyst",
+        "quality_reviewer",
+        "security_reviewer",
+        "report_writer",
+        "output_guardian",
+        "artifact_storage",
+        "completed"
+      ],
+      "tool_call_count": 11,
+      "tool_names": [
+        "read_contract",
+        "extract_contract_clauses",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "calculate_contract_risk",
+        "store_report_artifact"
+      ],
+      "tool_decision_sources": [
+        "offline_schema_router",
+        "workflow"
+      ],
+      "tool_protocols": [
+        "mcp_json_schema"
+      ],
+      "model_routes": [
+        "offline:deterministic-schema-router-v1"
+      ],
+      "reasoner_mode": "offline_schema_router",
+      "reasoner_modes": [
+        "workflow",
+        "offline_schema_router"
+      ],
+      "live_llm_tool_call_count": 0,
+      "tool_observation_statuses": [
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success"
+      ],
+      "agent_names": [
+        "Artifact Storage Agent",
+        "Compliance Analyst Agent",
+        "Coordinator Agent",
+        "Document Analyst Agent",
+        "Input Security Agent",
+        "Output Guardian Agent",
+        "Policy Research Agent",
+        "Quality Reviewer Agent",
+        "Report Writer Agent",
+        "Security Reviewer Agent"
+      ],
+      "agent_message_count": 10,
+      "decision_patterns": [
+        "ReAct"
+      ],
+      "policy_retry_count": 0,
+      "quality_retry_count": 0,
+      "report_revision_count": 0,
+      "risk_score": 0,
+      "risk_level": "LOW",
+      "approval_required": false,
+      "approval_status": "not_required",
+      "pii_redactions": 0,
+      "artifact_uri": "file:///home/runner/work/contractguard-ai-capstone/contractguard-ai-capstone/evidence/artifacts/capstone-low-risk/compliance_report.md",
+      "storage_backend": "filesystem-fallback",
+      "blocked_reason": "",
+      "errors": []
+    },
+    "high_risk_paused": {
+      "thread_id": "capstone-high-risk",
+      "status": "awaiting_approval",
+      "workflow_node": "human_approval",
+      "node_history": [
+        "received",
+        "input_guardrail",
+        "coordinator",
+        "document_analyst",
+        "policy_research",
+        "policy_research",
+        "compliance_analyst",
+        "quality_reviewer",
+        "policy_research",
+        "compliance_analyst",
+        "quality_reviewer",
+        "security_reviewer",
+        "awaiting_approval"
+      ],
+      "tool_call_count": 19,
+      "tool_names": [
+        "read_contract",
+        "extract_contract_clauses",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "calculate_contract_risk"
+      ],
+      "tool_decision_sources": [
+        "offline_schema_router",
+        "workflow"
+      ],
+      "tool_protocols": [
+        "mcp_json_schema"
+      ],
+      "model_routes": [
+        "offline:deterministic-schema-router-v1"
+      ],
+      "reasoner_mode": "offline_schema_router",
+      "reasoner_modes": [
+        "workflow",
+        "offline_schema_router"
+      ],
+      "live_llm_tool_call_count": 0,
+      "tool_observation_statuses": [
+        "success",
+        "success",
+        "error",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success"
+      ],
+      "agent_names": [
+        "Compliance Analyst Agent",
+        "Coordinator Agent",
+        "Document Analyst Agent",
+        "Input Security Agent",
+        "Policy Research Agent",
+        "Quality Reviewer Agent",
+        "Security Reviewer Agent"
+      ],
+      "agent_message_count": 11,
+      "decision_patterns": [
+        "ReAct"
+      ],
+      "policy_retry_count": 1,
+      "quality_retry_count": 1,
+      "report_revision_count": 0,
+      "risk_score": 100,
+      "risk_level": "CRITICAL",
+      "approval_required": true,
+      "approval_status": "pending",
+      "pii_redactions": 0,
+      "artifact_uri": "",
+      "storage_backend": "",
+      "blocked_reason": "",
+      "errors": []
+    },
+    "high_risk_completed": {
+      "thread_id": "capstone-high-risk",
+      "status": "completed",
+      "workflow_node": "completed",
+      "node_history": [
+        "received",
+        "input_guardrail",
+        "coordinator",
+        "document_analyst",
+        "policy_research",
+        "policy_research",
+        "compliance_analyst",
+        "quality_reviewer",
+        "policy_research",
+        "compliance_analyst",
+        "quality_reviewer",
+        "security_reviewer",
+        "awaiting_approval",
+        "human_approval",
+        "report_writer",
+        "output_guardian",
+        "report_writer",
+        "output_guardian",
+        "artifact_storage",
+        "completed"
+      ],
+      "tool_call_count": 20,
+      "tool_names": [
+        "read_contract",
+        "extract_contract_clauses",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "search_policy_knowledge_base",
+        "calculate_contract_risk",
+        "store_report_artifact"
+      ],
+      "tool_decision_sources": [
+        "offline_schema_router",
+        "workflow"
+      ],
+      "tool_protocols": [
+        "mcp_json_schema"
+      ],
+      "model_routes": [
+        "offline:deterministic-schema-router-v1"
+      ],
+      "reasoner_mode": "offline_schema_router",
+      "reasoner_modes": [
+        "workflow",
+        "offline_schema_router"
+      ],
+      "live_llm_tool_call_count": 0,
+      "tool_observation_statuses": [
+        "success",
+        "success",
+        "error",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success",
+        "success"
+      ],
+      "agent_names": [
+        "Artifact Storage Agent",
+        "Compliance Analyst Agent",
+        "Coordinator Agent",
+        "Document Analyst Agent",
+        "Input Security Agent",
+        "Output Guardian Agent",
+        "Policy Research Agent",
+        "Quality Reviewer Agent",
+        "Report Writer Agent",
+        "Security Reviewer Agent"
+      ],
+      "agent_message_count": 16,
+      "decision_patterns": [
+        "ReAct"
+      ],
+      "policy_retry_count": 1,
+      "quality_retry_count": 1,
+      "report_revision_count": 1,
+      "risk_score": 100,
+      "risk_level": "CRITICAL",
+      "approval_required": true,
+      "approval_status": "approved",
+      "pii_redactions": 3,
+      "artifact_uri": "file:///home/runner/work/contractguard-ai-capstone/contractguard-ai-capstone/evidence/artifacts/capstone-high-risk/compliance_report.md",
+      "storage_backend": "filesystem-fallback",
+      "blocked_reason": "",
+      "errors": []
+    }
+  },
+  "proof": {
+    "real_schema_validated_tools_executed": true,
+    "schema_driven_tool_router_used": true,
+    "shared_state_carried_across_nodes": true,
+    "real_framework_graph_has_conditions_and_cycles": true,
+    "multiple_specialized_agents_communicated": true,
+    "per_agent_tool_permissions_configured": true,
+    "langgraph_stategraph_is_real": true,
+    "explicit_conditional_edges_are_real": true,
+    "input_guardrail_enforced_before_tools": true,
+    "output_guardrail_enforced": true,
+    "langgraph_interrupt_and_command_resume": true,
+    "prompt_injection_was_blocked": true,
+    "tool_failure_retry_fired": true,
+    "quality_replan_loop_fired": true,
+    "persistent_checkpoint_survived_restart": true,
+    "human_pause_resumed": true,
+    "output_validation_revision_fired": true,
+    "pii_was_masked": true,
+    "structured_logs_exist": true,
+    "prometheus_metrics_exist": true,
+    "cloud_deployment_artifacts_exist": true
+  },
+  "evidence_files": [
+    "evidence/01_prompt_injection_blocked.json",
+    "evidence/02_low_risk_completed.json",
+    "evidence/03_high_risk_checkpoint_history_before_restart.json",
+    "evidence/03_high_risk_paused_for_human.json",
+    "evidence/04_checkpoint_loaded_after_restart.json",
+    "evidence/05_high_risk_checkpoint_history_after_resume.json",
+    "evidence/05_high_risk_resumed_and_completed.json",
+    "evidence/README.md",
+    "evidence/artifacts/capstone-high-risk/compliance_report.md",
+    "evidence/artifacts/capstone-high-risk/run_metadata.json",
+    "evidence/artifacts/capstone-low-risk/compliance_report.md",
+    "evidence/artifacts/capstone-low-risk/run_metadata.json",
+    "evidence/checkpoints.sqlite",
+    "evidence/checkpoints.sqlite-shm",
+    "evidence/checkpoints.sqlite-wal",
+    "evidence/execution_log.jsonl",
+    "evidence/grader_manifest.json",
+    "evidence/graph_spec.json",
+    "evidence/local_static_validation.json",
+    "evidence/metrics.prom",
+    "evidence/metrics_after_restart.prom",
+    "evidence/metrics_before_restart.prom",
+    "evidence/run_summary.json"
+  ]
+}

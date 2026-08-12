@@ -1,0 +1,361 @@
+# HELP contractguard_node_runs_total Node executions by result
+# TYPE contractguard_node_runs_total counter
+contractguard_node_runs_total{node="input_guardrail",status="success"} 3.0
+contractguard_node_runs_total{node="coordinator",status="success"} 2.0
+contractguard_node_runs_total{node="document_analyst",status="success"} 2.0
+contractguard_node_runs_total{node="policy_research",status="success"} 4.0
+contractguard_node_runs_total{node="compliance_analyst",status="success"} 3.0
+contractguard_node_runs_total{node="quality_reviewer",status="success"} 3.0
+contractguard_node_runs_total{node="security_reviewer",status="success"} 2.0
+contractguard_node_runs_total{node="report_writer",status="success"} 1.0
+contractguard_node_runs_total{node="output_guardian",status="success"} 1.0
+contractguard_node_runs_total{node="artifact_storage",status="success"} 1.0
+# HELP contractguard_node_runs_created Node executions by result
+# TYPE contractguard_node_runs_created gauge
+contractguard_node_runs_created{node="input_guardrail",status="success"} 1.7865782893807788e+09
+contractguard_node_runs_created{node="coordinator",status="success"} 1.7865782893953521e+09
+contractguard_node_runs_created{node="document_analyst",status="success"} 1.7865782893983114e+09
+contractguard_node_runs_created{node="policy_research",status="success"} 1.7865782894066813e+09
+contractguard_node_runs_created{node="compliance_analyst",status="success"} 1.786578289408492e+09
+contractguard_node_runs_created{node="quality_reviewer",status="success"} 1.7865782894099414e+09
+contractguard_node_runs_created{node="security_reviewer",status="success"} 1.786578289412228e+09
+contractguard_node_runs_created{node="report_writer",status="success"} 1.7865782894138737e+09
+contractguard_node_runs_created{node="output_guardian",status="success"} 1.786578289445646e+09
+contractguard_node_runs_created{node="artifact_storage",status="success"} 1.7865782894484265e+09
+# HELP contractguard_node_latency_seconds Node execution latency
+# TYPE contractguard_node_latency_seconds histogram
+contractguard_node_latency_seconds_bucket{le="0.005",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.01",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.025",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.05",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.075",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.1",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.25",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.5",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.75",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="1.0",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="2.5",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="5.0",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="7.5",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="10.0",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_bucket{le="+Inf",node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_count{node="input_guardrail"} 3.0
+contractguard_node_latency_seconds_sum{node="input_guardrail"} 0.0030917329999908816
+contractguard_node_latency_seconds_bucket{le="0.005",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.01",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.025",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.05",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.075",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.1",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.25",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.5",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.75",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="1.0",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="2.5",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="5.0",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="7.5",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="10.0",node="coordinator"} 2.0
+contractguard_node_latency_seconds_bucket{le="+Inf",node="coordinator"} 2.0
+contractguard_node_latency_seconds_count{node="coordinator"} 2.0
+contractguard_node_latency_seconds_sum{node="coordinator"} 0.0003699720000014395
+contractguard_node_latency_seconds_bucket{le="0.005",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.01",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.025",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.05",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.075",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.1",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.25",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.5",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.75",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="1.0",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="2.5",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="5.0",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="7.5",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="10.0",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_bucket{le="+Inf",node="document_analyst"} 2.0
+contractguard_node_latency_seconds_count{node="document_analyst"} 2.0
+contractguard_node_latency_seconds_sum{node="document_analyst"} 0.002846633000004317
+contractguard_node_latency_seconds_bucket{le="0.005",node="policy_research"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.01",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="0.025",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="0.05",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="0.075",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="0.1",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="0.25",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="0.5",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="0.75",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="1.0",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="2.5",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="5.0",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="7.5",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="10.0",node="policy_research"} 4.0
+contractguard_node_latency_seconds_bucket{le="+Inf",node="policy_research"} 4.0
+contractguard_node_latency_seconds_count{node="policy_research"} 4.0
+contractguard_node_latency_seconds_sum{node="policy_research"} 0.02216566099998829
+contractguard_node_latency_seconds_bucket{le="0.005",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.01",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.025",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.05",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.075",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.1",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.25",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.5",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.75",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="1.0",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="2.5",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="5.0",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="7.5",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="10.0",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_bucket{le="+Inf",node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_count{node="compliance_analyst"} 3.0
+contractguard_node_latency_seconds_sum{node="compliance_analyst"} 0.00113097499999526
+contractguard_node_latency_seconds_bucket{le="0.005",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.01",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.025",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.05",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.075",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.1",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.25",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.5",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="0.75",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="1.0",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="2.5",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="5.0",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="7.5",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="10.0",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_bucket{le="+Inf",node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_count{node="quality_reviewer"} 3.0
+contractguard_node_latency_seconds_sum{node="quality_reviewer"} 0.00047303399999520934
+contractguard_node_latency_seconds_bucket{le="0.005",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.01",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.025",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.05",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.075",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.1",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.25",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.5",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="0.75",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="1.0",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="2.5",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="5.0",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="7.5",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="10.0",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_bucket{le="+Inf",node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_count{node="security_reviewer"} 2.0
+contractguard_node_latency_seconds_sum{node="security_reviewer"} 0.000763517999999408
+contractguard_node_latency_seconds_bucket{le="0.005",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.01",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.025",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.05",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.075",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.1",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.25",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.5",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.75",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="1.0",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="2.5",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="5.0",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="7.5",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="10.0",node="report_writer"} 1.0
+contractguard_node_latency_seconds_bucket{le="+Inf",node="report_writer"} 1.0
+contractguard_node_latency_seconds_count{node="report_writer"} 1.0
+contractguard_node_latency_seconds_sum{node="report_writer"} 0.00017889400000115074
+contractguard_node_latency_seconds_bucket{le="0.005",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.01",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.025",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.05",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.075",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.1",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.25",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.5",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.75",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="1.0",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="2.5",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="5.0",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="7.5",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="10.0",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_bucket{le="+Inf",node="output_guardian"} 1.0
+contractguard_node_latency_seconds_count{node="output_guardian"} 1.0
+contractguard_node_latency_seconds_sum{node="output_guardian"} 0.0008287899999999127
+contractguard_node_latency_seconds_bucket{le="0.005",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.01",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.025",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.05",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.075",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.1",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.25",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.5",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="0.75",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="1.0",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="2.5",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="5.0",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="7.5",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="10.0",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_bucket{le="+Inf",node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_count{node="artifact_storage"} 1.0
+contractguard_node_latency_seconds_sum{node="artifact_storage"} 0.0008591359999883252
+# HELP contractguard_node_latency_seconds_created Node execution latency
+# TYPE contractguard_node_latency_seconds_created gauge
+contractguard_node_latency_seconds_created{node="input_guardrail"} 1.7865782893808036e+09
+contractguard_node_latency_seconds_created{node="coordinator"} 1.78657828939537e+09
+contractguard_node_latency_seconds_created{node="document_analyst"} 1.78657828939833e+09
+contractguard_node_latency_seconds_created{node="policy_research"} 1.786578289406701e+09
+contractguard_node_latency_seconds_created{node="compliance_analyst"} 1.7865782894085062e+09
+contractguard_node_latency_seconds_created{node="quality_reviewer"} 1.7865782894099557e+09
+contractguard_node_latency_seconds_created{node="security_reviewer"} 1.7865782894122407e+09
+contractguard_node_latency_seconds_created{node="report_writer"} 1.7865782894138873e+09
+contractguard_node_latency_seconds_created{node="output_guardian"} 1.786578289445666e+09
+contractguard_node_latency_seconds_created{node="artifact_storage"} 1.7865782894484398e+09
+# HELP contractguard_tool_calls_total Function-tool calls by status
+# TYPE contractguard_tool_calls_total counter
+contractguard_tool_calls_total{status="success",tool="read_contract"} 2.0
+contractguard_tool_calls_total{status="success",tool="extract_contract_clauses"} 2.0
+contractguard_tool_calls_total{status="success",tool="search_policy_knowledge_base"} 22.0
+contractguard_tool_calls_total{status="success",tool="calculate_contract_risk"} 2.0
+contractguard_tool_calls_total{status="success",tool="store_report_artifact"} 1.0
+contractguard_tool_calls_total{status="error",tool="search_policy_knowledge_base"} 1.0
+# HELP contractguard_tool_calls_created Function-tool calls by status
+# TYPE contractguard_tool_calls_created gauge
+contractguard_tool_calls_created{status="success",tool="read_contract"} 1.7865782893970816e+09
+contractguard_tool_calls_created{status="success",tool="extract_contract_clauses"} 1.7865782893977337e+09
+contractguard_tool_calls_created{status="success",tool="search_policy_knowledge_base"} 1.7865782894008906e+09
+contractguard_tool_calls_created{status="success",tool="calculate_contract_risk"} 1.7865782894120462e+09
+contractguard_tool_calls_created{status="success",tool="store_report_artifact"} 1.7865782894482243e+09
+contractguard_tool_calls_created{status="error",tool="search_policy_knowledge_base"} 1.7865782894890184e+09
+# HELP contractguard_tool_latency_seconds Function-tool latency
+# TYPE contractguard_tool_latency_seconds histogram
+contractguard_tool_latency_seconds_bucket{le="0.005",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.01",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.025",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.05",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.075",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.1",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.25",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.5",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.75",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="1.0",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="2.5",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="5.0",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="7.5",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="10.0",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_bucket{le="+Inf",tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_count{tool="read_contract"} 2.0
+contractguard_tool_latency_seconds_sum{tool="read_contract"} 0.0007963789999934079
+contractguard_tool_latency_seconds_bucket{le="0.005",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.01",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.025",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.05",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.075",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.1",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.25",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.5",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.75",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="1.0",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="2.5",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="5.0",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="7.5",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="10.0",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_bucket{le="+Inf",tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_count{tool="extract_contract_clauses"} 2.0
+contractguard_tool_latency_seconds_sum{tool="extract_contract_clauses"} 0.0006208200000088482
+contractguard_tool_latency_seconds_bucket{le="0.005",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="0.01",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="0.025",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="0.05",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="0.075",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="0.1",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="0.25",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="0.5",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="0.75",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="1.0",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="2.5",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="5.0",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="7.5",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="10.0",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_bucket{le="+Inf",tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_count{tool="search_policy_knowledge_base"} 23.0
+contractguard_tool_latency_seconds_sum{tool="search_policy_knowledge_base"} 0.004585824000002958
+contractguard_tool_latency_seconds_bucket{le="0.005",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.01",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.025",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.05",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.075",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.1",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.25",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.5",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="0.75",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="1.0",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="2.5",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="5.0",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="7.5",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="10.0",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_bucket{le="+Inf",tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_count{tool="calculate_contract_risk"} 2.0
+contractguard_tool_latency_seconds_sum{tool="calculate_contract_risk"} 0.00015062100000307055
+contractguard_tool_latency_seconds_bucket{le="0.005",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="0.01",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="0.025",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="0.05",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="0.075",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="0.1",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="0.25",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="0.5",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="0.75",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="1.0",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="2.5",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="5.0",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="7.5",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="10.0",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_bucket{le="+Inf",tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_count{tool="store_report_artifact"} 1.0
+contractguard_tool_latency_seconds_sum{tool="store_report_artifact"} 0.0005207439999992403
+# HELP contractguard_tool_latency_seconds_created Function-tool latency
+# TYPE contractguard_tool_latency_seconds_created gauge
+contractguard_tool_latency_seconds_created{tool="read_contract"} 1.7865782893970983e+09
+contractguard_tool_latency_seconds_created{tool="extract_contract_clauses"} 1.786578289397749e+09
+contractguard_tool_latency_seconds_created{tool="search_policy_knowledge_base"} 1.7865782894009066e+09
+contractguard_tool_latency_seconds_created{tool="calculate_contract_risk"} 1.7865782894120605e+09
+contractguard_tool_latency_seconds_created{tool="store_report_artifact"} 1.7865782894482415e+09
+# HELP contractguard_llm_calls_total LLM calls by provider, operation, and status
+# TYPE contractguard_llm_calls_total counter
+# HELP contractguard_llm_latency_seconds LLM call latency
+# TYPE contractguard_llm_latency_seconds histogram
+# HELP contractguard_guardrail_blocks_total Blocked inputs or outputs
+# TYPE contractguard_guardrail_blocks_total counter
+contractguard_guardrail_blocks_total{guardrail="input_prompt_injection"} 1.0
+# HELP contractguard_guardrail_blocks_created Blocked inputs or outputs
+# TYPE contractguard_guardrail_blocks_created gauge
+contractguard_guardrail_blocks_created{guardrail="input_prompt_injection"} 1.7865782893805187e+09
+# HELP contractguard_retries_total Graph retries and replans
+# TYPE contractguard_retries_total counter
+contractguard_retries_total{reason="policy_tool_failure"} 1.0
+contractguard_retries_total{reason="quality_replan"} 1.0
+# HELP contractguard_retries_created Graph retries and replans
+# TYPE contractguard_retries_created gauge
+contractguard_retries_created{reason="policy_tool_failure"} 1.7865782894893076e+09
+contractguard_retries_created{reason="quality_replan"} 1.7865782895004077e+09
+# HELP contractguard_human_interrupts_total Human approval interrupts
+# TYPE contractguard_human_interrupts_total counter
+contractguard_human_interrupts_total 1.0
+# HELP contractguard_human_interrupts_created Human approval interrupts
+# TYPE contractguard_human_interrupts_created gauge
+contractguard_human_interrupts_created 1.7865782893484042e+09
+# HELP contractguard_workflow_runs_total Workflow terminal outcomes
+# TYPE contractguard_workflow_runs_total counter
+contractguard_workflow_runs_total{status="blocked"} 1.0
+contractguard_workflow_runs_total{status="completed"} 1.0
+# HELP contractguard_workflow_runs_created Workflow terminal outcomes
+# TYPE contractguard_workflow_runs_created gauge
+contractguard_workflow_runs_created{status="blocked"} 1.7865782893821435e+09
+contractguard_workflow_runs_created{status="completed"} 1.7865782894498785e+09
+# HELP contractguard_active_workflows Currently active workflow instances
+# TYPE contractguard_active_workflows gauge
+contractguard_active_workflows 0.0
+# HELP contractguard_estimated_llm_cost_usd_total Estimated LLM cost in USD
+# TYPE contractguard_estimated_llm_cost_usd_total counter
+contractguard_estimated_llm_cost_usd_total 0.0
+# HELP contractguard_estimated_llm_cost_usd_created Estimated LLM cost in USD
+# TYPE contractguard_estimated_llm_cost_usd_created gauge
+contractguard_estimated_llm_cost_usd_created 1.7865782893484392e+09
+# HELP contractguard_estimated_llm_tokens_total Estimated LLM tokens
+# TYPE contractguard_estimated_llm_tokens_total counter

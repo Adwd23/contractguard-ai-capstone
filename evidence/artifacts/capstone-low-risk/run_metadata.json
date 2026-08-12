@@ -1,0 +1,24 @@
+{
+  "thread_id": "capstone-low-risk",
+  "status": "artifact_storage",
+  "risk_score": 0,
+  "risk_level": "LOW",
+  "quality_score": 1.0,
+  "node_history": [
+    "received",
+    "input_guardrail",
+    "coordinator",
+    "document_analyst",
+    "policy_research",
+    "compliance_analyst",
+    "quality_reviewer",
+    "security_reviewer",
+    "report_writer",
+    "output_guardian",
+    "artifact_storage"
+  ],
+  "tool_calls": 10,
+  "policy_retries": 0,
+  "report_revisions": 0,
+  "pii_redactions": 0
+}

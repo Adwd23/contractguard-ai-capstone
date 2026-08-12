@@ -1,0 +1,32 @@
+{
+  "thread_id": "capstone-high-risk",
+  "status": "artifact_storage",
+  "risk_score": 100,
+  "risk_level": "CRITICAL",
+  "quality_score": 1.0,
+  "node_history": [
+    "received",
+    "input_guardrail",
+    "coordinator",
+    "document_analyst",
+    "policy_research",
+    "policy_research",
+    "compliance_analyst",
+    "quality_reviewer",
+    "policy_research",
+    "compliance_analyst",
+    "quality_reviewer",
+    "security_reviewer",
+    "awaiting_approval",
+    "human_approval",
+    "report_writer",
+    "output_guardian",
+    "report_writer",
+    "output_guardian",
+    "artifact_storage"
+  ],
+  "tool_calls": 19,
+  "policy_retries": 1,
+  "report_revisions": 1,
+  "pii_redactions": 3
+}
