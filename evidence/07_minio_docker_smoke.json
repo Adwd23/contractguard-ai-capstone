@@ -9,5 +9,14 @@
   "report_bytes": 1739,
   "metadata_object": "docker-minio-91de8020cd/run_metadata.json",
   "metadata_bytes": 505,
-  "verified_via_s3_sdk": true
+  "verified_via_s3_sdk": true,
+  "provenance": {
+    "source": "successful pre-removal GitHub Actions runtime smoke artifact",
+    "workflow_run_id": 31651960236,
+    "workflow_run_conclusion": "success",
+    "artifact_id": 9162911024,
+    "artifact_name": "contractguard-minio-smoke",
+    "captured_at": "2026-08-12T23:44:53Z",
+    "note": "Recovered from the successful runtime smoke artifact and committed so evaluation no longer depends on the CI workflow."
+  }
 }
