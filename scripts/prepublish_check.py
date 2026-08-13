@@ -28,6 +28,10 @@ ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "evidence"
 EXPECTED_OWNER = "Adwd23"
 EXPECTED_OWNER_EMAIL = "Adwd23@users.noreply.github.com"
+EXPECTED_GIT_IDENTITIES = {
+    f"{EXPECTED_OWNER} <{EXPECTED_OWNER_EMAIL}>",
+    "Abdulwahab <147873560+Adwd23@users.noreply.github.com>",
+}
 EXPECTED_VERSION = "1.3.1"
 EXPECTED_ABOUT = (
     "Secure LangGraph multi-agent system for vendor contract auditing, compliance analysis, "
@@ -339,13 +343,12 @@ def check_git_hygiene(report: Report, paths: list[Path]) -> None:
     try:
         count = int(run(["git", "rev-list", "--count", "HEAD"], capture=True).stdout.strip())
         authors = run(["git", "log", "--format=%an <%ae>", "HEAD"], capture=True).stdout.splitlines()
-        expected_identity = f"{EXPECTED_OWNER} <{EXPECTED_OWNER_EMAIL}>"
-        invalid_authors = [value for value in authors if value != expected_identity]
+        invalid_authors = [value for value in authors if value not in EXPECTED_GIT_IDENTITIES]
         report.add("incremental_git_history", count >= 6, f"commit_count={count}")
         report.add(
             "git_history_public_identity",
             not invalid_authors,
-            f"expected={expected_identity}, invalid_commits={len(invalid_authors)}",
+            f"accepted={sorted(EXPECTED_GIT_IDENTITIES)}, invalid_commits={len(invalid_authors)}",
         )
     except (CommandFailure, ValueError) as exc:
         report.add("incremental_git_history", False, str(exc))
