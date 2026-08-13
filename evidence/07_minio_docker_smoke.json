@@ -1,0 +1,13 @@
+{
+  "project": "ContractGuard AI",
+  "status": "completed",
+  "thread_id": "docker-minio-91de8020cd",
+  "storage_backend": "minio-s3",
+  "artifact_uri": "s3://contractguard-reports/docker-minio-91de8020cd/compliance_report.md",
+  "bucket": "contractguard-reports",
+  "report_object": "docker-minio-91de8020cd/compliance_report.md",
+  "report_bytes": 1739,
+  "metadata_object": "docker-minio-91de8020cd/run_metadata.json",
+  "metadata_bytes": 505,
+  "verified_via_s3_sdk": true
+}
