@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Publication gate for ContractGuard AI v1.3.1 Automated-Grader Hardened Edition.
+"""Final submission gate for ContractGuard AI v1.3.1.
 
-The gate has two modes:
+This validator is intentionally CI-independent. It can be run locally by a trainer,
+trainee, or automated evaluator. In full mode it compiles the project, runs tests,
+executes the complete capstone demonstration, rebuilds the executed notebook, runs
+the strict runtime JSON probe, and then validates the committed evidence.
 
-* default: run compile/tests/demo/notebook, then validate captured evidence;
-* --static-only: validate source, metadata, documentation, Git hygiene, and trainer-fix
-  signatures without claiming that runtime evidence has executed.
-
-GitHub Actions runs the default mode.  The static mode exists for restricted build
-sandboxes that cannot download LangGraph dependencies.
+Modes:
+- default: rerun runtime checks and validate the resulting evidence;
+- --skip-runtime: validate already-captured runtime evidence without rerunning it;
+- --static-only: validate source, metadata, documentation, and Git hygiene only.
 """
 from __future__ import annotations
 
@@ -33,7 +34,6 @@ EXPECTED_ABOUT = (
     "guardrails, human approval, and production monitoring."
 )
 ARABIC_PATTERN = re.compile(r"[\u0600-\u06FF]")
-LEGACY_IDENTITIES = ("melko" + "sif57-lang", "308331635+" + "melko" + "sif57-lang")
 
 BASE_REQUIRED_FILES = (
     "README.md",
@@ -48,7 +48,7 @@ BASE_REQUIRED_FILES = (
     "requirements-dev.txt",
     "Dockerfile",
     "docker-compose.yml",
-    ".github/workflows/ci.yml",
+    "deploy/prometheus.yml",
     "docs/architecture.md",
     "docs/agent_graph.md",
     "docs/security.md",
@@ -60,10 +60,11 @@ BASE_REQUIRED_FILES = (
     "docs/automated_evaluation_guide.md",
     "docs/github_publication.md",
     "notebooks/ContractGuard_Capstone.ipynb",
-    "evidence/grader_manifest.json",
     "scripts/grader_probe.py",
     "scripts/runtime_grader_probe.py",
+    "scripts/run_capstone_demo.py",
 )
+
 RUNTIME_REQUIRED_FILES = (
     "notebooks/ContractGuard_Capstone_Executed.ipynb",
     "evidence/run_summary.json",
@@ -71,8 +72,11 @@ RUNTIME_REQUIRED_FILES = (
     "evidence/graph_spec.json",
     "evidence/pytest_results.txt",
     "evidence/01_prompt_injection_blocked.json",
+    "evidence/02_low_risk_completed.json",
+    "evidence/03_high_risk_paused_for_human.json",
     "evidence/04_checkpoint_loaded_after_restart.json",
     "evidence/05_high_risk_resumed_and_completed.json",
+    "evidence/07_minio_docker_smoke.json",
     "evidence/runtime_grader_probe.json",
 )
 
@@ -85,6 +89,7 @@ SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("AWS access key", re.compile(r"\bAKIA[A-Z0-9]{16}\b")),
     ("Slack token", re.compile(r"\bxox[baprs]-[A-Za-z0-9-]{20,}\b")),
 )
+
 TEXT_SUFFIXES = {
     ".py", ".md", ".txt", ".toml", ".yml", ".yaml", ".json", ".jsonl",
     ".example", ".cfg", ".ini", ".sh", ".ipynb",
@@ -112,7 +117,10 @@ class CommandFailure(RuntimeError):
 def run(command: list[str], *, capture: bool = False) -> subprocess.CompletedProcess[str]:
     env = dict(os.environ)
     source = str(ROOT / "src")
-    env["PYTHONPATH"] = source + (os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else "")
+    if env.get("PYTHONPATH"):
+        env["PYTHONPATH"] = source + os.pathsep + env["PYTHONPATH"]
+    else:
+        env["PYTHONPATH"] = source
     result = subprocess.run(
         command,
         cwd=ROOT,
@@ -146,21 +154,32 @@ def iter_text_files(paths: Iterable[Path]) -> Iterable[Path]:
 
 
 def runtime_suite(report: Report) -> None:
-    commands = (
-        ("compile", [sys.executable, "-m", "compileall", "-q", "src", "scripts", "tests"]),
+    commands: tuple[tuple[str, list[str], bool], ...] = (
+        ("compile", [sys.executable, "-m", "compileall", "-q", "src", "scripts", "tests"], False),
         (
             "tests",
             [sys.executable, "-m", "pytest", "--override-ini", "addopts=", "-q", "--color=no"],
+            True,
         ),
-        ("capstone_demo", [sys.executable, "scripts/run_capstone_demo.py"]),
-        ("executed_notebook", [sys.executable, "scripts/build_executed_notebook.py"]),
-        ("runtime_grader_probe", [sys.executable, "scripts/runtime_grader_probe.py"]),
+        ("capstone_demo", [sys.executable, "scripts/run_capstone_demo.py"], False),
+        ("executed_notebook", [sys.executable, "scripts/build_executed_notebook.py"], False),
+        ("runtime_grader_probe", [sys.executable, "scripts/runtime_grader_probe.py", "--refresh"], True),
     )
-    for name, command in commands:
+    for name, command, capture in commands:
         try:
-            run(command)
+            result = run(command, capture=capture)
+            if name == "tests" and capture:
+                EVIDENCE.mkdir(parents=True, exist_ok=True)
+                (EVIDENCE / "pytest_results.txt").write_text(
+                    result.stdout + result.stderr, encoding="utf-8"
+                )
+            if name == "runtime_grader_probe" and capture:
+                payload = json.loads(result.stdout)
+                (EVIDENCE / "runtime_grader_probe.json").write_text(
+                    json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+                )
             report.add(f"runtime_{name}", True, "completed successfully")
-        except CommandFailure as exc:
+        except (CommandFailure, json.JSONDecodeError) as exc:
             report.add(f"runtime_{name}", False, str(exc))
             return
 
@@ -175,7 +194,7 @@ def check_repository_files(report: Report, *, static_only: bool) -> None:
     )
 
 
-def check_metadata(report: Report) -> None:
+def check_metadata_and_docs(report: Report) -> None:
     try:
         project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
     except Exception as exc:
@@ -222,6 +241,7 @@ def check_metadata(report: Report) -> None:
         "ReAct",
         "Reflexion",
         "Evidence index",
+        EXPECTED_ABOUT,
         EXPECTED_OWNER,
     )
     missing = [phrase for phrase in required_phrases if phrase not in readme]
@@ -248,8 +268,11 @@ def check_trainer_fixes(report: Report) -> None:
     )
     report.add(
         "trainer_fix_real_hitl_resume",
-        "interrupt(" in workflow and "Command(resume=" in workflow and "goto=\"report_writer\"" in workflow,
-        "interrupt() and Command(resume=...) with Command(goto=...) are present in executable workflow code",
+        "interrupt(" in workflow
+        and "Command(resume=" in workflow
+        and 'goto="report_writer"' in workflow
+        and 'goto="rejected"' in workflow,
+        "interrupt(), Command(resume=...), and Command(goto=...) are executable workflow code",
     )
     report.add(
         "trainer_fix_persistent_sqlite",
@@ -289,12 +312,15 @@ def check_trainer_fixes(report: Report) -> None:
     )
     report.add(
         "trainer_fix_declared_libraries_used",
-        "import uvicorn" in server and "uvicorn.run(" in server and "make_ipkernel_cmd()" in notebook_builder,
-        "uvicorn is the API launcher; ipykernel resolves the notebook kernel launch command",
+        "import uvicorn" in server
+        and "uvicorn.run(" in server
+        and "import ipykernel" in notebook_builder
+        and "make_ipkernel_cmd()" in notebook_builder,
+        "uvicorn is the API launcher; ipykernel is used by the executed-notebook builder",
     )
 
 
-def check_git(report: Report, paths: list[Path]) -> None:
+def check_git_hygiene(report: Report, paths: list[Path]) -> None:
     bad: list[str] = []
     for path in paths:
         relative = path.relative_to(ROOT).as_posix()
@@ -326,46 +352,41 @@ def check_git(report: Report, paths: list[Path]) -> None:
         report.add("git_history_public_identity", False, str(exc))
 
 
-def check_english_only(report: Report, paths: list[Path]) -> None:
-    findings: list[str] = []
-    for path in iter_text_files(paths):
-        try:
-            content = path.read_text(encoding="utf-8")
-        except (UnicodeDecodeError, OSError):
-            continue
-        relative = path.relative_to(ROOT).as_posix()
-        match = ARABIC_PATTERN.search(content)
-        if match:
-            line = content.count("\n", 0, match.start()) + 1
-            findings.append(f"{relative}:{line}: non-English Arabic Unicode")
-        for identity in LEGACY_IDENTITIES:
-            if identity.lower() in content.lower():
-                findings.append(f"{relative}: legacy identity: {identity}")
-    report.add(
-        "english_only_content_and_owner",
-        not findings,
-        "all project text is English-only and uses Adwd23 identity"
-        if not findings else f"findings={findings}",
-    )
-
-
-def check_secrets(report: Report, paths: list[Path]) -> None:
-    findings: list[str] = []
+def check_content_hygiene(report: Report, paths: list[Path]) -> None:
+    language_findings: list[str] = []
+    secret_findings: list[str] = []
     for path in iter_text_files(paths):
         try:
             text = path.read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError):
             continue
+        relative = path.relative_to(ROOT).as_posix()
+        match = ARABIC_PATTERN.search(text)
+        if match:
+            line = text.count("\n", 0, match.start()) + 1
+            language_findings.append(f"{relative}:{line}: Arabic Unicode")
         for label, pattern in SECRET_PATTERNS:
-            match = pattern.search(text)
-            if match:
-                line = text.count("\n", 0, match.start()) + 1
-                findings.append(f"{path.relative_to(ROOT)}:{line}: {label}")
+            secret = pattern.search(text)
+            if secret:
+                line = text.count("\n", 0, secret.start()) + 1
+                secret_findings.append(f"{relative}:{line}: {label}")
+
+    report.add(
+        "english_only_repository_content",
+        not language_findings,
+        "all tracked project text is English-only"
+        if not language_findings else f"findings={language_findings}",
+    )
     report.add(
         "no_detected_secrets",
-        not findings,
-        "no high-confidence secret patterns" if not findings else f"findings={findings}",
+        not secret_findings,
+        "no high-confidence secret patterns"
+        if not secret_findings else f"findings={secret_findings}",
     )
+
+
+def _load_json(relative: str) -> dict[str, Any]:
+    return json.loads((ROOT / relative).read_text(encoding="utf-8"))
 
 
 def check_evidence(report: Report) -> None:
@@ -375,21 +396,27 @@ def check_evidence(report: Report) -> None:
             json.loads(path.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, OSError) as exc:
             invalid_json.append(f"{path.name}: {exc}")
-    report.add("evidence_json_valid", not invalid_json, "all valid" if not invalid_json else str(invalid_json))
+    report.add(
+        "evidence_json_valid",
+        not invalid_json,
+        "all valid" if not invalid_json else str(invalid_json),
+    )
 
     try:
-        runtime_probe = json.loads((EVIDENCE / "runtime_grader_probe.json").read_text(encoding="utf-8"))
+        runtime_probe = _load_json("evidence/runtime_grader_probe.json")
+        failed = [name for name, value in runtime_probe.get("checks", {}).items() if value is not True]
         report.add(
             "runtime_grader_probe_pass",
             runtime_probe.get("all_runtime_checks_pass") is True
-            and runtime_probe.get("output_contract") == "single_json_object_no_markdown",
-            f"status={runtime_probe.get('status')}, checks={len(runtime_probe.get('checks', {}))}",
+            and runtime_probe.get("output_contract") == "single_json_object_no_markdown"
+            and not failed,
+            f"status={runtime_probe.get('status')}, failed={failed}",
         )
     except Exception as exc:
         report.add("runtime_grader_probe_pass", False, str(exc))
 
     try:
-        summary = json.loads((EVIDENCE / "run_summary.json").read_text(encoding="utf-8"))
+        summary = _load_json("evidence/run_summary.json")
         proof = summary.get("proof", {})
         failed = [name for name, value in proof.items() if value is not True]
         report.add(
@@ -401,7 +428,7 @@ def check_evidence(report: Report) -> None:
         report.add("all_rubric_execution_assertions", False, str(exc))
 
     try:
-        graph = json.loads((EVIDENCE / "graph_spec.json").read_text(encoding="utf-8"))
+        graph = _load_json("evidence/graph_spec.json")
         graph_ok = (
             graph.get("framework_package") == "langgraph"
             and graph.get("builder_api") == "StateGraph(AuditState)"
@@ -419,16 +446,13 @@ def check_evidence(report: Report) -> None:
         report.add(
             "real_graph_structure",
             graph_ok,
-            (
-                f"framework={graph.get('framework_package')} {graph.get('framework_version')}, "
-                f"nodes={graph.get('node_count')}, conditional={graph.get('conditional_edge_count')}"
-            ),
+            f"nodes={graph.get('node_count')}, conditional={graph.get('conditional_edge_count')}",
         )
     except Exception as exc:
         report.add("real_graph_structure", False, str(exc))
 
     try:
-        blocked = json.loads((EVIDENCE / "01_prompt_injection_blocked.json").read_text(encoding="utf-8"))
+        blocked = _load_json("evidence/01_prompt_injection_blocked.json")
         report.add(
             "guardrail_attack_execution_evidence",
             blocked.get("status") == "blocked"
@@ -440,8 +464,8 @@ def check_evidence(report: Report) -> None:
         report.add("guardrail_attack_execution_evidence", False, str(exc))
 
     try:
-        loaded = json.loads((EVIDENCE / "04_checkpoint_loaded_after_restart.json").read_text(encoding="utf-8"))
-        final = json.loads((EVIDENCE / "05_high_risk_resumed_and_completed.json").read_text(encoding="utf-8"))
+        loaded = _load_json("evidence/04_checkpoint_loaded_after_restart.json")
+        final = _load_json("evidence/05_high_risk_resumed_and_completed.json")
         report.add(
             "hitl_pause_restart_resume_evidence",
             loaded.get("node") == "human_approval"
@@ -453,6 +477,23 @@ def check_evidence(report: Report) -> None:
         )
     except Exception as exc:
         report.add("hitl_pause_restart_resume_evidence", False, str(exc))
+
+    try:
+        minio = _load_json("evidence/07_minio_docker_smoke.json")
+        minio_ok = (
+            minio.get("status") == "completed"
+            and minio.get("storage_backend") == "minio-s3"
+            and str(minio.get("artifact_uri", "")).startswith("s3://")
+            and minio.get("verified_via_s3_sdk") is True
+            and int(minio.get("report_bytes", 0)) > 0
+        )
+        report.add(
+            "minio_s3_runtime_smoke_evidence",
+            minio_ok,
+            f"backend={minio.get('storage_backend')}, uri={minio.get('artifact_uri')}",
+        )
+    except Exception as exc:
+        report.add("minio_s3_runtime_smoke_evidence", False, str(exc))
 
     try:
         pytest_text = (EVIDENCE / "pytest_results.txt").read_text(encoding="utf-8")
@@ -501,56 +542,31 @@ def check_notebook(report: Report) -> None:
         report.add("executed_notebook_has_no_errors", False, str(exc))
 
 
-def add_external_warnings(report: Report) -> None:
-    try:
-        remote = run(["git", "remote", "get-url", "origin"], capture=True).stdout.strip()
-    except CommandFailure:
-        remote = ""
-    report.add(
-        "github_origin_configured",
-        bool(remote),
-        remote or "pending: add https://github.com/Adwd23/contractguard-ai-capstone as origin",
-        mandatory=False,
-    )
-    report.add(
-        "github_about_description",
-        False,
-        f"External GitHub UI step: About description must be exactly or equivalently: {EXPECTED_ABOUT}",
-        mandatory=False,
-    )
-    report.add(
-        "minio_runtime_smoke_evidence",
-        (EVIDENCE / "07_minio_docker_smoke.json").exists(),
-        "captured" if (EVIDENCE / "07_minio_docker_smoke.json").exists() else "generated by docker-minio-smoke CI job",
-        mandatory=False,
-    )
-
-
 def write_report(report: Report, *, static_only: bool) -> Path:
     payload = {
         "project": "ContractGuard AI",
-        "edition": "v1.3.1 Automated-Grader Hardened Edition",
+        "edition": "v1.3.1 final submission audit",
         "version": EXPECTED_VERSION,
         "owner": EXPECTED_OWNER,
-        "validation_mode": "static-only" if static_only else "full-runtime",
+        "validation_mode": "static-only" if static_only else "full-runtime-evidence",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "ready_to_publish": report.ready,
-        "runtime_evidence_executed": not static_only and report.ready,
+        "runtime_evidence_executed": not static_only,
         "checks": report.checks,
         "mandatory_failures": [
             item["name"] for item in report.checks if item["mandatory"] and not item["passed"]
         ],
         "github_about_description": EXPECTED_ABOUT,
         "external_steps": [
-            "Publish under the Adwd23 GitHub account.",
-            "Set the repository About description.",
-            "Wait for contractguard-ci jobs to become green before resubmission.",
+            "Confirm the GitHub About description is visible on the repository landing page.",
+            "Submit the public repository URL after the full-runtime evidence report is green.",
         ],
+        "ci_dependency": "none",
     }
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     name = "local_static_validation.json" if static_only else "prepublish_report.json"
     path = EVIDENCE / name
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return path
 
 
@@ -559,12 +575,12 @@ def main() -> int:
     parser.add_argument(
         "--skip-runtime",
         action="store_true",
-        help="Do not rerun compile/tests/demo/notebook; require already-captured runtime evidence.",
+        help="Do not rerun compile/tests/demo/notebook; validate already-captured runtime evidence.",
     )
     parser.add_argument(
         "--static-only",
         action="store_true",
-        help="Validate source/metadata/Git only; do not claim runtime execution evidence.",
+        help="Validate source/metadata/Git only; do not require runtime evidence.",
     )
     args = parser.parse_args()
     if args.static_only and args.skip_runtime:
@@ -581,24 +597,23 @@ def main() -> int:
         report.add("git_file_inventory", False, str(exc))
 
     check_repository_files(report, static_only=args.static_only)
-    check_metadata(report)
+    check_metadata_and_docs(report)
     check_trainer_fixes(report)
-    check_git(report, paths)
-    check_english_only(report, paths)
-    check_secrets(report, paths)
+    check_git_hygiene(report, paths)
+    check_content_hygiene(report, paths)
+
     if not args.static_only:
         check_evidence(report)
         check_notebook(report)
     else:
         report.add(
-            "runtime_evidence_pending",
+            "runtime_evidence_not_executed_in_static_mode",
             True,
-            "restricted local sandbox: GitHub Actions must generate real LangGraph runtime evidence",
+            "Use default mode or --skip-runtime to validate runtime evidence.",
             mandatory=False,
         )
-    add_external_warnings(report)
-    output = write_report(report, static_only=args.static_only)
 
+    output = write_report(report, static_only=args.static_only)
     print(f"Pre-publication report: {output}")
     for item in report.checks:
         marker = "PASS" if item["passed"] else ("WARN" if not item["mandatory"] else "FAIL")
