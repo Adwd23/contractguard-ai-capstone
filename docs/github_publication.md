@@ -6,48 +6,40 @@ Target repository:
 https://github.com/Adwd23/contractguard-ai-capstone
 ```
 
-## Required About description
+## Required repository metadata
 
-Open the repository page, choose the gear icon in the **About** panel, and set:
+The repository must be public if direct trainer access is required.
+
+The GitHub **About** description must be:
 
 ```text
 Secure LangGraph multi-agent system for vendor contract auditing, compliance analysis, guardrails, human approval, and production monitoring.
 ```
 
-Set the repository to Public if direct trainer access is required.
+This is repository metadata, not README content, so verify it on the repository landing page before submission.
 
-## Push the prepared Git history
+## Final verification
 
-The **Full Repo v1.3.1** archive already has this target configured as `origin`. After extracting it, verify and push:
+The submission is intentionally independent of GitHub Actions. The implementation and captured runtime evidence are committed directly in the repository.
 
-```bash
-git remote -v
-git push -u origin main
-```
-
-If you extracted a copy without the remote configuration, set it explicitly:
+Run either the full fresh validation:
 
 ```bash
-git remote add origin https://github.com/Adwd23/contractguard-ai-capstone.git
-git push -u origin main
+python scripts/prepublish_check.py
 ```
 
-In GitHub Desktop, use **File → Add Local Repository**, choose the extracted `contractguard-ai` folder, verify the History tab, and then use **Push origin / Publish branch** while signed in as **Adwd23**.
-
-## After the first push
-
-1. Open **Actions**.
-2. Wait for `test-and-evidence` and `docker-minio-smoke` to pass.
-3. Confirm the evidence-refresh commit appears on `main` if generated artifacts changed.
-4. Confirm `notebooks/ContractGuard_Capstone_Executed.ipynb` has execution counts and captured output.
-5. Open `evidence/prepublish_report.json` and confirm `ready_to_publish` is `true`.
-6. Submit the repository URL only after the checks are green.
-
-If GitHub CLI is installed and authenticated as `Adwd23`, the About description can also be set after the repository exists remotely:
+or validate the already-captured evidence:
 
 ```bash
-gh repo edit Adwd23/contractguard-ai-capstone \
-  --description "Secure LangGraph multi-agent system for vendor contract auditing, compliance analysis, guardrails, human approval, and production monitoring."
+python scripts/prepublish_check.py --skip-runtime
 ```
 
-This metadata is not controlled by `README.md`; verify it directly on the GitHub repository landing page.
+Also verify:
+
+1. `EVALUATION.json` parses and reports `all_static_checks_pass: true`.
+2. `evidence/runtime_grader_probe.json` parses and reports `all_runtime_checks_pass: true`.
+3. `evidence/07_minio_docker_smoke.json` reports `storage_backend: "minio-s3"` and `verified_via_s3_sdk: true`.
+4. `notebooks/ContractGuard_Capstone_Executed.ipynb` contains execution counts and captured output.
+5. The README displays the project description, setup steps, expected outputs, architecture, training attribution, cohort/session, and SDAIA Academy link.
+
+Submit the public repository URL only after those checks pass.
