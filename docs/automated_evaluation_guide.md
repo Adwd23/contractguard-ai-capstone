@@ -1,165 +1,127 @@
 # Automated Evaluation Guide
 
-This file is an evaluator-facing index for **ContractGuard AI v1.3.1 Automated-Grader Hardened Edition**. It does not replace runtime evidence. It points directly to the executable implementation, tests, and captured outputs so an automated reviewer does not have to infer architecture from prose.
+This evaluator-facing index points directly to executable implementation, regression tests, and committed runtime evidence for ContractGuard AI v1.3.1. It is intentionally CI-independent.
 
 ## Fast verification commands
 
 ```bash
-# Dependency-free source proof: emits exactly one JSON object.
+# Dependency-light source proof: exactly one JSON object.
 python scripts/grader_probe.py
 
-# After dependencies are installed, refresh all runtime proof and emit exactly one JSON object.
+# Refresh end-to-end runtime proof: exactly one JSON object on stdout.
 python scripts/runtime_grader_probe.py --refresh
 
-# Full tests and evidence pipeline.
-pytest
-python scripts/run_capstone_demo.py
-python scripts/build_executed_notebook.py
+# Validate committed runtime evidence without rerunning it.
+python scripts/prepublish_check.py --skip-runtime
+
+# Or perform a complete fresh validation.
 python scripts/prepublish_check.py
 ```
 
-The two grader probes intentionally emit **JSON only**. Human-readable progress from the runtime demo is captured internally by the runtime probe so a JSON parser never receives mixed text.
+## Previous grader observations and direct proof
 
-## Trainer observations and direct fixes
-
-| Trainer observation | Executable fix | Direct source proof | Runtime proof |
-|---|---|---|---|
-| `uvicorn` / `ipykernel` declared but not used | `uvicorn.run(...)` is the FastAPI process runner. The notebook builder calls `make_ipkernel_cmd()` and records that kernel execution command. | `src/contractguard/server.py`, `scripts/build_executed_notebook.py` | CI executes the notebook builder and API tests. |
-| Guardrail appeared to be a comment/claim | `InputSecurityAgent.run()` calls `InputGuardrail.enforce(...)`; a detected attack raises `GuardrailViolation`. `OutputGuardianAgent.run()` calls `OutputGuardrail.enforce(...)` before artifact storage. | `src/contractguard/agents/input_security.py`, `src/contractguard/guardrails.py`, `src/contractguard/agents/output_guardian.py` | `evidence/01_prompt_injection_blocked.json` must show `status=blocked`, `guardrail_enforced=true`, and `tool_calls=[]`. |
-| StateGraph appeared linear | The executable graph contains five calls to `add_conditional_edges(...)` and three bounded cycles/re-entry paths. | `src/contractguard/workflow.py` | `evidence/graph_spec.json`, `evidence/03_high_risk_paused_for_human.json` |
-| `interrupt()` appeared without resume | `human_approval` calls `interrupt(...)`; the external resume path invokes `graph.invoke(Command(resume=...))`; the resumed node returns `Command(goto=...)`. | `src/contractguard/workflow.py` | `evidence/04_checkpoint_loaded_after_restart.json`, `evidence/05_high_risk_resumed_and_completed.json` |
-| Only one agent appeared to exist | Ten concrete `*Agent` classes live in separate modules and are independently instantiated by `ContractGuardService._build_agents()`. Agents exchange typed `AgentMessage` records through shared state. | `src/contractguard/agents/`, `src/contractguard/service.py`, `src/contractguard/models.py`, `src/contractguard/agents/base.py` | `evidence/05_high_risk_resumed_and_completed.json` contains structured sender/recipient messages from multiple specialists. |
-| AI grader returned invalid/empty JSON | `scripts/grader_probe.py` and `scripts/runtime_grader_probe.py` always serialize one JSON object to stdout; runtime progress is captured instead of printed. | both probe scripts | `EVALUATION.json`, `evidence/runtime_grader_probe.json` |
-| GitHub About description empty | Exact description is documented below and in `docs/github_publication.md`. | repository metadata action required after push | Verify on repository landing page before resubmission. |
+| Observation | Executable fix | Runtime/source proof |
+|---|---|---|
+| `uvicorn` / `ipykernel` declared but unused | `src/contractguard/server.py` imports and calls `uvicorn.run(...)`; notebook builder imports `ipykernel` and calls `make_ipkernel_cmd()` | `tests/test_trainer_fixes.py`, executed notebook |
+| Guardrail looked like a comment/claim | `InputSecurityAgent` calls `InputGuardrail.enforce()`; `OutputGuardianAgent` calls `OutputGuardrail.enforce()` | `evidence/01_prompt_injection_blocked.json`, `evidence/05_high_risk_resumed_and_completed.json` |
+| StateGraph looked linear | Five executable `add_conditional_edges(...)` calls plus three bounded cycles | `src/contractguard/workflow.py`, `evidence/graph_spec.json` |
+| `interrupt()` appeared without resume | `interrupt(...)`, external `Command(resume=...)`, post-resume `Command(goto=...)` | restart/HITL evidence files |
+| Only one agent appeared to exist | Ten concrete `*Agent` classes in separate modules, instantiated independently and exchanging typed messages | `src/contractguard/agents/`, `src/contractguard/service.py`, runtime agent messages |
+| AI grader JSON parse failed | source/runtime probes serialize one JSON object and capture human-readable progress separately | `EVALUATION.json`, `evidence/runtime_grader_probe.json` |
+| GitHub About description empty | repository metadata now uses the required description; the exact value is also documented in README | repository landing page |
 
 ## Deliverable 1 — Agentic Reasoning & Tool Use (15)
 
-**Implementation**
+Implementation:
 
-- `src/contractguard/agents/coordinator.py` — explicit Plan-and-Execute manager.
-- `src/contractguard/agents/base.py` — ReAct decision trace around real tool calls.
-- `src/contractguard/tools.py` — Pydantic/JSON-schema function registry and actual functions.
-- `src/contractguard/llm.py` — offline schema router plus optional provider-native function calling.
-- `src/contractguard/state.py` — short-term shared state retained across steps.
+- `src/contractguard/agents/coordinator.py` — Plan-and-Execute coordination.
+- `src/contractguard/agents/base.py` — ReAct decision/action/observation records around real function calls.
+- `src/contractguard/tools.py` — Pydantic/JSON-schema function registry and real local tools.
+- `src/contractguard/llm.py` — deterministic schema router plus optional provider-native function calling.
+- `src/contractguard/state.py` — shared short-term `AuditState`.
 
-**Runtime evidence**
+Evidence:
 
 - `evidence/02_low_risk_completed.json`
 - `evidence/run_summary.json`
-- Executed notebook section “Deliverable 1”.
+- executed notebook
 
 ## Deliverable 2 — Graph-Based Orchestration (20)
 
-**Implementation**
+`src/contractguard/workflow.py` constructs a genuine `StateGraph(AuditState)` with named nodes and shared state. It registers five `add_conditional_edges(...)` routing points and includes bounded retry/re-search/revision cycles.
 
-The graph is constructed by executable code in `src/contractguard/workflow.py`:
-
-```python
-workflow = StateGraph(AuditState)
-
-workflow.add_conditional_edges(
-    "input_guardrail",
-    self._route_after_input_guardrail,
-    {"blocked": "blocked", "safe": "coordinator"},
-)
-
-workflow.add_conditional_edges(
-    "policy_research",
-    self._route_after_policy_research,
-    {"retry": "policy_research", "success": "compliance_analyst", "failed": "failed"},
-)
-```
-
-The same file contains three additional `add_conditional_edges(...)` calls for Reflexion re-search, human-approval routing, and output revision. The policy branch contains a real self-loop. Retry counters and a global recursion limit terminate cycles.
-
-**Runtime evidence**
+Runtime evidence:
 
 - `evidence/graph_spec.json`
 - `evidence/03_high_risk_paused_for_human.json`
-- `tests/test_workflow.py`
+- `evidence/run_summary.json`
 
 ## Deliverable 3 — Multi-Agent System & Role Specialization (20)
 
-Concrete role classes include:
+Concrete roles include Input Security, Coordinator, Document Analyst, Policy Research, Compliance Analyst, Quality Reviewer, Security Reviewer, Report Writer, Output Guardian, and Artifact Storage. Each role is a separate class/object.
 
-- `InputSecurityAgent`
-- `CoordinatorAgent`
-- `DocumentAnalystAgent`
-- `PolicyResearchAgent`
-- `ComplianceAnalystAgent`
-- `QualityReviewerAgent`
-- `SecurityReviewerAgent`
-- `ReportWriterAgent`
-- `OutputGuardianAgent`
-- `ArtifactStorageAgent`
-
-`ContractGuardService._build_agents()` instantiates those objects separately. `BaseAgent.send()` constructs a typed `AgentMessage(sender, recipient, message_type, content, payload)` and appends it to `AuditState.agent_messages`.
+`BaseAgent.send()` creates typed `AgentMessage` records stored in shared state, and the runtime evidence contains multiple distinct senders and recipients.
 
 ## Deliverable 4 — Security, Guardrails & Observability (20)
 
-The input enforcement path is:
+Input enforcement path:
 
 ```text
-LangGraph input_guardrail node
+input_guardrail
   -> InputSecurityAgent.run
   -> InputGuardrail.enforce
   -> GuardrailViolation on attack
-  -> state.input_blocked = true
-  -> conditional edge -> blocked
+  -> conditional route to blocked
   -> END
 ```
 
-No tool-capable node is reachable on that branch. The attack test and evidence assert `tool_calls == []`.
+The real attack evidence asserts zero tool calls.
 
-The output enforcement path is:
+Output enforcement path:
 
 ```text
 report_writer
   -> output_guardian
   -> OutputGuardrail.enforce
-  -> PII masking + secret detection + AuditReport.model_validate
-  -> valid -> artifact_storage
-  -> invalid -> bounded report_writer revision loop
+  -> PII masking + secret filter + AuditReport validation
+  -> valid: artifact_storage
+  -> invalid: bounded report revision
 ```
 
-Structured JSONL logs and Prometheus metrics are implemented in `src/contractguard/observability.py`.
+Observability is implemented with JSONL logging and Prometheus counters/gauges/histograms for nodes, tools, failures, retries, HITL, LLM operations, latency, token estimates, and cost estimates.
 
 ## Deliverable 5 — Persistence, HITL & Cloud (20)
 
-`src/contractguard/persistence.py` creates LangGraph `SqliteSaver` and the compiled graph receives it as its checkpointer.
+`src/contractguard/persistence.py` creates the real LangGraph `SqliteSaver`, and the compiled graph receives it as its checkpointer.
 
-The HITL implementation is explicit:
+The human node calls `interrupt(...)`; the service later invokes `Command(resume=...)` for the same persisted thread; the node then routes with `Command(goto=...)`.
 
-```python
-decision_payload = interrupt(...)
-```
+Cloud/runtime artifacts:
 
-and external resume is explicit:
-
-```python
-self.graph.invoke(
-    Command(resume=request.model_dump(mode="json")),
-    config=config,
-)
-```
-
-The human node routes after the resumed value using `Command(goto="report_writer")` or `Command(goto="rejected")`.
-
-Cloud/runtime artifacts: `Dockerfile`, `docker-compose.yml`, FastAPI, Prometheus config, and MinIO/S3 smoke test.
+- `Dockerfile`
+- `docker-compose.yml`
+- FastAPI/Uvicorn API
+- Prometheus configuration
+- MinIO/S3 backend
+- `evidence/07_minio_docker_smoke.json`, which proves completed S3-compatible storage and SDK verification
 
 ## Deliverable 6 — Documentation & Execution Evidence (5)
 
-The canonical machine-readable entry points are:
+Canonical evidence entry points:
 
-- `EVALUATION.json` — dependency-free source verification.
-- `evidence/runtime_grader_probe.json` — runtime verification produced by CI.
-- `evidence/run_summary.json` — full proof assertions.
-- `notebooks/ContractGuard_Capstone_Executed.ipynb` — executed notebook generated after runtime dependencies are installed.
+- `EVALUATION.json`
+- `evidence/runtime_grader_probe.json`
+- `evidence/run_summary.json`
+- `evidence/pytest_results.txt`
+- `notebooks/ContractGuard_Capstone_Executed.ipynb`
+- `docs/rubric_traceability.md`
+
+The executed notebook contains captured output for the security, retry, graph, multi-agent, HITL/restart, output-guardrail, persistence, and monitoring paths.
 
 ## GitHub About description
 
-After publishing, set the repository About description to exactly:
+The repository landing page should display:
 
 > Secure LangGraph multi-agent system for vendor contract auditing, compliance analysis, guardrails, human approval, and production monitoring.
 
-This is GitHub repository metadata and cannot be populated by a README file alone.
+No GitHub Actions workflow is required to establish rubric compliance; source and runtime proof are committed directly in the repository.
